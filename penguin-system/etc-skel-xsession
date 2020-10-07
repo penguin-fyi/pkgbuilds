@@ -1,0 +1,51 @@
+# Path variables
+export PATH=$PATH:$HOME/.bin
+
+# XDG paths
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+# Common environment variables
+export TERMINAL=termite
+export BROWSER=qutebrowser
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Load X settings
+xrdb -merge "$HOME/.Xresources"
+
+# Set screen timeout
+xset s 600 180 &
+
+# Use left-facing pointer
+xsetroot -cursor_name left_ptr &
+
+# Enable num-lock
+numlockx &
+
+# Set wallpaper
+sh $HOME/.fehbg &
+
+# Lock screen
+xss-lock -l -- multilockscreen --lock &
+multilockscreen -u /usr/share/backgrounds/antsy/tux/gradient &
+
+# X compositor
+picom &
+
+# Notification daemon
+dunst &
+
+# Polkit agent
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Sound daemon
+start-pulseaudio-x11 &
+
+# Bluetooth
+blueman-applet &
+
+# Removable Storage
+udiskie -s &
+
+exec i3

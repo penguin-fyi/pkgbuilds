@@ -1,0 +1,26 @@
+configuration {
+	modi: "window,drun,run";
+	width: 320;
+	lines: 10;
+	columns: 1;
+	font: "Hack Nerd Font 10";
+	bw: 1;
+	location: 0;
+	padding: 2;
+	yoffset: -120;
+	xoffset: 0;
+	fixed-num-lines: false;
+	show-icons: true;
+	terminal: "rofi-sensible-terminal";
+	sort: true;
+	separator-style: "none";
+	hide-scrollbar: true;
+	fake-transparency: false;
+	click-to-exit: true;
+	show-match: true;
+	display-window: "  Windows";
+	display-run: "  Run";
+	display-drun: "  Applications";
+	theme: "antsy";
+}
+/* vim:ft=css

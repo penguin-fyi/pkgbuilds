@@ -1,0 +1,16 @@
+post_install () {
+
+    systemctl enable dhcpcd
+    systemctl enable reflector
+
+    systemctl enable sshd
+
+    if [ "$(ufw status | cut -d' ' -f2)" = "inactive" ]; then
+        ufw default deny
+        ufw allow ssh
+        ufw enable
+        systemctl enable ufw
+    fi
+
+    return
+}

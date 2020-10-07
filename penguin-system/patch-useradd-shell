@@ -1,0 +1,10 @@
+--- /etc/default/useradd	2020-09-07 08:42:01.000000000 -0500
++++ /etc/default/useradd	2020-10-04 08:46:23.556308316 -0500
+@@ -4,6 +4,6 @@
+ HOME=/home
+ INACTIVE=-1
+ EXPIRE=
+-SHELL=/bin/bash
++SHELL=/usr/bin/zsh
+ SKEL=/etc/skel
+ CREATE_MAIL_SPOOL=no

@@ -1,0 +1,349 @@
+# i3 config file (v4)
+
+##
+## aliases
+##
+
+# monitors
+set $mon1 VGA-1
+
+# workspace names
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws0 "0: "
+
+# colors from Xresrouces               defaults (Xterm)
+set_from_resource $black       color0  #000000
+set_from_resource $darkred     color1  #cd0000
+set_from_resource $darkgreen   color2  #00cd00
+set_from_resource $darkyellow  color3  #cdcd00
+set_from_resource $darkblue    color4  #0000ee
+set_from_resource $darkmagenta color5  #cd00cd
+set_from_resource $darkcyan    color6  #00cdcd
+set_from_resource $lightgrey   color7  #e5e5e5
+set_from_resource $darkgrey    color8  #7f7f7f
+set_from_resource $red         color9  #ff0000
+set_from_resource $green       color10 #00ff00
+set_from_resource $yellow      color11 #ffff00
+set_from_resource $blue        color12 #5c5cff
+set_from_resource $magenta     color13 #ff00ff
+set_from_resource $cyan        color14 #00ffff
+set_from_resource $white       color15 #ffffff
+
+# alpha bit
+set $a e6
+
+# fonts
+set $font pango:Hack Nerd Font 10
+
+
+##
+## style
+##
+
+# gaps
+gaps inner 10 
+
+# window border
+new_window pixel 1
+
+# default for new window
+default_border pixel 1
+
+# default for new floating window
+default_floating_border pixel 1
+
+# window colors
+# class                 border      backgr      text        indicator   child_border
+client.focused          $blue       $blue       $black      $blue       $blue
+client.focused_inactive $black      $black      $lightgrey  $black      $black
+client.unfocused        $black      $black      $lightgrey  $black      $black
+client.urgent           $cyan       $cyan       $black      $cyan       $cyan  
+client.background       $black
+
+# font
+font $font
+
+
+##
+## status bar
+##
+
+bar {
+    status_command i3status
+    colors {
+        background $black$a
+        statusline $lightgrey
+        separator $darkgrey
+
+        focused_workspace  $blue  $black $white
+        active_workspace   $black $black $darkgrey
+        inactive_workspace $black $black $darkgrey
+        urgent_workspace   $cyan  $black $white
+        binding_mode       $white $black $white
+    }
+    height 24
+    font $font
+    separator_symbol ""
+    workspace_min_width 20
+    strip_workspace_numbers yes
+    tray_output primary
+}
+
+
+##
+## options
+##
+
+# default orientation
+default_orientation auto
+
+# mode for new top level containers
+workspace_layout default
+
+#
+hide_edge_borders none
+
+# focus follows mouse
+focus_follows_mouse yes
+
+#
+mouse_warping output
+
+# popup focus
+popup_during_fullscreen smart
+
+# wrap if no container in direction
+focus_wrapping no
+
+# back and forth workplace switching
+workspace_auto_back_and_forth yes
+
+# time to show urgency hint
+force_display_urgency_hint 500 ms
+
+# window focus
+focus_on_window_activation smart
+
+# assign workspace to output
+workspace $ws1 output $mon1
+workspace $ws2 output $mon1
+workspace $ws3 output $mon1
+workspace $ws4 output $mon1
+workspace $ws5 output $mon1
+workspace $ws6 output $mon1
+workspace $ws7 output $mon1
+workspace $ws8 output $mon1
+workspace $ws9 output $mon1
+workspace $ws0 output $mon1
+
+
+##
+## keybindings
+##
+
+# modifier keys
+set $super  Mod4
+set $ctrl   Control
+set $shift  Shift
+set $alt    Mod1
+
+# start a terminal
+bindsym $super+Return exec $TERMINAL
+
+# application launcher
+bindsym $super+space exec rofi -show drun
+
+# command launcher
+bindsym $super+semicolon exec rofi -show run
+
+# session menu
+bindsym $super+$ctrl+Escape exec menuz
+
+# window list
+bindsym $super+Tab exec rofi -show window
+
+# show window hints
+bindsym $alt+Tab exec window-hints.sh
+
+# kill focused window
+bindsym $super+$ctrl+q kill
+
+# notifications
+bindsym $super+grave exec --no-startup-id dunstctl close
+bindsym $super+$shift+grave exec --no-startup-id dunstctl close-all
+bindsym $super+$ctrl+grave exec --no-startup-id dunstctl history-pop
+bindsym $super+$alt+grave exec --no-startup-id dunstctl context
+
+# volume
+#bindsym $super+Prior exec --no-startup-id volume-ctl.sh -u 5
+#bindsym $super+Next exec --no-startup-id volume-ctl.sh -d 5
+#bindsym $super+$shift+Next exec --no-startup-id volume-ctl.sh -m
+
+# rofi-pass
+bindsym $super+$alt+p exec rofi-pass
+
+# screen capture
+bindsym $super+Print exec --no-startup-id screen-capture.sh
+bindsym $super+$shift+Print exec --no-startup-id screen-capture.sh -s
+
+# change focus (vi)
+bindsym $super+h focus left
+bindsym $super+j focus down
+bindsym $super+k focus up
+bindsym $super+l focus right
+
+# change focus
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+# move window (vi)
+bindsym $super+$shift+h move left
+bindsym $super+$shift+j move down
+bindsym $super+$shift+k move up
+bindsym $super+$shift+l move right
+
+# move window
+bindsym $super+$shift+Left move left
+bindsym $super+$shift+Down move down
+bindsym $super+$shift+Up move up
+bindsym $super+$shift+Right move right
+
+# mouse dragging
+floating_modifier $super
+
+# layouts
+bindsym $super+$shift+s layout stacking
+bindsym $super+$shift+w layout tabbed
+bindsym $super+$shift+e layout toggle split
+
+# toggle floating
+bindsym $super+$shift+f floating toggle
+
+# toggle fullscreen
+bindsym $super+$alt+f fullscreen toggle
+
+# split horizontal
+bindsym $super+$shift+bar split h
+
+# split vertical
+bindsym $super+bar split v
+
+# focus parent container
+bindsym $super+a focus parent
+
+# focus child container
+bindsym $super+c focus child
+
+# Focus last floating/tiling container
+bindsym $super+f focus mode_toggle
+
+# focus urgent window
+bindsym $super+quote [urgent=latest] focus
+
+# switch to workspace
+bindsym $super+1 workspace $ws1
+bindsym $super+2 workspace $ws2
+bindsym $super+3 workspace $ws3
+bindsym $super+4 workspace $ws4
+bindsym $super+5 workspace $ws5
+bindsym $super+6 workspace $ws6
+bindsym $super+7 workspace $ws7
+bindsym $super+8 workspace $ws8
+bindsym $super+9 workspace $ws9
+bindsym $super+0 workspace $ws0
+
+# move container to workspace
+bindsym $super+$shift+1 move container to workspace $ws1
+bindsym $super+$shift+2 move container to workspace $ws2
+bindsym $super+$shift+3 move container to workspace $ws3
+bindsym $super+$shift+4 move container to workspace $ws4
+bindsym $super+$shift+5 move container to workspace $ws5
+bindsym $super+$shift+6 move container to workspace $ws6
+bindsym $super+$shift+7 move container to workspace $ws7
+bindsym $super+$shift+8 move container to workspace $ws8
+bindsym $super+$shift+9 move container to workspace $ws9
+bindsym $super+$shift+0 move container to workspace $ws0
+ 
+# move workspace
+bindsym $super+$alt+left move workspace to output left
+bindsym $super+$alt+right move workspace to output right 
+
+bindsym $super+$alt+h move workspace to output left
+bindsym $super+$alt+l move workspace to output right 
+
+# resize mode
+mode " Resize" {
+    # shrink (vi)
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    # grow (vi)
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    # shrink
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    # grow
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    # exit resize mode
+    bindsym Escape mode "default"
+}
+bindsym $super+r mode " Resize"
+
+
+##
+## window rules
+##
+
+# special windows
+for_window [window_type="dialog"] floating enable
+for_window [window_type="utility"] floating enable
+for_window [window_type="toolbar"] floating enable
+for_window [window_type="splash"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_type="dropdown_menu"] floating enable
+for_window [window_type="popup_menu"] floating enable
+for_window [window_type="tooltip"] floating enable
+for_window [window_type="notification"] floating enable
+
+for_window [class="feh"] floating enable focus
+
+assign [class="^qutebrowser$"] → $ws2
+for_window [class="^qutebrowser$"] focus
+
+assign [class="^Zathura$"] → $ws7
+for_window [class="^Zathura$"] focus
+
+assign [class="^(?i)libreoffice-*|Soffice"] → $ws7
+for_window [class="^(?i)libreoffice-*|Soffice"] focus
+
+assign [class="mpv"] → $ws8
+for_window [class="mpv"] floating enable focus
+
+assign [class="^Pavucontrol$"] → $ws0
+for_window [class="^Pavucontrol$"] floating enable focus
+
+assign [class="^blueman-manager$"] → $ws0
+for_window [class="^blueman-manager$"] floating enable focus
+
+assign [class="^Lxappearance$"] → $ws0
+for_window [class="^Lxappearance$"] floating enable focus
+
+assign [class="^qt5ct$"] → $ws0
+for_window [class="^qt5ct$"] floating enable focus
+
+assign [class="^wifimenu$"] → $ws0
+for_window [title="^wifimenu$"] floating enable focus
+
+
+# vim: set ft=i3config

@@ -1,0 +1,159 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgbase=penguin-system
+pkgname=(
+    'penguin-base'
+    'penguin-desktop'
+    'penguin-defaults'
+)
+pkgver=1
+pkgrel=1
+pkgdesc="Penguin System"
+arch=('any')
+url="https://penguin.fyi/"
+license=('MIT')
+
+source=(
+    'penguin-base.install'
+    'penguin-desktop.install'
+    'penguin-config-patch.hook'
+    'penguin-config-patch.sh'
+    'patch-pacman.conf'
+    'patch-makepkg.conf'
+    'patch-reflector.conf'
+    'patch-useradd-shell'
+    'patch-issue-ascii'
+    'patch-lightdm-gtk-greeter.conf'
+    'etc-sudoers-wheel'
+    'etc-skel-Xresources'
+    'etc-skel-xsession'
+    'etc-skel-zshrc'
+    'etc-skel-zshprompt'
+    'etc-skel-i3gaps'
+    'etc-skel-i3status'
+    'etc-skel-roficonfig'
+    'etc-skel-rofitheme'
+    'etc-skel-gtk2'
+    'etc-skel-gtk3'
+    'etc-skel-qt5ct'
+    'etc-skel-dunstrc'
+    'etc-skel-picom'
+    'etc-skel-fehbg'
+    'etc-skel-termite'
+    'etc-skel-tmuxconf'
+    'etc-skel-qutebrowser'
+    'README.md'
+    'LICENSE'
+)
+
+package_penguin-base(){
+    pkgdesc="Penguin Base System"
+    depends=(
+        base linux-firmware grub efibootmgr
+        dhcpcd openssh ufw fail2ban
+        zsh vim curl tmux git
+        patch sudo man-db man-pages
+    )
+    install=penguin-base.install
+    install -Dm0644 etc-skel-zshrc "$pkgdir"/etc/skel/.zshrc
+    install -Dm0644 etc-skel-zshprompt "$pkgdir"/etc/skel/.zshrc.prompt
+    install -dm0750 "$pkgdir"/etc/sudoers.d
+    install -Dm0644 etc-sudoers-wheel "$pkgdir"/etc/sudoers.d/10-wheel
+    install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
+    install -Dm0644 patch-makepkg.conf "$pkgdir"/usr/share/penguin/patches/makepkg.conf.patch
+    install -Dm0644 patch-reflector.conf "$pkgdir"/usr/share/penguin/patches/reflector.conf.patch
+    install -Dm0644 patch-useradd-shell "$pkgdir"/usr/share/penguin/patches/useradd.patch
+    install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
+    install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
+    install -Dm0755 penguin-config-patch.sh "$pkgdir"/usr/share/libalpm/scripts/penguin-config-patch
+
+    install -Dm0644 README.md "$pkgdir"/usr/share/penguin/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/LICENSE
+}
+
+package_penguin-desktop(){
+    pkgdesc="Penguin Desktop packages"
+    depends=(
+        penguin-base
+        xorg-server xorg-xset xorg-xrdb xorg-xrandr xorg-xdpyinfo
+        lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+        i3-gaps i3status i3lock-color-git unclutter-xfixes-git
+        rofi picom xclip numlockx xss-lock
+        ffmpeg imagemagick feh maim bc
+        rofi-pass multilockscreen
+        pulseaudio pulseaudio-alsa pavucontrol
+        blueman polkit-gnome dunst udiskie
+        termite xterm ranger htop mailcap
+        qutebrowser neomutt newsboat
+        mpd mpc ncmpcpp mpv
+        zathura zathura-pdf-mupdf
+        curl wget w3m urlscan
+        vi bat jq fzf dialog
+        fd tree unzip zip lsof
+        weechat pass pwgen gnupg
+        zsh-autosuggestions zsh-completions
+        zsh-syntax-highlighting bash-completion
+        ipython python-black python-isort eslint
+        python-pyflakes flake8 autopep8 yapf
+        python-virtualenv python-virtualenvwrapper
+        cmake ctags shellcheck github-cli
+        lxappearance qt5ct qt5-styleplugins fontconfig
+        pacutils pacman-contrib reflector
+    )
+    install=penguin-desktop.install
+    install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
+}
+
+
+package_penguin-defaults(){
+    pkgdesc="Penguin Default Theme (Antsy)"
+    depends=(
+        penguin-desktop
+        antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
+        ttf-hack nerd-fonts-hack noto-fonts-emoji
+    )
+    install -Dm0755 etc-skel-xsession "$pkgdir"/etc/skel/.xsession
+    install -Dm0644 etc-skel-Xresources "$pkgdir"/etc/skel/.Xresources
+    install -Dm0644 etc-skel-i3gaps "$pkgdir"/etc/skel/.config/i3/config
+    install -Dm0644 etc-skel-i3status "$pkgdir"/etc/skel/.config/i3status/config
+    install -Dm0644 etc-skel-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
+    install -Dm0644 etc-skel-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
+    install -Dm0644 etc-skel-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
+    install -Dm0644 etc-skel-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
+    install -Dm0644 etc-skel-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
+    install -Dm0644 etc-skel-dunstrc "$pkgdir"/etc/skel/.config/dunst/dunstrc
+    install -Dm0644 etc-skel-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
+    install -Dm0755 etc-skel-fehbg "$pkgdir"/etc/skel/.fehbg
+    install -Dm0644 etc-skel-termite "$pkgdir"/etc/skel/.config/termite/config
+    install -Dm0644 etc-skel-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
+    install -Dm0644 etc-skel-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
+}
+
+md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
+         '7c47a6806061ccae3f5484973a00a0c6'
+         'e2dfdda69b13af5ab8b9468f9b6148b7'
+         'cdb56c7933f12c4b69180abba141ab5d'
+         '257f3fd773cfac35ed40e2d5f885a72f'
+         '08776fecbc01ca790ca20838943b0897'
+         '79c690fc4d1faf1aa317cbe68246097f'
+         '044f00bcb352b273e841ecbf3836b705'
+         '305f7b615e8027001629ea8e4ccf3333'
+         '25b151ccac832c4b8333222106d16b8c'
+         '6633e7c31a10df3c1ac161e02a3796e5'
+         '4d6f3d7fd124113de022516032c88695'
+         '0364cda8c7b962de71d9b7a86a7bd54d'
+         '7a22d5e966e64053fc4307c105431502'
+         '8d74272454cef990b0cb184c7ce54bba'
+         '1969e07d9c5d0336c3d463d064a24e5b'
+         'e064654a2b48cc1e888be65f73b9a463'
+         '98e6730a868d7fcd160a2b1e2167e96c'
+         '2e99a6c2744cdcbe1075741806d6c62f'
+         'd128ec12cb99a770aab409cd17a60ad0'
+         '5c45a57289ab8192700ce374e94cad7a'
+         'f8c6acdb4bd14a1350f38c60eeba56f4'
+         '0c86433ee520ae3e4e3b62d46eafe7a7'
+         'a5df1df2f25f103025ea8967c67af43a'
+         '4233555718381b3dffc48ba84977e52a'
+         'bbeffe2ceb7b01946d87ed52229ff909'
+         '1c715063118b33ea059af7affb4cfec1'
+         'af4ccc3c66689351d87358795f13e59c'
+         'a55d1384569349075b5a6a5c61af5c17')

@@ -1,0 +1,12 @@
+#!/usr/bin/zsh
+
+autoload -U compaudit compinit
+compinit
+
+# load plugins
+plugdir=/usr/share/zsh/plugins
+source $plugdir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $plugdir/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# load prompt
+source $HOME/.zshrc.prompt

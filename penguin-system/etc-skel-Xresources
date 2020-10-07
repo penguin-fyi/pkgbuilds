@@ -1,0 +1,80 @@
+*color0:        #000000
+*color1:        #c23621
+*color2:        #25bc24
+*color3:        #adad27
+*color4:        #492ee1
+*color5:        #d338d3
+*color6:        #33bbc8
+*color7:        #cbcccd
+*color8:        #818383
+*color9:        #fc391f
+*color10:       #31e722
+*color11:       #eaec23
+*color12:       #5833ff
+*color13:       #f935f8
+*color14:       #14f0f0
+*color15:       #e9ebeb
+*background:    #000000
+*foreground:    #cbcccd
+*cursorColor:   #31e722
+*cursorUL:      #31e722
+
+define fonts xft:Hack Nerd Font:pixelsize=12
+
+URxvt*title:                    URxvt
+URxvt*termName:                 rxvt-unicode-256color
+URxvt*depth:                    32
+URxvt*saveLines:                2500
+URxvt*urgentOnBell:             true
+URxvt*intensityStyles:          true
+URxvt*internalBorder:           3
+URxvt*lineSpace:                0
+URxvt*scrollBar:                false
+URxvt*cursorBlink:              true
+URxvt*cursorUnderline:          true
+URxvt*colorULMode:              on
+URxvt*transparent:              true
+URxvt*shading:                  10
+URxvt*font:                     fonts
+URxvt*boldFont:                 fonts
+URxvt.italicFont:               fonts
+URxvt.boldItalicFont:           fonts
+URxvt*perl-ext-common:          default,matcher
+URxvt.url-launcher:             xdg-open
+URxvt.matcher.button:           1
+
+XTerm.termName:                 xterm-256color
+xterm*faceName:                 Hack Nerd Font
+xterm*fontWarnings:             2
+xterm*faceSize:                 10
+xterm*allowBoldFonts:           false
+xterm*assumeAllChars:           true
+XTerm*boldColors:               true
+xterm*wideChars:                true
+xterm*showMissingGlyphs:        true
+xterm*selectToClipboard:        true
+xterm*dynamicColors:            true
+xterm*cursorBlink:              true
+xterm*locale:                   UTF-8
+xterm*utf8:                     3
+xterm*utf8Fonts:                2
+xterm*eightBitInput:            true
+xterm*saveLines:                1000
+xterm*scrollKey:                true
+xterm*scrollTtyOutput:          false
+xterm*scrollBar:                false
+xterm*rightScrollBar:           true
+xterm*jumpScroll:               true
+xterm*multiScroll:              true
+xterm*toolBar:                  false
+XTerm*TrimSelection:            true
+
+Xft.lcdfilter:                  lcddefault
+Xft.hinting:                    true
+Xft.hintstyle:                  hintslight
+Xft.autohint:                   true
+Xft.antialias:                  true
+Xft.rgba:                       rgb
+
+Xcursor.theme:                  "OpenZone Black"
+Xcursor.size:                   16

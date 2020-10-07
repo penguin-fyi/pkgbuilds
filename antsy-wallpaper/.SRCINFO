@@ -1,0 +1,13 @@
+pkgbase = antsy-wallpaper
+	pkgdesc = Antsy wallpaper collection
+	pkgver = 0.4
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/antsy-wallpaper/
+	arch = any
+	license = MIT
+	optdepends = feh: set desktop background
+	source = https://github.com/jeffmhubbard/antsy-wallpaper/archive/v0.4.tar.gz
+	sha256sums = 321512a6dba15f1d6315c7055cf58fbc510d377f3164b8683faa9fa589749f88
+
+pkgname = antsy-wallpaper
+

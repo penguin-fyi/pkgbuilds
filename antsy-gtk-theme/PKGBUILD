@@ -1,0 +1,18 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=antsy-gtk-theme
+pkgver=0.1
+pkgrel=2
+pkgdesc="Antsy GTK2/3 theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/antsy-gtk-theme"
+license=('MIT')
+depends=('gtk-engine-murrine')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
+sha256sums=('3035356af8a09b3eba4cc7ddd9c694e3a6bf90c18215cf8c005eab55f48899ec')
+
+package() {
+	mkdir -p $pkgdir/usr/share/themes
+	cp -r "$srcdir/$pkgname-$pkgver/Antsy" "$pkgdir/usr/share/themes/Antsy"
+	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/Antsy"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE.md" "$pkgdir/usr/share/themes/Antsy"
+}

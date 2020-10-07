@@ -1,0 +1,18 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=antsy-icon-theme
+pkgver=0.1
+pkgrel=2
+pkgdesc="Antsy Icon theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/antsy-icon-theme"
+license=('MIT')
+depends=('hicolor-icon-theme' 'gnome-icon-theme' 'breeze-icons')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
+sha256sums=('4a8b715e5a2791adbb14c5ba048a0ccc333f878c5612493142622a354d2ddbc7')
+
+package() {
+	mkdir -p $pkgdir/usr/share/icons
+	cp -r "$srcdir/$pkgname-$pkgver/Antsy" "$pkgdir/usr/share/icons/Antsy"
+	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/icons/Antsy"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE.md" "$pkgdir/usr/share/icons/Antsy"
+}

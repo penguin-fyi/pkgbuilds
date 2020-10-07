@@ -1,0 +1,14 @@
+pkgbase = antsy-icon-theme
+	pkgdesc = Antsy Icon theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/antsy-icon-theme
+	arch = any
+	license = MIT
+	depends = hicolor-icon-theme
+	depends = gnome-themes-extra
+	source = https://github.com/jeffmhubbard/antsy-icon-theme/archive/v0.1.tar.gz
+	sha256sums = 4a8b715e5a2791adbb14c5ba048a0ccc333f878c5612493142622a354d2ddbc7
+
+pkgname = antsy-icon-theme
+

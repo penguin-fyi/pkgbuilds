@@ -1,0 +1,13 @@
+pkgbase = antsy-gtk-theme
+	pkgdesc = Antsy GTK2/3 theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/antsy-gtk-theme
+	arch = any
+	license = MIT
+	depends = gtk-engine-murrine
+	source = https://github.com/jeffmhubbard/antsy-gtk-theme/archive/v0.1.tar.gz
+	sha256sums = 3035356af8a09b3eba4cc7ddd9c694e3a6bf90c18215cf8c005eab55f48899ec
+
+pkgname = antsy-gtk-theme
+

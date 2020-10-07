@@ -1,0 +1,24 @@
+[submodule "multilockscreen"]
+	path = multilockscreen
+	url = https://aur.archlinux.org/multilockscreen
+[submodule "qt5-styleplugins"]
+	path = qt5-styleplugins
+	url = https://aur.archlinux.org/qt5-styleplugins
+[submodule "xob"]
+	path = xob
+	url = https://aur.archlinux.org/xob
+[submodule "wmfocus"]
+	path = wmfocus
+	url = https://aur.archlinux.org/wmfocus
+[submodule "unclutter-xfixes-git"]
+	path = unclutter-xfixes-git
+	url = https://aur.archlinux.org/unclutter-xfixes-git
+[submodule "i3lock-color-git"]
+	path = i3lock-color-git
+	url = https://aur.archlinux.org/i3lock-color-git
+[submodule "nerd-fonts-hack"]
+	path = nerd-fonts-hack
+	url = https://aur.archlinux.org/nerd-fonts-hack
+[submodule "xcursor-openzone"]
+	path = xcursor-openzone
+	url = https://aur.archlinux.org/xcursor-openzone

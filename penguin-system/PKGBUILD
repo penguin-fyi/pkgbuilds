@@ -5,7 +5,7 @@ pkgname=(
     'penguin-desktop'
     'penguin-defaults'
 )
-pkgver=1
+pkgver=2
 pkgrel=1
 pkgdesc="Penguin System"
 arch=('any')
@@ -28,14 +28,13 @@ source=(
     'etc-skel-xsession'
     'etc-skel-zshrc'
     'etc-skel-zshprompt'
-    'etc-skel-i3gaps'
-    'etc-skel-i3status'
+    'etc-skel-awesome'
+    'etc-skel-awesome-theme'
     'etc-skel-roficonfig'
     'etc-skel-rofitheme'
     'etc-skel-gtk2'
     'etc-skel-gtk3'
     'etc-skel-qt5ct'
-    'etc-skel-dunstrc'
     'etc-skel-picom'
     'etc-skel-fehbg'
     'etc-skel-termite'
@@ -76,12 +75,13 @@ package_penguin-desktop(){
         penguin-base
         xorg-server xorg-xset xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-        i3-gaps i3status i3lock-color-git unclutter-xfixes-git
+        awesome awesome-freedesktop-git vicious lain-git
+        i3lock-color-git unclutter-xfixes-git
         rofi picom xclip numlockx xss-lock
         ffmpeg imagemagick feh maim bc
         rofi-pass multilockscreen
         pulseaudio pulseaudio-alsa pavucontrol
-        blueman polkit-gnome dunst udiskie
+        blueman polkit-gnome udiskie
         termite xterm ranger htop mailcap
         qutebrowser neomutt newsboat
         mpd mpc ncmpcpp mpv
@@ -113,14 +113,13 @@ package_penguin-defaults(){
     )
     install -Dm0755 etc-skel-xsession "$pkgdir"/etc/skel/.xsession
     install -Dm0644 etc-skel-Xresources "$pkgdir"/etc/skel/.Xresources
-    install -Dm0644 etc-skel-i3gaps "$pkgdir"/etc/skel/.config/i3/config
-    install -Dm0644 etc-skel-i3status "$pkgdir"/etc/skel/.config/i3status/config
+    install -Dm0644 etc-skel-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
+    install -Dm0644 etc-skel-awesome-theme "$pkgdir"/etc/skel/.config/awesome/themes/antsy/theme.lua
     install -Dm0644 etc-skel-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
     install -Dm0644 etc-skel-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
     install -Dm0644 etc-skel-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
     install -Dm0644 etc-skel-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
     install -Dm0644 etc-skel-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
-    install -Dm0644 etc-skel-dunstrc "$pkgdir"/etc/skel/.config/dunst/dunstrc
     install -Dm0644 etc-skel-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
     install -Dm0755 etc-skel-fehbg "$pkgdir"/etc/skel/.fehbg
     install -Dm0644 etc-skel-termite "$pkgdir"/etc/skel/.config/termite/config
@@ -133,6 +132,7 @@ md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
          'e2dfdda69b13af5ab8b9468f9b6148b7'
          'cdb56c7933f12c4b69180abba141ab5d'
          '257f3fd773cfac35ed40e2d5f885a72f'
+         'dc698ad23bc8e248723d05b837b1806b'
          '08776fecbc01ca790ca20838943b0897'
          '79c690fc4d1faf1aa317cbe68246097f'
          '044f00bcb352b273e841ecbf3836b705'
@@ -142,14 +142,13 @@ md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
          '4d6f3d7fd124113de022516032c88695'
          '0364cda8c7b962de71d9b7a86a7bd54d'
          '7a22d5e966e64053fc4307c105431502'
-         '8d74272454cef990b0cb184c7ce54bba'
-         '1969e07d9c5d0336c3d463d064a24e5b'
+         'fff0fdb74780bae936c291490a65a4ee'
+         'd630697001c727ce2f2ac4b903a9ffcf'
          'e064654a2b48cc1e888be65f73b9a463'
          '98e6730a868d7fcd160a2b1e2167e96c'
          '2e99a6c2744cdcbe1075741806d6c62f'
          'd128ec12cb99a770aab409cd17a60ad0'
          '5c45a57289ab8192700ce374e94cad7a'
-         'f8c6acdb4bd14a1350f38c60eeba56f4'
          '0c86433ee520ae3e4e3b62d46eafe7a7'
          'a5df1df2f25f103025ea8967c67af43a'
          '4233555718381b3dffc48ba84977e52a'

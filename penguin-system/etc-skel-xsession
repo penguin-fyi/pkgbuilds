@@ -33,9 +33,6 @@ multilockscreen -u /usr/share/backgrounds/antsy/tux/gradient &
 # X compositor
 picom &
 
-# Notification daemon
-dunst &
-
 # Polkit agent
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
@@ -48,4 +45,4 @@ blueman-applet &
 # Removable Storage
 udiskie -s &
 
-exec i3
+exec awesome

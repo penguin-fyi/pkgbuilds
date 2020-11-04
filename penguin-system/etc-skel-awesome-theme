@@ -1,0 +1,153 @@
+----------------------------------------------
+--  Antsy theme which follows GTK+ 3 theme  --
+--   by Jeff M. Hubbard                     --
+--   Based on gtk by Yauhen Kirylau         --
+----------------------------------------------
+
+local theme_assets = require("beautiful.theme_assets")
+local dpi = require("beautiful.xresources").apply_dpi
+local gfs = require("gears.filesystem")
+local themes_path = gfs.get_themes_dir()
+local gears_shape = require("gears.shape")
+local wibox = require("wibox")
+local awful_widget_clienticon = require("awful.widget.clienticon")
+local gtk = require("beautiful.gtk")
+
+
+-- inherit xresources theme:
+local theme = dofile(themes_path .. "xresources/theme.lua")
+
+-- load and prepare for use gtk theme:
+theme.gtk = gtk.get_theme_variables()
+if not theme.gtk then
+    local gears_debug = require("gears.debug")
+    gears_debug.print_warning("Can't load GTK+3 theme. Using 'xresources' theme as a fallback.")
+    return theme
+end
+theme.gtk.button_border_radius = dpi(0)
+theme.gtk.button_border_width = dpi(1)
+theme.gtk.bold_font = theme.gtk.font_family .. ' Bold ' .. theme.gtk.font_size
+theme.gtk.menubar_border_color = theme.gtk.base_color
+
+theme.font          = theme.gtk.font_family .. ' ' .. theme.gtk.font_size
+theme.font_bold     = theme.gtk.font_family .. ' Bold ' .. theme.gtk.font_size
+theme.fg_normal     = theme.gtk.text_color
+theme.bg_normal     = theme.gtk.base_color
+theme.wibar_fg      = theme.gtk.text_color
+theme.wibar_bg      = theme.gtk.base_color
+theme.fg_focus      = theme.gtk.selected_fg_color
+theme.bg_focus      = theme.gtk.selected_bg_color
+theme.fg_urgent     = theme.gtk.error_fg_color
+theme.bg_urgent     = theme.gtk.error_bg_color
+theme.fg_minimize   = theme.gtk.button_fg_color
+theme.bg_minimize   = theme.gtk.button_bg_color
+theme.bg_systray    = theme.gtk.base_color
+theme.border_normal = theme.gtk.wm_border_unfocused_color
+theme.border_focus  = theme.gtk.wm_border_focused_color
+theme.border_marked = theme.gtk.success_color
+theme.border_width  = dpi(1)
+theme.border_radius = dpi(0)
+theme.useless_gap   = dpi(5)
+
+-- tasklist
+theme.tasklist_fg_normal = theme.fg_normal
+theme.tasklist_bg_normal = theme.bg_normal
+theme.tasklist_fg_focus = theme.fg_focus
+theme.tasklist_bg_focus = theme.bg_focus
+theme.tasklist_font_focus = theme.font
+theme.tasklist_spacing = dpi(2)
+theme.tasklist_shape_border_width = dpi(1)
+theme.tasklist_widget_template = {
+    {
+        {
+            {
+                {
+                    id     = 'clienticon',
+                    widget = awful_widget_clienticon,
+                },
+                margins = dpi(4),
+                widget  = wibox.container.margin,
+            },
+            {
+                id     = 'text_role',
+                widget = wibox.widget.textbox,
+            },
+            layout = wibox.layout.fixed.horizontal,
+        },
+        left  = dpi(2),
+        right = dpi(4),
+        widget = wibox.container.margin
+    },
+    id     = 'background_role',
+    widget = wibox.container.background,
+    create_callback = function(self, c)
+        self:get_children_by_id('clienticon')[1].client = c
+    end,
+}
+
+-- taglist
+theme.taglist_fg_focus = theme.fg_focus
+theme.taglist_bg_focus = theme.bg_focus
+theme.taglist_fg_urgent = theme.gtk.warning_fg_color
+theme.taglist_bg_urgent = theme.gtk.warning_bg_color
+theme.taglist_fg_occupied = theme.gtk.base_color
+theme.taglist_bg_occupied = theme.gtk.button_border_color
+theme.taglist_fg_volatile = theme.gtk.error_fg_color
+theme.taglist_bg_volatile = theme.gtk.error_bg_color
+theme.taglist_spacing = dpi(2)
+theme.taglist_shape = gears_shape.rectangle
+theme.taglist_shape_border_width = dpi(1)
+theme.taglist_shape_border_color = theme.gtk.button_border_color
+theme.taglist_shape_border_color_empty = theme.gtk.base_color
+theme.taglist_shape_border_color_focus = theme.bg_focus
+theme.taglist_shape_border_color_occupied = theme.selected_bg_color
+theme.taglist_shape_border_color_urgent = theme.gtk.warning_bg_color
+theme.taglist_shape_border_color_volatile = theme.gtk.error_fg_color
+theme.taglist_squares_sel = nil
+theme.taglist_squares_unsel = nil
+
+-- titlebar
+theme.titlebar_font_normal = theme.font_bold
+theme.titlebar_bg_normal = theme.gtk.wm_border_unfocused_color
+theme.titlebar_fg_normal = theme.gtk.wm_title_unfocused_color
+theme.titlebar_font_focus = theme.font_bold
+theme.titlebar_bg_focus = theme.gtk.wm_border_focused_color
+theme.titlebar_fg_focus = theme.gtk.wm_title_focused_color
+
+-- tooltips
+theme.tooltip_fg = theme.gtk.tooltip_fg_color
+theme.tooltip_bg = theme.gtk.tooltip_bg_color
+
+-- menu
+theme.menu_border_width = theme.gtk.button_border_width
+theme.menu_border_color = theme.bg_focus
+theme.menu_bg_normal = theme.gtk.base_color
+theme.menu_fg_normal = theme.gtk.text_color
+theme.menu_height = dpi(20)
+theme.menu_width  = dpi(160)
+theme.menu_submenu_icon = nil
+theme.menu_submenu = "▸ "
+
+-- Recolor Layout icons:
+theme = theme_assets.recolor_layout(theme, theme.gtk.button_border_color)
+
+-- Recolor titlebar icons:
+theme = theme_assets.recolor_titlebar(theme, theme.titlebar_fg_normal, "normal")
+theme = theme_assets.recolor_titlebar(theme, theme.titlebar_fg_normal, "normal", "hover")
+theme = theme_assets.recolor_titlebar(theme, theme.gtk.error_bg_color, "normal", "press")
+theme = theme_assets.recolor_titlebar(theme, theme.titlebar_fg_focus, "focus")
+theme = theme_assets.recolor_titlebar(theme, theme.titlebar_fg_focus, "focus", "hover")
+theme = theme_assets.recolor_titlebar(theme, theme.gtk.error_bg_color, "focus", "press")
+
+-- Define the icon theme for application icons. If not set then the icons
+-- from /usr/share/icons and /usr/share/icons/hicolor will be used.
+theme.icon_theme = Antsy
+
+-- Generate Awesome icon:
+theme.awesome_icon = theme_assets.awesome_icon(
+    16, theme.bg_focus, theme.fg_focus
+)
+
+return theme
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80:foldmethod=marker

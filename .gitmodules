@@ -7,9 +7,6 @@
 [submodule "xob"]
 	path = xob
 	url = https://aur.archlinux.org/xob
-[submodule "wmfocus"]
-	path = wmfocus
-	url = https://aur.archlinux.org/wmfocus
 [submodule "unclutter-xfixes-git"]
 	path = unclutter-xfixes-git
 	url = https://aur.archlinux.org/unclutter-xfixes-git

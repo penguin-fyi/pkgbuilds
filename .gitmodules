@@ -25,3 +25,6 @@
 [submodule "lain-git"]
 	path = lain-git
 	url = https://aur.archlinux.org/lain-git
+[submodule "aurutils"]
+	path = aurutils
+	url = https://aur.archlinux.org/aurutils

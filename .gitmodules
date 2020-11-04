@@ -19,3 +19,9 @@
 [submodule "xcursor-openzone"]
 	path = xcursor-openzone
 	url = https://aur.archlinux.org/xcursor-openzone
+[submodule "awesome-freedesktop-git"]
+	path = awesome-freedesktop-git
+	url = https://aur.archlinux.org/awesome-freedesktop-git
+[submodule "lain-git"]
+	path = lain-git
+	url = https://aur.archlinux.org/lain-git

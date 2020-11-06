@@ -1,6 +1,3 @@
-[submodule "multilockscreen"]
-	path = multilockscreen
-	url = https://aur.archlinux.org/multilockscreen
 [submodule "qt5-styleplugins"]
 	path = qt5-styleplugins
 	url = https://aur.archlinux.org/qt5-styleplugins
@@ -10,9 +7,6 @@
 [submodule "unclutter-xfixes-git"]
 	path = unclutter-xfixes-git
 	url = https://aur.archlinux.org/unclutter-xfixes-git
-[submodule "i3lock-color-git"]
-	path = i3lock-color-git
-	url = https://aur.archlinux.org/i3lock-color-git
 [submodule "nerd-fonts-hack"]
 	path = nerd-fonts-hack
 	url = https://aur.archlinux.org/nerd-fonts-hack
@@ -22,9 +16,6 @@
 [submodule "awesome-freedesktop-git"]
 	path = awesome-freedesktop-git
 	url = https://aur.archlinux.org/awesome-freedesktop-git
-[submodule "lain-git"]
-	path = lain-git
-	url = https://aur.archlinux.org/lain-git
 [submodule "aurutils"]
 	path = aurutils
 	url = https://aur.archlinux.org/aurutils

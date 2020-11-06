@@ -40,3 +40,6 @@
 [submodule "no-more-secrets"]
 	path = no-more-secrets
 	url = https://aur.archlinux.org/no-more-secrets
+[submodule "luacheck"]
+	path = luacheck
+	url = https://aur.archlinux.org/luacheck

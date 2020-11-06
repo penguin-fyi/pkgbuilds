@@ -19,3 +19,24 @@
 [submodule "aurutils"]
 	path = aurutils
 	url = https://aur.archlinux.org/aurutils
+[submodule "xininfo-git"]
+	path = xininfo-git
+	url = https://aur.archlinux.org/xininfo-git
+[submodule "tuir"]
+	path = tuir
+	url = https://aur.archlinux.org/tuir
+[submodule "shellcheck-bin"]
+	path = shellcheck-bin
+	url = https://aur.archlinux.org/shellcheck-bin
+[submodule "resvg-cairo"]
+	path = resvg-cairo
+	url = https://aur.archlinux.org/resvg-cairo
+[submodule "oomox"]
+	path = oomox
+	url = https://aur.archlinux.org/oomox
+[submodule "gcalcli"]
+	path = gcalcli
+	url = https://aur.archlinux.org/gcalcli
+[submodule "no-more-secrets"]
+	path = no-more-secrets
+	url = https://aur.archlinux.org/no-more-secrets

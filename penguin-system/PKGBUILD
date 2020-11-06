@@ -75,18 +75,17 @@ package_penguin-desktop(){
         penguin-base
         xorg-server xorg-xset xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-        awesome awesome-freedesktop-git
-        i3lock-color-git unclutter-xfixes-git
-        rofi picom xclip numlockx xss-lock
-        ffmpeg imagemagick feh maim bc
-        rofi-pass multilockscreen
+        awesome awesome-freedesktop-git light-locker
+        picom unclutter-xfixes-git numlockx
+        rofi rofi-pass xclip
+        feh ffmpeg imagemagick maim
         pulseaudio pulseaudio-alsa pavucontrol
         blueman polkit-gnome udiskie
         termite xterm ranger htop mailcap
         qutebrowser neomutt newsboat
         mpd mpc ncmpcpp mpv
         zathura zathura-pdf-mupdf
-        curl wget w3m urlscan
+        curl wget rsync w3m urlscan
         vi bat jq fzf dialog
         fd tree unzip zip lsof
         weechat pass pwgen gnupg
@@ -95,7 +94,7 @@ package_penguin-desktop(){
         ipython python-black python-isort eslint
         python-pyflakes flake8 autopep8 yapf
         python-virtualenv python-virtualenvwrapper
-        cmake ctags shellcheck github-cli
+        cmake ctags shellcheck-bin luacheck github-cli
         lxappearance qt5ct qt5-styleplugins fontconfig
         pacutils pacman-contrib reflector
     )

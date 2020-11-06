@@ -6,7 +6,7 @@ pkgname=(
     'penguin-defaults'
 )
 pkgver=2
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin System"
 arch=('any')
 url="https://penguin.fyi/"
@@ -36,7 +36,6 @@ source=(
     'etc-skel-gtk3'
     'etc-skel-qt5ct'
     'etc-skel-picom'
-    'etc-skel-fehbg'
     'etc-skel-termite'
     'etc-skel-tmuxconf'
     'etc-skel-qutebrowser'
@@ -76,26 +75,26 @@ package_penguin-desktop(){
         xorg-server xorg-xset xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
         awesome awesome-freedesktop-git light-locker
+        lxappearance qt5ct qt5-styleplugins fontconfig
         picom unclutter-xfixes-git numlockx
         rofi rofi-pass xclip
-        feh ffmpeg imagemagick maim
         pulseaudio pulseaudio-alsa pavucontrol
         blueman polkit-gnome udiskie
         termite xterm ranger htop mailcap
-        qutebrowser neomutt newsboat
+        qutebrowser weechat neomutt newsboat
         mpd mpc ncmpcpp mpv
         zathura zathura-pdf-mupdf
+        feh ffmpeg imagemagick maim
         curl wget rsync w3m urlscan
         vi bat jq fzf dialog
         fd tree unzip zip lsof
-        weechat pass pwgen gnupg
+        pass pwgen gnupg
         zsh-autosuggestions zsh-completions
         zsh-syntax-highlighting bash-completion
         ipython python-black python-isort eslint
         python-pyflakes flake8 autopep8 yapf
         python-virtualenv python-virtualenvwrapper
         cmake ctags shellcheck-bin luacheck github-cli
-        lxappearance qt5ct qt5-styleplugins fontconfig
         pacutils pacman-contrib reflector
     )
     install=penguin-desktop.install
@@ -120,7 +119,6 @@ package_penguin-defaults(){
     install -Dm0644 etc-skel-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
     install -Dm0644 etc-skel-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
     install -Dm0644 etc-skel-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
-    install -Dm0755 etc-skel-fehbg "$pkgdir"/etc/skel/.fehbg
     install -Dm0644 etc-skel-termite "$pkgdir"/etc/skel/.config/termite/config
     install -Dm0644 etc-skel-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
     install -Dm0644 etc-skel-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
@@ -141,15 +139,14 @@ md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
          '540799b4a862d08b9cf75d3eebc4b43a'
          '0364cda8c7b962de71d9b7a86a7bd54d'
          '7a22d5e966e64053fc4307c105431502'
-         'fff0fdb74780bae936c291490a65a4ee'
-         'd630697001c727ce2f2ac4b903a9ffcf'
+         '058e47070d7157548bef18e9ced54105'
+         'f7e03119bd9345cc653c6012bbf773b3'
          'e064654a2b48cc1e888be65f73b9a463'
          '98e6730a868d7fcd160a2b1e2167e96c'
          '2e99a6c2744cdcbe1075741806d6c62f'
          'd128ec12cb99a770aab409cd17a60ad0'
          '5c45a57289ab8192700ce374e94cad7a'
          '0c86433ee520ae3e4e3b62d46eafe7a7'
-         'a5df1df2f25f103025ea8967c67af43a'
          '4233555718381b3dffc48ba84977e52a'
          'bbeffe2ceb7b01946d87ed52229ff909'
          '1c715063118b33ea059af7affb4cfec1'

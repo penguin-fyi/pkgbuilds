@@ -75,7 +75,7 @@ package_penguin-desktop(){
         penguin-base
         xorg-server xorg-xset xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-        awesome awesome-freedesktop-git vicious lain-git
+        awesome awesome-freedesktop-git
         i3lock-color-git unclutter-xfixes-git
         rofi picom xclip numlockx xss-lock
         ffmpeg imagemagick feh maim bc
@@ -139,7 +139,7 @@ md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
          '305f7b615e8027001629ea8e4ccf3333'
          '25b151ccac832c4b8333222106d16b8c'
          '6633e7c31a10df3c1ac161e02a3796e5'
-         '4d6f3d7fd124113de022516032c88695'
+         '540799b4a862d08b9cf75d3eebc4b43a'
          '0364cda8c7b962de71d9b7a86a7bd54d'
          '7a22d5e966e64053fc4307c105431502'
          'fff0fdb74780bae936c291490a65a4ee'

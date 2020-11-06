@@ -1,62 +1,76 @@
-----------------------------------------------
---  Antsy theme which follows GTK+ 3 theme  --
---   by Jeff M. Hubbard                     --
---   Based on gtk by Yauhen Kirylau         --
-----------------------------------------------
+---------------------------------------------
+--  Antsy Awesome Theme by Jeff M Hubbard  --
+--  Import colors from xresources          --
+---------------------------------------------
 
-local theme_assets = require("beautiful.theme_assets")
-local dpi = require("beautiful.xresources").apply_dpi
+-- requirements
+local awful_widget_clienticon = require("awful.widget.clienticon")
 local gfs = require("gears.filesystem")
-local themes_path = gfs.get_themes_dir()
 local gears_shape = require("gears.shape")
 local wibox = require("wibox")
-local awful_widget_clienticon = require("awful.widget.clienticon")
-local gtk = require("beautiful.gtk")
+local theme_assets = require("beautiful.theme_assets")
+local themes_path = gfs.get_themes_dir()
+local xresources = require("beautiful.xresources")
+local xrdb = xresources.get_current_theme()
+local dpi = xresources.apply_dpi
 
+-- inherit default theme
+local theme = dofile(themes_path.."xresources/theme.lua")
 
--- inherit xresources theme:
-local theme = dofile(themes_path .. "xresources/theme.lua")
+-- custom color aliases
+theme.black         = xrdb.color0
+theme.dark_red      = xrdb.color1
+theme.dark_green    = xrdb.color2
+theme.dark_yellow   = xrdb.color3
+theme.dark_blue     = xrdb.color4
+theme.dark_magenta  = xrdb.color5
+theme.dark_cyan     = xrdb.color6
+theme.gray          = xrdb.color7
+theme.dark_gray     = xrdb.color8
+theme.red           = xrdb.color9
+theme.green         = xrdb.color10
+theme.yellow        = xrdb.color11
+theme.blue          = xrdb.color12
+theme.magenta       = xrdb.color13
+theme.cyan          = xrdb.color14
+theme.white         = xrdb.color15
 
--- load and prepare for use gtk theme:
-theme.gtk = gtk.get_theme_variables()
-if not theme.gtk then
-    local gears_debug = require("gears.debug")
-    gears_debug.print_warning("Can't load GTK+3 theme. Using 'xresources' theme as a fallback.")
-    return theme
-end
-theme.gtk.button_border_radius = dpi(0)
-theme.gtk.button_border_width = dpi(1)
-theme.gtk.bold_font = theme.gtk.font_family .. ' Bold ' .. theme.gtk.font_size
-theme.gtk.menubar_border_color = theme.gtk.base_color
+-- custom variables
+theme.start_icon = "/usr/share/pixmaps/archlinux-logo.png"
+theme.task_width    = dpi(250)
 
-theme.font          = theme.gtk.font_family .. ' ' .. theme.gtk.font_size
-theme.font_bold     = theme.gtk.font_family .. ' Bold ' .. theme.gtk.font_size
-theme.fg_normal     = theme.gtk.text_color
-theme.bg_normal     = theme.gtk.base_color
-theme.wibar_fg      = theme.gtk.text_color
-theme.wibar_bg      = theme.gtk.base_color
-theme.fg_focus      = theme.gtk.selected_fg_color
-theme.bg_focus      = theme.gtk.selected_bg_color
-theme.fg_urgent     = theme.gtk.error_fg_color
-theme.bg_urgent     = theme.gtk.error_bg_color
-theme.fg_minimize   = theme.gtk.button_fg_color
-theme.bg_minimize   = theme.gtk.button_bg_color
-theme.bg_systray    = theme.gtk.base_color
-theme.border_normal = theme.gtk.wm_border_unfocused_color
-theme.border_focus  = theme.gtk.wm_border_focused_color
-theme.border_marked = theme.gtk.success_color
+-- fonts
+theme.font          = "Hack Nerd Font 10"
+theme.font_bold     = "Hack Nerd Font Bold 10"
+
+-- base
+theme.fg_normal     = theme.gray
+theme.bg_normal     = theme.black
+theme.wibar_fg      = theme.gray
+theme.wibar_bg      = theme.black
+theme.fg_focus      = theme.black
+theme.bg_focus      = theme.blue
+theme.fg_urgent     = theme.black
+theme.bg_urgent     = theme.cyan
+theme.fg_minimize   = theme.black
+theme.bg_minimize   = theme.dark_gray
+theme.bg_systray    = theme.black
+theme.separator     = theme.dark_gray
+theme.border_normal = theme.black
+theme.border_focus  = theme.blue
+theme.border_marked = theme.cyan
 theme.border_width  = dpi(1)
 theme.border_radius = dpi(0)
 theme.useless_gap   = dpi(5)
 
 -- tasklist
-theme.tasklist_fg_normal = theme.fg_normal
-theme.tasklist_bg_normal = theme.bg_normal
-theme.tasklist_fg_focus = theme.fg_focus
-theme.tasklist_bg_focus = theme.bg_focus
+theme.tasklist_fg_normal = theme.gray
+theme.tasklist_bg_normal = theme.black
+theme.tasklist_fg_focus = theme.black
+theme.tasklist_bg_focus = theme.blue
 theme.tasklist_font_focus = theme.font
 theme.tasklist_spacing = dpi(2)
-theme.tasklist_shape_border_width = dpi(1)
+theme.tasklist_shape_border_width = dpi(0)
 theme.tasklist_widget_template = {
     {
         {
@@ -86,68 +100,64 @@ theme.tasklist_widget_template = {
 }
 
 -- taglist
-theme.taglist_fg_focus = theme.fg_focus
-theme.taglist_bg_focus = theme.bg_focus
-theme.taglist_fg_urgent = theme.gtk.warning_fg_color
-theme.taglist_bg_urgent = theme.gtk.warning_bg_color
-theme.taglist_fg_occupied = theme.gtk.base_color
-theme.taglist_bg_occupied = theme.gtk.button_border_color
-theme.taglist_fg_volatile = theme.gtk.error_fg_color
-theme.taglist_bg_volatile = theme.gtk.error_bg_color
-theme.taglist_spacing = dpi(2)
+theme.taglist_fg_focus = theme.black
+theme.taglist_bg_focus = theme.blue
+theme.taglist_fg_urgent = theme.black
+theme.taglist_bg_urgent = theme.cyan
+theme.taglist_fg_occupied = theme.black
+theme.taglist_bg_occupied = theme.dark_gray
+theme.taglist_fg_volatile = theme.black
+theme.taglist_bg_volatile = theme.red
 theme.taglist_shape = gears_shape.rectangle
-theme.taglist_shape_border_width = dpi(1)
-theme.taglist_shape_border_color = theme.gtk.button_border_color
-theme.taglist_shape_border_color_empty = theme.gtk.base_color
-theme.taglist_shape_border_color_focus = theme.bg_focus
-theme.taglist_shape_border_color_occupied = theme.selected_bg_color
-theme.taglist_shape_border_color_urgent = theme.gtk.warning_bg_color
-theme.taglist_shape_border_color_volatile = theme.gtk.error_fg_color
+theme.taglist_shape_border_width = dpi(0)
+theme.taglist_spacing = dpi(2)
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
 
 -- titlebar
-theme.titlebar_font_normal = theme.font_bold
-theme.titlebar_bg_normal = theme.gtk.wm_border_unfocused_color
-theme.titlebar_fg_normal = theme.gtk.wm_title_unfocused_color
+theme.titlebar_font_normal = theme.font
+theme.titlebar_fg_normal = theme.dark_gray
+theme.titlebar_bg_normal = theme.black
 theme.titlebar_font_focus = theme.font_bold
-theme.titlebar_bg_focus = theme.gtk.wm_border_focused_color
-theme.titlebar_fg_focus = theme.gtk.wm_title_focused_color
+theme.titlebar_fg_focus = theme.white
+theme.titlebar_bg_focus = theme.black
 
--- tooltips
-theme.tooltip_fg = theme.gtk.tooltip_fg_color
-theme.tooltip_bg = theme.gtk.tooltip_bg_color
+-- tooltip
+theme.tooltip_fg = theme.gray
+theme.tooltip_bg = theme.black
 
 -- menu
-theme.menu_border_width = theme.gtk.button_border_width
-theme.menu_border_color = theme.bg_focus
-theme.menu_bg_normal = theme.gtk.base_color
-theme.menu_fg_normal = theme.gtk.text_color
-theme.menu_height = dpi(20)
+theme.menu_border_color = theme.blue
 theme.menu_width  = dpi(160)
-theme.menu_submenu_icon = nil
+theme.menu_height = dpi(20)
 theme.menu_submenu = "▸ "
+theme.menu_submenu_icon = nil
 
--- Recolor Layout icons:
-theme = theme_assets.recolor_layout(theme, theme.gtk.button_border_color)
+-- recolor layout icon
+theme = theme_assets.recolor_layout(theme, theme.dark_gray)
 
--- Recolor titlebar icons:
-theme = theme_assets.recolor_titlebar(theme, theme.titlebar_fg_normal, "normal")
-theme = theme_assets.recolor_titlebar(theme, theme.titlebar_fg_normal, "normal", "hover")
-theme = theme_assets.recolor_titlebar(theme, theme.gtk.error_bg_color, "normal", "press")
-theme = theme_assets.recolor_titlebar(theme, theme.titlebar_fg_focus, "focus")
-theme = theme_assets.recolor_titlebar(theme, theme.titlebar_fg_focus, "focus", "hover")
-theme = theme_assets.recolor_titlebar(theme, theme.gtk.error_bg_color, "focus", "press")
+-- recolor titlebar buttons
+theme = theme_assets.recolor_titlebar(theme, theme.gray, "normal")
+theme = theme_assets.recolor_titlebar(theme, theme.blue, "normal", "hover")
+theme = theme_assets.recolor_titlebar(theme, theme.red, "normal", "press")
+theme = theme_assets.recolor_titlebar(theme, theme.white, "focus")
+theme = theme_assets.recolor_titlebar(theme, theme.blue, "focus", "hover")
+theme = theme_assets.recolor_titlebar(theme, theme.red, "focus", "press")
 
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = Antsy
+-- icon theme
+theme.icon_theme = "Antsy"
 
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(
-    16, theme.bg_focus, theme.fg_focus
-)
+-- awesome icon
+theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.magenta, theme.black)
+
+-- awesome wallpaper
+local wallpaper_bg = theme.dark_gray
+local wallpaper_fg = theme.black
+local wallpaper_alt_fg = theme.dark_magenta
+theme.wallpaper = function(s)
+    return theme_assets.wallpaper(wallpaper_bg, wallpaper_fg, wallpaper_alt_fg, s)
+end
 
 return theme
 
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80:foldmethod=marker
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

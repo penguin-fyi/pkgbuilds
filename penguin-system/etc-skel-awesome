@@ -14,12 +14,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- Custom library
 local freedesktop   = require("freedesktop") -- AUR: aweome-freedesktop-git
-local vicious       = require("vicious") -- Repo: vicious
-vicious.contrib     = require"vicious.contrib"
-
--- Custom variables
-local start_icon = "/usr/share/pixmaps/archlinux-logo.png"
-local task_width = 250
 
 -- Error handling
 -- Check is using default config
@@ -45,8 +39,8 @@ do
 end
 
 -- Theme
---beautiful.init(gears.filesystem.get_themes_dir() .. "gtk/theme.lua")
-beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/antsy/theme.lua")
+--beautiful.init(gears.filesystem.get_themes_dir() .. "gtk/theme.lua") -- system
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/antsy/theme.lua") -- local
 
 -- This is used later as the default terminal and editor to run.
 browser = os.getenv("BROWSER") or "netsurf"
@@ -73,10 +67,8 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
--- }}}
 
--- {{{ Menu
--- Create a launcher widget and a main menu
+-- menus
 menu_awesome = {
    { "Open terminal", terminal },
    { "Show Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
@@ -102,21 +94,13 @@ menu_main = freedesktop.menu.build({
     }
 })
 
--- Start menu
-local menu_start_icon = gears.color.recolor_image(start_icon, beautiful.bg_focus)
+-- wibar
+
+-- start menu
+local menu_start_icon = gears.color.recolor_image(
+                            beautiful.start_icon or beautiful.awesome_icon,
+                            beautiful.bg_focus)
 local menu_start = awful.widget.launcher({ image = menu_start_icon, menu = menu_main })
-
--- Keymap indicator
---keymap_widget = awful.widget.keyboardlayout()
-
--- {{{ Wibar
--- Create a textclock widget
-local text_widget = wibox.widget.textclock()
-local month_calendar = awful.widget.calendar_popup.month()
-month_calendar:attach( text_widget, "tr" )
-
---datewidget = wibox.widget.textbox()
---vicious.register(datewidget, vicious.widgets.date, " %b %d, %R ")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -158,50 +142,38 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
-awful.screen.connect_for_each_screen(function(s)
-    -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+-- keymap indicator
+--keymap_widget = awful.widget.keyboardlayout()
 
-    -- Create a promptbox for each screen
-    s.prompt_widget = awful.widget.prompt()
+-- date and time widget
+local date_widget = wibox.widget.textclock()
 
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.layout_widget = awful.widget.layoutbox(s)
-    s.layout_widget:buttons(gears.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+-- calendar popup
+local cal_popup = awful.widget.calendar_popup.month()
+cal_popup:attach( date_widget, "br" )
 
-    -- Create a taglist widget
-    s.tag_widget = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
-
-    -- Resize tasklist widget
-    function tasklist_resize(w, buttons, label, data, objects)
-        common.list_update(w, buttons, label, data, objects)
-        w:set_max_widget_size(250)
+local function set_wallpaper(s)
+    -- Wallpaper
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        -- If wallpaper is a function, call it with the screen
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        gears.wallpaper.maximized(wallpaper, s, true)
     end
+end
 
-    -- Create a tasklist widget
-    s.task_widget = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons,
-        update_function = tasklist_resize
-    }
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
 
-    -- Create a systray widget
-    s.tray_widget = wibox.widget.systray()
+-- create statusbar for each screen
+awful.screen.connect_for_each_screen(function(s)
 
-    -- Create separator
-    space = wibox.widget.textbox(" ")
+    -- wallpaper
+    set_wallpaper(s)
 
-    -- Create the wibox
+    -- create the wibar
     s.bar_widget = awful.wibar {
         screen = s,
         position = "bottom",
@@ -210,10 +182,55 @@ awful.screen.connect_for_each_screen(function(s)
         border_color = beautiful.bg_normal
     }
 
-    -- Add widgets to the wibox
+    -- separator
+    space = wibox.widget.textbox(" ")
+
+    -- create tags
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+
+    -- taglist widget
+    s.tag_widget = awful.widget.taglist {
+        screen  = s,
+        filter  = awful.widget.taglist.filter.all,
+        buttons = taglist_buttons
+    }
+
+    -- prompt widget
+    s.prompt_widget = awful.widget.prompt {
+        fg_cursor   = beautiful.fg_normal,
+        bg_cursor   = beautiful.bg_normal
+    }
+
+    -- resize tasklist widgets
+    function tasklist_resize(w, buttons, label, data, objects)
+        common.list_update(w, buttons, label, data, objects)
+        w:set_max_widget_size(beautiful.task_width or 250)
+    end
+
+    -- tasklist widget
+    s.task_widget = awful.widget.tasklist {
+        screen  = s,
+        filter  = awful.widget.tasklist.filter.currenttags,
+        buttons = tasklist_buttons,
+        update_function = tasklist_resize
+    }
+
+    -- systray widget
+    s.tray_widget = wibox.widget.systray()
+    s.tray_widget:set_base_size(20)
+
+    -- layout widget
+    s.layout_widget = awful.widget.layoutbox(s)
+    s.layout_widget:buttons(gears.table.join(
+                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
+                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
+    -- add widgets to wibar
     s.bar_widget:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        { -- left
             layout = wibox.layout.fixed.horizontal,
             space,
             menu_start,
@@ -222,12 +239,12 @@ awful.screen.connect_for_each_screen(function(s)
             space,
             s.prompt_widget,
         },
-        s.task_widget, -- Middle widget
-        { -- Right widgets
+        s.task_widget, -- middle
+        { -- right
             layout = wibox.layout.fixed.horizontal,
             s.tray_widget,
             space,
-            text_widget,
+            date_widget,
             space,
             s.layout_widget,
             space,
@@ -236,13 +253,18 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
--- {{{ Mouse bindings
+-- notifications
+local popup_conf = naughty.config.defaults
+popup_conf.icon_size = 64
+popup_conf.position = "bottom_right"
+popup_conf.border_width = 1
+
+-- mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () menu_main:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
--- }}}
 
 -- Default modkey.
 modkey = "Mod4"
@@ -507,12 +529,6 @@ awful.rules.rules = {
     { rule = { class = "qutebrowser" },
       properties = { screen = 1, tag = "2" } },
 } 
-
--- notifications
-local popup_conf = naughty.config.defaults
-popup_conf.icon_size = 64
-popup_conf.position = "bottom_right"
-popup_conf.border_width = 1
 
 -- signals
 client.connect_signal("manage", function (c)

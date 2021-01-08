@@ -1,163 +1,256 @@
 ---------------------------------------------
---  Antsy Awesome Theme by Jeff M Hubbard  --
---  Import colors from xresources          --
+--  Antsy theme based on Xresources        --
+--   by Jeff M. Hubbard                    --
 ---------------------------------------------
 
--- requirements
-local awful_widget_clienticon = require("awful.widget.clienticon")
-local gfs = require("gears.filesystem")
-local gears_shape = require("gears.shape")
-local wibox = require("wibox")
-local theme_assets = require("beautiful.theme_assets")
-local themes_path = gfs.get_themes_dir()
-local xresources = require("beautiful.xresources")
-local xrdb = xresources.get_current_theme()
-local dpi = xresources.apply_dpi
+local theme_assets                          = require("beautiful.theme_assets")
+local xresources                            = require("beautiful.xresources")
+local dpi                                   = xresources.apply_dpi
+local xrdb                                  = xresources.get_current_theme()
+local gfs                                   = require("gears.filesystem")
+local themes_path                           = gfs.get_themes_dir()
+local gears_shape                           = require("gears.shape")
+local rnotification                         = require("ruled.notification")
 
--- inherit default theme
-local theme = dofile(themes_path.."xresources/theme.lua")
+local theme                                 = dofile(themes_path .. "default/theme.lua")
 
--- custom color aliases
-theme.black         = xrdb.color0
-theme.dark_red      = xrdb.color1
-theme.dark_green    = xrdb.color2
-theme.dark_yellow   = xrdb.color3
-theme.dark_blue     = xrdb.color4
-theme.dark_magenta  = xrdb.color5
-theme.dark_cyan     = xrdb.color6
-theme.gray          = xrdb.color7
-theme.dark_gray     = xrdb.color8
-theme.red           = xrdb.color9
-theme.green         = xrdb.color10
-theme.yellow        = xrdb.color11
-theme.blue          = xrdb.color12
-theme.magenta       = xrdb.color13
-theme.cyan          = xrdb.color14
-theme.white         = xrdb.color15
+-- Misc options
+theme.spacing                               = dpi(2)        -- custom
+theme.margins                               = dpi(2)        -- custom
+theme.useless_gap                           = dpi(4)
+theme.border_width                          = dpi(2)
+theme.border_radius                         = dpi(0)
+theme.bar_height                            = dpi(20)       -- custom
+theme.task_width                            = dpi(256)      -- custom
+theme.opacity                               = theme.opacity -- custom
 
--- custom variables
-theme.start_icon = "/usr/share/pixmaps/archlinux-logo.png"
-theme.task_width    = dpi(250)
+-- Xresources colors
+theme.black                                 = xrdb.color0   -- #000000
+theme.dark_red                              = xrdb.color1   -- #c23621
+theme.dark_green                            = xrdb.color2   -- #25bc24
+theme.dark_yellow                           = xrdb.color3   -- #adad27
+theme.dark_blue                             = xrdb.color4   -- #492ee1
+theme.dark_magenta                          = xrdb.color5   -- #d338d3
+theme.dark_cyan                             = xrdb.color6   -- #33bbc8
+theme.gray                                  = xrdb.color7   -- #cbcccd
+theme.dark_gray                             = xrdb.color8   -- #818383
+theme.red                                   = xrdb.color9   -- #fc391f
+theme.green                                 = xrdb.color10  -- #31e722
+theme.yellow                                = xrdb.color11  -- #eaec23
+theme.blue                                  = xrdb.color12  -- #5833ff
+theme.magenta                               = xrdb.color13  -- #f935f8
+theme.cyan                                  = xrdb.color14  -- #14f0f0
+theme.white                                 = xrdb.color15  -- #e9ebeb
 
--- fonts
-theme.font          = "Hack Nerd Font 10"
-theme.font_bold     = "Hack Nerd Font Bold 10"
+theme.font                                  = "Hack Nerd Font 10"
+theme.font_bold                             = "Hack Nerd Font Bold 10"
 
--- base
-theme.fg_normal     = theme.gray
-theme.bg_normal     = theme.black
-theme.wibar_fg      = theme.gray
-theme.wibar_bg      = theme.black
-theme.fg_focus      = theme.black
-theme.bg_focus      = theme.blue
-theme.fg_urgent     = theme.black
-theme.bg_urgent     = theme.cyan
-theme.fg_minimize   = theme.black
-theme.bg_minimize   = theme.dark_gray
-theme.bg_systray    = theme.black
-theme.separator     = theme.dark_gray
-theme.border_normal = theme.black
-theme.border_focus  = theme.blue
-theme.border_marked = theme.cyan
-theme.border_width  = dpi(1)
-theme.border_radius = dpi(0)
-theme.useless_gap   = dpi(5)
+-- Aliases
+theme.text_color                            = theme.gray
+theme.ui_color                              = theme.black
 
--- tasklist
-theme.tasklist_fg_normal = theme.gray
-theme.tasklist_bg_normal = theme.black
-theme.tasklist_fg_focus = theme.black
-theme.tasklist_bg_focus = theme.blue
-theme.tasklist_font_focus = theme.font
-theme.tasklist_spacing = dpi(2)
-theme.tasklist_shape_border_width = dpi(0)
-theme.tasklist_widget_template = {
-    {
-        {
-            {
-                {
-                    id     = 'clienticon',
-                    widget = awful_widget_clienticon,
-                },
-                margins = dpi(4),
-                widget  = wibox.container.margin,
-            },
-            {
-                id     = 'text_role',
-                widget = wibox.widget.textbox,
-            },
-            layout = wibox.layout.fixed.horizontal,
-        },
-        left  = dpi(2),
-        right = dpi(4),
-        widget = wibox.container.margin
-    },
-    id     = 'background_role',
-    widget = wibox.container.background,
-    create_callback = function(self, c)
-        self:get_children_by_id('clienticon')[1].client = c
-    end,
-}
+theme.text_alt_color                        = theme.black
+theme.ui_alt_color                          = theme.dark_gray
 
--- taglist
-theme.taglist_fg_focus = theme.black
-theme.taglist_bg_focus = theme.blue
-theme.taglist_fg_urgent = theme.black
-theme.taglist_bg_urgent = theme.cyan
-theme.taglist_fg_occupied = theme.black
-theme.taglist_bg_occupied = theme.dark_gray
-theme.taglist_fg_volatile = theme.black
-theme.taglist_bg_volatile = theme.red
-theme.taglist_shape = gears_shape.rectangle
-theme.taglist_shape_border_width = dpi(0)
-theme.taglist_spacing = dpi(2)
-theme.taglist_squares_sel = nil
-theme.taglist_squares_unsel = nil
+theme.focus_color                           = theme.blue
+theme.focus_accent                          = theme.dark_blue
 
--- titlebar
-theme.titlebar_font_normal = theme.font
-theme.titlebar_fg_normal = theme.dark_gray
-theme.titlebar_bg_normal = theme.black
-theme.titlebar_font_focus = theme.font_bold
-theme.titlebar_fg_focus = theme.white
-theme.titlebar_bg_focus = theme.black
+theme.active_color                          = theme.white
+theme.active_accent                         = theme.gray
 
--- tooltip
-theme.tooltip_fg = theme.gray
-theme.tooltip_bg = theme.black
+theme.new_color                             = theme.yellow
+theme.new_accent                            = theme.dark_yellow
 
--- menu
-theme.menu_border_color = theme.blue
-theme.menu_width  = dpi(160)
-theme.menu_height = dpi(20)
-theme.menu_submenu = "▸ "
-theme.menu_submenu_icon = nil
+theme.urgent_color                          = theme.cyan
+theme.urgent_accent                         = theme.dark_cyan
 
--- recolor layout icon
-theme = theme_assets.recolor_layout(theme, theme.dark_gray)
+theme.marked_color                          = theme.magenta
+theme.marked_accent                         = theme.dark_magenta
 
--- recolor titlebar buttons
-theme = theme_assets.recolor_titlebar(theme, theme.gray, "normal")
-theme = theme_assets.recolor_titlebar(theme, theme.blue, "normal", "hover")
-theme = theme_assets.recolor_titlebar(theme, theme.red, "normal", "press")
-theme = theme_assets.recolor_titlebar(theme, theme.white, "focus")
-theme = theme_assets.recolor_titlebar(theme, theme.blue, "focus", "hover")
-theme = theme_assets.recolor_titlebar(theme, theme.red, "focus", "press")
+theme.minimize_color                        = theme.dark_gray
+theme.minimize_accent                       = theme.dark_gray
 
--- icon theme
-theme.icon_theme = "Antsy"
+theme.error_color                           = theme.red
+theme.error_accent                          = theme.dark_red
 
--- awesome icon
+theme.alpha                                 = "e6" -- 90%
+
+-- General
+theme.fg_normal                             = theme.text_color
+theme.bg_normal                             = theme.ui_color
+
+theme.wibar_fg                              = theme.text_color
+theme.wibar_bg                              = theme.ui_color
+
+theme.fg_focus                              = theme.text_alt_color
+theme.bg_focus                              = theme.focus_color
+
+theme.fg_urgent                             = theme.text_alt_color
+theme.bg_urgent                             = theme.urgent_color
+
+theme.fg_minimize                           = theme.text_alt_color
+theme.bg_minimize                           = theme.minimize_color
+
+theme.bg_systray                            = theme.ui_color
+
+theme.separator                             = theme.ui_alt_color
+
+-- Window border colors
+theme.border_color_normal                   = theme.ui_color        .. theme.alpha
+theme.border_color_active                   = theme.focus_color     .. theme.alpha
+theme.border_color_urgent                   = theme.urgent_color    .. theme.alpha
+theme.border_color_new                      = theme.ui_color        .. theme.alpha
+theme.border_color_floating                 = theme.focus_color     .. theme.alpha
+theme.border_color_maximized                = theme.ui_color        .. theme.alpha
+theme.border_color_fullscreen               = theme.ui_color        .. theme.alpha
+theme.border_color_marked                   = theme.marked_color    .. theme.alpha
+
+-- Taglist widget
+theme.taglist_fg_focus                      = theme.text_alt_color
+theme.taglist_bg_focus                      = theme.focus_color
+
+theme.taglist_fg_urgent                     = theme.text_alt_color
+theme.taglist_bg_urgent                     = theme.urgent_color
+
+theme.taglist_fg_occupied                   = theme.text_alt_color
+theme.taglist_bg_occupied                   = theme.minimize_color
+
+theme.taglist_fg_volatile                   = theme.text_alt_color
+theme.taglist_bg_volatile                   = theme.error_color
+
+theme.taglist_spacing                       = theme.spacing
+theme.taglist_shape                         = gears_shape.rectangle
+theme.taglist_shape_border_width            = theme.border_width
+
+theme.taglist_shape_border_color            = theme.minimize_color
+theme.taglist_shape_border_color_empty      = theme.ui_color
+theme.taglist_shape_border_color_focus      = theme.focus_color
+theme.taglist_shape_border_color_urgent     = theme.urgent_color
+theme.taglist_shape_border_color_volatile   = theme.error_color
+
+theme.taglist_squares_sel                   = nil
+theme.taglist_squares_unsel                 = nil
+
+-- Tasklist widget
+theme.tasklist_fg_normal                    = theme.text_color
+theme.tasklist_bg_normal                    = theme.ui_color
+
+theme.tasklist_fg_focus                     = theme.text_alt_color
+theme.tasklist_bg_focus                     = theme.focus_color
+theme.tasklist_font_focus                   = theme.font
+
+theme.tasklist_spacing                      = theme.spacing
+theme.tasklist_shape_border_width           = theme.border_width
+
+theme.tasklist_shape_border_color           = theme.ui_color
+theme.tasklist_shape_border_color_focus     = theme.focus_color
+theme.tasklist_shape_border_color_minimized = theme.minimize_accent
+theme.tasklist_shape_border_color_urgent    = theme.urgent_accent
+
+-- Titlebar widget
+theme.titlebar_fg_normal                    = theme.text_color
+theme.titlebar_bg_normal                    = theme.ui_color
+theme.titlebar_font_normal                  = theme.font
+
+theme.titlebar_fg_focus                     = theme.active_color
+theme.titlebar_bg_focus                     = theme.ui_color
+theme.titlebar_font_focus                   = theme.font_bold
+
+theme.titlebar_bg_transparent               = theme.ui_color .. theme.alpha
+
+--theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
+--theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
+--
+--theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
+--theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
+--
+--theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
+--theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
+--theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
+--theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
+--
+--theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
+--theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
+--theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
+--theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
+--
+--theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
+--theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
+--theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
+--theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
+--
+--theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
+--theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
+--theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
+--theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
+
+-- recolor titlebar icons
+theme = theme_assets.recolor_titlebar(theme, theme.text_color, "normal")
+theme = theme_assets.recolor_titlebar(theme, theme.error_color, "normal", "hover")
+theme = theme_assets.recolor_titlebar(theme, theme.error_accent, "normal", "press")
+theme = theme_assets.recolor_titlebar(theme, theme.active_color, "focus")
+theme = theme_assets.recolor_titlebar(theme, theme.error_color, "focus", "hover")
+theme = theme_assets.recolor_titlebar(theme, theme.error_accent, "focus", "press")
+
+-- Tooltips
+theme.tooltip_fg                            = theme.text_color
+theme.tooltip_bg                            = theme.ui_color .. theme.alpha
+theme.tooltip_border_color                  = theme.ui_color
+theme.tooltip_border_width                  = theme.border_width
+theme.tooltip_opacity                       = theme.opacity
+
+-- Menus
+theme.menu_border_color                     = theme.focus_color
+theme.menu_width                            = dpi(160)
+theme.menu_height                           = theme.bar_height
+theme.menu_submenu                          = "▸ "
+theme.menu_submenu_icon                     = nil
+
+-- Notifications
+theme.notification_font                     = theme.font
+theme.notification_fg                       = theme.text_color
+theme.notification_bg                       = theme.ui_color
+theme.notification_border_width             = theme.border_width
+theme.notification_border_color             = theme.active_color
+theme.notification_shape                    = gears_shape.rectangle
+theme.notification_opacity                  = theme.opacity
+theme.notification_margin                   = dpi(2)
+theme.notification_width                    = dpi(320)
+theme.notification_height                   = dpi(60)
+theme.notification_spacing                  = theme.spacing
+
+theme.snap_bg                               = theme.new_color
+theme.snap_border_width                     = theme.border_width
+theme.snap_shape                            = gears_shape.rectangle
+
+rnotification.connect_signal('request::rules', function()
+    rnotification.append_rule {
+        rule       = { urgency = 'critical' },
+        properties = { fg = theme.new_color, border_color = theme.error_color }
+    }
+    rnotification.append_rule {
+        rule       = { urgency = 'low' },
+        properties = { border_color = theme.ui_alt_color }
+    }
+end)
+
+-- Layout icon
+theme = theme_assets.recolor_layout(theme, theme.ui_alt_color)
+
+-- Customize awesome icon
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.magenta, theme.black)
 
--- awesome wallpaper
-local wallpaper_bg = theme.dark_gray
-local wallpaper_fg = theme.black
-local wallpaper_alt_fg = theme.dark_magenta
-theme.wallpaper = function(s)
-    return theme_assets.wallpaper(wallpaper_bg, wallpaper_fg, wallpaper_alt_fg, s)
-end
+-- Icons
+theme.icon_theme = "Antsy"
+
+-- Custom icons for menus and widgets
+theme.launcher_icon                         = "/usr/share/pixmaps/archlinux-logo.png"
+theme.terminal_icon                         = "/usr/share/icons/Antsy/apps/scalable/terminal.svg"
+theme.editor_icon                           = "/usr/share/icons/Antsy/apps/scalable/text-editor-symbolic.svg"
+theme.filemanager_icon                      = "/usr/share/icons/Antsy/apps/scalable/system-file-manager.svg"
+theme.browser_icon                          = "/usr/share/icons/Antsy/apps/scalable/web-browser.svg"
+theme.session_icon                          = "/usr/share/icons/Antsy/apps/scalable/session-properties.svg"
 
 return theme
 
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
+-- vim: ft=lua ts=8 sw=4 et:

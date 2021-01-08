@@ -1,6 +1,6 @@
 post_install () {
 
-    systemctl enable dhcpcd
+    systemctl enable NetworkManager
     systemctl enable reflector
 
     systemctl enable sshd

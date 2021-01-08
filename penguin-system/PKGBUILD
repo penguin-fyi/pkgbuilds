@@ -36,7 +36,6 @@ source=(
     'etc-skel-gtk3'
     'etc-skel-qt5ct'
     'etc-skel-picom'
-    'etc-skel-termite'
     'etc-skel-tmuxconf'
     'etc-skel-qutebrowser'
     'README.md'
@@ -47,7 +46,7 @@ package_penguin-base(){
     pkgdesc="Penguin Base System"
     depends=(
         base linux-firmware grub efibootmgr
-        dhcpcd openssh ufw fail2ban
+        networkmanager openssh ufw fail2ban
         zsh vim curl tmux git
         patch sudo man-db man-pages
     )
@@ -72,17 +71,16 @@ package_penguin-desktop(){
     pkgdesc="Penguin Desktop packages"
     depends=(
         penguin-base
-        xorg-server xorg-xset xorg-xrdb xorg-xrandr xorg-xdpyinfo
-        lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-        awesome awesome-freedesktop-git light-locker
-        lxappearance qt5ct qt5-styleplugins fontconfig
-        picom unclutter-xfixes-git numlockx
+        xorg-server xorg-drivers xorg-xset xorg-xrdb xorg-xrandr xorg-xdpyinfo
+        lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
+        awesome awesome-freedesktop-git dex
+        pcmanfm-gtk3 blueman polkit-gnome xfce4-power-manager
+        pulseaudio pulseaudio-alsa pavucontrol pasystray
+        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig picom
         rofi rofi-pass xclip
-        pulseaudio pulseaudio-alsa pavucontrol
-        blueman polkit-gnome udiskie
-        termite xterm ranger htop mailcap
-        qutebrowser weechat neomutt newsboat
-        mpd mpc ncmpcpp mpv
+        rxvt-unicode-cvs-patched-wideglyphs xterm ranger htop mailcap
+        qutebrowser weechat neomutt newsboat tuir
+        mpd mpc ncmpcpp mpv cava
         zathura zathura-pdf-mupdf
         feh ffmpeg imagemagick maim
         curl wget rsync w3m urlscan
@@ -112,14 +110,13 @@ package_penguin-defaults(){
     install -Dm0755 etc-skel-xsession "$pkgdir"/etc/skel/.xsession
     install -Dm0644 etc-skel-Xresources "$pkgdir"/etc/skel/.Xresources
     install -Dm0644 etc-skel-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
-    install -Dm0644 etc-skel-awesome-theme "$pkgdir"/etc/skel/.config/awesome/themes/antsy/theme.lua
+    install -Dm0644 etc-skel-awesome-theme "$pkgdir"/etc/skel/.config/awesome/theme.lua
     install -Dm0644 etc-skel-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
     install -Dm0644 etc-skel-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
     install -Dm0644 etc-skel-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
     install -Dm0644 etc-skel-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
     install -Dm0644 etc-skel-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
     install -Dm0644 etc-skel-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
-    install -Dm0644 etc-skel-termite "$pkgdir"/etc/skel/.config/termite/config
     install -Dm0644 etc-skel-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
     install -Dm0644 etc-skel-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
 }
@@ -135,19 +132,18 @@ md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
          '044f00bcb352b273e841ecbf3836b705'
          '305f7b615e8027001629ea8e4ccf3333'
          '25b151ccac832c4b8333222106d16b8c'
-         '6633e7c31a10df3c1ac161e02a3796e5'
-         '540799b4a862d08b9cf75d3eebc4b43a'
+         'c110b0306ee8ded1bf5ae5c2fb92eca3'
+         'd08b32b717f96a370c2ed4dc690b605c'
          '0364cda8c7b962de71d9b7a86a7bd54d'
          '7a22d5e966e64053fc4307c105431502'
-         '058e47070d7157548bef18e9ced54105'
-         'f7e03119bd9345cc653c6012bbf773b3'
+         'e74295471958f3f5bfe8ab68459f167b'
+         'd6eeddeffb0e2314b1851c53bae628e8'
          'e064654a2b48cc1e888be65f73b9a463'
          '98e6730a868d7fcd160a2b1e2167e96c'
          '2e99a6c2744cdcbe1075741806d6c62f'
-         'd128ec12cb99a770aab409cd17a60ad0'
+         '1e4de6dbb641a532f47a62b8c4c76e68'
          '5c45a57289ab8192700ce374e94cad7a'
          '0c86433ee520ae3e4e3b62d46eafe7a7'
-         '4233555718381b3dffc48ba84977e52a'
          'bbeffe2ceb7b01946d87ed52229ff909'
          '1c715063118b33ea059af7affb4cfec1'
          'af4ccc3c66689351d87358795f13e59c'

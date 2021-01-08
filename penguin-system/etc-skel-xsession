@@ -1,15 +1,25 @@
+# .xinitrc
+
 # Path variables
 export PATH=$PATH:$HOME/.bin
 
 # XDG paths
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=~/.config
+export XDG_CACHE_HOME=~/.cache
+export XDG_DATA_HOME=~/.local/share
+#export XDG_RUNTIME_DIR=~/.xdg
 
 # Common environment variables
-export TERMINAL=termite
+export TERMINAL=urxvtc
+export EDITOR=vim
+export FILEXP=pcmanfm
 export BROWSER=qutebrowser
+
+# Make Qt themes follow Gtk (qt5-styleplugins)
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+# File manager to review PKGBUILD in aurutils
+export AUR_PAGER=ranger
 
 # Load X settings
 xrdb -merge "$HOME/.Xresources"
@@ -20,29 +30,9 @@ xset s 600 180 &
 # Use left-facing pointer
 xsetroot -cursor_name left_ptr &
 
-# Enable num-lock
-numlockx &
-
-# Set wallpaper
-sh $HOME/.fehbg &
-
-# Lock screen
-xss-lock -l -- multilockscreen --lock &
-multilockscreen -u /usr/share/backgrounds/antsy/tux/gradient &
-
-# X compositor
-picom &
-
-# Polkit agent
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# Sound daemon
-start-pulseaudio-x11 &
-
-# Bluetooth
-blueman-applet &
-
-# Removable Storage
-udiskie -s &
-
+# Start WM
 exec awesome
+
+exit 0
+
+# vim: set ft=sh ts=2 sw=0 et:

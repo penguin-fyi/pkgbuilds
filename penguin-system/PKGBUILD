@@ -24,22 +24,34 @@ source=(
     'patch-issue-ascii'
     'patch-lightdm-gtk-greeter.conf'
     'etc-sudoers-wheel'
-    'etc-skel-Xresources'
-    'etc-skel-xsession'
-    'etc-skel-zshrc'
-    'etc-skel-zshprompt'
-    'etc-skel-awesome'
-    'etc-skel-awesome-theme'
-    'etc-skel-roficonfig'
-    'etc-skel-rofitheme'
-    'etc-skel-gtk2'
-    'etc-skel-gtk3'
-    'etc-skel-qt5ct'
-    'etc-skel-picom'
-    'etc-skel-tmuxconf'
-    'etc-skel-qutebrowser'
+    'default-xresources'
+    'default-xsession'
+    'default-zshrc'
+    'default-zshprompt'
+    'default-awesome'
+    'default-awesome-theme'
+    'default-roficonfig'
+    'default-rofitheme'
+    'default-gtk2'
+    'default-gtk3'
+    'default-qt5ct'
+    'default-picom'
+    'default-tmuxconf'
+    'default-qutebrowser'
     'README.md'
     'LICENSE'
+    'autostart-accessibility'
+    'autostart-bluetooth'
+    'autostart-compositor'
+    'autostart-filesystem'
+    'autostart-network'
+    'autostart-policy'
+    'autostart-powermanager'
+    'autostart-screenlock'
+    'autostart-sound'
+    'autostart-terminal'
+    'autostart-volume'
+    'autostart-xdgdir'
 )
 
 package_penguin-base(){
@@ -51,8 +63,8 @@ package_penguin-base(){
         patch sudo man-db man-pages
     )
     install=penguin-base.install
-    install -Dm0644 etc-skel-zshrc "$pkgdir"/etc/skel/.zshrc
-    install -Dm0644 etc-skel-zshprompt "$pkgdir"/etc/skel/.zshrc.prompt
+    install -Dm0644 default-zshrc "$pkgdir"/etc/skel/.zshrc
+    install -Dm0644 default-zshprompt "$pkgdir"/etc/skel/.zshrc.prompt
     install -dm0750 "$pkgdir"/etc/sudoers.d
     install -Dm0644 etc-sudoers-wheel "$pkgdir"/etc/sudoers.d/10-wheel
     install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
@@ -71,26 +83,19 @@ package_penguin-desktop(){
     pkgdesc="Penguin Desktop packages"
     depends=(
         penguin-base
-        xorg-server xorg-drivers xorg-xset xorg-xrdb xorg-xrandr xorg-xdpyinfo
+        xorg-server xorg-drivers xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
-        awesome awesome-freedesktop-git dex
-        pcmanfm-gtk3 blueman polkit-gnome xfce4-power-manager
+        awesome awesome-freedesktop-git dex pcmanfm-gtk3 xarchiver
+        network-manager-applet blueman polkit-gnome xfce4-power-manager
         pulseaudio pulseaudio-alsa pavucontrol pasystray
-        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig picom
-        rofi rofi-pass xclip
+        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig picom rofi rofi-pass xclip
         rxvt-unicode-cvs-patched-wideglyphs xterm ranger htop mailcap
         qutebrowser weechat neomutt newsboat tuir
-        mpd mpc ncmpcpp mpv cava
-        zathura zathura-pdf-mupdf
-        feh ffmpeg imagemagick maim
-        curl wget rsync w3m urlscan
-        vi bat jq fzf dialog
-        fd tree unzip zip lsof
-        pass pwgen gnupg
-        zsh-autosuggestions zsh-completions
-        zsh-syntax-highlighting bash-completion
-        ipython python-black python-isort eslint
-        python-pyflakes flake8 autopep8 yapf
+        mpd mpc ncmpcpp mpv cava zathura zathura-pdf-mupdf
+        feh ffmpeg imagemagick maim curl wget rsync w3m urlscan
+        vi bat jq fzf dialog fd tree unzip zip lsof pass pwgen gnupg
+        zsh-autosuggestions zsh-completions zsh-syntax-highlighting bash-completion
+        ipython python-black python-isort eslint python-pyflakes flake8 autopep8 yapf
         python-virtualenv python-virtualenvwrapper
         cmake ctags shellcheck-bin luacheck github-cli
         pacutils pacman-contrib reflector
@@ -107,21 +112,33 @@ package_penguin-defaults(){
         antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
         ttf-hack nerd-fonts-hack noto-fonts-emoji
     )
-    install -Dm0755 etc-skel-xsession "$pkgdir"/etc/skel/.xsession
-    install -Dm0644 etc-skel-Xresources "$pkgdir"/etc/skel/.Xresources
-    install -Dm0644 etc-skel-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
-    install -Dm0644 etc-skel-awesome-theme "$pkgdir"/etc/skel/.config/awesome/theme.lua
-    install -Dm0644 etc-skel-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
-    install -Dm0644 etc-skel-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
-    install -Dm0644 etc-skel-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
-    install -Dm0644 etc-skel-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
-    install -Dm0644 etc-skel-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
-    install -Dm0644 etc-skel-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
-    install -Dm0644 etc-skel-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
-    install -Dm0644 etc-skel-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
+    install -Dm0755 default-xsession "$pkgdir"/etc/skel/.xsession
+    install -Dm0644 default-xresources "$pkgdir"/etc/skel/.Xresources
+    install -Dm0644 default-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
+    install -Dm0644 default-awesome-theme "$pkgdir"/etc/skel/.config/awesome/theme.lua
+    install -Dm0644 default-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
+    install -Dm0644 default-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
+    install -Dm0644 default-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
+    install -Dm0644 default-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
+    install -Dm0644 default-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
+    install -Dm0644 default-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
+    install -Dm0644 default-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
+    install -Dm0644 default-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
+    install -Dm0644 autostart-accessibility "$pkgdir"/etc/skel/.config/autostart/penguin-accessibility.desktop
+    install -Dm0644 autostart-bluetooth "$pkgdir"/etc/skel/.config/autostart/penguin-bluetooth.desktop
+    install -Dm0644 autostart-compositor "$pkgdir"/etc/skel/.config/autostart/penguin-compositor.desktop
+    install -Dm0644 autostart-filesystem "$pkgdir"/etc/skel/.config/autostart/penguin-filesystem.desktop
+    install -Dm0644 autostart-network "$pkgdir"/etc/skel/.config/autostart/penguin-network.desktop
+    install -Dm0644 autostart-policy "$pkgdir"/etc/skel/.config/autostart/penguin-policy.desktop
+    install -Dm0644 autostart-powermanager "$pkgdir"/etc/skel/.config/autostart/penguin-powermanager.desktop
+    install -Dm0644 autostart-screenlock "$pkgdir"/etc/skel/.config/autostart/penguin-screenlock.desktop
+    install -Dm0644 autostart-sound "$pkgdir"/etc/skel/.config/autostart/penguin-sound.desktop
+    install -Dm0644 autostart-terminal "$pkgdir"/etc/skel/.config/autostart/penguin-terminal.desktop
+    install -Dm0644 autostart-volume "$pkgdir"/etc/skel/.config/autostart/penguin-volume.desktop
+    install -Dm0644 autostart-xdgdir "$pkgdir"/etc/skel/.config/autostart/penguin-xdgdir.desktop
 }
 
-md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
+md5sums=('7b1b5c353635de5167c19c1fa2161a2a'
          '7c47a6806061ccae3f5484973a00a0c6'
          'e2dfdda69b13af5ab8b9468f9b6148b7'
          'cdb56c7933f12c4b69180abba141ab5d'
@@ -133,7 +150,7 @@ md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
          '305f7b615e8027001629ea8e4ccf3333'
          '25b151ccac832c4b8333222106d16b8c'
          'c110b0306ee8ded1bf5ae5c2fb92eca3'
-         'd08b32b717f96a370c2ed4dc690b605c'
+         '883b1a53fad0204401c7e4b376c3a6f5'
          '0364cda8c7b962de71d9b7a86a7bd54d'
          '7a22d5e966e64053fc4307c105431502'
          'e74295471958f3f5bfe8ab68459f167b'
@@ -147,4 +164,16 @@ md5sums=('a345278d2945fad6e95ca3e7ed7de9b3'
          'bbeffe2ceb7b01946d87ed52229ff909'
          '1c715063118b33ea059af7affb4cfec1'
          'af4ccc3c66689351d87358795f13e59c'
-         'a55d1384569349075b5a6a5c61af5c17')
+         'a55d1384569349075b5a6a5c61af5c17'
+         'e4a867a7ead8f4e8fd4efc80f98b2337'
+         'cf0eeb69551df8527cc2c836fac71797'
+         '3f9e6a050a80a07a29494117dce2d3de'
+         '752af9301a1fea60bb20f6979d272861'
+         'd02815b63d0fc5cd3cb701a452de9807'
+         '6529d3ddd2c2a6dff2845c57807ff058'
+         'ec6289eec1318ea2987ee5911b5c4489'
+         '0aefc7d5499be28c401e230fe5dacbc6'
+         '014acb7f9d93fdd92252e321d3f9ac87'
+         '2f9890fb08efab9a5b4568ef1639af7d'
+         'd624c2092cd9752f5d06286d43cb03c6'
+         '1797448eebfde434e6a796f5146342fe')

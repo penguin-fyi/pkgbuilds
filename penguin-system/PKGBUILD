@@ -13,33 +13,6 @@ url="https://penguin.fyi/"
 license=('MIT')
 
 source=(
-    'penguin-base.install'
-    'penguin-desktop.install'
-    'penguin-config-patch.hook'
-    'penguin-config-patch.sh'
-    'patch-pacman.conf'
-    'patch-makepkg.conf'
-    'patch-reflector.conf'
-    'patch-useradd-shell'
-    'patch-issue-ascii'
-    'patch-lightdm-gtk-greeter.conf'
-    'etc-sudoers-wheel'
-    'default-xresources'
-    'default-xsession'
-    'default-zshrc'
-    'default-zshprompt'
-    'default-awesome'
-    'default-awesome-theme'
-    'default-roficonfig'
-    'default-rofitheme'
-    'default-gtk2'
-    'default-gtk3'
-    'default-qt5ct'
-    'default-picom'
-    'default-tmuxconf'
-    'default-qutebrowser'
-    'README.md'
-    'LICENSE'
     'autostart-accessibility'
     'autostart-bluetooth'
     'autostart-compositor'
@@ -52,21 +25,48 @@ source=(
     'autostart-terminal'
     'autostart-volume'
     'autostart-xdgdir'
+    'config-awesome'
+    'config-awesome-theme'
+    'config-gtk2'
+    'config-gtk3'
+    'config-picom'
+    'config-qt5ct'
+    'config-qutebrowser'
+    'config-roficonfig'
+    'config-rofitheme'
+    'config-sudoers'
+    'config-tmuxconf'
+    'config-xresources'
+    'config-xsession'
+    'config-zshprompt'
+    'config-zshrc'
+    'LICENSE'
+    'patch-issue-ascii'
+    'patch-lightdm-gtk-greeter.conf'
+    'patch-makepkg.conf'
+    'patch-pacman.conf'
+    'patch-reflector.conf'
+    'patch-useradd-shell'
+    'penguin-base.install'
+    'penguin-desktop.install'
+    'penguin-config-patch.hook'
+    'penguin-config-patch.sh'
+    'README.md'
 )
 
 package_penguin-base(){
     pkgdesc="Penguin Base System"
     depends=(
-        base linux-firmware grub efibootmgr
+        base linux-firmware grub efibootmgr f2fs-tools
         networkmanager openssh ufw fail2ban
         zsh vim curl tmux git
         patch sudo man-db man-pages
     )
     install=penguin-base.install
-    install -Dm0644 default-zshrc "$pkgdir"/etc/skel/.zshrc
-    install -Dm0644 default-zshprompt "$pkgdir"/etc/skel/.zshrc.prompt
+    install -Dm0644 config-zshrc "$pkgdir"/etc/skel/.zshrc
+    install -Dm0644 config-zshprompt "$pkgdir"/etc/skel/.zshrc.prompt
     install -dm0750 "$pkgdir"/etc/sudoers.d
-    install -Dm0644 etc-sudoers-wheel "$pkgdir"/etc/sudoers.d/10-wheel
+    install -Dm0644 config-sudoers "$pkgdir"/etc/sudoers.d/10-wheel
     install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
     install -Dm0644 patch-makepkg.conf "$pkgdir"/usr/share/penguin/patches/makepkg.conf.patch
     install -Dm0644 patch-reflector.conf "$pkgdir"/usr/share/penguin/patches/reflector.conf.patch
@@ -80,15 +80,16 @@ package_penguin-base(){
 }
 
 package_penguin-desktop(){
-    pkgdesc="Penguin Desktop packages"
+    pkgdesc="Penguin Desktop"
     depends=(
         penguin-base
-        xorg-server xorg-drivers xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
+        xorg-server xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
-        awesome awesome-freedesktop-git dex pcmanfm-gtk3 xarchiver
+        awesome-git awesome-freedesktop-git dex xdg-user-dirs xdg-utils
+        pcmanfm-gtk3 xarchiver picom rofi rofi-pass xclip
         network-manager-applet blueman polkit-gnome xfce4-power-manager
         pulseaudio pulseaudio-alsa pavucontrol pasystray
-        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig picom rofi rofi-pass xclip
+        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
         rxvt-unicode-cvs-patched-wideglyphs xterm ranger htop mailcap
         qutebrowser weechat neomutt newsboat tuir
         mpd mpc ncmpcpp mpv cava zathura zathura-pdf-mupdf
@@ -99,6 +100,8 @@ package_penguin-desktop(){
         python-virtualenv python-virtualenvwrapper
         cmake ctags shellcheck-bin luacheck github-cli
         pacutils pacman-contrib reflector
+        antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
+        ttf-hack nerd-fonts-hack noto-fonts-emoji
     )
     install=penguin-desktop.install
     install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
@@ -106,24 +109,20 @@ package_penguin-desktop(){
 
 
 package_penguin-defaults(){
-    pkgdesc="Penguin Default Theme (Antsy)"
-    depends=(
-        penguin-desktop
-        antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
-        ttf-hack nerd-fonts-hack noto-fonts-emoji
-    )
-    install -Dm0755 default-xsession "$pkgdir"/etc/skel/.xsession
-    install -Dm0644 default-xresources "$pkgdir"/etc/skel/.Xresources
-    install -Dm0644 default-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
-    install -Dm0644 default-awesome-theme "$pkgdir"/etc/skel/.config/awesome/theme.lua
-    install -Dm0644 default-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
-    install -Dm0644 default-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
-    install -Dm0644 default-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
-    install -Dm0644 default-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
-    install -Dm0644 default-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
-    install -Dm0644 default-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
-    install -Dm0644 default-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
-    install -Dm0644 default-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
+    pkgdesc="Penguin Default Config (Antsy)"
+    depends=(penguin-desktop)
+    install -Dm0755 config-xsession "$pkgdir"/etc/skel/.xsession
+    install -Dm0644 config-xresources "$pkgdir"/etc/skel/.Xresources
+    install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
+    install -Dm0644 config-awesome-theme "$pkgdir"/etc/skel/.config/awesome/theme.lua
+    install -Dm0644 config-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
+    install -Dm0644 config-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
+    install -Dm0644 config-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
+    install -Dm0644 config-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
+    install -Dm0644 config-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
+    install -Dm0644 config-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
+    install -Dm0644 config-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
+    install -Dm0644 config-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
     install -Dm0644 autostart-accessibility "$pkgdir"/etc/skel/.config/autostart/penguin-accessibility.desktop
     install -Dm0644 autostart-bluetooth "$pkgdir"/etc/skel/.config/autostart/penguin-bluetooth.desktop
     install -Dm0644 autostart-compositor "$pkgdir"/etc/skel/.config/autostart/penguin-compositor.desktop
@@ -138,34 +137,7 @@ package_penguin-defaults(){
     install -Dm0644 autostart-xdgdir "$pkgdir"/etc/skel/.config/autostart/penguin-xdgdir.desktop
 }
 
-md5sums=('7b1b5c353635de5167c19c1fa2161a2a'
-         '7c47a6806061ccae3f5484973a00a0c6'
-         'e2dfdda69b13af5ab8b9468f9b6148b7'
-         'cdb56c7933f12c4b69180abba141ab5d'
-         '257f3fd773cfac35ed40e2d5f885a72f'
-         'dc698ad23bc8e248723d05b837b1806b'
-         '08776fecbc01ca790ca20838943b0897'
-         '79c690fc4d1faf1aa317cbe68246097f'
-         '044f00bcb352b273e841ecbf3836b705'
-         '305f7b615e8027001629ea8e4ccf3333'
-         '25b151ccac832c4b8333222106d16b8c'
-         'c110b0306ee8ded1bf5ae5c2fb92eca3'
-         '883b1a53fad0204401c7e4b376c3a6f5'
-         '0364cda8c7b962de71d9b7a86a7bd54d'
-         '7a22d5e966e64053fc4307c105431502'
-         'e74295471958f3f5bfe8ab68459f167b'
-         'd6eeddeffb0e2314b1851c53bae628e8'
-         'e064654a2b48cc1e888be65f73b9a463'
-         '98e6730a868d7fcd160a2b1e2167e96c'
-         '2e99a6c2744cdcbe1075741806d6c62f'
-         '1e4de6dbb641a532f47a62b8c4c76e68'
-         '5c45a57289ab8192700ce374e94cad7a'
-         '0c86433ee520ae3e4e3b62d46eafe7a7'
-         'bbeffe2ceb7b01946d87ed52229ff909'
-         '1c715063118b33ea059af7affb4cfec1'
-         'af4ccc3c66689351d87358795f13e59c'
-         'a55d1384569349075b5a6a5c61af5c17'
-         'e4a867a7ead8f4e8fd4efc80f98b2337'
+md5sums=('e4a867a7ead8f4e8fd4efc80f98b2337'
          'cf0eeb69551df8527cc2c836fac71797'
          '3f9e6a050a80a07a29494117dce2d3de'
          '752af9301a1fea60bb20f6979d272861'
@@ -176,4 +148,31 @@ md5sums=('7b1b5c353635de5167c19c1fa2161a2a'
          '014acb7f9d93fdd92252e321d3f9ac87'
          '2f9890fb08efab9a5b4568ef1639af7d'
          'd624c2092cd9752f5d06286d43cb03c6'
-         '1797448eebfde434e6a796f5146342fe')
+         '1797448eebfde434e6a796f5146342fe'
+         'e74295471958f3f5bfe8ab68459f167b'
+         'd6eeddeffb0e2314b1851c53bae628e8'
+         '2e99a6c2744cdcbe1075741806d6c62f'
+         '1e4de6dbb641a532f47a62b8c4c76e68'
+         '0c86433ee520ae3e4e3b62d46eafe7a7'
+         '5c45a57289ab8192700ce374e94cad7a'
+         '1c715063118b33ea059af7affb4cfec1'
+         'e064654a2b48cc1e888be65f73b9a463'
+         '98e6730a868d7fcd160a2b1e2167e96c'
+         '25b151ccac832c4b8333222106d16b8c'
+         'bbeffe2ceb7b01946d87ed52229ff909'
+         'c110b0306ee8ded1bf5ae5c2fb92eca3'
+         '883b1a53fad0204401c7e4b376c3a6f5'
+         '7a22d5e966e64053fc4307c105431502'
+         '0364cda8c7b962de71d9b7a86a7bd54d'
+         'a55d1384569349075b5a6a5c61af5c17'
+         '044f00bcb352b273e841ecbf3836b705'
+         '2432e56f71823c95c6711c1634ab8005'
+         'c982fab7e21e835cfd6848f86657a22f'
+         '257f3fd773cfac35ed40e2d5f885a72f'
+         '08776fecbc01ca790ca20838943b0897'
+         '79c690fc4d1faf1aa317cbe68246097f'
+         '7b1b5c353635de5167c19c1fa2161a2a'
+         '7c47a6806061ccae3f5484973a00a0c6'
+         'e2dfdda69b13af5ab8b9468f9b6148b7'
+         'cdb56c7933f12c4b69180abba141ab5d'
+         'af4ccc3c66689351d87358795f13e59c')

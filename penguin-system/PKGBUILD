@@ -4,8 +4,9 @@ pkgname=(
     'penguin-base'
     'penguin-desktop'
     'penguin-defaults'
+    'penguin-scripts'
 )
-pkgver=3
+pkgver=4
 pkgrel=1
 pkgdesc="Penguin System"
 arch=('any')
@@ -25,6 +26,9 @@ source=(
     'autostart-terminal'
     'autostart-volume'
     'autostart-directories'
+    'autostart-mpd-notifications'
+    'autostart-update-notify'
+    'autostart-wallpaper-shuffler'
     'config-awesome'
     'config-awesome-theme'
     'config-gtk2'
@@ -52,6 +56,11 @@ source=(
     'penguin-config-patch.hook'
     'penguin-config-patch.sh'
     'README.md'
+    'script-mpd-notifications'
+    'script-screen-capture'
+    'script-touchpad-toggle'
+    'script-update-notify'
+    'script-wallpaper-shuffler'
 )
 
 package_penguin-base(){
@@ -137,6 +146,18 @@ package_penguin-defaults(){
     install -Dm0644 autostart-directories "$pkgdir"/etc/skel/.config/autostart/penguin-directories.desktop
 }
 
+package_penguin-scripts(){
+    pkgdesc="Penguin Scripts"
+    install -Dm0755 script-mpd-notifications "$pkgdir"/usr/bin/mpd-notifications.fyi
+    install -Dm0755 script-wallpaper-shuffler "$pkgdir"/usr/bin/wallpaper-shuffler.fyi
+    install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify.fyi
+    install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle.fyi
+    install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture.fyi
+    install -Dm0644 autostart-mpd-notifications "$pkgdir"/etc/skel/.config/autostart/mpd-notifications.desktop
+    install -Dm0644 autostart-wallpaper-shuffler "$pkgdir"/etc/skel/.config/autostart/wallpaper-shuffler.desktop
+    install -Dm0644 autostart-update-notify "$pkgdir"/etc/skel/.config/autostart/update-notify.desktop
+}
+
 md5sums=('e4a867a7ead8f4e8fd4efc80f98b2337'
          'cf0eeb69551df8527cc2c836fac71797'
          '3f9e6a050a80a07a29494117dce2d3de'
@@ -149,6 +170,9 @@ md5sums=('e4a867a7ead8f4e8fd4efc80f98b2337'
          '2f9890fb08efab9a5b4568ef1639af7d'
          'd624c2092cd9752f5d06286d43cb03c6'
          '1797448eebfde434e6a796f5146342fe'
+         '246b3ce2e6961d5c4ee287d51429a077'
+         '41fe7b2595064d3b2b8f595b286f125b'
+         'b89596c0ff513eb3f077e6ab89cc0fd4'
          'e74295471958f3f5bfe8ab68459f167b'
          'd6eeddeffb0e2314b1851c53bae628e8'
          '2e99a6c2744cdcbe1075741806d6c62f'
@@ -175,4 +199,9 @@ md5sums=('e4a867a7ead8f4e8fd4efc80f98b2337'
          '7c47a6806061ccae3f5484973a00a0c6'
          'e2dfdda69b13af5ab8b9468f9b6148b7'
          'cdb56c7933f12c4b69180abba141ab5d'
-         'af4ccc3c66689351d87358795f13e59c')
+         'af4ccc3c66689351d87358795f13e59c'
+         '9f5f46214dffd8b04fd43fcb7487605c'
+         'c73c5fa56f6bd1ad6b4e0b5ee90ccd6e'
+         '41ddb2af63897120737119aaf45c9485'
+         'eb25c430d8816615d9d0f0e23aac19d2'
+         '3158273df62e3de8a8c06dc88bd5adfd')

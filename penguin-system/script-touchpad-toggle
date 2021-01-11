@@ -1,0 +1,94 @@
+#!/usr/bin/env zsh
+
+# Penguin.FYI Touchpad Toggle
+# toggles touchpad state on and off
+# Jeff M. Hubbard 2018-2021
+
+# check for required commands
+req=(xinput)
+for r in $req
+do
+  (( $+commands[$r] )) || { echo "$x not installed!"; exit 1 }
+done
+
+# script name
+SH_NAME=${ZSH_ARGZERO:t:r}
+
+# paths
+CONF_DIR="$XDG_CONFIG_HOME/penguin/$SH_NAME"
+RC_PATH="$CONF_DIR/${SH_NAME}.rc"
+
+# defaults
+ICON="/usr/share/icons/hicolor/scalable/status/mouse.svg"
+URGENCY="low" # low, normal, critical (man notify-send)
+
+function main() {
+  get_device_id
+  if get_device_state
+  then
+    if xinput enable $DEVICE_ID
+    then
+      MSG="Input device $DEVICE_ID enabled!"
+    fi
+  else
+    if xinput disable $DEVICE_ID
+    then
+      MSG="Input device $DEVICE_ID disabled!"
+    fi
+  fi
+  # show notification
+  if [[ -n $MSG ]]
+  then
+    notify-send -a $SH_NAME -i $ICON -u $URGENCY $MSG
+  fi
+}
+
+function get_device_id() {
+  if [[ -n $TOUCHPAD ]]
+  then
+    # touchpad id set as env var
+    DEVICE_ID=$TOUCHPAD
+  else
+    # detect touchpad id
+    DEVICE_ID=$(xinput list | grep -iPo '(touchpad|glidepoint|synaptics).*id=\K\d+')
+  fi
+}
+
+function get_device_state() {
+  return $(xinput list-props $DEVICE_ID | grep 'Device Enabled' | awk '{print $4}')
+}
+
+# help message
+function usage() {
+  echo "Usage: $SH_NAME"
+  echo
+  echo "optional:"
+  echo "  -h, --help        show this help message and exit"
+  echo
+  exit 0
+}
+
+# load config file
+if [ -f $RC_PATH ]
+then
+  source $RC_PATH
+fi
+
+# parse arguments
+for arg in $@
+do
+  case $arg in
+    -C | --config)
+      RC_PATH=$2
+      source $2
+      break;;
+    -h | --help | *)
+      usage;;
+  esac
+done
+
+main
+
+exit 0
+
+# vim: ft=zsh ts=2 sw=2 et:

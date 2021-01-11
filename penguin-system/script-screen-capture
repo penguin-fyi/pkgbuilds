@@ -1,0 +1,98 @@
+#!/usr/bin/env zsh
+
+# Penguin.FYI Screen Capture
+# simple screen capture tool with maim
+# Jeff M. Hubbard 2019-2021
+
+# check for required commands
+req=(maim notify-send magick)
+for r in $req
+do
+  (( $+commands[$r] )) || { echo "$r not installed!"; exit 1 }
+done
+
+# script name
+SH_NAME=${ZSH_ARGZERO:t:r}
+
+# paths
+CACHE_DIR="$XDG_CACHE_HOME/penguin/$SH_NAME"
+CONF_DIR="$XDG_CONFIG_HOME/penguin/$SH_NAME"
+RC_PATH="$CONF_DIR/${SH_NAME}.rc"
+
+# defaults
+SAVE_DIR="$HOME/Screenshots"
+OUT_FILE="$SAVE_DIR/scr-$(date '+%Y-%m-%d_%H-%M-%S').png"
+THUMB_FILE="$CACHE_DIR/thumbmail.png"
+
+# create directories
+[[ -d $CACHE_DIR ]] || mkdir -p $CACHE_DIR 2>/dev/null
+[[ -d $SAVE_DIR ]]  || mkdir -p $SAVE_DIR 2>/dev/null
+
+function main() {
+  # call maim
+  if maim $SEL $OUT_FILE
+  then
+    # create thumbnail
+    get_img_res
+    if get_thumbmail
+    then
+      # show popup
+      do_notify
+      cleanup
+    fi
+  fi 
+}
+
+# set $IMG_RES
+function get_img_res() {
+  IMG_RES="$(magick identify $OUT_FILE | cut -d ' ' -f 1)"
+}
+
+# set $THUMB_FILE
+function get_thumbmail() {
+  magick convert \
+    -define "$FORMAT":size=$IMG_RES $OUT_FILE \
+    -thumbnail 64x64^ \
+    -gravity center \
+    -extent 64x64 \
+    $THUMB_FILE
+}
+
+# show notification
+function do_notify() {
+  notify-send -a $SH_NAME -u low -i "$THUMB_FILE" "Screenshot captured" "$OUT_FILE"
+}
+
+# remove thumbnail
+function cleanup { [[ -f $THUMB_FILE ]] && rm $THUMB_FILE }
+
+# help message
+function usage() {
+  echo "Usage: $SH_NAME"
+  echo
+  echo "optional:"
+  echo "  -s, --select      select window to capture"
+  echo "  -h, --help        show this help message and exit"
+  echo
+  exit 0
+}
+
+declare SEL
+
+# parse arguments
+for arg in $@
+do
+  case $arg in
+    -s | --select)
+      SEL="--select";
+      shift;;
+    -h | --help | *)
+      usage;;
+  esac
+done
+
+main
+
+exit 0
+
+# vim: ft=zsh ts=2 sw=2 et:

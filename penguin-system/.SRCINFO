@@ -1,7 +1,7 @@
 pkgbase = penguin-system
 	pkgdesc = Penguin System
-	pkgver = 2
-	pkgrel = 2
+	pkgver = 3
+	pkgrel = 1
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
@@ -126,6 +126,7 @@ pkgname = penguin-desktop
 	depends = xdg-user-dirs
 	depends = xdg-utils
 	depends = pcmanfm-gtk3
+	depends = gvfs
 	depends = xarchiver
 	depends = picom
 	depends = rofi

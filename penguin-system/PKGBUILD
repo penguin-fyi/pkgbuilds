@@ -5,8 +5,8 @@ pkgname=(
     'penguin-desktop'
     'penguin-defaults'
 )
-pkgver=2
-pkgrel=2
+pkgver=3
+pkgrel=1
 pkgdesc="Penguin System"
 arch=('any')
 url="https://penguin.fyi/"
@@ -86,7 +86,7 @@ package_penguin-desktop(){
         xorg-server xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
         awesome-git awesome-freedesktop-git dex xdg-user-dirs xdg-utils
-        pcmanfm-gtk3 xarchiver picom rofi rofi-pass xclip
+        pcmanfm-gtk3 gvfs xarchiver picom rofi rofi-pass xclip
         network-manager-applet blueman polkit-gnome xfce4-power-manager
         pulseaudio pulseaudio-alsa pavucontrol pasystray
         lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig

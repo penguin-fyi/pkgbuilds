@@ -24,7 +24,7 @@ source=(
     'autostart-sound'
     'autostart-terminal'
     'autostart-volume'
-    'autostart-xdgdir'
+    'autostart-directories'
     'config-awesome'
     'config-awesome-theme'
     'config-gtk2'
@@ -134,7 +134,7 @@ package_penguin-defaults(){
     install -Dm0644 autostart-sound "$pkgdir"/etc/skel/.config/autostart/penguin-sound.desktop
     install -Dm0644 autostart-terminal "$pkgdir"/etc/skel/.config/autostart/penguin-terminal.desktop
     install -Dm0644 autostart-volume "$pkgdir"/etc/skel/.config/autostart/penguin-volume.desktop
-    install -Dm0644 autostart-xdgdir "$pkgdir"/etc/skel/.config/autostart/penguin-xdgdir.desktop
+    install -Dm0644 autostart-directories "$pkgdir"/etc/skel/.config/autostart/penguin-directories.desktop
 }
 
 md5sums=('e4a867a7ead8f4e8fd4efc80f98b2337'

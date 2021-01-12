@@ -6,10 +6,16 @@
 runtime! archlinux.vim
 
 " Enable Pathogen
-execute pathogen#infect()
+if !exists(expand(glob("~/.vim/bundle")))
+    execute pathogen#infect()
+endif
 
 " Colorscheme and Terminal
-colorscheme antsy
+if !exists(expand(glob("~/.vim/bundle")))
+    colorscheme antsy
+else
+    colorscheme default
+endif
 set term=screen-256color
 
 " Enable filetype

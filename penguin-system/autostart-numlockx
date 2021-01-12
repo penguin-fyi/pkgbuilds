@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=numlockx
+Comment=Enable numlock
+Exec=numlockx
+Icon=numlock-enabled-symbolic
+Terminal=false
+Type=Application

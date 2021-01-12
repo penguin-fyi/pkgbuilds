@@ -3,10 +3,12 @@ pkgbase=penguin-system
 pkgname=(
     'penguin-base'
     'penguin-desktop'
-    'penguin-defaults'
+    'penguin-themes'
     'penguin-scripts'
+    'penguin-defaults'
+    'penguin-dev-tools'
 )
-pkgver=4
+pkgver=6
 pkgrel=1
 pkgdesc="Penguin System"
 arch=('any')
@@ -15,9 +17,11 @@ license=('MIT')
 
 source=(
     'autostart-mpd-notifications'
+    'autostart-numlockx'
     'autostart-pcmanfm'
     'autostart-picom'
     'autostart-polkit'
+    'autostart-unclutter'
     'autostart-update-notify'
     'autostart-urxvtd'
     'autostart-user-dirs'
@@ -39,6 +43,7 @@ source=(
     'config-zshrc'
     'config-zshrc-prompt'
     'LICENSE'
+    'patch-grub-distro'
     'patch-issue-ascii'
     'patch-lightdm-gtk-greeter.conf'
     'patch-makepkg.conf'
@@ -62,9 +67,8 @@ package_penguin-base(){
 
     depends=(
         base linux-firmware grub efibootmgr f2fs-tools
-        networkmanager openssh ufw fail2ban
-        zsh vim curl tmux git
-        patch sudo man-db man-pages
+        networkmanager openssh ufw fail2ban reflector
+        zsh vim curl tmux git patch sudo man-db man-pages
     )
     install=penguin-base.install
 
@@ -78,6 +82,7 @@ package_penguin-base(){
     install -Dm0644 patch-reflector.conf "$pkgdir"/usr/share/penguin/patches/reflector.conf.patch
     install -Dm0644 patch-useradd-shell "$pkgdir"/usr/share/penguin/patches/useradd.patch
     install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
+    install -Dm0644 patch-grub-distro "$pkgdir"/usr/share/penguin/patches/grub.patch
 
     install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
     install -Dm0755 penguin-config-patch.sh "$pkgdir"/usr/share/libalpm/scripts/penguin-config-patch
@@ -89,39 +94,37 @@ package_penguin-base(){
 package_penguin-desktop(){
     pkgdesc="Penguin Desktop"
     depends=(
-        penguin-base penguin-defaults penguin-scripts
+        penguin-base penguin-scripts
         xorg-server xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
         awesome-git awesome-freedesktop-git dex xdg-user-dirs xdg-utils
-        pcmanfm-gtk3 gvfs xarchiver picom rofi rofi-pass xclip
+        pcmanfm-gtk3 gvfs xarchiver picom rofi rofi-pass xclip numlockx
         network-manager-applet blueman polkit-gnome xfce4-power-manager
-        pulseaudio pulseaudio-alsa pavucontrol pasystray
+        pulseaudio pulseaudio-alsa pavucontrol pasystray unclutter-xfixes-git
         lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
         rxvt-unicode-cvs-patched-wideglyphs xterm ranger htop mailcap
-        qutebrowser netsurf weechat neomutt newsboat tuir
+        qutebrowser netsurf weechat neomutt newsboat tuir neofetch
         mpd mpc ncmpcpp mpv cava zathura zathura-pdf-mupdf
-        feh ffmpeg imagemagick maim curl wget rsync w3m urlscan
+        feh ffmpeg imagemagick maim rsync w3m urlscan
         vi bat jq fzf dialog fd tree unzip zip lsof pass pwgen gnupg
         zsh-autosuggestions zsh-completions zsh-syntax-highlighting bash-completion
-        ipython python-black python-isort eslint python-pyflakes flake8 autopep8 yapf
-        python-virtualenv python-virtualenvwrapper
-        cmake ctags shellcheck-bin luacheck github-cli
-        pacutils pacman-contrib reflector
-        antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
-        ttf-hack nerd-fonts-hack noto-fonts-emoji
     )
     install=penguin-desktop.install
+
+    install -Dm0644 autostart-numlockx "$pkgdir"/etc/xdg/autostart/numlockx.desktop
+    install -Dm0644 autostart-pcmanfm "$pkgdir"/etc/xdg/autostart/pcmanfm.desktop
+    install -Dm0644 autostart-picom "$pkgdir"/etc/xdg/autostart/picom.desktop
+    install -Dm0644 autostart-polkit "$pkgdir"/etc/xdg/autostart/polkit-gnome.desktop
+    install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
+    install -Dm0644 autostart-urxvtd "$pkgdir"/etc/xdg/autostart/urxvtd.desktop
+    install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
+
 }
 
 
 package_penguin-defaults(){
-    pkgdesc="Penguin Default Config (Antsy)"
-
-    install -Dm0644 autostart-pcmanfm "$pkgdir"/etc/xdg/autostart/pcmanfm.desktop
-    install -Dm0644 autostart-picom "$pkgdir"/etc/xdg/autostart/picom.desktop
-    install -Dm0644 autostart-polkit "$pkgdir"/etc/xdg/autostart/polkit-gnome.desktop
-    install -Dm0644 autostart-urxvtd "$pkgdir"/etc/xdg/autostart/urxvtd.desktop
-    install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
+    pkgdesc="Penguin Default Config Files"
+    depends=(penguin-desktop penguin-themes)
 
     install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
     install -Dm0644 config-awesome-theme "$pkgdir"/etc/skel/.config/awesome/themes/antsy/theme.lua
@@ -140,8 +143,19 @@ package_penguin-defaults(){
     install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
 }
 
+package_penguin-themes(){
+    pkgdesc="Penguin Themes (Antsy)"
+    depends=(
+        antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
+        ttf-hack nerd-fonts-hack noto-fonts-emoji
+    )
+}
+
 package_penguin-scripts(){
     pkgdesc="Penguin Scripts"
+    optdepends=(
+        cava imagemagick jq
+    )
 
     install -Dm0644 autostart-mpd-notifications "$pkgdir"/etc/xdg/autostart/mpd-notifications.desktop
     install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
@@ -154,16 +168,28 @@ package_penguin-scripts(){
     install -Dm0755 script-wallpaper-shuffler "$pkgdir"/usr/bin/wallpaper-shuffler.fyi
 }
 
+package_penguin-dev-tools(){
+    pkgdesc="Penguin Developer Tools"
+    depends=(
+        oomox github-cli shellcheck-bin luacheck cmake eslint ctags
+        ipython python-virtualenv python-virtualenvwrapper
+        python-black python-isort python-pyflakes flake8 autopep8 yapf
+        virtualbox archiso pacutils pacman-contrib
+    )
+}
+
 md5sums=('246b3ce2e6961d5c4ee287d51429a077'
+         '46868ac0617a4fbdfc308cc884d1f037'
          '752af9301a1fea60bb20f6979d272861'
          '3f9e6a050a80a07a29494117dce2d3de'
          '6529d3ddd2c2a6dff2845c57807ff058'
+         '274e6a795ae6d5c77f7d4f61707cb113'
          '41fe7b2595064d3b2b8f595b286f125b'
          '2f9890fb08efab9a5b4568ef1639af7d'
          '1797448eebfde434e6a796f5146342fe'
          'b89596c0ff513eb3f077e6ab89cc0fd4'
-         '804776e11ac733b9fea9742597087438'
-         'd6eeddeffb0e2314b1851c53bae628e8'
+         '08f49977dad9c2fd723fc419f7166b24'
+         '5310f1d0e9e7101d8c7b09baa29e7e28'
          '2e99a6c2744cdcbe1075741806d6c62f'
          '1e4de6dbb641a532f47a62b8c4c76e68'
          '0c86433ee520ae3e4e3b62d46eafe7a7'
@@ -173,11 +199,13 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '98e6730a868d7fcd160a2b1e2167e96c'
          '25b151ccac832c4b8333222106d16b8c'
          'bbeffe2ceb7b01946d87ed52229ff909'
+         '82a911f09718236405fec4221c069cc0'
          'c110b0306ee8ded1bf5ae5c2fb92eca3'
          '883b1a53fad0204401c7e4b376c3a6f5'
-         '0364cda8c7b962de71d9b7a86a7bd54d'
+         '5cc70c42f5d0621378f2a676e5ac0a12'
          '7a22d5e966e64053fc4307c105431502'
          'a55d1384569349075b5a6a5c61af5c17'
+         '93ca0b4985d2f407a71ba45074f2e7d6'
          '044f00bcb352b273e841ecbf3836b705'
          '2432e56f71823c95c6711c1634ab8005'
          'c982fab7e21e835cfd6848f86657a22f'
@@ -186,7 +214,7 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '79c690fc4d1faf1aa317cbe68246097f'
          '1a9558bc57b702728c8f868af891dd8c'
          '7c47a6806061ccae3f5484973a00a0c6'
-         'e2dfdda69b13af5ab8b9468f9b6148b7'
+         '08e127a575cc08cab68ed069a86cf5d6'
          'cdb56c7933f12c4b69180abba141ab5d'
          'af4ccc3c66689351d87358795f13e59c'
          '9f5f46214dffd8b04fd43fcb7487605c'

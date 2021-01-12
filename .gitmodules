@@ -55,3 +55,9 @@
 [submodule "cava"]
 	path = cava
 	url = https://aur.archlinux.org/cava
+[submodule "genact"]
+	path = genact
+	url = https://aur.archlinux.org/genact
+[submodule "fritzing"]
+	path = fritzing
+	url = https://aur.archlinux.org/fritzing

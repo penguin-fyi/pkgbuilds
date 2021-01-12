@@ -14,20 +14,13 @@ url="https://penguin.fyi/"
 license=('MIT')
 
 source=(
-    'autostart-accessibility'
-    'autostart-bluetooth'
-    'autostart-compositor'
-    'autostart-filesystem'
-    'autostart-network'
-    'autostart-policy'
-    'autostart-powermanager'
-    'autostart-screenlock'
-    'autostart-sound'
-    'autostart-terminal'
-    'autostart-volume'
-    'autostart-directories'
     'autostart-mpd-notifications'
+    'autostart-pcmanfm'
+    'autostart-picom'
+    'autostart-polkit'
     'autostart-update-notify'
+    'autostart-urxvtd'
+    'autostart-user-dirs'
     'autostart-wallpaper-shuffler'
     'config-awesome'
     'config-awesome-theme'
@@ -40,10 +33,11 @@ source=(
     'config-rofitheme'
     'config-sudoers'
     'config-tmuxconf'
+    'config-vimrc'
     'config-xresources'
     'config-xsession'
-    'config-zshprompt'
     'config-zshrc'
+    'config-zshrc-prompt'
     'LICENSE'
     'patch-issue-ascii'
     'patch-lightdm-gtk-greeter.conf'
@@ -65,6 +59,7 @@ source=(
 
 package_penguin-base(){
     pkgdesc="Penguin Base System"
+
     depends=(
         base linux-firmware grub efibootmgr f2fs-tools
         networkmanager openssh ufw fail2ban
@@ -72,15 +67,18 @@ package_penguin-base(){
         patch sudo man-db man-pages
     )
     install=penguin-base.install
-    install -Dm0644 config-zshrc "$pkgdir"/etc/skel/.zshrc
-    install -Dm0644 config-zshprompt "$pkgdir"/etc/skel/.zshrc.prompt
+
     install -dm0750 "$pkgdir"/etc/sudoers.d
     install -Dm0644 config-sudoers "$pkgdir"/etc/sudoers.d/10-wheel
+    install -Dm0644 config-zshrc "$pkgdir"/etc/skel/.zshrc
+    install -Dm0644 config-zshrc-prompt "$pkgdir"/etc/skel/.zshrc.prompt
+
     install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
     install -Dm0644 patch-makepkg.conf "$pkgdir"/usr/share/penguin/patches/makepkg.conf.patch
     install -Dm0644 patch-reflector.conf "$pkgdir"/usr/share/penguin/patches/reflector.conf.patch
     install -Dm0644 patch-useradd-shell "$pkgdir"/usr/share/penguin/patches/useradd.patch
     install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
+
     install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
     install -Dm0755 penguin-config-patch.sh "$pkgdir"/usr/share/libalpm/scripts/penguin-config-patch
 
@@ -91,7 +89,7 @@ package_penguin-base(){
 package_penguin-desktop(){
     pkgdesc="Penguin Desktop"
     depends=(
-        penguin-base
+        penguin-base penguin-defaults penguin-scripts
         xorg-server xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
         awesome-git awesome-freedesktop-git dex xdg-user-dirs xdg-utils
@@ -100,7 +98,7 @@ package_penguin-desktop(){
         pulseaudio pulseaudio-alsa pavucontrol pasystray
         lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
         rxvt-unicode-cvs-patched-wideglyphs xterm ranger htop mailcap
-        qutebrowser weechat neomutt newsboat tuir
+        qutebrowser netsurf weechat neomutt newsboat tuir
         mpd mpc ncmpcpp mpv cava zathura zathura-pdf-mupdf
         feh ffmpeg imagemagick maim curl wget rsync w3m urlscan
         vi bat jq fzf dialog fd tree unzip zip lsof pass pwgen gnupg
@@ -113,67 +111,58 @@ package_penguin-desktop(){
         ttf-hack nerd-fonts-hack noto-fonts-emoji
     )
     install=penguin-desktop.install
-    install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
 }
 
 
 package_penguin-defaults(){
     pkgdesc="Penguin Default Config (Antsy)"
-    depends=(penguin-desktop)
-    install -Dm0755 config-xsession "$pkgdir"/etc/skel/.xsession
-    install -Dm0644 config-xresources "$pkgdir"/etc/skel/.Xresources
+
+    install -Dm0644 autostart-pcmanfm "$pkgdir"/etc/xdg/autostart/pcmanfm.desktop
+    install -Dm0644 autostart-picom "$pkgdir"/etc/xdg/autostart/picom.desktop
+    install -Dm0644 autostart-polkit "$pkgdir"/etc/xdg/autostart/polkit-gnome.desktop
+    install -Dm0644 autostart-urxvtd "$pkgdir"/etc/xdg/autostart/urxvtd.desktop
+    install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
+
     install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
-    install -Dm0644 config-awesome-theme "$pkgdir"/etc/skel/.config/awesome/theme.lua
-    install -Dm0644 config-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
-    install -Dm0644 config-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
+    install -Dm0644 config-awesome-theme "$pkgdir"/etc/skel/.config/awesome/themes/antsy/theme.lua
     install -Dm0644 config-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
     install -Dm0644 config-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
-    install -Dm0644 config-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
     install -Dm0644 config-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
-    install -Dm0644 config-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
     install -Dm0644 config-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
-    install -Dm0644 autostart-accessibility "$pkgdir"/etc/skel/.config/autostart/penguin-accessibility.desktop
-    install -Dm0644 autostart-bluetooth "$pkgdir"/etc/skel/.config/autostart/penguin-bluetooth.desktop
-    install -Dm0644 autostart-compositor "$pkgdir"/etc/skel/.config/autostart/penguin-compositor.desktop
-    install -Dm0644 autostart-filesystem "$pkgdir"/etc/skel/.config/autostart/penguin-filesystem.desktop
-    install -Dm0644 autostart-network "$pkgdir"/etc/skel/.config/autostart/penguin-network.desktop
-    install -Dm0644 autostart-policy "$pkgdir"/etc/skel/.config/autostart/penguin-policy.desktop
-    install -Dm0644 autostart-powermanager "$pkgdir"/etc/skel/.config/autostart/penguin-powermanager.desktop
-    install -Dm0644 autostart-screenlock "$pkgdir"/etc/skel/.config/autostart/penguin-screenlock.desktop
-    install -Dm0644 autostart-sound "$pkgdir"/etc/skel/.config/autostart/penguin-sound.desktop
-    install -Dm0644 autostart-terminal "$pkgdir"/etc/skel/.config/autostart/penguin-terminal.desktop
-    install -Dm0644 autostart-volume "$pkgdir"/etc/skel/.config/autostart/penguin-volume.desktop
-    install -Dm0644 autostart-directories "$pkgdir"/etc/skel/.config/autostart/penguin-directories.desktop
+    install -Dm0644 config-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
+    install -Dm0644 config-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
+    install -Dm0644 config-rofitheme "$pkgdir"/etc/skel/.config/rofi/themes/antsy.rasi
+    install -Dm0644 config-tmuxconf "$pkgdir"/etc/skel/.tmux.conf
+    install -Dm0644 config-vimrc "$pkgdir"/etc/skel/.vim/vimrc
+    install -Dm0644 config-xresources "$pkgdir"/etc/skel/.Xresources
+    install -Dm0755 config-xsession "$pkgdir"/etc/skel/.xsession
+
+    install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
 }
 
 package_penguin-scripts(){
     pkgdesc="Penguin Scripts"
+
+    install -Dm0644 autostart-mpd-notifications "$pkgdir"/etc/xdg/autostart/mpd-notifications.desktop
+    install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
+    install -Dm0644 autostart-wallpaper-shuffler "$pkgdir"/etc/xdg/autostart/wallpaper-shuffler.desktop
+
     install -Dm0755 script-mpd-notifications "$pkgdir"/usr/bin/mpd-notifications.fyi
-    install -Dm0755 script-wallpaper-shuffler "$pkgdir"/usr/bin/wallpaper-shuffler.fyi
-    install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify.fyi
-    install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle.fyi
     install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture.fyi
-    install -Dm0644 autostart-mpd-notifications "$pkgdir"/etc/skel/.config/autostart/mpd-notifications.desktop
-    install -Dm0644 autostart-wallpaper-shuffler "$pkgdir"/etc/skel/.config/autostart/wallpaper-shuffler.desktop
-    install -Dm0644 autostart-update-notify "$pkgdir"/etc/skel/.config/autostart/update-notify.desktop
+    install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle.fyi
+    install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify.fyi
+    install -Dm0755 script-wallpaper-shuffler "$pkgdir"/usr/bin/wallpaper-shuffler.fyi
 }
 
-md5sums=('e4a867a7ead8f4e8fd4efc80f98b2337'
-         'cf0eeb69551df8527cc2c836fac71797'
-         '3f9e6a050a80a07a29494117dce2d3de'
+md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '752af9301a1fea60bb20f6979d272861'
-         'd02815b63d0fc5cd3cb701a452de9807'
+         '3f9e6a050a80a07a29494117dce2d3de'
          '6529d3ddd2c2a6dff2845c57807ff058'
-         'ec6289eec1318ea2987ee5911b5c4489'
-         '0aefc7d5499be28c401e230fe5dacbc6'
-         '014acb7f9d93fdd92252e321d3f9ac87'
-         '2f9890fb08efab9a5b4568ef1639af7d'
-         'd624c2092cd9752f5d06286d43cb03c6'
-         '1797448eebfde434e6a796f5146342fe'
-         '246b3ce2e6961d5c4ee287d51429a077'
          '41fe7b2595064d3b2b8f595b286f125b'
+         '2f9890fb08efab9a5b4568ef1639af7d'
+         '1797448eebfde434e6a796f5146342fe'
          'b89596c0ff513eb3f077e6ab89cc0fd4'
-         'e74295471958f3f5bfe8ab68459f167b'
+         '804776e11ac733b9fea9742597087438'
          'd6eeddeffb0e2314b1851c53bae628e8'
          '2e99a6c2744cdcbe1075741806d6c62f'
          '1e4de6dbb641a532f47a62b8c4c76e68'
@@ -186,8 +175,8 @@ md5sums=('e4a867a7ead8f4e8fd4efc80f98b2337'
          'bbeffe2ceb7b01946d87ed52229ff909'
          'c110b0306ee8ded1bf5ae5c2fb92eca3'
          '883b1a53fad0204401c7e4b376c3a6f5'
-         '7a22d5e966e64053fc4307c105431502'
          '0364cda8c7b962de71d9b7a86a7bd54d'
+         '7a22d5e966e64053fc4307c105431502'
          'a55d1384569349075b5a6a5c61af5c17'
          '044f00bcb352b273e841ecbf3836b705'
          '2432e56f71823c95c6711c1634ab8005'
@@ -195,7 +184,7 @@ md5sums=('e4a867a7ead8f4e8fd4efc80f98b2337'
          '257f3fd773cfac35ed40e2d5f885a72f'
          '08776fecbc01ca790ca20838943b0897'
          '79c690fc4d1faf1aa317cbe68246097f'
-         '7b1b5c353635de5167c19c1fa2161a2a'
+         '1a9558bc57b702728c8f868af891dd8c'
          '7c47a6806061ccae3f5484973a00a0c6'
          'e2dfdda69b13af5ab8b9468f9b6148b7'
          'cdb56c7933f12c4b69180abba141ab5d'

@@ -244,12 +244,15 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.magenta,
 theme.icon_theme = "Antsy"
 
 -- Custom icons for menus and widgets
-theme.launcher_icon                         = "/usr/share/pixmaps/archlinux-logo.png"
+theme.launcher_icon                         = "/usr/share/icons/Antsy/panel/24/start-here.svg"
 theme.terminal_icon                         = "/usr/share/icons/Antsy/apps/scalable/terminal.svg"
-theme.editor_icon                           = "/usr/share/icons/Antsy/apps/scalable/text-editor-symbolic.svg"
 theme.filemanager_icon                      = "/usr/share/icons/Antsy/apps/scalable/system-file-manager.svg"
-theme.browser_icon                          = "/usr/share/icons/Antsy/apps/scalable/web-browser.svg"
-theme.session_icon                          = "/usr/share/icons/Antsy/apps/scalable/session-properties.svg"
+theme.hotkeys_icon                          = "/usr/share/icons/Antsy/apps/symbolic/keyboard-symbolic.svg"
+theme.manual_icon                           = "/usr/share/icons/Antsy/actions/symbolic/help-info-symbolic.svg"
+theme.editor_icon                           = "/usr/share/icons/Antsy/actions/symbolic/edit-symbolic.svg"
+theme.screenlock_icon                       = "/usr/share/icons/Antsy/actions/symbolic/system-lock-screen-symbolic.svg"
+theme.restart_icon                          = "/usr/share/icons/Antsy/actions/symbolic/system-restart-symbolic.svg"
+theme.exit_icon                             = "/usr/share/icons/Antsy/actions/symbolic/system-log-out-symbolic.svg"
 
 return theme
 

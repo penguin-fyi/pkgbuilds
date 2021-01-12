@@ -10,3 +10,8 @@ source $plugdir/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # load prompt
 source $HOME/.zshrc.prompt
+
+function install_zshd() {
+    local url=https://code.linuxit.us/zsh.d/plain/setup.zsh
+    zsh -c "$(curl -fsSL $url)"
+}

@@ -38,7 +38,7 @@ end)
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-theme.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+theme.init(gears.filesystem.get_configuration_dir() .. "themes/antsy/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = os.getenv("TERMINAL") or "xterm"
@@ -64,26 +64,22 @@ task_width = theme.task_width or 256
 
 -- system commands
 lock_cmd = "light-locker-command -l"
-suspend_cmd = "systemctl suspend"
-reboot_cmd = "systemctl reboot"
-halt_cmd = "systemctl halt"
+--suspend_cmd = "systemctl suspend"
+--reboot_cmd = "systemctl reboot"
+--halt_cmd = "systemctl halt"
 
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "Show Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "Lock Desktop", function () awful.util.spawn(lock_cmd) end },
-   { "Restart Desktop", awesome.restart },
-   { "Exit Desktop", function() awesome.quit() end },
-   { "Suspend System", function () awful.util.spawn(suspend_cmd) end },
-   { "Reboot System", function () awful.util.spawn(reboot_cmd) end },
-   { "Halt System", function () awful.util.spawn(halt_cmd) end },
+   { "Show Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end, theme.hotkeys_icon },
+   { "Read Manaul", terminal .. " -e man awesome", theme.manual_icon },
+   { "Edit Config", editor_cmd .. " " .. awesome.conffile, theme.editor_icon },
+   { "Lock Desktop", function () awful.util.spawn(lock_cmd) end, theme.screenlock_icon },
+   { "Restart Desktop", awesome.restart, theme.restart_icon },
+   { "Exit Desktop", function() awesome.quit() end, theme.exit_icon },
 }
-
---mysessionmenu = {
---}
 
 mymainmenu = freedesktop.menu.build({
     icon_size = bar_height or 16,
@@ -99,7 +95,7 @@ mymainmenu = freedesktop.menu.build({
 
 mymenuicon = gears.color.recolor_image(
                     theme.launcher_icon or theme.awesome_icon,
-                    theme.bg_focus)
+                    theme.ui_alt_color)
 mylauncher = awful.widget.launcher({ image = mymenuicon, menu = mymainmenu })
 
 -- Menubar configuration
@@ -421,31 +417,34 @@ awful.keyboard.append_global_keybindings({
               {description = "show command search", group = "Awesome: search"}),
     awful.key({ modkey }, "Tab", function () awful.util.spawn("rofi -show window") end,
               {description = "show window search", group = "Awesome: search"}),
-    awful.key({ modkey, "Mod1" }, "f", function () awful.util.spawn("rofi-pass") end,
+    awful.key({ modkey, altkey }, "f", function () awful.util.spawn("rofi-pass") end,
               {description = "show file browser", group = "Awesome: search"}),
-    awful.key({ modkey, "Mod1" }, "p", function () awful.util.spawn("rofi-pass") end,
+    awful.key({ modkey, altkey }, "p", function () awful.util.spawn("rofi-pass") end,
               {description = "show password search", group = "Awesome: search"}),
     -- Media keys
-    awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mpc toggle") end,
-              {description = "toggle play and pause", group = "Awesome: Fn keys"}),
-    awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mpc next") end,
-              {description = "go to next track", group = "Awesome: Fn keys"}),
-    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end,
-              {description = "go to previous track", group = "Awesome: Fn keys"}),
-    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("volume-ctl.sh -u 5") end,
-              {description = "raise volume", group = "Awesome: Fn keys"}),
-    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("volume-ctl.sh -d 5") end,
-              {description = "lower volume", group = "Awesome: Fn keys"}),
-    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("volume-ctl.sh -m") end,
-              {description = "toggle mute", group = "Awesome: Fn keys"}),
-    awful.key({ }, "XF86KbdBrightnessUp", function () awful.util.spawn("backlight-ctl -u 5") end,
-              {description = "increase backlight brightness", group = "Awesome: Fn keys"}),
-    awful.key({ }, "XF86KbdBrightnessUp", function () awful.util.spawn("backlight-ctl -d 5") end,
-              {description = "decrease backlight brightness", group = "Awesome: Fn keys"}),
+    --awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mpc toggle") end,
+    --          {description = "toggle play and pause", group = "Awesome: Fn keys"}),
+    --awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mpc next") end,
+    --          {description = "go to next track", group = "Awesome: Fn keys"}),
+    --awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end,
+    --          {description = "go to previous track", group = "Awesome: Fn keys"}),
+    --awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("volume-ctl.sh -u 5") end,
+    --          {description = "raise volume", group = "Awesome: Fn keys"}),
+    --awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("volume-ctl.sh -d 5") end,
+    --          {description = "lower volume", group = "Awesome: Fn keys"}),
+    --awful.key({ }, "XF86AudioMute", function () awful.util.spawn("volume-ctl.sh -m") end,
+    --          {description = "toggle mute", group = "Awesome: Fn keys"}),
+    --awful.key({ }, "XF86KbdBrightnessUp", function () awful.util.spawn("backlight-ctl -u 5") end,
+    --          {description = "increase backlight brightness", group = "Awesome: Fn keys"}),
+    --awful.key({ }, "XF86KbdBrightnessUp", function () awful.util.spawn("backlight-ctl -d 5") end,
+    --          {description = "decrease backlight brightness", group = "Awesome: Fn keys"}),
+    -- touchpad-toggle
+    awful.key({ modkey, altkey }, "t", function () awful.util.spawn("touchpad-toggle.fyi") end,
+              {description = "capture screenshot", group = "Awesome: toggle touchpad"}),
     -- screenshot
-    awful.key({ }, "Print", function () awful.util.spawn("screen-capture.sh") end,
+    awful.key({ }, "Print", function () awful.util.spawn("screen-capture.fyi") end,
               {description = "capture screenshot", group = "Awesome: screenshot"}),
-    awful.key({ modkey }, "Print", function () awful.util.spawn("screen-capture.sh -s") end,
+    awful.key({ modkey }, "Print", function () awful.util.spawn("screen-capture.fyi -s") end,
               {description = "capture screenshot from selection", group = "Awesome: screenshot"})
 })
 
@@ -675,6 +674,11 @@ tag.connect_signal("property::layout", function(t)
     end
 end)
 
+-- Enable sloppy focus, so that focus follows mouse.
+client.connect_signal("mouse::enter", function(c)
+    c:activate { context = "mouse_enter", raise = false }
+end)
+
 -- {{{ Notifications
 
 ruled.notification.connect_signal('request::rules', function()
@@ -695,14 +699,9 @@ end)
 
 -- }}}
 
--- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:activate { context = "mouse_enter", raise = false }
-end)
-
 -- Autostart
 awful.spawn.with_shell(
    'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
    'xrdb -merge <<< "awesome.started:true";' ..
-   'dex --environment Awesome --autostart --search-paths "$XDG_CONFIG_HOME/autostart"'
+   'dex --environment Awesome --autostart --search-paths "/etc/xdg/autostart/:$XDG_CONFIG_HOME/autostart/"'
 )

@@ -1,6 +1,7 @@
 post_install () {
 
     systemctl enable NetworkManager
+
     systemctl enable reflector
 
     systemctl enable sshd

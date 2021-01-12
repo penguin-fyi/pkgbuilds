@@ -1,5 +1,5 @@
 --- /etc/default/grub	2020-07-29 15:51:43.000000000 -0500
-+++ /etc/default/grub	2021-01-12 02:20:54.712696628 -0600
++++ /etc/default/grub	2021-01-12 12:28:40.358389869 -0600
 @@ -2,7 +2,7 @@
  
  GRUB_DEFAULT=0
@@ -15,8 +15,8 @@
  # modes only.  Entries specified as foreground/background.
 -#GRUB_COLOR_NORMAL="light-blue/black"
 -#GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
-+GRUB_COLOR_NORMAL="light-blue/black"
-+GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
++GRUB_COLOR_NORMAL="light-green/black"
++GRUB_COLOR_HIGHLIGHT="black/light-magenta"
  
  # Uncomment one of them for the gfx desired, a image background or a gfxtheme
  #GRUB_BACKGROUND="/path/to/wallpaper"

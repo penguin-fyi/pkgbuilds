@@ -64,11 +64,18 @@ source=(
 
 package_penguin-base(){
     pkgdesc="Penguin Base System"
-
     depends=(
         base linux-firmware grub efibootmgr f2fs-tools
         networkmanager openssh ufw fail2ban reflector
         zsh vim curl tmux git patch sudo man-db man-pages
+    )
+    backup=(
+        etc/default/grub
+        etc/default/useradd
+        etc/issue
+        etc/makepkg.conf
+        etc/pacman.conf
+        etc/xdg/reflector/reflector.conf
     )
     install=penguin-base.install
 
@@ -77,12 +84,12 @@ package_penguin-base(){
     install -Dm0644 config-zshrc "$pkgdir"/etc/skel/.zshrc
     install -Dm0644 config-zshrc-prompt "$pkgdir"/etc/skel/.zshrc.prompt
 
-    install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
+    install -Dm0644 patch-grub-distro "$pkgdir"/usr/share/penguin/patches/grub.patch
+    install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
     install -Dm0644 patch-makepkg.conf "$pkgdir"/usr/share/penguin/patches/makepkg.conf.patch
+    install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
     install -Dm0644 patch-reflector.conf "$pkgdir"/usr/share/penguin/patches/reflector.conf.patch
     install -Dm0644 patch-useradd-shell "$pkgdir"/usr/share/penguin/patches/useradd.patch
-    install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
-    install -Dm0644 patch-grub-distro "$pkgdir"/usr/share/penguin/patches/grub.patch
 
     install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
     install -Dm0755 penguin-config-patch.sh "$pkgdir"/usr/share/libalpm/scripts/penguin-config-patch
@@ -121,10 +128,10 @@ package_penguin-desktop(){
 
 }
 
-
 package_penguin-defaults(){
     pkgdesc="Penguin Default Config Files"
     depends=(penguin-desktop penguin-themes)
+    backup=(etc/lightdm/lightdm-gtk-greeter.conf)
 
     install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
     install -Dm0644 config-awesome-theme "$pkgdir"/etc/skel/.config/awesome/themes/antsy/theme.lua

@@ -9,7 +9,7 @@ pkgname=(
     'penguin-dev-tools'
 )
 pkgver=7
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin System"
 arch=('any')
 url="https://penguin.fyi/"
@@ -212,7 +212,7 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '5cc70c42f5d0621378f2a676e5ac0a12'
          '7a22d5e966e64053fc4307c105431502'
          'a55d1384569349075b5a6a5c61af5c17'
-         '93ca0b4985d2f407a71ba45074f2e7d6'
+         '41440c82d4b6c2d64e496ad4a1782778'
          '044f00bcb352b273e841ecbf3836b705'
          '2432e56f71823c95c6711c1634ab8005'
          'c982fab7e21e835cfd6848f86657a22f'
@@ -223,7 +223,7 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '7c47a6806061ccae3f5484973a00a0c6'
          '08e127a575cc08cab68ed069a86cf5d6'
          'cdb56c7933f12c4b69180abba141ab5d'
-         'af4ccc3c66689351d87358795f13e59c'
+         '64b59a65844db8c37d67944333508e76'
          '9f5f46214dffd8b04fd43fcb7487605c'
          'c73c5fa56f6bd1ad6b4e0b5ee90ccd6e'
          '41ddb2af63897120737119aaf45c9485'

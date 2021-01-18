@@ -46,6 +46,7 @@ editor = os.getenv("EDITOR") or "vi"
 filemanager = os.getenv("FILEXP") or "ranger"
 browser = os.getenv("BROWSER") or "netsurf"
 editor_cmd = terminal .. " -e " .. editor -- this does not work with termite
+screenlocker = "light-locker-command -l"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -62,12 +63,6 @@ max_tags = theme.max_tags or 4
 bar_height = theme.bar_height or 20
 task_width = theme.task_width or 256
 
--- system commands
-lock_cmd = "light-locker-command -l"
---suspend_cmd = "systemctl suspend"
---reboot_cmd = "systemctl reboot"
---halt_cmd = "systemctl halt"
-
 -- }}}
 
 -- {{{ Menu
@@ -76,7 +71,7 @@ myawesomemenu = {
    { "Show Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end, theme.hotkeys_icon },
    { "Read Manaul", terminal .. " -e man awesome", theme.manual_icon },
    { "Edit Config", editor_cmd .. " " .. awesome.conffile, theme.editor_icon },
-   { "Lock Desktop", function () awful.util.spawn(lock_cmd) end, theme.screenlock_icon },
+   { "Lock Desktop", function () awful.util.spawn(screenlocker) end, theme.screenlock_icon },
    { "Restart Desktop", awesome.restart, theme.restart_icon },
    { "Exit Desktop", function() awesome.quit() end, theme.exit_icon },
 }
@@ -137,19 +132,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
     awful.tag(tag_list, s, awful.layout.layouts[1])
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox {
-        screen  = s,
-        buttons = {
-            awful.button({ }, 1, function () awful.layout.inc( 1) end),
-            awful.button({ }, 3, function () awful.layout.inc(-1) end),
-        }
-    }
-
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -192,8 +174,19 @@ screen.connect_signal("request::desktop_decoration", function(s)
 
     -- systray widget
     s.mysystray = wibox.widget.systray()
-    s.mysystray.opacity = theme.opacity
+    --s.mysystray.opacity = theme.opacity
     s.mysystray:set_base_size(bar_height)
+
+    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
+    -- We need one layoutbox per screen.
+    s.mylayoutbox = awful.widget.layoutbox {
+        screen  = s,
+        buttons = {
+            awful.button({ }, 1, function () awful.layout.inc( 1) end),
+            awful.button({ }, 3, function () awful.layout.inc(-1) end),
+        }
+    }
+    s.mylayoutbox = wibox.container.margin(s.mylayoutbox, 0, 0, 2, 2)
 
     -- Create the wibox
     s.mywibox = awful.wibar {
@@ -201,8 +194,8 @@ screen.connect_signal("request::desktop_decoration", function(s)
         position = "top",
         height = bar_height,
         border_width = 2,
-        border_color = theme.wibar_bg
-        --border_color = theme.bg_normal
+        border_color = theme.wibar_bg,
+        opacity = 1,
     }
 
     -- Add widgets to the wibox
@@ -216,12 +209,15 @@ screen.connect_signal("request::desktop_decoration", function(s)
             separator,
             s.mytaglist,
             separator,
-            s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
+        { -- Middle widget
+            layout = wibox.layout.fixed.horizontal,
+            fill_space = true,
+            s.mytasklist,
+        },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            net,
+            separator,
             s.mysystray,
             separator,
             mytextclock,
@@ -252,18 +248,6 @@ awful.keyboard.append_global_keybindings({
               {description = "reload awesome", group = "Awesome: core"}),
     awful.key({ modkey, ctrlkey }, "q", awesome.quit,
               {description = "quit awesome", group = "Awesome: core"}),
-    awful.key({ modkey }, "x", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "Awesome: core"}),
-    awful.key({ modkey, ctrlkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().prompt_widget.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "Awesome: core"}),
 })
 
 -- Tags related keybindings
@@ -319,8 +303,6 @@ awful.keyboard.append_global_keybindings({
               {description = "swap with next client by index", group = "Awesome: client"}),
     awful.key({ modkey, shftkey }, "k", function () awful.client.swap.byidx( -1) end,
               {description = "swap with previous client by index", group = "Awesome: client"}),
-    awful.key({ modkey }, "'", awful.client.urgent.jumpto,
-              {description = "jump to urgent client", group = "Awesome: client"}),
     awful.key({ modkey }, "l", function () awful.tag.incmwfact( 0.05) end,
               {description = "increase master width factor", group = "Awesome: layout"}),
     awful.key({ modkey }, "h", function () awful.tag.incmwfact(-0.05) end,
@@ -422,18 +404,20 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey, altkey }, "p", function () awful.util.spawn("rofi-pass") end,
               {description = "show password search", group = "Awesome: search"}),
     -- Media keys
-    --awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mpc toggle") end,
-    --          {description = "toggle play and pause", group = "Awesome: Fn keys"}),
-    --awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mpc next") end,
-    --          {description = "go to next track", group = "Awesome: Fn keys"}),
-    --awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end,
-    --          {description = "go to previous track", group = "Awesome: Fn keys"}),
-    --awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("volume-ctl.sh -u 5") end,
-    --          {description = "raise volume", group = "Awesome: Fn keys"}),
-    --awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("volume-ctl.sh -d 5") end,
-    --          {description = "lower volume", group = "Awesome: Fn keys"}),
-    --awful.key({ }, "XF86AudioMute", function () awful.util.spawn("volume-ctl.sh -m") end,
-    --          {description = "toggle mute", group = "Awesome: Fn keys"}),
+    awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mpc toggle") end,
+              {description = "toggle play and pause", group = "Awesome: Fn keys"}),
+    awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mpc next") end,
+              {description = "go to next track", group = "Awesome: Fn keys"}),
+    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end,
+              {description = "go to previous track", group = "Awesome: Fn keys"}),
+    awful.key({ }, "XF86AudioStop", function () awful.util.spawn("mpc stop") end,
+              {description = "stop playback", group = "Awesome: Fn keys"}),
+    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%") end,
+              {description = "raise volume", group = "Awesome: Fn keys"}),
+    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%") end,
+              {description = "lower volume", group = "Awesome: Fn keys"}),
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end,
+              {description = "toggle mute", group = "Awesome: Fn keys"}),
     --awful.key({ }, "XF86KbdBrightnessUp", function () awful.util.spawn("backlight-ctl -u 5") end,
     --          {description = "increase backlight brightness", group = "Awesome: Fn keys"}),
     --awful.key({ }, "XF86KbdBrightnessUp", function () awful.util.spawn("backlight-ctl -d 5") end,
@@ -564,7 +548,10 @@ ruled.client.connect_signal("request::rules", function()
     -- URxvt
     ruled.client.append_rule {
         id         = "titlebars",
-        rule_any   = { class = { "URxvt" }, instance = { "urxvt" } },
+        rule_any   = {
+            class = { "Alacritty" },
+            instance = { "Alacritty" }
+        },
         properties = {
             -- Make titlebar match color and transparency of terminal
             transparent_titlebar = true,
@@ -647,6 +634,12 @@ client.connect_signal("request::manage", function (c)
     else
         awful.titlebar.hide(c)
     end
+
+    -- center clients over parent
+    if c.transient_for then
+        awful.placement.centered(c, {parent = c.transient_for})
+        awful.placement.no_offscreen(c)
+    end
 end)
 
 -- toggle titlebar on floating client
@@ -672,6 +665,12 @@ tag.connect_signal("property::layout", function(t)
             awful.titlebar.hide(c)
         end
     end
+end)
+
+-- Jump to urgent client
+client.connect_signal("property::urgent", function(c)
+    c.minimized = false
+    c:jump_to()
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.

@@ -22,7 +22,7 @@ theme.border_width                          = dpi(2)
 theme.border_radius                         = dpi(0)
 theme.bar_height                            = dpi(20)       -- custom
 theme.task_width                            = dpi(256)      -- custom
-theme.opacity                               = theme.opacity -- custom
+theme.opacity                               = 0.9           -- custom
 
 -- Xresources colors
 theme.black                                 = xrdb.color0   -- #000000

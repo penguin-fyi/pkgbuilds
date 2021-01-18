@@ -119,7 +119,7 @@ element-icon {
 window {
     padding:          2;
     background-color: var(background);
-    border:           1;
+    border:           2;
 }
 mainbox {
     padding: 0;

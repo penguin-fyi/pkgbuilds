@@ -1,10 +1,10 @@
 configuration {
-	modi: "window,drun,run";
+	modi: "window,drun,run,file-browser";
 	width: 320;
 	lines: 10;
 	columns: 1;
 	font: "Hack Nerd Font 10";
-	bw: 1;
+	bw: 2;
 	location: 0;
 	padding: 2;
 	yoffset: -120;

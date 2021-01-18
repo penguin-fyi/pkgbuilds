@@ -8,8 +8,8 @@ pkgname=(
     'penguin-defaults'
     'penguin-dev-tools'
 )
-pkgver=8
-pkgrel=2
+pkgver=9
+pkgrel=1
 pkgdesc="The Penguin System"
 arch=('any')
 url="https://penguin.fyi/"
@@ -181,7 +181,7 @@ package_penguin-dev-tools(){
         oomox github-cli shellcheck-bin luacheck cmake eslint ctags
         ipython python-virtualenv python-virtualenvwrapper
         python-black python-isort python-pyflakes flake8 autopep8 yapf
-        virtualbox archiso pacutils pacman-contrib
+        archiso pacutils pacman-contrib
     )
 }
 
@@ -195,8 +195,8 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '1797448eebfde434e6a796f5146342fe'
          'b89596c0ff513eb3f077e6ab89cc0fd4'
          'edcf4445dc3b1bcb47f462e89fff2dd8'
-         '08f49977dad9c2fd723fc419f7166b24'
-         '5310f1d0e9e7101d8c7b09baa29e7e28'
+         '06a6e487d21c72734e63b4be77c81545'
+         'e07fb74fa812b198d32231ad49224ee6'
          '2e99a6c2744cdcbe1075741806d6c62f'
          '1e4de6dbb641a532f47a62b8c4c76e68'
          '0c86433ee520ae3e4e3b62d46eafe7a7'
@@ -206,7 +206,7 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          'e45b4d51fb03251cc73bcfeb9a249163'
          '25b151ccac832c4b8333222106d16b8c'
          'bbeffe2ceb7b01946d87ed52229ff909'
-         '82a911f09718236405fec4221c069cc0'
+         'abd0deabf01bbd5ebd7333306654aca0'
          '0ccbe35969f73c9bc670ce6e715f36b6'
          '99f6653f7007d98c8978024c10bb5660'
          '5cc70c42f5d0621378f2a676e5ac0a12'

@@ -8,9 +8,9 @@ pkgname=(
     'penguin-defaults'
     'penguin-dev-tools'
 )
-pkgver=7
+pkgver=8
 pkgrel=2
-pkgdesc="Penguin System"
+pkgdesc="The Penguin System"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
@@ -23,9 +23,9 @@ source=(
     'autostart-polkit'
     'autostart-unclutter'
     'autostart-update-notify'
-    'autostart-urxvtd'
     'autostart-user-dirs'
     'autostart-wallpaper-shuffler'
+    'config-alacritty'
     'config-awesome'
     'config-awesome-theme'
     'config-gtk2'
@@ -109,7 +109,7 @@ package_penguin-desktop(){
         network-manager-applet blueman polkit-gnome xfce4-power-manager
         pulseaudio pulseaudio-alsa pavucontrol pasystray unclutter-xfixes-git
         lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
-        rxvt-unicode-cvs-patched-wideglyphs xterm ranger htop mailcap
+        alacritty xterm ranger htop mailcap vivid
         qutebrowser netsurf weechat neomutt newsboat tuir neofetch
         mpd mpc ncmpcpp mpv cava zathura zathura-pdf-mupdf
         feh ffmpeg imagemagick maim rsync w3m urlscan
@@ -123,7 +123,6 @@ package_penguin-desktop(){
     install -Dm0644 autostart-picom "$pkgdir"/etc/xdg/autostart/picom.desktop
     install -Dm0644 autostart-polkit "$pkgdir"/etc/xdg/autostart/polkit-gnome.desktop
     install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
-    install -Dm0644 autostart-urxvtd "$pkgdir"/etc/xdg/autostart/urxvtd.desktop
     install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
 
 }
@@ -133,6 +132,7 @@ package_penguin-defaults(){
     depends=(penguin-desktop penguin-themes)
     backup=(etc/lightdm/lightdm-gtk-greeter.conf)
 
+    install -Dm0644 config-alacritty "$pkgdir"/etc/skel/.config/alacritty/alacritty.yml
     install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
     install -Dm0644 config-awesome-theme "$pkgdir"/etc/skel/.config/awesome/themes/antsy/theme.lua
     install -Dm0644 config-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
@@ -192,9 +192,9 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '6529d3ddd2c2a6dff2845c57807ff058'
          '274e6a795ae6d5c77f7d4f61707cb113'
          '41fe7b2595064d3b2b8f595b286f125b'
-         '2f9890fb08efab9a5b4568ef1639af7d'
          '1797448eebfde434e6a796f5146342fe'
          'b89596c0ff513eb3f077e6ab89cc0fd4'
+         'edcf4445dc3b1bcb47f462e89fff2dd8'
          '08f49977dad9c2fd723fc419f7166b24'
          '5310f1d0e9e7101d8c7b09baa29e7e28'
          '2e99a6c2744cdcbe1075741806d6c62f'
@@ -202,13 +202,13 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '0c86433ee520ae3e4e3b62d46eafe7a7'
          '5c45a57289ab8192700ce374e94cad7a'
          '1c715063118b33ea059af7affb4cfec1'
-         'e064654a2b48cc1e888be65f73b9a463'
-         '98e6730a868d7fcd160a2b1e2167e96c'
+         '0229e09989d77e36316c52581fb7601d'
+         'e45b4d51fb03251cc73bcfeb9a249163'
          '25b151ccac832c4b8333222106d16b8c'
          'bbeffe2ceb7b01946d87ed52229ff909'
          '82a911f09718236405fec4221c069cc0'
-         'c110b0306ee8ded1bf5ae5c2fb92eca3'
-         '883b1a53fad0204401c7e4b376c3a6f5'
+         '0ccbe35969f73c9bc670ce6e715f36b6'
+         '99f6653f7007d98c8978024c10bb5660'
          '5cc70c42f5d0621378f2a676e5ac0a12'
          '7a22d5e966e64053fc4307c105431502'
          'a55d1384569349075b5a6a5c61af5c17'

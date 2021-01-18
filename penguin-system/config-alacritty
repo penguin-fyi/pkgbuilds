@@ -1,0 +1,76 @@
+window:
+  padding:
+    x: 2
+    y: 2
+  dynamic_title: true
+  gtk_theme_variant: None
+
+font:
+  normal:
+    family: Hack Nerd Font
+    style: Regular
+  bold:
+    family: Hack Nerd Font
+    style: Bold
+  italic:
+    family: Hack Nerd Font
+    style: Italic
+  bold_italic:
+    family: Hack Nerd Font
+    style: Bold Italic
+  size: 10.0
+
+draw_bold_text_with_bright_colors: true
+
+colors:
+  primary:
+    background: '#000000'
+    foreground: '#cbcccd'
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  selection:
+    text: CellBackground
+    background: CellForeground
+  normal:
+    black:   '#000000'
+    red:     '#c23621'
+    green:   '#25bc24'
+    yellow:  '#adad27'
+    blue:    '#429ee1'
+    magenta: '#d338d3'
+    cyan:    '#33bbc8'
+    white:   '#cbcccd'
+  bright:
+    black:   '#818383'
+    red:     '#fc391f'
+    green:   '#31e722'
+    yellow:  '#eaec23'
+    blue:    '#5833ff'
+    magenta: '#f935f8'
+    cyan:    '#14f0f0'
+    white:   '#e9ebeb'
+bell:
+  animation: EaseOutExpo
+  color: '#14f0f0'
+
+background_opacity: 0.9
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+cursor:
+  style: Underline
+  unfocused_hollow: true
+
+live_config_reload: true
+
+mouse:
+  url:
+    launcher:
+      program: xdg-open
+

@@ -22,34 +22,6 @@
 *cursorColor:                   #31e722
 *cursorUL:                      #31e722
 
-#define fonts xft:Hack Nerd Font:pixelsize=14
-
-!! --- URxvt ---
-URxvt*title:                    URxvt
-URxvt*termName:                 rxvt-unicode-256color
-URxvt*depth:                    32
-URxvt*saveLines:                2500
-URxvt*urgentOnBell:             true
-URxvt*intensityStyles:          true
-URxvt*internalBorder:           3
-URxvt*lineSpace:                0
-URxvt*scrollBar:                false
-URxvt*cursorBlink:              true
-URxvt*cursorUnderline:          true
-URxvt*colorULMode:              on
-!URxvt*transparent:              false
-!URxvt*shading:                  10
-URxvt*font:                     fonts
-URxvt*boldFont:                 fonts
-URxvt.italicFont:               fonts
-URxvt.boldItalicFont:           fonts
-URxvt*perl-ext-common:          default,matcher
-URxvt.url-launcher:             xdg-open
-URxvt.matcher.button:           1
-
-URxvt.background:               [90]#000000
-URxvt*iconFile:                 /usr/share/icons/Antsy/apps/scalable/terminal.svg
-
 !! --- Xterm ---
 XTerm.termName:                 xterm-256color
 xterm*faceName:                 Hack Nerd Font

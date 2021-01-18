@@ -10,7 +10,7 @@ export XDG_DATA_HOME=~/.local/share
 #export XDG_RUNTIME_DIR=~/.xdg
 
 # Common environment variables
-export TERMINAL=urxvt
+export TERMINAL=alacritty
 export EDITOR=vim
 export FILEXP=pcmanfm
 export BROWSER=qutebrowser

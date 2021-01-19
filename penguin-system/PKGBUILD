@@ -8,8 +8,8 @@ pkgname=(
     'penguin-defaults'
     'penguin-dev-tools'
 )
-pkgver=9
-pkgrel=2
+pkgver=10
+pkgrel=1
 pkgdesc="The Penguin System"
 arch=('any')
 url="https://penguin.fyi/"
@@ -33,6 +33,7 @@ source=(
     'config-picom'
     'config-qt5ct'
     'config-qutebrowser'
+    'config-pcmanfm'
     'config-roficonfig'
     'config-rofitheme'
     'config-sudoers'
@@ -138,6 +139,7 @@ package_penguin-defaults(){
     install -Dm0644 config-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
     install -Dm0644 config-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
     install -Dm0644 config-picom "$pkgdir"/etc/skel/.config/picom/picom.conf
+    install -Dm0644 config-pcmanfm "$pkgdir"/etc/skel/.config/pcmanfm/default/pcmanfm.conf
     install -Dm0644 config-qutebrowser "$pkgdir"/etc/skel/.config/qutebrowser/config.py
     install -Dm0644 config-qt5ct "$pkgdir"/etc/skel/.config/qt5ct/qt5ct.conf
     install -Dm0644 config-roficonfig "$pkgdir"/etc/skel/.config/rofi/config.rasi
@@ -202,6 +204,7 @@ md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '0c86433ee520ae3e4e3b62d46eafe7a7'
          '5c45a57289ab8192700ce374e94cad7a'
          '1c715063118b33ea059af7affb4cfec1'
+         'ae7b34690c639ab9e4c722b9515f860d'
          '0229e09989d77e36316c52581fb7601d'
          'e45b4d51fb03251cc73bcfeb9a249163'
          '25b151ccac832c4b8333222106d16b8c'

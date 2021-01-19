@@ -9,7 +9,7 @@ pkgname=(
     'penguin-dev-tools'
 )
 pkgver=9
-pkgrel=1
+pkgrel=2
 pkgdesc="The Penguin System"
 arch=('any')
 url="https://penguin.fyi/"

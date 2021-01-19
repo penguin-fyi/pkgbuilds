@@ -61,3 +61,6 @@
 [submodule "fritzing"]
 	path = fritzing
 	url = https://aur.archlinux.org/fritzing
+[submodule "gitea-tea"]
+	path = gitea-tea
+	url = https://aur.archlinux.org/gitea-tea

@@ -178,7 +178,7 @@ package_penguin-scripts(){
 package_penguin-dev-tools(){
     pkgdesc="Penguin Developer Tools"
     depends=(
-        oomox github-cli shellcheck-bin luacheck cmake eslint ctags
+        oomox gitea-tea github-cli shellcheck-bin luacheck cmake eslint ctags
         ipython python-virtualenv python-virtualenvwrapper
         python-black python-isort python-pyflakes flake8 autopep8 yapf
         archiso pacutils pacman-contrib

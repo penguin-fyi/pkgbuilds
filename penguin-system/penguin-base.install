@@ -2,8 +2,6 @@ post_install () {
 
     systemctl enable NetworkManager
 
-    systemctl enable reflector
-
     systemctl enable sshd
 
     if [ "$(ufw status | cut -d' ' -f2)" = "inactive" ]; then
@@ -12,6 +10,10 @@ post_install () {
         ufw enable
         systemctl enable ufw
     fi
+
+    systemctl enable fstrim.timer
+
+    systemctl enable reflector
 
     return
 }

@@ -66,7 +66,7 @@ source=(
 package_penguin-base(){
     pkgdesc="Penguin Base System"
     depends=(
-        base linux-firmware grub efibootmgr f2fs-tools
+        base linux-firmware grub efibootmgr
         networkmanager openssh ufw fail2ban reflector
         zsh vim curl tmux git patch sudo man-db man-pages
     )

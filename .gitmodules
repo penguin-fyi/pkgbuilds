@@ -43,9 +43,6 @@
 [submodule "luacheck"]
 	path = luacheck
 	url = https://aur.archlinux.org/luacheck
-[submodule "rxvt-unicode-cvs-patched-wideglyphs"]
-	path = rxvt-unicode-cvs-patched-wideglyphs
-	url = https://aur.archlinux.org/rxvt-unicode-cvs-patched-wideglyphs
 [submodule "awesome-git"]
 	path = awesome-git
 	url = https://aur.archlinux.org/awesome-git

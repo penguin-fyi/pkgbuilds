@@ -8,7 +8,7 @@ pkgname=(
     'penguin-defaults'
     'penguin-dev-tools'
 )
-pkgver=10
+pkgver=11
 pkgrel=1
 pkgdesc="The Penguin System"
 arch=('any')
@@ -52,9 +52,9 @@ source=(
     'patch-reflector.conf'
     'patch-useradd-shell'
     'penguin-base.install'
-    'penguin-desktop.install'
     'penguin-config-patch.hook'
     'penguin-config-patch.sh'
+    'penguin-desktop.install'
     'README.md'
     'script-mpd-notifications'
     'script-screen-capture'
@@ -69,14 +69,6 @@ package_penguin-base(){
         base linux-firmware grub efibootmgr
         networkmanager openssh ufw fail2ban reflector
         zsh vim curl tmux git patch sudo man-db man-pages
-    )
-    backup=(
-        etc/default/grub
-        etc/default/useradd
-        etc/issue
-        etc/makepkg.conf
-        etc/pacman.conf
-        etc/xdg/reflector/reflector.conf
     )
     install=penguin-base.install
 
@@ -131,7 +123,6 @@ package_penguin-desktop(){
 package_penguin-defaults(){
     pkgdesc="Penguin Default Config Files"
     depends=(penguin-desktop penguin-themes)
-    backup=(etc/lightdm/lightdm-gtk-greeter.conf)
 
     install -Dm0644 config-alacritty "$pkgdir"/etc/skel/.config/alacritty/alacritty.yml
     install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua

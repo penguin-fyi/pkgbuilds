@@ -128,6 +128,7 @@ package_penguin-defaults(){
     install -Dm0644 config-alacritty "$pkgdir"/etc/skel/.config/alacritty/alacritty.yml
     install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
     install -Dm0644 config-awesome-theme "$pkgdir"/etc/skel/.config/awesome/themes/antsy/theme.lua
+    install -Dm0644 config-dircolors "$pkgdir"/etc/skel/.dircolors
     install -Dm0644 config-gtk2 "$pkgdir"/etc/skel/.gtkrc-2.0
     install -Dm0644 config-gtk3 "$pkgdir"/etc/skel/.config/gtk-3.0/settings.ini
     install -Dm0644 config-picom "$pkgdir"/etc/skel/.config/picom/picom.conf

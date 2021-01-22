@@ -8,9 +8,9 @@ pkgname=(
     'penguin-defaults'
     'penguin-dev-tools'
 )
-pkgver=11
+pkgver=12
 pkgrel=1
-pkgdesc="The Penguin System"
+pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
@@ -28,6 +28,7 @@ source=(
     'config-alacritty'
     'config-awesome'
     'config-awesome-theme'
+    'config-dircolors'
     'config-gtk2'
     'config-gtk3'
     'config-picom'
@@ -64,18 +65,16 @@ source=(
 )
 
 package_penguin-base(){
-    pkgdesc="Penguin Base System"
+    pkgdesc="Penguin base system"
     depends=(
-        base linux-firmware grub efibootmgr
+        base linux-firmware grub efibootmgr tlp
         networkmanager openssh ufw fail2ban reflector
-        zsh vim curl tmux git patch sudo man-db man-pages
+        zsh vim curl tmux git patch sudo man-db man-pages w3m
     )
     install=penguin-base.install
 
     install -dm0750 "$pkgdir"/etc/sudoers.d
     install -Dm0644 config-sudoers "$pkgdir"/etc/sudoers.d/10-wheel
-    install -Dm0644 config-zshrc "$pkgdir"/etc/skel/.zshrc
-    install -Dm0644 config-zshrc-prompt "$pkgdir"/etc/skel/.zshrc.prompt
 
     install -Dm0644 patch-grub-distro "$pkgdir"/usr/share/penguin/patches/grub.patch
     install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
@@ -92,7 +91,7 @@ package_penguin-base(){
 }
 
 package_penguin-desktop(){
-    pkgdesc="Penguin Desktop"
+    pkgdesc="Penguin desktop software"
     depends=(
         penguin-base penguin-scripts
         xorg-server xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
@@ -104,10 +103,9 @@ package_penguin-desktop(){
         lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
         alacritty xterm ranger htop mailcap vivid
         qutebrowser netsurf weechat neomutt newsboat tuir neofetch
-        mpd mpc ncmpcpp mpv cava zathura zathura-pdf-mupdf
-        feh ffmpeg imagemagick maim rsync w3m urlscan
+        mpd mpc ncmpcpp mpv zathura zathura-pdf-mupdf
+        feh ffmpeg imagemagick rsync urlscan maim
         vi bat jq fzf dialog fd tree unzip zip lsof pass pwgen gnupg
-        zsh-autosuggestions zsh-completions zsh-syntax-highlighting bash-completion
     )
     install=penguin-desktop.install
 
@@ -121,8 +119,11 @@ package_penguin-desktop(){
 }
 
 package_penguin-defaults(){
-    pkgdesc="Penguin Default Config Files"
-    depends=(penguin-desktop penguin-themes)
+    pkgdesc="Penguin custom config files"
+    depends=(
+        penguin-desktop penguin-themes
+        zsh-autosuggestions zsh-completions zsh-syntax-highlighting bash-completion
+    )
 
     install -Dm0644 config-alacritty "$pkgdir"/etc/skel/.config/alacritty/alacritty.yml
     install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
@@ -139,12 +140,14 @@ package_penguin-defaults(){
     install -Dm0644 config-vimrc "$pkgdir"/etc/skel/.vim/vimrc
     install -Dm0644 config-xresources "$pkgdir"/etc/skel/.Xresources
     install -Dm0755 config-xsession "$pkgdir"/etc/skel/.xsession
+    install -Dm0644 config-zshrc "$pkgdir"/etc/skel/.zshrc
+    install -Dm0644 config-zshrc-prompt "$pkgdir"/etc/skel/.zshrc.prompt
 
     install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
 }
 
 package_penguin-themes(){
-    pkgdesc="Penguin Themes (Antsy)"
+    pkgdesc="Penguin (Antsy) themes"
     depends=(
         antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
         ttf-hack nerd-fonts-hack noto-fonts-emoji
@@ -152,10 +155,7 @@ package_penguin-themes(){
 }
 
 package_penguin-scripts(){
-    pkgdesc="Penguin Scripts"
-    optdepends=(
-        cava imagemagick jq
-    )
+    pkgdesc="Penguin custom scripts"
 
     install -Dm0644 autostart-mpd-notifications "$pkgdir"/etc/xdg/autostart/mpd-notifications.desktop
     install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
@@ -169,7 +169,7 @@ package_penguin-scripts(){
 }
 
 package_penguin-dev-tools(){
-    pkgdesc="Penguin Developer Tools"
+    pkgdesc="Penguin developer tools"
     depends=(
         oomox gitea-tea github-cli shellcheck-bin luacheck cmake eslint ctags
         ipython python-virtualenv python-virtualenvwrapper

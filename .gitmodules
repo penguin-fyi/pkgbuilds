@@ -1,9 +1,6 @@
 [submodule "qt5-styleplugins"]
 	path = qt5-styleplugins
 	url = https://aur.archlinux.org/qt5-styleplugins
-[submodule "xob"]
-	path = xob
-	url = https://aur.archlinux.org/xob
 [submodule "unclutter-xfixes-git"]
 	path = unclutter-xfixes-git
 	url = https://aur.archlinux.org/unclutter-xfixes-git
@@ -19,9 +16,6 @@
 [submodule "aurutils"]
 	path = aurutils
 	url = https://aur.archlinux.org/aurutils
-[submodule "xininfo-git"]
-	path = xininfo-git
-	url = https://aur.archlinux.org/xininfo-git
 [submodule "tuir"]
 	path = tuir
 	url = https://aur.archlinux.org/tuir
@@ -37,9 +31,6 @@
 [submodule "gcalcli"]
 	path = gcalcli
 	url = https://aur.archlinux.org/gcalcli
-[submodule "no-more-secrets"]
-	path = no-more-secrets
-	url = https://aur.archlinux.org/no-more-secrets
 [submodule "luacheck"]
 	path = luacheck
 	url = https://aur.archlinux.org/luacheck
@@ -52,12 +43,6 @@
 [submodule "cava"]
 	path = cava
 	url = https://aur.archlinux.org/cava
-[submodule "genact"]
-	path = genact
-	url = https://aur.archlinux.org/genact
-[submodule "fritzing"]
-	path = fritzing
-	url = https://aur.archlinux.org/fritzing
 [submodule "gitea-tea"]
 	path = gitea-tea
 	url = https://aur.archlinux.org/gitea-tea

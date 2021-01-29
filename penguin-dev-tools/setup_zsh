@@ -1,14 +1,12 @@
 #!/usr/bin/env zsh
 
-# install zsh.d
+# install zsh
 
 # zsh config
-#src_url="https://gitlab.com/jeffmhubbard/zsh.d"
-#src_url="https://github.com/jeffmhubbard/zsh.d"
-src_url="https://git.linuxit.us/spider/zsh.d"
+src_url="https://git.linuxit.us/spider/zsh"
 
 # install to
-dest_dir="$HOME/.zsh.d"
+dest_dir="$HOME/.zsh"
 
 # plugins
 plugin_lst="$dest_dir/plugins.txt"

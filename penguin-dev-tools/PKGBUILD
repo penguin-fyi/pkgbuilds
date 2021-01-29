@@ -1,19 +1,21 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-dev-tools'
-pkgver=1
+pkgver=2
 pkgrel=1
 pkgdesc="Penguin Developer Tools"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
 depends=(devtools archiso pacutils pacman-contrib
-         gitea-tea github-cli shellcheck-bin luacheck cmake eslint ctags
+         bat jq fzf dialog fd tree lsof rsync
+         shellcheck-bin luacheck cmake eslint ctags
          ipython python-virtualenv python-virtualenvwrapper
          python-black python-isort python-pyflakes flake8 autopep8 yapf)
-         bat jq fzf dialog fd tree lsof rsync
 
-optdepends=('gitea-tea: interact with git repo'
+optdepends=('gimp: artwork and icons'
+            'gitea-tea: interact with git repo'
             'github-cli: interact with git repo'
+            'inkscape: artwork and icons'
             'oomox: theme and icon generator'
             'virtualbox: test Penguin iso'
             'vivid: generate LS_COLORS')
@@ -35,8 +37,8 @@ package(){
 }
 
 md5sums=('76f1b81b2757cd0126aa0142a588927b'
-         '6595449a8aa48cf061102457a2f7cfab'
-         'f0d222581916fb7982f84a67f718ed1e'
+         'ca1430c40cb7725b39455151b933239a'
+         '4b224ce077c844610dfe2d18b28bf992'
          'a05639981b381484cf6717f41d4bccb4'
          'e4fab958247a96249c4b575f8c3e223e'
          '9ac579394722de7242d6b8ece1f96f7e')

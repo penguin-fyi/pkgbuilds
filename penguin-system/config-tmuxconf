@@ -120,12 +120,3 @@ bind-key -n M-H         swap-pane -s {left-of}
 bind-key -n M-L         swap-pane -s {right-of}
 bind-key -n M-K         swap-pane -U
 bind-key -n M-J         swap-pane -D
-
-# List of plugins
-#set -g @plugin 'tmux-plugins/tpm'
-#set -g @plugin 'tmux-plugins/tmux-resurrect'
-#set -g @plugin 'sainnhe/tmux-fzf'
-#set -g @plugin 'wfxr/tmux-fzf-url'
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-#run -b '~/.config/tmux/plugins/tpm/tpm'

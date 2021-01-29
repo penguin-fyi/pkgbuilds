@@ -36,6 +36,7 @@ Extends Arch `base` with bootloader, networking, and shell tools
 * reflector
 * zsh
 * vim
+* vi
 * curl
 * tmux
 * w3m
@@ -118,7 +119,6 @@ Provides all desktop packages
 * ranger
 * htop
 * mailcap
-* vivid
 * qutebrowser
 * netsurf
 * weechat
@@ -135,19 +135,10 @@ Provides all desktop packages
 * feh
 * ffmpeg
 * imagemagick
-* rsync
 * urlscan
 * maim
-* vi
-* bat
-* jq
-* fzf
-* dialog
-* fd
-* tree
 * unzip
 * zip
-* lsof
 * pass
 * pwgen
 * gnupg
@@ -164,21 +155,43 @@ Provides all desktop packages
 * xdg-user-dirs
 
 
-## penguin-themes
+## penguin-desktop-defaults
 
-Provides Antsy artwork
+Provides full Penguin Desktop with custom default configuration
 
 ### Depends
-* antsy-gtk-theme ***!***
-* antsy-icon-theme ***!***
-* antsy-wallpaper ***!***
-* xcursor-openzone ***!!***
-* ttf-hack
-* nerd-fonts-hack *!**!***
-* noto-fonts-emoji
+* penguin-desktop ***!***
+* penguin-desktop-scripts ***!***
+* penguin-desktop-themes ***!***
+* zsh-autosuggestions
+* zsh-completions
+* zsh-syntax-highlighting
+* bash-completion
+
+### Configs
+* etc/skel/.config/alacritty/alacritty.yml
+* etc/skel/.config/awesome/rc.lua
+* etc/skel/.config/awesome/themes/antsy/theme.lua
+* etc/skel/.gtkrc-2.0
+* etc/skel/.config/gtk-3.0/settings.ini
+* etc/skel/.config/picom/picom.conf
+* etc/skel/.config/pcmanfm/default/pcmanfm.conf
+* etc/skel/.config/qutebrowser/config.py
+* etc/skel/.config/qt5ct/qt5ct.conf
+* etc/skel/.config/rofi/config.rasi
+* etc/skel/.config/rofi/themes/antsy.rasi
+* etc/skel/.tmux.conf
+* etc/skel/.vimrc
+* etc/skel/.Xresources
+* etc/skel/.xsession
+* etc/skel/.zshrc
+* etc/skel/.zshrc.prompt
+
+### Patches
+* etc/lightdm/lightdm-gtk-greeter.conf
 
 
-## penguin-scripts
+## penguin-desktop-scripts
 
 Provides custom scripts for Penguin Desktop
 
@@ -202,64 +215,16 @@ Provides custom scripts for Penguin Desktop
 * usr/bin/touchpad-toggle.fyi
 
 
-## penguin-defaults
+## penguin-desktop-themes
 
-Provides full Penguin Desktop with custom default configuration
-
-### Depends
-* penguin-desktop ***!***
-* penguin-themes ***!***
-* zsh-autosuggestions
-* zsh-completions
-* zsh-syntax-highlighting
-* bash-completion
-
-### Configs
-* etc/skel/.config/alacritty/alacritty.yml
-* etc/skel/.config/awesome/rc.lua
-* etc/skel/.config/awesome/themes/antsy/theme.lua
-* etc/skel/.gtkrc-2.0
-* etc/skel/.config/gtk-3.0/settings.ini
-* etc/skel/.config/picom/picom.conf
-* etc/skel/.config/pcmanfm/default/pcmanfm.conf
-* etc/skel/.config/qutebrowser/config.py
-* etc/skel/.config/qt5ct/qt5ct.conf
-* etc/skel/.config/rofi/config.rasi
-* etc/skel/.config/rofi/themes/antsy.rasi
-* etc/skel/.tmux.conf
-* etc/skel/.vim/vimrc
-* etc/skel/.Xresources
-* etc/skel/.xsession
-* etc/skel/.zshrc
-* etc/skel/.zshrc.prompt
-
-### Patches
-* etc/lightdm/lightdm-gtk-greeter.conf
-
-
-## penguin-dev-tools
-
-Extra tools for hacking Penguin
+Provides Antsy artwork
 
 ### Depends
-* archiso
-* autopep8
-* cmake
-* ctags
-* eslint
-* flake8
-* gitea-tea ***!!***
-* github-cli
-* ipython
-* luacheck ***!!***
-* oomox ***!!***
-* pacman-contrib
-* pacutils
-* python-black
-* python-isort
-* python-pyflakes
-* python-virtualenv
-* python-virtualenvwrapper
-* shellcheck-bin ***!!***
-* yapf
+* antsy-gtk-theme ***!***
+* antsy-icon-theme ***!***
+* antsy-wallpaper ***!***
+* xcursor-openzone ***!!***
+* ttf-hack
+* nerd-fonts-hack *!**!***
+* noto-fonts-emoji
 

@@ -18,7 +18,9 @@ def read_xresources(prefix):
 
 xres = read_xresources("*")
 
-c.url.start_pages = ["about:blank"]
+config.load_autoconfig(False)
+
+c.url.start_pages = ["https://start.duckduckgo.com"]
 c.url.default_page = "about:blank"
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
@@ -31,12 +33,10 @@ c.auto_save.session = False
 c.hints.mode = "letter"
 c.window.title_format = "{perc}{current_title}"
 c.completion.height = "30%"
-c.hints.border = "0px solid black"
+c.hints.border = "0px solid " + xres["*color0"]
 c.hints.radius = 0
 c.tabs.show = "multiple"
 c.downloads.position = "bottom"
-
-c.colors.webpage.bg = xres["*color0"]
 
 c.colors.completion.category.bg = xres["*color0"]
 c.colors.completion.category.border.bottom = xres["*color8"]

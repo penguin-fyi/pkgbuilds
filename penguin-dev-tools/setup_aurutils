@@ -1,0 +1,67 @@
+#!/usr/bin/env zsh
+
+# install aurutils and create repo
+repo_name="custom"
+repo_dir="$HOME/Packages"
+
+echo "Deploying 'aurutils'"
+read -s -k "?Press any key continue" && echo
+
+echo " * Install build tools"
+pacman -Qg base-devel &>/dev/null
+[[ $? -eq 0 ]] || \
+  { sudo pacman -S base-devel --noconfirm; echo " + base-devel" }
+
+pacman -Q git &>/dev/null 
+[[ $? -eq 0 ]] || \
+  { sudo pacman -S git --noconfirm; echo " + git" }
+
+echo " * Cloning PKGBUILD"
+cd $(mktemp -d)
+git clone https://aur.archlinux.org/aurutils
+[[ $? -eq 0 ]] || \
+  { echo "failed to clone aurutils!"; exit 1 }
+
+echo " * Running makepkg..."
+cd aurutils
+makepkg -sric --noconfirm
+[[ $? -eq 0 ]] || \
+  { echo "failed to install aurutils!"; exit 1 }
+
+echo " * Create repo dir"
+mkdir -p $repo_dir &>/dev/null
+[[ $? -eq 0 ]] || \
+  { echo "failed to create repo path"; exit 1 }
+
+echo " * Init pkg db"
+cd $repo_dir
+repo-add -R $repo_name.db.tar
+[[ $? -eq 0 ]] || \
+  { echo "failed to create repo db"; exit 1 }
+
+echo " * Update $USER's pacman.conf"
+local_temp="$(mktemp)"
+local_conf="$HOME/.pacman.conf"
+cp $local_conf $local_temp &>/dev/null
+echo "\n[$repo_name]" >> $local_temp
+echo "SigLevel = Optional TrustAll" >> $local_temp
+echo "Server = file://$repo_dir" >> $local_temp
+cp -b $local_temp $local_conf -S .backup
+
+echo " * Update system pacman.conf"
+sys_temp="$(mktemp)"
+sys_conf="/etc/pacman.conf"
+cp -p $sys_conf $sys_temp
+echo "\nInclude = $HOME/.pacman.conf" >> $sys_temp
+sudo cp -pb $sys_temp $sys_conf -S .backup
+
+echo " * Sync pacman db"
+sudo pacman -Sy
+
+echo " * Rebuild aurutils with aurutils!"
+AUR_PAGER=ranger aur sync aurutils --rebuild
+
+echo "Done!"
+exit 0
+
+# vim: ft=zsh ts=2 sw=2 et:

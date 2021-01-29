@@ -6,7 +6,6 @@ pkgname=(
     'penguin-themes'
     'penguin-scripts'
     'penguin-defaults'
-    'penguin-dev-tools'
 )
 pkgver=12
 pkgrel=1
@@ -69,7 +68,7 @@ package_penguin-base(){
     depends=(
         base linux-firmware grub efibootmgr tlp
         networkmanager openssh ufw fail2ban reflector
-        zsh vim curl tmux git patch sudo man-db man-pages w3m
+        zsh vim vi curl tmux git patch sudo man-db man-pages w3m
     )
     install=penguin-base.install
 
@@ -101,11 +100,10 @@ package_penguin-desktop(){
         network-manager-applet blueman polkit-gnome xfce4-power-manager
         pulseaudio pulseaudio-alsa pavucontrol pasystray unclutter-xfixes-git
         lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
-        alacritty xterm ranger htop mailcap vivid
+        alacritty xterm ranger htop mailcap unzip zip pass pwgen gnupg
         qutebrowser netsurf weechat neomutt newsboat tuir neofetch
-        mpd mpc ncmpcpp mpv zathura zathura-pdf-mupdf
-        feh ffmpeg imagemagick rsync urlscan maim
-        vi bat jq fzf dialog fd tree unzip zip lsof pass pwgen gnupg
+        mpd mpc ncmpcpp mpv feh ffmpeg imagemagick urlscan maim
+        zathura zathura-pdf-mupdf
     )
     install=penguin-desktop.install
 
@@ -115,7 +113,6 @@ package_penguin-desktop(){
     install -Dm0644 autostart-polkit "$pkgdir"/etc/xdg/autostart/polkit-gnome.desktop
     install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
     install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
-
 }
 
 package_penguin-defaults(){
@@ -169,15 +166,15 @@ package_penguin-scripts(){
     install -Dm0755 script-wallpaper-shuffler "$pkgdir"/usr/bin/wallpaper-shuffler.fyi
 }
 
-package_penguin-dev-tools(){
-    pkgdesc="Penguin developer tools"
-    depends=(
-        oomox gitea-tea github-cli shellcheck-bin luacheck cmake eslint ctags
-        ipython python-virtualenv python-virtualenvwrapper
-        python-black python-isort python-pyflakes flake8 autopep8 yapf
-        archiso pacutils pacman-contrib
-    )
-}
+#package_penguin-dev-tools(){
+#    pkgdesc="Penguin developer tools"
+#    depends=(
+#        oomox gitea-tea github-cli shellcheck-bin luacheck cmake eslint ctags
+#        ipython python-virtualenv python-virtualenvwrapper
+#        python-black python-isort python-pyflakes flake8 autopep8 yapf
+#        archiso pacutils pacman-contrib
+#    )
+#}
 
 md5sums=('246b3ce2e6961d5c4ee287d51429a077'
          '46868ac0617a4fbdfc308cc884d1f037'

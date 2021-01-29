@@ -1,0 +1,97 @@
+#!/usr/bin/env zsh
+
+# install tpm
+
+src_url="https://git.linuxit.us/spider/tmux"
+
+# install to
+dest_dir="$HOME/.tmux"
+
+# plugins
+plugin_lst="$dest_dir/plugins.txt"
+
+# check for git
+if ! command -v git &>/dev/null
+then
+  echo "Could not locate 'git' command!"
+  exit 1
+fi
+
+echo "Installing tmux setup..."
+echo "Source: $src_url"
+echo "Target: $dest_dir"
+
+read -s -k "?Press any key continue" && echo
+
+# clone repo
+if test -d $dest_dir
+then
+  echo "Target '$dest_dir' already exists!"
+  exit 1
+else
+  if git clone $src_url $dest_dir
+  then
+    echo "Cloned repo to $dest_dir"
+  else
+    echo "Failed to clone repo!"
+    exit 1
+  fi
+fi
+
+local conf="$HOME/.tmux.conf"
+if test -L $conf
+then
+  echo "Target '$conf' is symlink!"
+  echo "Removing symlink!"
+  rm $conf
+fi
+
+if test -f $conf
+then
+  echo "Target '$conf' already exists!"
+  echo "Created backup '$conf.bak'!"
+  mv -b $conf $conf.backup
+fi
+
+local conf_new="$dest_dir/tmux.conf"
+if test -f $conf_new
+then
+  echo "Linking to '$conf_new' to '$conf'..."
+  ln -sf $conf_new $conf
+fi
+unset conf_new
+
+# get plugins
+if test -f $plugin_lst
+then
+  mkdir -p $dest_dir/plugins &>/dev/null
+
+  echo "Reading plugin list..."
+  typeset -A plugins
+  while read name url
+  do
+    plugins[$name]="$url"
+  done < $plugin_lst
+  unset name url
+
+  echo "Fetching plugins..."
+  for dest url in ${(kv)plugins}
+  do
+    dest="$dest_dir/plugins/$dest"
+    if ! test -d $dest
+    then
+      git clone $url $dest
+    fi
+  done
+  unset dest url
+fi
+
+tmux source $conf
+unset conf
+
+echo "Remember to install plugins (C^a-I)!"
+echo "Done!"
+
+exit 0
+
+# vim: ft=zsh ts=2 sw=2 et:

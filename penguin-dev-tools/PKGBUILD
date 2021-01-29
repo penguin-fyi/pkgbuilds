@@ -1,0 +1,42 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname='penguin-dev-tools'
+pkgver=1
+pkgrel=1
+pkgdesc="Penguin Developer Tools"
+arch=('any')
+url="https://penguin.fyi/"
+license=('MIT')
+depends=(devtools archiso pacutils pacman-contrib
+         gitea-tea github-cli shellcheck-bin luacheck cmake eslint ctags
+         ipython python-virtualenv python-virtualenvwrapper
+         python-black python-isort python-pyflakes flake8 autopep8 yapf)
+         bat jq fzf dialog fd tree lsof rsync
+
+optdepends=('gitea-tea: interact with git repo'
+            'github-cli: interact with git repo'
+            'oomox: theme and icon generator'
+            'virtualbox: test Penguin iso'
+            'vivid: generate LS_COLORS')
+
+source=('LICENSE'
+        'README.md'
+        'setup_zsh'
+        'setup_vim'
+        'setup_tmux'
+        'setup_aurutils')
+
+package(){
+    install -Dm0755 setup_zsh "$pkgdir"/usr/bin/setup_zsh.fyi
+    install -Dm0755 setup_vim "$pkgdir"/usr/bin/setup_vim.fyi
+    install -Dm0755 setup_tmux "$pkgdir"/usr/bin/setup_tmux.fyi
+    install -Dm0755 setup_aurutils "$pkgdir"/usr/bin/setup_aurutils.fyi
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/dev-tools/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/dev-tools/LICENSE
+}
+
+md5sums=('76f1b81b2757cd0126aa0142a588927b'
+         '6595449a8aa48cf061102457a2f7cfab'
+         'f0d222581916fb7982f84a67f718ed1e'
+         'a05639981b381484cf6717f41d4bccb4'
+         'e4fab958247a96249c4b575f8c3e223e'
+         '9ac579394722de7242d6b8ece1f96f7e')

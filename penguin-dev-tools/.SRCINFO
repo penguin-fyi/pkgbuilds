@@ -9,6 +9,7 @@ pkgbase = penguin-dev-tools
 	depends = archiso
 	depends = pacutils
 	depends = pacman-contrib
+	depends = aurutils
 	depends = bat
 	depends = jq
 	depends = fzf
@@ -49,7 +50,7 @@ pkgbase = penguin-dev-tools
 	md5sums = 4b224ce077c844610dfe2d18b28bf992
 	md5sums = a05639981b381484cf6717f41d4bccb4
 	md5sums = e4fab958247a96249c4b575f8c3e223e
-	md5sums = 9ac579394722de7242d6b8ece1f96f7e
+	md5sums = 242a2293fc25d7936cfba5c165b44782
 
 pkgname = penguin-dev-tools
 

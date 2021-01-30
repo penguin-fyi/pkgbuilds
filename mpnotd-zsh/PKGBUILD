@@ -1,0 +1,18 @@
+# Maintainer: jeffmhubbard <jeffmhubbard@gmail.com>
+pkgname=mpnotd-zsh
+pkgver=0.2
+pkgrel=1
+pkgdesc="MPD Notifcation Daemon"
+arch=('any')
+url="https://github.com/jeffmhubbard/mpnotd-zsh"
+license=('MIT')
+depends=('zsh' 'mpc' 'curl' 'jq' 'imagemagick' 'libnotify')
+optdepends=('cava: change cava colors' 'feh: floating cover art')
+conflicts=('mpnotd-git')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
+md5sums=('eb79272decb4824eaac2aa88e8f31eae')
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+	make PREFIX="$pkgdir/usr" XDG="$pkgdir/etc/xdg" install
+}

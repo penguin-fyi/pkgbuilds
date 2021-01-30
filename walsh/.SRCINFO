@@ -1,0 +1,21 @@
+pkgbase = walsh
+	pkgdesc = Wallpaper Shuffler
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/walsh
+	arch = any
+	license = MIT
+	depends = zsh
+	depends = mpc
+	depends = curl
+	depends = jq
+	depends = imagemagick
+	depends = libnotify
+	optdepends = cava: change cava colors
+	optdepends = feh: floating cover art
+	conflicts = walsh-git
+	source = https://github.com/jeffmhubbard/walsh/archive/v0.1.tar.gz
+	md5sums = 764bbfb42dbd6a56ed448709218be288
+
+pkgname = walsh
+

@@ -1,0 +1,18 @@
+# Maintainer: jeffmhubbard <jeffmhubbard@gmail.com>
+pkgname=walsh
+pkgver=0.1
+pkgrel=1
+pkgdesc="Wallpaper Shuffler"
+arch=('any')
+url="https://github.com/jeffmhubbard/walsh"
+license=('MIT')
+depends=('zsh' 'mpc' 'curl' 'jq' 'imagemagick' 'libnotify')
+optdepends=('cava: change cava colors' 'feh: floating cover art')
+conflicts=('walsh-git')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
+md5sums=('764bbfb42dbd6a56ed448709218be288')
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+	make PREFIX="$pkgdir/usr" START="$pkgdir/etc/xdg/autostart" install
+}

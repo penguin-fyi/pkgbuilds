@@ -1,6 +1,6 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-dev-tools'
-pkgver=2
+pkgver=3
 pkgrel=1
 pkgdesc="Penguin Developer Tools"
 arch=('any')

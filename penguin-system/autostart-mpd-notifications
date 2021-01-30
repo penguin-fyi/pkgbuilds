@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Penguin MPD Notifications
-Type=Application
-Exec=mpd-notifications.fyi
-StartupNotify=false

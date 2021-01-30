@@ -15,7 +15,6 @@ url="https://penguin.fyi/"
 license=('MIT')
 
 source=(
-    'autostart-mpd-notifications'
     'autostart-numlockx'
     'autostart-pcmanfm'
     'autostart-picom'
@@ -56,7 +55,6 @@ source=(
     'penguin-config-patch.sh'
     'penguin-desktop.install'
     'README.md'
-    'script-mpd-notifications'
     'script-screen-capture'
     'script-touchpad-toggle'
     'script-update-notify'
@@ -146,12 +144,11 @@ package_penguin-desktop-defaults(){
 
 package_penguin-desktop-scripts(){
     pkgdesc="Penguin desktop scripts"
+    optdepends=('mpnotd: mpd notifications')
 
-    install -Dm0644 autostart-mpd-notifications "$pkgdir"/etc/xdg/autostart/mpd-notifications.desktop
     install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
     install -Dm0644 autostart-wallpaper-shuffler "$pkgdir"/etc/xdg/autostart/wallpaper-shuffler.desktop
 
-    install -Dm0755 script-mpd-notifications "$pkgdir"/usr/bin/mpd-notifications.fyi
     install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture.fyi
     install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle.fyi
     install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify.fyi

@@ -22,7 +22,6 @@ source=(
     'autostart-unclutter'
     'autostart-update-notify'
     'autostart-user-dirs'
-    'autostart-wallpaper-shuffler'
     'config-alacritty'
     'config-awesome'
     'config-awesome-theme'
@@ -58,7 +57,6 @@ source=(
     'script-screen-capture'
     'script-touchpad-toggle'
     'script-update-notify'
-    'script-wallpaper-shuffler'
 )
 
 package_penguin-base(){
@@ -97,10 +95,10 @@ package_penguin-desktop(){
         pcmanfm-gtk3 gvfs xarchiver picom rofi rofi-pass xclip numlockx
         network-manager-applet blueman polkit-gnome xfce4-power-manager
         pulseaudio pulseaudio-alsa pavucontrol pasystray unclutter-xfixes-git
-        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
+        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig walsh
         alacritty xterm ranger htop mailcap unzip zip pass pwgen gnupg
         qutebrowser netsurf weechat neomutt newsboat tuir neofetch
-        mpd mpc ncmpcpp mpv feh ffmpeg imagemagick urlscan maim
+        mpd mpc ncmpcpp mpnotd mpv feh ffmpeg imagemagick urlscan maim
         zathura zathura-pdf-mupdf
     )
     install=penguin-desktop.install
@@ -114,7 +112,7 @@ package_penguin-desktop(){
 }
 
 package_penguin-desktop-defaults(){
-    pkgdesc="Penguin defai;t config files"
+    pkgdesc="Penguin default config files"
     depends=(
         penguin-desktop penguin-desktop-scripts penguin-desktop-themes
         zsh-autosuggestions zsh-completions zsh-syntax-highlighting bash-completion
@@ -147,12 +145,10 @@ package_penguin-desktop-scripts(){
     optdepends=('mpnotd: mpd notifications')
 
     install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
-    install -Dm0644 autostart-wallpaper-shuffler "$pkgdir"/etc/xdg/autostart/wallpaper-shuffler.desktop
 
     install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture.fyi
     install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle.fyi
     install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify.fyi
-    install -Dm0755 script-wallpaper-shuffler "$pkgdir"/usr/bin/wallpaper-shuffler.fyi
 }
 
 package_penguin-desktop-themes(){

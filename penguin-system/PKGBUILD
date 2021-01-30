@@ -8,7 +8,7 @@ pkgname=(
     'penguin-desktop-themes'
 )
 pkgver=13
-pkgrel=3
+pkgrel=4
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -98,7 +98,7 @@ package_penguin-desktop(){
         lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig walsh
         alacritty xterm ranger htop mailcap unzip zip pass pwgen gnupg
         qutebrowser netsurf weechat neomutt newsboat tuir neofetch
-        mpd mpc ncmpcpp mpnotd mpv feh ffmpeg imagemagick urlscan maim
+        mpd mpc ncmpcpp mpnotd-zsh mpv feh ffmpeg imagemagick urlscan maim
         zathura zathura-pdf-mupdf
     )
     install=penguin-desktop.install
@@ -142,7 +142,7 @@ package_penguin-desktop-defaults(){
 
 package_penguin-desktop-scripts(){
     pkgdesc="Penguin desktop scripts"
-    optdepends=('mpnotd: mpd notifications')
+    optdepends=('mpnotd-zsh: mpd notifications')
 
     install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
 

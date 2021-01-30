@@ -1,7 +1,7 @@
 pkgbase = penguin-system
 	pkgdesc = The Penguin Project
 	pkgver = 13
-	pkgrel = 3
+	pkgrel = 4
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
@@ -176,7 +176,7 @@ pkgname = penguin-desktop
 	depends = mpd
 	depends = mpc
 	depends = ncmpcpp
-	depends = mpnotd
+	depends = mpnotd-zsh
 	depends = mpv
 	depends = feh
 	depends = ffmpeg
@@ -198,7 +198,7 @@ pkgname = penguin-desktop-defaults
 
 pkgname = penguin-desktop-scripts
 	pkgdesc = Penguin desktop scripts
-	optdepends = mpnotd: mpd notifications
+	optdepends = mpnotd-zsh: mpd notifications
 
 pkgname = penguin-desktop-themes
 	pkgdesc = Penguin (Antsy) themes

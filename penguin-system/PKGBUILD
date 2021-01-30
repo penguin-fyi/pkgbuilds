@@ -8,7 +8,7 @@ pkgname=(
     'penguin-desktop-themes'
 )
 pkgver=13
-pkgrel=2
+pkgrel=3
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -166,7 +166,6 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '274e6a795ae6d5c77f7d4f61707cb113'
          '41fe7b2595064d3b2b8f595b286f125b'
          '1797448eebfde434e6a796f5146342fe'
-         'b89596c0ff513eb3f077e6ab89cc0fd4'
          'd07c37d05a9bb5a89571ffa492bcd9bf'
          '06a6e487d21c72734e63b4be77c81545'
          'e07fb74fa812b198d32231ad49224ee6'
@@ -201,5 +200,4 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          'fc439b5e6c1d7fbe5b30d1030c454ffc'
          'c73c5fa56f6bd1ad6b4e0b5ee90ccd6e'
          '41ddb2af63897120737119aaf45c9485'
-         'eb25c430d8816615d9d0f0e23aac19d2'
-         '3158273df62e3de8a8c06dc88bd5adfd')
+         'eb25c430d8816615d9d0f0e23aac19d2')

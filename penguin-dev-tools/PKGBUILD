@@ -6,7 +6,7 @@ pkgdesc="Penguin Developer Tools"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(devtools archiso pacutils pacman-contrib
+depends=(devtools archiso pacutils pacman-contrib aurutils
          bat jq fzf dialog fd tree lsof rsync
          shellcheck-bin luacheck cmake eslint ctags
          ipython python-virtualenv python-virtualenvwrapper

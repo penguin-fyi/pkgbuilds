@@ -7,8 +7,8 @@ pkgname=(
     'penguin-desktop-scripts'
     'penguin-desktop-themes'
 )
-pkgver=13
-pkgrel=4
+pkgver=14
+pkgrel=1
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -171,8 +171,8 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '06a6e487d21c72734e63b4be77c81545'
          'e07fb74fa812b198d32231ad49224ee6'
          'c198d7a057d3d5c5693932dd21243072'
-         '2e99a6c2744cdcbe1075741806d6c62f'
-         '1e4de6dbb641a532f47a62b8c4c76e68'
+         '6b5e5246a5f8151ee5ccd2cbdd0058fb'
+         'bab756234de8faf3408f603d01c34350'
          '0c86433ee520ae3e4e3b62d46eafe7a7'
          '5c45a57289ab8192700ce374e94cad7a'
          '2c8fc63a49c9e475702818ad3896e006'
@@ -182,7 +182,7 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '25b151ccac832c4b8333222106d16b8c'
          '117c57a1559599e1dababc55225a7bca'
          '0fc658d739f01daaa3c8c4043899db0a'
-         '0ccbe35969f73c9bc670ce6e715f36b6'
+         'f6d2669db1e51bb0c34911610ea96f28'
          '99f6653f7007d98c8978024c10bb5660'
          '9100f9f66e5ea94dddc62227af839912'
          '7a22d5e966e64053fc4307c105431502'
@@ -201,4 +201,4 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          'fc439b5e6c1d7fbe5b30d1030c454ffc'
          'c73c5fa56f6bd1ad6b4e0b5ee90ccd6e'
          '41ddb2af63897120737119aaf45c9485'
-         'eb25c430d8816615d9d0f0e23aac19d2')
+         'eb39c2dcdeb05524ba23729fac9120e0')

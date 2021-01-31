@@ -58,7 +58,7 @@ Xft.antialias:                  true
 Xft.rgba:                       rgb
 
 !! --- Cursor ---
-Xcursor.theme:                  "OpenZone Black"
+Xcursor.theme:                  "Neutral"
 !Xcursor.size:                   16
 
 ! vim: set ft=xdefaults:

@@ -155,7 +155,7 @@ package_penguin-desktop-scripts(){
 package_penguin-desktop-themes(){
     pkgdesc="Penguin Desktop themes"
     depends=(
-        antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
+        antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-neutral
         ttf-hack nerd-fonts-hack noto-fonts-emoji
     )
 }

@@ -64,7 +64,8 @@ package_penguin-base(){
     depends=(
         base linux-firmware grub efibootmgr tlp
         networkmanager openssh ufw fail2ban reflector
-        zsh vim vi curl tmux git patch sudo man-db man-pages w3m
+        zsh vim vi curl tmux git patch sudo unzip zip
+        man-db man-pages w3m pass pwgen gnupg
     )
     install=penguin-base.install
 
@@ -86,19 +87,19 @@ package_penguin-base(){
 }
 
 package_penguin-desktop(){
-    pkgdesc="Penguin desktop software"
+    pkgdesc="Penguin Desktop software"
     depends=(
         penguin-base
         xorg-server xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
         awesome-git awesome-freedesktop-git dex xdg-user-dirs xdg-utils
-        pcmanfm-gtk3 gvfs xarchiver picom rofi rofi-pass xclip numlockx
+        pcmanfm-gtk3 gvfs xarchiver picom rofi xclip numlockx
         network-manager-applet blueman polkit-gnome xfce4-power-manager
         pulseaudio pulseaudio-alsa pavucontrol pasystray unclutter-xfixes-git
-        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig walsh
-        alacritty xterm ranger htop mailcap unzip zip pass pwgen gnupg
-        qutebrowser netsurf weechat neomutt newsboat tuir neofetch
-        mpd mpc ncmpcpp mpnotd-zsh mpv feh ffmpeg imagemagick urlscan maim
+        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
+        alacritty xterm ranger htop mailcap urlscan
+        qutebrowser netsurf weechat neomutt newsboat tuir
+        mpd mpc ncmpcpp mpv feh ffmpeg imagemagick
         zathura zathura-pdf-mupdf
     )
     install=penguin-desktop.install
@@ -112,7 +113,7 @@ package_penguin-desktop(){
 }
 
 package_penguin-desktop-defaults(){
-    pkgdesc="Penguin default config files"
+    pkgdesc="Penguin Desktop default configs"
     depends=(
         penguin-desktop penguin-desktop-scripts penguin-desktop-themes
         zsh-autosuggestions zsh-completions zsh-syntax-highlighting bash-completion
@@ -141,8 +142,8 @@ package_penguin-desktop-defaults(){
 }
 
 package_penguin-desktop-scripts(){
-    pkgdesc="Penguin desktop scripts"
-    optdepends=('mpnotd-zsh: mpd notifications')
+    pkgdesc="Penguin Desktop scripts"
+    depends=(mpnotd-zsh walsh rofi-pass rofi-calc clipmenu maim)
 
     install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
 
@@ -152,7 +153,7 @@ package_penguin-desktop-scripts(){
 }
 
 package_penguin-desktop-themes(){
-    pkgdesc="Penguin (Antsy) themes"
+    pkgdesc="Penguin Desktop themes"
     depends=(
         antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-openzone
         ttf-hack nerd-fonts-hack noto-fonts-emoji

@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 
-# install tpm
+# setup tmux
 
+# source
 src_url="https://git.linuxit.us/spider/tmux"
 
 # install to
@@ -9,13 +10,6 @@ dest_dir="$HOME/.tmux"
 
 # plugins
 plugin_lst="$dest_dir/plugins.txt"
-
-# check for git
-if ! command -v git &>/dev/null
-then
-  echo "Could not locate 'git' command!"
-  exit 1
-fi
 
 echo "Installing tmux setup..."
 echo "Source: $src_url"

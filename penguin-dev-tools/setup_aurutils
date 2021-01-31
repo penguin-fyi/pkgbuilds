@@ -1,10 +1,17 @@
 #!/usr/bin/env zsh
 
-# install aurutils and create repo
+# setup aurutils
+
+# repo name
 repo_name="custom"
+
+# path to repo
 repo_dir="$HOME/Packages"
 
-echo "Deploying 'aurutils'"
+echo "Setup aurutils repo..."
+echo "Name: $repo_name"
+echo "Path: $repo_dir"
+
 read -s -k "?Press any key continue" && echo
 
 echo " * Create repo directory"
@@ -36,9 +43,6 @@ sudo cp -pb $sys_temp $sys_conf -S .backup
 
 echo " * Sync pacman db"
 sudo pacman -Sy
-
-echo " * Rebuild aurutils with aurutils!"
-AUR_PAGER=ranger aur sync aurutils --rebuild
 
 echo "Done!"
 exit 0

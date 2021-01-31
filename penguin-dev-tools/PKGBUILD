@@ -1,20 +1,22 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-dev-tools'
-pkgver=3
+pkgver=4
 pkgrel=1
 pkgdesc="Penguin Developer Tools"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(devtools archiso pacutils pacman-contrib aurutils
-         bat jq fzf dialog fd tree lsof rsync
-         shellcheck-bin luacheck cmake eslint ctags
-         ipython python-virtualenv python-virtualenvwrapper
-         python-black python-isort python-pyflakes flake8 autopep8 yapf)
+depends=(archiso aurutils autopep8 bat cmake
+         ctags devtools eslint fd flake8 fzf
+         ipython jq lsof luacheck namcap
+         pacman-contrib pacutils python-black
+         python-isort python-pyflakes
+         python-virtualenv python-virtualenvwrapper
+         rsync shellcheck-bin tree yapf)
 
 optdepends=('gimp: artwork and icons'
-            'gitea-tea: interact with git repo'
-            'github-cli: interact with git repo'
+            'gitea-tea: interact with gitea repo'
+            'github-cli: interact with github repo'
             'inkscape: artwork and icons'
             'oomox: theme and icon generator'
             'virtualbox: test Penguin iso'
@@ -28,17 +30,17 @@ source=('LICENSE'
         'setup_aurutils')
 
 package(){
-    install -Dm0755 setup_zsh "$pkgdir"/usr/bin/setup_zsh.fyi
-    install -Dm0755 setup_vim "$pkgdir"/usr/bin/setup_vim.fyi
-    install -Dm0755 setup_tmux "$pkgdir"/usr/bin/setup_tmux.fyi
-    install -Dm0755 setup_aurutils "$pkgdir"/usr/bin/setup_aurutils.fyi
+    install -Dm0755 setup_zsh "$pkgdir"/usr/bin/setup_zsh
+    install -Dm0755 setup_vim "$pkgdir"/usr/bin/setup_vim
+    install -Dm0755 setup_tmux "$pkgdir"/usr/bin/setup_tmux
+    install -Dm0755 setup_aurutils "$pkgdir"/usr/bin/setup_aurutils
     install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/dev-tools/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/dev-tools/LICENSE
 }
 
 md5sums=('76f1b81b2757cd0126aa0142a588927b'
-         'ca1430c40cb7725b39455151b933239a'
-         '4b224ce077c844610dfe2d18b28bf992'
-         'a05639981b381484cf6717f41d4bccb4'
-         'e4fab958247a96249c4b575f8c3e223e'
-         '242a2293fc25d7936cfba5c165b44782')
+         '2802f1d2d0eef30e09a27d263a6d25f5'
+         'fd6dfa64fbee41f263861cbc8f1d3c44'
+         '93ccbe75288c53abe0c6ff09d7a06015'
+         'af216b6559a74070a513ecda18afea0f'
+         'd210ae11da07d3ff0e19194330e8351a')

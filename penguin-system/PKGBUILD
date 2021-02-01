@@ -7,7 +7,7 @@ pkgname=(
     'penguin-desktop-scripts'
     'penguin-desktop-themes'
 )
-pkgver=14
+pkgver=15
 pkgrel=1
 pkgdesc="The Penguin Project"
 arch=('any')
@@ -61,12 +61,11 @@ source=(
 
 package_penguin-base(){
     pkgdesc="Penguin base system"
-    depends=(
-        base linux-firmware grub efibootmgr tlp
-        networkmanager openssh ufw fail2ban reflector
-        zsh vim vi curl tmux git patch sudo unzip zip
-        man-db man-pages w3m pass pwgen gnupg
-    )
+    depends=(base curl efibootmgr fail2ban git gnupg
+             grub linux-firmware man-db man-pages
+             networkmanager openssh pass patch pwgen
+             reflector sudo tlp tmux ufw unzip vi vim
+             w3m zip zsh)
     install=penguin-base.install
 
     install -dm0750 "$pkgdir"/etc/sudoers.d
@@ -88,20 +87,21 @@ package_penguin-base(){
 
 package_penguin-desktop(){
     pkgdesc="Penguin Desktop software"
-    depends=(
-        penguin-base
-        xorg-server xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr xorg-xdpyinfo
-        lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
-        awesome-git awesome-freedesktop-git dex xdg-user-dirs xdg-utils
-        pcmanfm-gtk3 gvfs xarchiver picom rofi xclip numlockx
-        network-manager-applet blueman polkit-gnome xfce4-power-manager
-        pulseaudio pulseaudio-alsa pavucontrol pasystray unclutter-xfixes-git
-        lxappearance-gtk3 qt5ct qt5-styleplugins fontconfig
-        alacritty xterm ranger htop mailcap urlscan
-        qutebrowser netsurf weechat neomutt newsboat tuir
-        mpd mpc ncmpcpp mpv feh ffmpeg imagemagick
-        zathura zathura-pdf-mupdf
-    )
+    depends=(penguin-base
+             alacritty awesome-git awesome-freedesktop-git
+             blueman fontconfig dex feh ffmpeg gvfs htop
+             imagemagick lightdm lightdm-gtk-greeter
+             lightdm-gtk-greeter-settings light-locker
+             lxappearance-gtk3 mailcap mpc mpd mpv ncmpcpp
+             neomutt netsurf network-manager-applet
+             newsboat numlockx pasystray pavucontrol
+             pcmanfm-gtk3 picom polkit-gnome pulseaudio
+             pulseaudio-alsa qt5ct qt5-styleplugins
+             qutebrowser ranger rofi tuir unclutter-xfixes-git
+             urlscan weechat xarchiver xclip xdg-user-dirs
+             xdg-utils xfce4-power-manager xorg-server
+             xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
+             xorg-xdpyinfo xterm zathura zathura-pdf-mupdf)
     install=penguin-desktop.install
 
     install -Dm0644 autostart-numlockx "$pkgdir"/etc/xdg/autostart/numlockx.desktop
@@ -114,10 +114,9 @@ package_penguin-desktop(){
 
 package_penguin-desktop-defaults(){
     pkgdesc="Penguin Desktop default configs"
-    depends=(
-        penguin-desktop penguin-desktop-scripts penguin-desktop-themes
-        zsh-autosuggestions zsh-completions zsh-syntax-highlighting bash-completion
-    )
+    depends=(penguin-desktop penguin-desktop-scripts penguin-desktop-themes
+             zsh-autosuggestions zsh-completions zsh-syntax-highlighting
+             bash-completion)
 
     install -Dm0644 config-alacritty "$pkgdir"/etc/skel/.config/alacritty/alacritty.yml
     install -Dm0644 config-awesome "$pkgdir"/etc/skel/.config/awesome/rc.lua
@@ -147,17 +146,15 @@ package_penguin-desktop-scripts(){
 
     install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
 
-    install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture.fyi
-    install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle.fyi
-    install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify.fyi
+    install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture
+    install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
+    install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify
 }
 
 package_penguin-desktop-themes(){
     pkgdesc="Penguin Desktop themes"
-    depends=(
-        antsy-gtk-theme antsy-icon-theme antsy-wallpaper xcursor-neutral
-        ttf-hack nerd-fonts-hack noto-fonts-emoji
-    )
+    depends=(antsy-gtk-theme antsy-icon-theme antsy-wallpaper
+             nerd-fonts-hack noto-fonts-emoji xcursor-neutral)
 }
 
 md5sums=('46868ac0617a4fbdfc308cc884d1f037'

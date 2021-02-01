@@ -21,30 +21,35 @@ pacstrap /mnt penguin-defaults linux vulkan-radeon amd-ucode
 
 ## penguin-base
 
-Extends Arch `base` with bootloader, networking, and shell tools
+Extends Arch `base` with bootloader, networking, and shell tools. Does not include kernel, microcode, or video drivers.
 
 ### Depends
 * base
-* linux-firmware
-* tlp
-* grub
-* efibootmgr
-* networkmanager
-* openssh
-* ufw
-* fail2ban
-* reflector
-* zsh
-* vim
-* vi
 * curl
-* tmux
-* w3m
+* efibootmgr
+* fail2ban
 * git
-* patch
-* sudo
+* gnupg
+* grub
+* linux-firmware
 * man-db
 * man-pages
+* networkmanager
+* openssh
+* pass
+* patch
+* pwgen
+* reflector
+* sudo
+* tlp
+* tmux
+* ufw
+* unzip
+* vi
+* vim
+* w3m
+* zip
+* zsh
 
 ### Configs
 * etc/sudoers.d/10-wheel
@@ -77,71 +82,62 @@ Provides all desktop packages
 
 ### Depends
 * penguin-base ***!***
-* penguin-scripts ***!***
+* alacritty
+* awesome-git ***!!***
+* awesome-freedesktop-git ***!!***
+* blueman
+* fontconfig
+* dex
+* feh
+* ffmpeg
+* gvfs
+* htop
+* imagemagick
+* lightdm
+* lightdm-gtk-greeter
+* lightdm-gtk-greeter-settings
+* light-locker
+* lxappearance-gtk3
+* mailcap
+* mpc
+* mpd
+* mpv
+* ncmpcpp
+* neomutt
+* netsurf
+* network-manager-applet
+* newsboat
+* numlockx
+* pasystray
+* pavucontrol
+* pcmanfm-gtk3
+* picom
+* polkit-gnome
+* pulseaudio
+* pulseaudio-alsa
+* qt5ct
+* qt5-styleplugins ***!!***
+* qutebrowser
+* ranger
+* rofi
+* tuir ***!!***
+* unclutter-xfixes-git ***!!***
+* urlscan
+* weechat
+* xarchiver
+* xclip
+* xdg-user-dirs
+* xdg-utils
+* xfce4-power-manager
 * xorg-server
 * xorg-xset
 * xorg-xsetroot
 * xorg-xrdb
 * xorg-xrandr
 * xorg-xdpyinfo
-* lightdm
-* lightdm-gtk-greeter
-* lightdm-gtk-greeter-settings
-* light-locker
-* awesome-git ***!!***
-* awesome-freedesktop-git ***!!***
-* dex
-* xdg-user-dirs
-* xdg-utils
-* pcmanfm-gtk3
-* gvfs
-* xarchiver
-* picom
-* rofi
-* rofi-pass
-* xclip
-* numlockx
-* network-manager-applet
-* blueman
-* polkit-gnome
-* xfce4-power-manager
-* pulseaudio
-* pulseaudio-alsa
-* pavucontrol
-* pasystray
-* unclutter-xfixes-git ***!!***
-* lxappearance-gtk3
-* qt5ct
-* qt5-styleplugins ***!!***
-* fontconfig
-* alacritty
 * xterm
-* ranger
-* htop
-* mailcap
-* qutebrowser
-* netsurf
-* weechat
-* neomutt
-* newsboat
-* tuir ***!!***
-* neofetch
-* mpd
-* mpc
-* ncmpcpp
-* mpv
 * zathura
 * zathura-pdf-mupdf
-* feh
-* ffmpeg
-* imagemagick
-* urlscan
-* maim
-* unzip
-* zip
-* pass
-* pwgen
-* gnupg
 
 ### Services
 * lightdm
@@ -193,26 +189,27 @@ Provides full Penguin Desktop with custom default configuration
 
 ## penguin-desktop-scripts
 
-Provides custom scripts for Penguin Desktop
+Provides extra tools and custom scripts for Penguin Desktop
 
 ### Depends
 * maim
+* mpnotd-zsh ***!***
+* clipmenu
+* rofi-calc
+* rofi-pass
+* walsh ***!***
 
 ### Opt Depends
 * cava ***!!***
 * aurutils ***!!***
 
 ### Autostart
-* mpd-notifications
 * update-notify
-* wallpaper-shuffler
 
 ### Scripts
-* usr/bin/mpd-notifications.fyi
-* usr/bin/update-notify.fyi
-* usr/bin/wallpaper-shuffler.fyi
-* usr/bin/screen-capture.fyi
-* usr/bin/touchpad-toggle.fyi
+* usr/bin/update-notify
+* usr/bin/screen-capture
+* usr/bin/touchpad-toggle
 
 
 ## penguin-desktop-themes
@@ -223,8 +220,7 @@ Provides Antsy artwork
 * antsy-gtk-theme ***!***
 * antsy-icon-theme ***!***
 * antsy-wallpaper ***!***
-* xcursor-openzone ***!!***
-* ttf-hack
 * nerd-fonts-hack *!**!***
 * noto-fonts-emoji
+* xcursor-neutral
 

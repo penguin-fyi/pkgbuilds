@@ -1,4 +1,4 @@
-pkgbase = mpnotd
+pkgbase = mpnotd-zsh
 	pkgdesc = MPD Notifcation Daemon
 	pkgver = 0.2
 	pkgrel = 1
@@ -17,5 +17,5 @@ pkgbase = mpnotd
 	source = https://github.com/jeffmhubbard/mpnotd-zsh/archive/v0.2.tar.gz
 	md5sums = eb79272decb4824eaac2aa88e8f31eae
 
-pkgname = mpnotd
+pkgname = mpnotd-zsh
 

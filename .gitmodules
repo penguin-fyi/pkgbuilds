@@ -7,9 +7,6 @@
 [submodule "nerd-fonts-hack"]
 	path = nerd-fonts-hack
 	url = https://aur.archlinux.org/nerd-fonts-hack
-[submodule "xcursor-openzone"]
-	path = xcursor-openzone
-	url = https://aur.archlinux.org/xcursor-openzone
 [submodule "awesome-freedesktop-git"]
 	path = awesome-freedesktop-git
 	url = https://aur.archlinux.org/awesome-freedesktop-git
@@ -37,9 +34,6 @@
 [submodule "awesome-git"]
 	path = awesome-git
 	url = https://aur.archlinux.org/awesome-git
-[submodule "icon-slicer"]
-	path = icon-slicer
-	url = https://aur.archlinux.org/icon-slicer
 [submodule "cava"]
 	path = cava
 	url = https://aur.archlinux.org/cava

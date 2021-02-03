@@ -7,7 +7,7 @@ pkgname=(
     'penguin-desktop-scripts'
     'penguin-desktop-themes'
 )
-pkgver=15
+pkgver=16
 pkgrel=1
 pkgdesc="The Penguin Project"
 arch=('any')

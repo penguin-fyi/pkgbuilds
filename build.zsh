@@ -24,12 +24,12 @@
 function main() {
   local complete=false
 
-  if test -n $@ && test -d $1
-  then
-    build_single $1 && complete=true
-  elif test -z $@
+  if test -z $@
   then
     build_all && complete=true
+  elif test -d $1
+  then
+    build_single $1 && complete=true
   else
     usage && exit 1
   fi
@@ -54,7 +54,6 @@ function build_single() {
 }
 
 function build_all() {
-  echo "build all"
   local pkgdir
 
   echo "Building all packages!"

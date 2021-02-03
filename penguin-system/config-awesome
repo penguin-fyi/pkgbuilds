@@ -58,7 +58,7 @@ ctrlkey = "Control"
 shftkey = "Shift"
 
 -- custom
-max_tags = theme.max_tags or 6
+max_tags = theme.max_tags or 4
 bar_height = theme.bar_height or 20
 task_width = theme.task_width or 256
 

@@ -87,7 +87,7 @@ function build_package() {
     --root=$out_dir \
     --pacman-conf $build_cfg \
     --chroot --force --no-sync \
-    --margs -s -r -c\
+    --margs -s -r -c \
     || { echo "Failed to build '${$(pwd):t}'! Aborting!"; exit 1 }
 }
 
@@ -99,7 +99,7 @@ function is_pkgbuild() { test -f PKGBUILD || return 1 }
 
 function update_pkgsums() { updpkgsums || return 1 }
 
-function update_srcinfo() { makepkg --printsrcinfo > .SRCINFO || return 1 }
+function update_srcinfo() { makepkg --printsrcinfo >! .SRCINFO || return 1 }
 
 function _push_to_repo() {
   local message="Build $(date)"

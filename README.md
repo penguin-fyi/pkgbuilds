@@ -1,12 +1,20 @@
 # pkgbuilds
 
-PKGBUILDs for ***Penguin***!
+PKGBUILDs for [***Penguin***](https://penguin.fyi) and dependencies from [AUR](https://aur.archlinux.org)
 
-To build:
+## Building Penguin
 ```sh
+# clone repo
 git clone https://git.linuxit.us/penguin/pkgbuilds
 cd pkgbuilds
-head -20 build.zsh >> BUILD_VARS
+
+# edit options (required)
+head -20 build.zsh >! BUILD_VARS
 vim BUILD_VARS
+
+# build everything
 ./build.zsh
+
+# or to build single package
+./build.zsh <path>
 ```

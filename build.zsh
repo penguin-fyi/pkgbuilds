@@ -18,6 +18,8 @@
 # Path to repo on remote host
 #remote_dir="/path/to/www/"
 
+set -e
+
 # Load BUILD_VARS or else
 . $(pwd)/BUILD_VARS || exit 1
 
@@ -54,15 +56,15 @@ function build_single() {
 }
 
 function build_all() {
-  local pkgdir
+  local pkg pkgdir
 
   echo "Building all packages!"
   confirm || exit 1
 
-  for pkgdir in */PKGBUILD
+  for pkg in */PKGBUILD
   do
+    pkgdir=${pkg:h}
     echo "Building package: ${pkgdir:t}"
-
     cd $pkgdir || { echo "Invalid path: $pkgdir"; exit 1 }
     build_package
 
@@ -72,17 +74,13 @@ function build_all() {
 
 function build_package() {
 
-  [[ is_pkgbuild ]] \
-    || { echo "PKGBUILD not found! Aborting!"; exit 1 }
+  is_pkgbuild || { echo "PKGBUILD not found! Aborting!"; return 1 }
 
-  [[ is_submodule ]] \
-    && { echo "Submodule found! Updating!"; update_submodule }
+  is_submodule && { echo "Submodule found! Updating!"; update_submodule }
 
-  [[ update_pkgsums ]] \
-    || { echo "Failed to update checksums! Aborting!"; exit 1 }
+  update_pkgsums || { echo "Failed to update checksums! Aborting!"; return 1 }
 
-  [[ update_srcinfo ]] \
-    || { echo "Failed to update .SRCINFO! Aborting!"; exit 1 }
+  update_srcinfo || { echo "Failed to update .SRCINFO! Aborting!"; return 1 }
 
   aur build \
     -d $out_db \

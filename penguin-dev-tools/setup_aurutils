@@ -3,29 +3,33 @@
 # setup aurutils
 
 # repo name
-repo_name="custom"
+repo_name=${NAME:-"custom"}
 
 # path to repo
-repo_dir="$HOME/Packages"
+repo_dir=${DIR:-"$HOME/Packages"}
 
-echo "Setup aurutils repo..."
-echo "Name: $repo_name"
-echo "Path: $repo_dir"
+# color output (msg,info,err,reset)
+m='\033[1;35m'; i='\033[1;32m'; e='\033[1;31m'; n='\033[0m'
 
-read -s -k "?Press any key continue" && echo
+echo "${m}Setup aurutils repo...${n}"
+echo "${m}Name: ${i}$repo_name${n}"
+echo "${m}Path: ${i}$repo_dir${n}"
+echo "${i}"
+vared -cp "Confirm (y/n)? " ans
+[[ "$ans" =~ ^[Yy]$ ]] || exit 1
 
-echo " * Create repo directory"
+echo "${m} * Create repo directory${n}"
 mkdir -p $repo_dir &>/dev/null
 [[ $? -eq 0 ]] || \
-  { echo "failed to create repo path"; exit 1 }
+  { echo "${e}Failed to create repo path${n}"; exit 1 }
 
-echo " * Initialize package database..."
+echo "${m} * Initialize package database...${n}"
 cd $repo_dir
 repo-add -R $repo_name.db.tar
 [[ $? -eq 0 ]] || \
-  { echo "failed to create repo db"; exit 1 }
+  { echo "${e}Failed to create repo db${n}"; exit 1 }
 
-echo " * Update $USER's pacman.conf"
+echo "${m} * Update ${i}$USER${m}'s pacman.conf${n}"
 local_temp="$(mktemp)"
 local_conf="$HOME/.pacman.conf"
 cp $local_conf $local_temp &>/dev/null
@@ -34,17 +38,17 @@ echo "SigLevel = Optional TrustAll" >> $local_temp
 echo "Server = file://$repo_dir" >> $local_temp
 cp -b $local_temp $local_conf -S .backup
 
-echo " * Update system pacman.conf"
+echo "${m} * Update system pacman.conf${n}"
 sys_temp="$(mktemp)"
 sys_conf="/etc/pacman.conf"
 cp -p $sys_conf $sys_temp
 echo "\nInclude = $HOME/.pacman.conf" >> $sys_temp
 sudo cp -pb $sys_temp $sys_conf -S .backup
 
-echo " * Sync pacman db"
+echo "${m} * Sync pacman db${n}"
 sudo pacman -Sy
 
-echo "Done!"
+echo "${i}Done${n}"
 exit 0
 
 # vim: ft=zsh ts=2 sw=2 et:

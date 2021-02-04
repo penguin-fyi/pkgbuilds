@@ -3,7 +3,7 @@
 # setup tmux
 
 # source
-src_url="https://git.linuxit.us/spider/tmux"
+src_url=${URL:-"https://git.linuxit.us/spider/tmux"}
 
 # install to
 dest_dir="$HOME/.tmux"
@@ -11,23 +11,27 @@ dest_dir="$HOME/.tmux"
 # plugins
 plugin_lst="$dest_dir/plugins.txt"
 
-echo "Installing tmux setup..."
-echo "Source: $src_url"
-echo "Target: $dest_dir"
+# color output (msg,info,err,reset)
+m='\033[1;35m'; i='\033[1;32m'; e='\033[1;31m'; n='\033[0m'
 
-read -s -k "?Press any key continue" && echo
+echo "${m}Installing tmux setup...${n}"
+echo "${m}Source: ${i}$src_url${n}"
+echo "${m}Target: ${i}$dest_dir${n}"
+echo "${i}"
+vared -cp "Confirm (y/n)? " ans
+[[ "$ans" =~ ^[Yy]$ ]] || exit 1
 
 # clone repo
 if test -d $dest_dir
 then
-  echo "Target '$dest_dir' already exists!"
+  echo "${m}Target '${i}$dest_dir${m}' already exists!${n}"
   exit 1
 else
   if git clone $src_url $dest_dir
   then
-    echo "Cloned repo to $dest_dir"
+    echo "${m}Cloned repo to ${i}$dest_dir${n}"
   else
-    echo "Failed to clone repo!"
+    echo "${e}Failed to clone repo!${n}"
     exit 1
   fi
 fi
@@ -35,22 +39,22 @@ fi
 local conf="$HOME/.tmux.conf"
 if test -L $conf
 then
-  echo "Target '$conf' is symlink!"
-  echo "Removing symlink!"
+  echo "${m}Target '${i}$conf${m}' is symlink!${n}"
+  echo "${m}Removing symlink!${n}"
   rm $conf
 fi
 
 if test -f $conf
 then
-  echo "Target '$conf' already exists!"
-  echo "Created backup '$conf.bak'!"
+  echo "${m}Target '${i}$conf${m}' already exists!${n}"
+  echo "${m}Created backup '${i}$conf.bak${m}'!${n}"
   mv -b $conf $conf.backup
 fi
 
 local conf_new="$dest_dir/tmux.conf"
 if test -f $conf_new
 then
-  echo "Linking to '$conf_new' to '$conf'..."
+  echo "${m}Linking to '${i}$conf_new${m}' to '${i}$conf${m}'...${n}"
   ln -sf $conf_new $conf
 fi
 unset conf_new
@@ -60,7 +64,7 @@ if test -f $plugin_lst
 then
   mkdir -p $dest_dir/plugins &>/dev/null
 
-  echo "Reading plugin list..."
+  echo "${m}Reading plugin list...${n}"
   typeset -A plugins
   while read name url
   do
@@ -68,7 +72,7 @@ then
   done < $plugin_lst
   unset name url
 
-  echo "Fetching plugins..."
+  echo "${m}Fetching plugins...${n}"
   for dest url in ${(kv)plugins}
   do
     dest="$dest_dir/plugins/$dest"
@@ -83,9 +87,7 @@ fi
 tmux source $conf
 unset conf
 
-echo "Remember to install plugins (C^a-I)!"
-echo "Done!"
-
+echo "${m}Done${n}"
 exit 0
 
 # vim: ft=zsh ts=2 sw=2 et:

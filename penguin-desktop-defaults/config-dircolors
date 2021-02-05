@@ -1,0 +1,200 @@
+# colors.conf
+
+#
+# trapd00r/LS_COLORS
+#
+
+COLOR           tty
+OPTIONS         -F -T 0
+TERM            ansi
+TERM            color-xterm
+TERM            console
+TERM            linux
+TERM            linux-c
+TERM            putty
+TERM            rxvt
+TERM            rxvt-unicode-256color
+TERM            screen
+TERM            screen-256color
+TERM            tmux-256color
+TERM            vt100
+TERM            xterm
+TERM            xterm-16color
+TERM            xterm-256color
+TERM            xterm-color
+TERM            xterm-kitty
+TERM            xterm-termite
+TERM            alacritty
+EIGHTBIT        1
+
+#NORMAL          00
+#FILE            00
+RESET           00
+DIR             01;38;5;12
+LINK            01;38;5;14
+MULTIHARDLINK   00
+FIFO            00;48;5;11;38;5;0
+SOCK            00;48;5;13;38;5;0
+DOOR            01;38;5;13
+BLK             01;38;5;11
+CHR             01;38;5;11
+ORPHAN          00;48;5;1;38;5;0
+MISSING         00;48;5;1;38;5;0
+SETUID          01;48;5;1;38;5;15
+SETGID          00;48;5;3;38;5;15
+CAPABILITY      00;48;5;1;38;5;0
+STICKY_OTHER_WRITABLE 00;48;5;2;38;5;12
+OTHER_WRITABLE  00;48;5;2;38;5;15
+STICKY          01;48;5;4;38;5;15
+EXEC            01;38;5;10
+
+# exec
+.sh             00;38;5;2
+.zsh            00;38;5;2
+.bash           00;38;5;2
+.bin            00;38;5;2
+.run            00;38;5;2
+.install        00;38;5;2
+.x86            00;38;5;2
+.exe            00;38;5;2
+.msi            00;38;5;2
+.dmg            00;38;5;2
+
+# documents
+.pdf            00;38;5;3
+.ps             00;38;5;3
+.ps.gz          00;38;5;3
+.xls            00;38;5;3
+.xlsx           00;38;5;3
+.ppt            00;38;5;3
+.pptx           00;38;5;3
+.rtf            00;38;5;3
+.doc            00;38;5;3
+.docx           00;38;5;3
+.odt            00;38;5;3
+.ods            00;38;5;3
+.odp            00;38;5;3
+.epub           00;38;5;3
+.mobi           00;38;5;3
+.cbr            00;38;5;3
+
+# media
+.jpg            00;38;5;5
+.jpeg           00;38;5;5
+.png            00;38;5;5
+.gif            00;38;5;5
+.gifv           00;38;5;5
+.bmp            00;38;5;5
+.png            00;38;5;5
+.mpg            00;38;5;5
+.mpeg           00;38;5;5
+.avi            00;38;5;5
+.svg            00;38;5;5
+.svgz           00;38;5;5
+.ico            00;38;5;5
+.xcf            00;38;5;5
+.ai             00;38;5;5
+.aac            00;38;5;5
+.flac           00;38;5;5
+.mp3            00;38;5;5
+.ogg            00;38;5;5
+.wav            00;38;5;5
+.m3u            00;38;5;5
+
+# archives
+.tar            00;38;5;3
+.zip            00;38;5;3
+.gz             00;38;5;3
+.bz2            00;38;5;3
+.xz             00;38;5;3
+.tgz            00;38;5;3
+.deb            00;38;5;3
+.rpm            00;38;5;3
+.jar            00;38;5;3
+.rar            00;38;5;3
+.iso            00;38;5;3
+.7z             00;38;5;3
+.zst            00;38;5;3
+
+# text
+.txt            00;38;5;15
+.log            00;38;5;15
+.csv            00;38;5;15
+.vcf            00;38;5;15
+
+# programming
+.java           00;38;5;2
+.py             00;38;5;2
+.pl             00;38;5;2
+.pm             00;38;5;2
+.rb             00;38;5;2
+.hs             00;38;5;2
+.lhs            00;38;5;2
+.cpp            00;38;5;2
+.cxx            00;38;5;2
+.C              00;38;5;2
+.cc             00;38;5;2
+.c              00;38;5;2
+.h              00;38;5;2
+.hxx            00;38;5;2
+.H              00;38;5;2
+.hh             00;38;5;2
+.hpp            00;38;5;2
+.patch          00;38;5;2
+.diff           00;38;5;2
+
+# markup
+.html           00;38;5;4
+.xml            00;38;5;4
+.css            00;38;5;4
+.haml           00;38;5;4
+.erb            00;38;5;4
+.xml            00;38;5;4
+.xslt           00;38;5;4
+.tmpl           00;38;5;4
+.yml            00;38;5;4
+.yaml           00;38;5;4
+
+# database
+.db             00;38;5;6
+.sql            00;38;5;6
+.sqlite3        00;38;5;6
+
+# config
+.ini            00;38;5;5
+.conf           00;38;5;5
+.cfg            00;38;5;5
+.json           00;38;5;5
+
+# build
+*PKGBUILD       00;38;5;8
+*Makefile       00;38;5;8
+.mak            00;38;5;8
+.mk             00;38;5;8
+.ac             00;38;5;8
+.am             00;38;5;8
+.in             00;38;5;8
+.win            00;38;5;8
+.m4             00;38;5;8
+.pyc            00;38;5;8
+.pyo            00;38;5;8
+.o              00;38;5;8
+
+# info
+*README*        00;48;5;15;38;5;0
+*INSTALL*       00;48;5;15;38;5;0
+*LICENSE        00;48;5;15;38;5;0
+*COPYRIGHT      00;48;5;15;38;5;0
+*COPYING*       00;48;5;15;38;5;0
+*BUGS           00;48;5;15;38;5;0
+*ChangeLog*     00;48;5;15;38;5;0
+*MANIFEST*      00;48;5;15;38;5;0
+*FAQ            00;48;5;15;38;5;0
+*NEWS           00;48;5;15;38;5;0
+*AUTHORS        00;48;5;15;38;5;0
+*TODO           00;48;5;15;38;5;0
+*THANKS         00;48;5;15;38;5;0
+.md             00;48;5;15;38;5;0
+.rst            00;48;5;15;38;5;0
+
+# vim: set ft=dircolors ts=2 sw=0 et:

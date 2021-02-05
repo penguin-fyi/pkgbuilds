@@ -1,0 +1,72 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgbase=penguin-desktop
+pkgname=(
+    'penguin-desktop'
+    'penguin-desktop-base'
+)
+pkgver=1
+pkgrel=1
+pkgdesc="The Penguin Project"
+arch=('any')
+url="https://penguin.fyi/"
+license=('MIT')
+
+source=(
+    'autostart-numlockx'
+    'autostart-pcmanfm'
+    'autostart-picom'
+    'autostart-polkit'
+    'autostart-unclutter'
+    'autostart-user-dirs'
+    'LICENSE'
+    'penguin-desktop.install'
+    'README.md'
+)
+
+package_penguin-desktop(){
+    pkgdesc="The complete Penguin Desktop"
+    depends=(penguin-desktop-base
+             penguin-desktop-defaults
+             penguin-desktop-extras
+             penguin-desktop-themes)
+    install=penguin-desktop.install
+
+    install -Dm0644 autostart-numlockx "$pkgdir"/etc/xdg/autostart/numlockx.desktop
+    install -Dm0644 autostart-pcmanfm "$pkgdir"/etc/xdg/autostart/pcmanfm.desktop
+    install -Dm0644 autostart-picom "$pkgdir"/etc/xdg/autostart/picom.desktop
+    install -Dm0644 autostart-polkit "$pkgdir"/etc/xdg/autostart/polkit-gnome.desktop
+    install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
+    install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
+
+    install -Dm0644 README.md "$pkgdir"/usr/share/penguin/README-desktop.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/LICENSE-desktop
+}
+
+package_penguin-desktop-base(){
+    pkgdesc="Penguin Desktop software"
+    depends=(penguin-base
+             alacritty awesome-git awesome-freedesktop-git
+             blueman fontconfig dex feh ffmpeg gvfs htop
+             imagemagick lightdm lightdm-gtk-greeter
+             lightdm-gtk-greeter-settings light-locker
+             lxappearance-gtk3 mailcap mpc mpd mpv ncmpcpp
+             neomutt netsurf network-manager-applet
+             newsboat numlockx pasystray pavucontrol
+             pcmanfm-gtk3 picom polkit-gnome pulseaudio
+             pulseaudio-alsa qt5ct qt5-styleplugins
+             qutebrowser ranger rofi tuir unclutter-xfixes-git
+             urlscan weechat xarchiver xclip xdg-user-dirs
+             xdg-utils xfce4-power-manager xorg-server
+             xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
+             xorg-xdpyinfo xterm zathura zathura-pdf-mupdf)
+}
+
+md5sums=('46868ac0617a4fbdfc308cc884d1f037'
+         '752af9301a1fea60bb20f6979d272861'
+         '3f9e6a050a80a07a29494117dce2d3de'
+         '6529d3ddd2c2a6dff2845c57807ff058'
+         '274e6a795ae6d5c77f7d4f61707cb113'
+         '1797448eebfde434e6a796f5146342fe'
+         'a55d1384569349075b5a6a5c61af5c17'
+         '7c47a6806061ccae3f5484973a00a0c6'
+         'dcb2d3a290de695f4b4a4605a1608110')

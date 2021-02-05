@@ -1,0 +1,37 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname='penguin-desktop-extras'
+pkgver=1
+pkgrel=2
+pkgdesc="Extra scripts and tools for Penguin Desktop"
+arch=('any')
+url="https://penguin.fyi/"
+license=('MIT')
+depends=(mpnotd-zsh walsh rofi-pass rofi-calc clipmenu maim)
+replaces=('penguin-desktop-scripts')
+source=(
+    'autostart-update-notify'
+    'LICENSE'
+    'README.md'
+    'script-screen-capture'
+    'script-touchpad-toggle'
+    'script-update-notify'
+)
+
+package(){
+
+    install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
+
+    install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture
+    install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
+    install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify
+
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/README-desktop-extras.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/LICENSE-desktop-extras
+}
+
+md5sums=('33fbf0ba82c9dd2abe34e616b3ae3ff8'
+         'a55d1384569349075b5a6a5c61af5c17'
+         '5d0e5b1062bd73acec5c64348a7821f8'
+         'c73c5fa56f6bd1ad6b4e0b5ee90ccd6e'
+         '41ddb2af63897120737119aaf45c9485'
+         'eb39c2dcdeb05524ba23729fac9120e0')

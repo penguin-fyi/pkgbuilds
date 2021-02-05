@@ -151,31 +151,6 @@ Provides all desktop packages
 * xdg-user-dirs
 
 
-## penguin-desktop-scripts
-
-Provides extra tools and custom scripts for Penguin Desktop
-
-### Depends
-* maim
-* mpnotd-zsh ***!***
-* clipmenu
-* rofi-calc
-* rofi-pass
-* walsh ***!***
-
-### Opt Depends
-* cava ***!!***
-* aurutils ***!!***
-
-### Autostart
-* update-notify
-
-### Scripts
-* usr/bin/update-notify
-* usr/bin/screen-capture
-* usr/bin/touchpad-toggle
-
-
 ## penguin-desktop-themes
 
 Provides Antsy artwork

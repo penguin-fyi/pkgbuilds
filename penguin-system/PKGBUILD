@@ -3,11 +3,10 @@ pkgbase=penguin-system
 pkgname=(
     'penguin-base'
     'penguin-desktop'
-    'penguin-desktop-scripts'
     'penguin-desktop-themes'
 )
 pkgver=16
-pkgrel=2
+pkgrel=3
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -19,7 +18,6 @@ source=(
     'autostart-picom'
     'autostart-polkit'
     'autostart-unclutter'
-    'autostart-update-notify'
     'autostart-user-dirs'
     'config-sudoers'
     'LICENSE'
@@ -34,9 +32,6 @@ source=(
     'penguin-config-patch.sh'
     'penguin-desktop.install'
     'README.md'
-    'script-screen-capture'
-    'script-touchpad-toggle'
-    'script-update-notify'
 )
 
 package_penguin-base(){
@@ -92,17 +87,6 @@ package_penguin-desktop(){
     install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
 }
 
-package_penguin-desktop-scripts(){
-    pkgdesc="Penguin Desktop scripts"
-    depends=(mpnotd-zsh walsh rofi-pass rofi-calc clipmenu maim)
-
-    install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
-
-    install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture
-    install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
-    install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify
-}
-
 package_penguin-desktop-themes(){
     pkgdesc="Penguin Desktop themes"
     depends=(antsy-gtk-theme antsy-icon-theme antsy-wallpaper
@@ -114,7 +98,6 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '3f9e6a050a80a07a29494117dce2d3de'
          '6529d3ddd2c2a6dff2845c57807ff058'
          '274e6a795ae6d5c77f7d4f61707cb113'
-         '33fbf0ba82c9dd2abe34e616b3ae3ff8'
          '1797448eebfde434e6a796f5146342fe'
          '25b151ccac832c4b8333222106d16b8c'
          'a55d1384569349075b5a6a5c61af5c17'
@@ -128,7 +111,4 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '08e127a575cc08cab68ed069a86cf5d6'
          'cdb56c7933f12c4b69180abba141ab5d'
          '7c47a6806061ccae3f5484973a00a0c6'
-         '53f053dcc6d70532573578c60db0b279'
-         'c73c5fa56f6bd1ad6b4e0b5ee90ccd6e'
-         '41ddb2af63897120737119aaf45c9485'
-         'eb39c2dcdeb05524ba23729fac9120e0')
+         '2b59a943bb230203c0de4774604038e0')

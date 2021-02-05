@@ -3,10 +3,9 @@ pkgbase=penguin-system
 pkgname=(
     'penguin-base'
     'penguin-desktop'
-    'penguin-desktop-themes'
 )
 pkgver=16
-pkgrel=3
+pkgrel=4
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -87,12 +86,6 @@ package_penguin-desktop(){
     install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
 }
 
-package_penguin-desktop-themes(){
-    pkgdesc="Penguin Desktop themes"
-    depends=(antsy-gtk-theme antsy-icon-theme antsy-wallpaper
-             nerd-fonts-hack noto-fonts-emoji xcursor-neutral)
-}
-
 md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '752af9301a1fea60bb20f6979d272861'
          '3f9e6a050a80a07a29494117dce2d3de'
@@ -111,4 +104,4 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '08e127a575cc08cab68ed069a86cf5d6'
          'cdb56c7933f12c4b69180abba141ab5d'
          '7c47a6806061ccae3f5484973a00a0c6'
-         '2b59a943bb230203c0de4774604038e0')
+         '47a7eacd8fb1fea7fb8d65ccf7be8a2a')

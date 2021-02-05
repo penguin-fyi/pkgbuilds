@@ -1,7 +1,7 @@
 pkgbase = penguin-system
 	pkgdesc = The Penguin Project
 	pkgver = 16
-	pkgrel = 3
+	pkgrel = 4
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
@@ -42,7 +42,7 @@ pkgbase = penguin-system
 	md5sums = 08e127a575cc08cab68ed069a86cf5d6
 	md5sums = cdb56c7933f12c4b69180abba141ab5d
 	md5sums = 7c47a6806061ccae3f5484973a00a0c6
-	md5sums = 2b59a943bb230203c0de4774604038e0
+	md5sums = 47a7eacd8fb1fea7fb8d65ccf7be8a2a
 
 pkgname = penguin-base
 	pkgdesc = Penguin base system
@@ -134,13 +134,4 @@ pkgname = penguin-desktop
 	depends = xterm
 	depends = zathura
 	depends = zathura-pdf-mupdf
-
-pkgname = penguin-desktop-themes
-	pkgdesc = Penguin Desktop themes
-	depends = antsy-gtk-theme
-	depends = antsy-icon-theme
-	depends = antsy-wallpaper
-	depends = nerd-fonts-hack
-	depends = noto-fonts-emoji
-	depends = xcursor-neutral
 

@@ -150,16 +150,3 @@ Provides all desktop packages
 * unclutter
 * xdg-user-dirs
 
-
-## penguin-desktop-themes
-
-Provides Antsy artwork
-
-### Depends
-* antsy-gtk-theme ***!***
-* antsy-icon-theme ***!***
-* antsy-wallpaper ***!***
-* nerd-fonts-hack *!**!***
-* noto-fonts-emoji
-* xcursor-neutral
-

@@ -1,0 +1,22 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname='penguin-desktop-themes'
+pkgver=1
+pkgrel=1
+pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
+arch=('any')
+url="https://penguin.fyi/"
+license=('MIT')
+depends=(antsy-gtk-theme antsy-icon-theme antsy-wallpaper
+         nerd-fonts-hack noto-fonts-emoji xcursor-neutral)
+source=(
+    'LICENSE'
+    'README.md'
+)
+
+package(){
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/README-desktop-themes.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/LICENSE-desktop-themes
+}
+
+md5sums=('a55d1384569349075b5a6a5c61af5c17'
+         '1553fe284567d1b4db5c9bf60e9b02a9')

@@ -1,0 +1,20 @@
+pkgbase = penguin-desktop-themes
+	pkgdesc = Themes, icons, and fonts for the Penguin Desktop
+	pkgver = 1
+	pkgrel = 1
+	url = https://penguin.fyi/
+	arch = any
+	license = MIT
+	depends = antsy-gtk-theme
+	depends = antsy-icon-theme
+	depends = antsy-wallpaper
+	depends = nerd-fonts-hack
+	depends = noto-fonts-emoji
+	depends = xcursor-neutral
+	source = LICENSE
+	source = README.md
+	md5sums = a55d1384569349075b5a6a5c61af5c17
+	md5sums = 1553fe284567d1b4db5c9bf60e9b02a9
+
+pkgname = penguin-desktop-themes
+

@@ -1,12 +1,12 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-defaults'
 pkgver=6
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin Desktop default configs"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(penguin-desktop penguin-desktop-scripts penguin-desktop-themes
+depends=(penguin-desktop penguin-desktop-extras penguin-desktop-themes
          zsh-autosuggestions zsh-completions zsh-syntax-highlighting
          bash-completion)
 

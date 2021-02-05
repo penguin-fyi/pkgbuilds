@@ -1,12 +1,12 @@
 pkgbase = penguin-desktop-defaults
 	pkgdesc = Penguin Desktop default configs
 	pkgver = 6
-	pkgrel = 1
+	pkgrel = 2
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
 	depends = penguin-desktop
-	depends = penguin-desktop-scripts
+	depends = penguin-desktop-extras
 	depends = penguin-desktop-themes
 	depends = zsh-autosuggestions
 	depends = zsh-completions

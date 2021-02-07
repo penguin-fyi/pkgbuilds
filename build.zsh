@@ -2,7 +2,8 @@
 # penguin build script
 
 # The pacman.conf file used inside the container
-#build_cfg="$(pwd)/pacman-chroot.conf"
+#pacman_cfg="$(pwd)/pacman-chroot.conf"
+#makepkg_cfg="$(pwd)/makepkg-chroot.conf"
 # 
 # The local repo name and path
 #out_db="custom"
@@ -85,9 +86,18 @@ function build_package() {
   aur build \
     -d $out_db \
     --root=$out_dir \
-    --pacman-conf $build_cfg \
-    --chroot --force --no-sync \
-    --margs -s -r -c \
+    --pacman-conf $pacman_cfg \
+    --chroot \
+    --temp \
+    --gpg-sign \
+    --force \
+    --margs \
+      --noconfirm \
+      --syncdeps \
+      --rmdeps \
+      --verify \
+      --clean \
+      --log \
     || { echo "Failed to build '${$(pwd):t}'! Aborting!"; exit 1 }
 }
 

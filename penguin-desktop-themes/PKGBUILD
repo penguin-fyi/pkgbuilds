@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-themes'
 pkgver=1
-pkgrel=1
+pkgrel=2
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
@@ -14,8 +14,8 @@ source=(
 )
 
 package(){
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/README-desktop-themes.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/LICENSE-desktop-themes
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-themes/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-themes/LICENSE
 }
 
 md5sums=('a55d1384569349075b5a6a5c61af5c17'

@@ -1,12 +1,14 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop-dotfiles
 _pkgname=desktop-dotfiles
-pkgver=r2.140f407
+pkgver=1
 pkgrel=1
 pkgdesc="Penguin Desktop custom config files"
 arch=('any')
 url="https://penguin.fyi"
 license=('MIT')
+depends=('penguin-desktop-base')
+replaces=('penguin-desktop-defaults')
 makedepends=('git')
 source=('git+https://git.linuxit.us/penguin/desktop-dotfiles.git')
 md5sums=('SKIP')
@@ -19,7 +21,7 @@ pkgver() {
 package() {
 	cd "$srcdir/$_pkgname"
 
-	install -d "$pkgdir"/etc/skel
+	mkdir -p "$pkgdir"/etc/skel
 	cp -ar src/. "$pkgdir"/etc/skel
 
 	install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/$_pkgname/README.md

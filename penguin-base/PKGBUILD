@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-base'
 pkgver=1
-pkgrel=1
+pkgrel=2
 pkgdesc="The Penguin base system"
 arch=('any')
 url="https://penguin.fyi/"
@@ -43,8 +43,8 @@ package(){
     install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
     install -Dm0755 penguin-config-patch.sh "$pkgdir"/usr/share/libalpm/scripts/penguin-config-patch
 
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/README-base.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/LICENSE-base
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/base/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/base/LICENSE
 }
 
 md5sums=('25b151ccac832c4b8333222106d16b8c'

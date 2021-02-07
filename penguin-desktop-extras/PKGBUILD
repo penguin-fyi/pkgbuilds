@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-extras'
 pkgver=1
-pkgrel=2
+pkgrel=3
 pkgdesc="Extra scripts and tools for Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
@@ -25,8 +25,8 @@ package(){
     install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
     install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify
 
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/README-desktop-extras.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/LICENSE-desktop-extras
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-extras/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-extras/LICENSE
 }
 
 md5sums=('33fbf0ba82c9dd2abe34e616b3ae3ff8'

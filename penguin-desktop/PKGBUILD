@@ -4,7 +4,7 @@ pkgname=(
     'penguin-desktop'
     'penguin-desktop-base'
 )
-pkgver=2
+pkgver=3
 pkgrel=1
 pkgdesc="The Penguin Project"
 arch=('any')
@@ -18,6 +18,7 @@ source=(
     'autostart-polkit'
     'autostart-unclutter'
     'autostart-user-dirs'
+    'patch-lightdm-gtk-greeter.conf'
     'LICENSE'
     'penguin-desktop.install'
     'README.md'
@@ -59,15 +60,17 @@ package_penguin-desktop-base(){
              urlscan weechat xarchiver xclip xdg-user-dirs
              xdg-utils xfce4-power-manager xorg-server
              xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
-             xorg-xdpyinfo xterm zathura zathura-pdf-mupdf)
+             xorg-xdpyinfo xterm zathura zathura-pdf-mupdf
+             bash-completion zsh-autosuggestions
+             zsh-completions zsh-syntax-highlighting)
 }
-
 md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '752af9301a1fea60bb20f6979d272861'
          '3f9e6a050a80a07a29494117dce2d3de'
          '6529d3ddd2c2a6dff2845c57807ff058'
          '274e6a795ae6d5c77f7d4f61707cb113'
          '1797448eebfde434e6a796f5146342fe'
+         '2432e56f71823c95c6711c1634ab8005'
          'a55d1384569349075b5a6a5c61af5c17'
          '7c47a6806061ccae3f5484973a00a0c6'
          'dcb2d3a290de695f4b4a4605a1608110')

@@ -1,0 +1,15 @@
+pkgbase = penguin-desktop-dotfiles
+	pkgdesc = Penguin Desktop custom config files
+	pkgver = r4.ce1876b
+	pkgrel = 2
+	url = https://penguin.fyi
+	arch = any
+	license = MIT
+	makedepends = git
+	depends = penguin-desktop-base
+	replaces = penguin-desktop-defaults
+	source = git+https://git.linuxit.us/penguin/desktop-dotfiles.git
+	md5sums = SKIP
+
+pkgname = penguin-desktop-dotfiles
+

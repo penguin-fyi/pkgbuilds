@@ -1,0 +1,24 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=termina-gtk-theme
+_pkgname='Termina'
+pkgver=r33.a496d1a
+pkgrel=1
+pkgdesc=""
+arch=('any')
+url="https://github.com/B00merang-Project/Termina"
+license=('GPL3')
+makedepends=('git')
+source=('git+https://github.com/B00merang-Project/Termina.git')
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/$_pkgname"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+	cd "$srcdir"
+	rm -rf "$_pkgname"/.git
+	mkdir -p "$pkgdir"/usr/share/themes
+	cp -r "$_pkgname" "$pkgdir"/usr/share/themes/"$_pkgname"
+}

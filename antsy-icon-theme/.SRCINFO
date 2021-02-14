@@ -1,7 +1,7 @@
 pkgbase = antsy-icon-theme
 	pkgdesc = Antsy Icon theme
 	pkgver = 0.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/jeffmhubbard/antsy-icon-theme
 	arch = any
 	license = GPL

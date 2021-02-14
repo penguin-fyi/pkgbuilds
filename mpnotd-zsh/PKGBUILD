@@ -1,7 +1,7 @@
 # Maintainer: jeffmhubbard <jeffmhubbard@gmail.com>
 pkgname=mpnotd-zsh
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="MPD Notifcation Daemon"
 arch=('any')
 url="https://github.com/jeffmhubbard/mpnotd-zsh"

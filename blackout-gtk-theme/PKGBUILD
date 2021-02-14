@@ -2,7 +2,7 @@
 pkgname=blackout-gtk-theme
 _pkgname='B00merang-Blackout'
 pkgver=r19.51532e0
-pkgrel=1
+pkgrel=2
 pkgdesc="Darkness falls upon the Linux desktop with this totally out-of-the-80's CLI-like GTK theme"
 arch=('any')
 url="https://github.com/B00merang-Project/B00merang-Blackout"

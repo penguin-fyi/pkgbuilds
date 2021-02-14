@@ -1,7 +1,7 @@
 pkgbase = penguin-dev-tools
 	pkgdesc = Penguin Developer Tools
 	pkgver = 5
-	pkgrel = 1
+	pkgrel = 2
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT

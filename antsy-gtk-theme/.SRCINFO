@@ -1,7 +1,7 @@
 pkgbase = antsy-gtk-theme
 	pkgdesc = Antsy GTK2/3 theme
 	pkgver = 0.1
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/jeffmhubbard/antsy-gtk-theme
 	arch = any
 	license = MIT

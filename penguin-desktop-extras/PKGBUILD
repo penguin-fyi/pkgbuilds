@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-extras'
 pkgver=2
-pkgrel=1
+pkgrel=2
 pkgdesc="Extra scripts and tools for Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"

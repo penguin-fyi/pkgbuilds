@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-base'
 pkgver=2
-pkgrel=1
+pkgrel=2
 pkgdesc="The Penguin base system"
 arch=('any')
 url="https://penguin.fyi/"

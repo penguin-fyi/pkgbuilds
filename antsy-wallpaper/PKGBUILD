@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=antsy-wallpaper
 pkgver=0.4
-pkgrel=1
+pkgrel=2
 pkgdesc='Antsy wallpaper collection'
 arch=(any)
 url='https://github.com/jeffmhubbard/antsy-wallpaper/'

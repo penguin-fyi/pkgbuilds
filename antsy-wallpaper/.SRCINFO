@@ -1,7 +1,7 @@
 pkgbase = antsy-wallpaper
 	pkgdesc = Antsy wallpaper collection
 	pkgver = 0.4
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/jeffmhubbard/antsy-wallpaper/
 	arch = any
 	license = MIT

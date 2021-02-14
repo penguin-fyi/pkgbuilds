@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=antsy-gtk-theme
 pkgver=0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Antsy GTK2/3 theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/antsy-gtk-theme"

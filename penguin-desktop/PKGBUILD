@@ -5,7 +5,7 @@ pkgname=(
     'penguin-desktop-base'
 )
 pkgver=3
-pkgrel=1
+pkgrel=2
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"

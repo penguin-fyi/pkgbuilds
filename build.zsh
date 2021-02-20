@@ -1,88 +1,63 @@
 #!/usr/bin/env zsh
+
 # penguin build script
 
-# The pacman.conf file used inside the container
-#pacman_cfg="$(pwd)/pacman-chroot.conf"
-#makepkg_cfg="$(pwd)/makepkg-chroot.conf"
-# 
-# The local repo name and path
+# put these options in ./BUILD_VARS and uncomment as needed
 #out_db="custom"
 #out_dir="$HOME/Packages"
-# 
-# Publish repo on remote server?
+#build_cfg="$(pwd)/pacman-chroot.conf"
+#build_lists=('packages-aur' 'packages-core' 'packages-custom')
+#gpg_key="<key>
 #publish=false
-# 
-# Remote server SSH credentials (only key auth supported)
 #ssh_user="username"
 #ssh_host="example.com"
-#
-# Path to repo on remote host
 #remote_dir="/path/to/www/"
 
 set -e
 
-# Load BUILD_VARS or else
-. $(pwd)/BUILD_VARS || exit 1
+# load BUILD_VARS or else
+. $(pwd)/BUILD_VARS \
+  || { echo "BUILD_VARS not found!"; exit 1 }
 
-function main() {
-  local complete=false
+# check for PKGBUILD, git pull, updpkgsums, and SRCINFO
+function prepare() {
+  local pkg=$1
 
-  if test -z $@
-  then
-    build_all && complete=true
-  elif test -d $1
-  then
-    build_single $1 && complete=true
-  else
-    usage && exit 1
-  fi
+  echo "Preparing '$pkg'..."
 
-  if [[ $complete == true ]] && [[ $publish == true ]]
-  then
-    cd $out_dir || return 1
-    _push_to_repo && _sync_remote
-  fi
-}
+  cd $pkg || return 1
 
-function build_single() {
-  local pkgdir=$1
+  test -f PKGBUILD \
+    || { echo "PKGBUILD not found! Aborting!"; return 1 }
 
-  echo "Building package: ${pkgdir:t}"
-  confirm || exit 1
+  test -f .git \
+    && { echo "Updating PKGBUILD..."; git pull }
 
-  cd $pkgdir || { echo "Invalid path: $pkgdir"; exit 1 }
-  build_package
+  updpkgsums \
+    || { echo "Failed to update checksums! Aborting!"; return 1 }
+
+  makepkg --printsrcinfo >! .SRCINFO \
+    || { echo "Failed to update .SRCINFO! Aborting!"; return 1 }
 
   cd .. || return 1
+
+  return
 }
 
-function build_all() {
-  local pkg pkgdir
+# build single package
+function build_package() {
+  local pkg=$1
 
-  echo "Building all packages!"
+  echo "Building package: ${pkg:t}"
   confirm || exit 1
 
-  for pkg in */PKGBUILD
-  do
-    pkgdir=${pkg:h}
-    echo "Building package: ${pkgdir:t}"
-    cd $pkgdir || { echo "Invalid path: $pkgdir"; exit 1 }
-    build_package
+  # prep pkg
+  prepare $pkg
 
-    cd .. || return 1
-  done
-}
+  cd $pkg || return 1
 
-function build_package() {
-
-  is_pkgbuild || { echo "PKGBUILD not found! Aborting!"; return 1 }
-
-  is_submodule && { echo "Submodule found! Updating!"; update_submodule }
-
-  update_pkgsums || { echo "Failed to update checksums! Aborting!"; return 1 }
-
-  update_srcinfo || { echo "Failed to update .SRCINFO! Aborting!"; return 1 }
-
+  # build
+  GPGKEY=$gpg_key \
   aur build \
     -d $out_db \
     --root=$out_dir \
@@ -91,6 +66,8 @@ function build_package() {
     --temp \
     --gpg-sign \
     --force \
+    --namcap \
+    --checkpkg \
     --margs \
       --noconfirm \
       --syncdeps \
@@ -98,44 +75,139 @@ function build_package() {
       --verify \
       --clean \
       --log \
-    || { echo "Failed to build '${$(pwd):t}'! Aborting!"; exit 1 }
+    || { echo "Failed to build '${pkg:t}'! Aborting!"; exit 1 }
+
+  cd .. || return 1
+  complete=true
 }
 
-function is_submodule() { test -f .git || return 1 }
+# build from list of packages
+function build_list() {
+  local pkglist=$1
+  local pkg
 
-function update_submodule() { git submodule update --init --recursive || return 1 }
+  echo "Building package list: ${pkglist:t}"
+  cat $pkglist
+  confirm || exit 1
 
-function is_pkgbuild() { test -f PKGBUILD || return 1 }
+  # prep pkgs in list
+  while read pkg
+  do
+    prepare $pkg
+  done < $pkglist
 
-function update_pkgsums() { updpkgsums || return 1 }
+  # build list
+  GPGKEY=$gpg_key \
+  aur build \
+    --arg-file=$pkglist \
+    --database $out_db \
+    --root=$out_dir \
+    --pacman-conf $pacman_cfg \
+    --chroot \
+    --temp \
+    --gpg-sign \
+    --force \
+    --namcap \
+    --checkpkg \
+    --margs \
+      --noconfirm \
+      --syncdeps \
+      --rmdeps \
+      --verify \
+      --clean \
+      --log \
+    || { echo "Failed to build! Aborting!"; exit 1 }
 
-function update_srcinfo() { makepkg --printsrcinfo >! .SRCINFO || return 1 }
+  complete=true
+}
 
-function _push_to_repo() {
+# build from array of package lists
+function build_all () {
+  local list
+
+  echo "Building package lists: $build_lists"
+  for list in $build_lists
+  do
+    test -f $list.txt || { echo "could not locate $list.txt!"; return 1 }
+    build_list $list.txt
+  done
+
+  return
+}
+
+function push() {
   local message="Build $(date)"
-  git add . || return 1
-  git commit -m $message || return 2
-  git push || return 3
+  git add .
+  git commit -m $message
+  git push
 }
 
-function _sync_remote() {
+function sync() {
   ssh -t $ssh_user@$ssh_host \
     "cd $remote_dir; sudo git pull" \
     || { echo "Failed to sync remote repo!"; exit 1 }
 }
 
 function confirm() {
-  vared -cp "Confirm (y/n)? " ans
+  vared -cp "Confirm (y/N)? " ans
   [[ "$ans" =~ ^[Yy]$ ]] || return 1
 }
 
 function usage() {
-  echo "Usage: build.zsh [<PATH>]"
+  echo "Usage: ${ZSH_ARGZERO:t} [-o <PATH>|-l <PATH>|-h]"
+  echo
+  echo "arguments: (one required)"
+  echo "  -p, --pkg  <DIR>      build single package"
+  echo "  -l, --list <FILE>     list of packages to build"
+  echo "  -h, --help            show this help message and quit"
+  echo
 }
 
-main $@
 
-echo "Done"
+local complete=false
+
+# need args
+(( $# )) \
+  || { echo "need arguments!"; usage; exit 1 }
+
+# parse arguments
+for arg in $@
+do
+  case $arg in
+    -h | --help)
+      usage
+      exit 0;;
+    -p | --pkg)
+      test -d $2 \
+        || { echo "invalid path: $2"; exit 1 }
+      build_package $2
+      break;;
+    -l | --list)
+      test -f $2 \
+        || { echo "invalid file: $2"; exit 1 }
+      build_list $2
+      break;;
+    -a | --all)
+      (( ${+build_lists} )) \
+        || { echo "'build_lists' not defined!"; exit 1 }
+      build_all
+      break;;
+    * | ?)
+      echo "unknown argument: $1"
+      usage
+      exit 1;;
+  esac
+done
+
+# publish packages
+if [[ $complete == true ]] && [[ $publish == true ]]
+then
+  echo "Publishing builds..."
+  cd $out_dir || return 1
+  push || return 1
+  sync || return 1
+fi
+
 exit 0
 
-# vim: ft=zsh ts=2 sw=0 et:
+# vim: ft=zsh ts=2 sw=2 et ai:

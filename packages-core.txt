@@ -1,0 +1,6 @@
+penguin-base
+penguin-desktop-dotfiles
+penguin-desktop-extras
+penguin-desktop-themes
+penguin-desktop
+penguin-dev-tools

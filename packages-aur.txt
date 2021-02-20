@@ -1,0 +1,14 @@
+aurutils
+awesome-freedesktop-git
+awesome-git
+cava
+gcalcli
+gitea-tea
+luacheck
+nerd-fonts-hack
+oomox
+qt5-styleplugins
+resvg-cairo
+shellcheck-bin
+tuir
+unclutter-xfixes-git

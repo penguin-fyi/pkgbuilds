@@ -1,0 +1,7 @@
+antsy-gtk-theme
+antsy-icon-theme
+antsy-wallpaper
+blackout-gtk-theme
+mpnotd-zsh
+termina-gtk-theme
+walsh

@@ -6,6 +6,7 @@ gcalcli
 gitea-tea
 luacheck
 nerd-fonts-hack
+nerd-fonts-source-code-pro
 oomox
 qt5-styleplugins
 resvg-cairo

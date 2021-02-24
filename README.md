@@ -9,12 +9,17 @@ git clone https://git.linuxit.us/penguin/pkgbuilds
 cd pkgbuilds
 
 # edit options (required)
-head -20 build.zsh >! BUILD_VARS
+head -24 build.zsh | tail -n 20 >! BUILD_VARS
 vim BUILD_VARS
 
-# build everything
-./build.zsh
+# build single package
+./build.zsh -p <dir>
 
-# or to build single package
-./build.zsh <path>
+# build from list
+./build.zsh -l <file>
+
+# build a set of lists
+# set $build_lists in BUILD_VARS
+./build.zsh --all
+
 ```

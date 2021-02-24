@@ -3,14 +3,23 @@
 # penguin build script
 
 # put these options in ./BUILD_VARS and uncomment as needed
+# repo name (required)
 #out_db="custom"
+# repo path (required)
 #out_dir="$HOME/Packages"
+# pacman conf (required)
 #build_cfg="$(pwd)/pacman-chroot.conf"
+# build lists (required for --all, order matters)
 #build_lists=('packages-aur' 'packages-core' 'packages-custom')
+# GPG key to sign packages (required)
 #gpg_key="<key>
+# push and sync packages (required)
 #publish=false
+# webhost user (optional)
 #ssh_user="username"
+# webhost server (optional)
 #ssh_host="example.com"
+# webhost path (optional)
 #remote_dir="/path/to/www/"
 
 set -e
@@ -135,6 +144,7 @@ function build_all () {
   return
 }
 
+# push repo to git LFS storage
 function push() {
   local message="Build $(date)"
   git add .
@@ -142,17 +152,20 @@ function push() {
   git push
 }
 
+# sync remote repo with git storage
 function sync() {
   ssh -t $ssh_user@$ssh_host \
     "cd $remote_dir; sudo git pull" \
     || { echo "Failed to sync remote repo!"; exit 1 }
 }
 
+# yes or no dialog
 function confirm() {
   vared -cp "Confirm (y/N)? " ans
   [[ "$ans" =~ ^[Yy]$ ]] || return 1
 }
 
+# help
 function usage() {
   echo "Usage: ${ZSH_ARGZERO:t} [-o <PATH>|-l <PATH>|-h]"
   echo
@@ -162,7 +175,6 @@ function usage() {
   echo "  -h, --help            show this help message and quit"
   echo
 }
-
 
 local complete=false
 

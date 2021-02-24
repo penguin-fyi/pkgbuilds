@@ -40,3 +40,6 @@
 [submodule "gitea-tea"]
 	path = gitea-tea
 	url = https://aur.archlinux.org/gitea-tea
+[submodule "nerd-fonts-source-code-pro"]
+	path = nerd-fonts-source-code-pro
+	url = https://aur.archlinux.org/nerd-fonts-source-code-pro

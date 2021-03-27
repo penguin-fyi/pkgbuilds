@@ -1,0 +1,26 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname='penguin-laptop-tools'
+pkgver=1
+pkgrel=1
+pkgdesc="Extra tools for laptops"
+arch=('any')
+url="https://penguin.fyi/"
+license=('MIT')
+depends=(tlp cbatticon)
+source=(
+    'autostart-batteryicon'
+    'LICENSE'
+    'README.md'
+)
+
+package(){
+
+    install -Dm0644 autostart-batteryicon "$pkgdir"/etc/xdg/autostart/battery-icon.desktop
+
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/laptop-tools/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/laptop-tools/LICENSE
+}
+
+md5sums=('f4db958c6aab0642dc6ffda1e0699897'
+         'a55d1384569349075b5a6a5c61af5c17'
+         '8d64301d25b9c93e6934638b38149a80')

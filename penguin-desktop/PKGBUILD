@@ -5,7 +5,7 @@ pkgname=(
     'penguin-desktop-base'
 )
 pkgver=3
-pkgrel=2
+pkgrel=3
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -58,7 +58,7 @@ package_penguin-desktop-base(){
              pulseaudio-alsa qt5ct qt5-styleplugins
              qutebrowser ranger rofi tuir unclutter-xfixes-git
              urlscan weechat xarchiver xclip xdg-user-dirs
-             xdg-utils xfce4-power-manager xorg-server
+             xdg-utils xorg-server
              xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
              xorg-xdpyinfo xterm zathura zathura-pdf-mupdf
              bash-completion zsh-autosuggestions

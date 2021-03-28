@@ -72,7 +72,6 @@ Base desktop packages
 * xclip
 * xdg-user-dirs
 * xdg-utils
-* xfce4-power-manager
 * xorg-server
 * xorg-xset
 * xorg-xsetroot

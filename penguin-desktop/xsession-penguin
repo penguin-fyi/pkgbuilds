@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Penguin Desktop
+Comment=Custom configuration for AwesomeWM
+TryExec=awesome
+Exec=awesome -c /usr/share/penguin/desktop/awesome/rc.lua
+Type=Application

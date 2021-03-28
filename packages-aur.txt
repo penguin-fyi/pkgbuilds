@@ -1,5 +1,4 @@
 aurutils
-awesome-freedesktop-git
 awesome-git
 cava
 gcalcli

@@ -1,6 +1,8 @@
 penguin-base
+penguin-desktop-awesome
 penguin-desktop-dotfiles
 penguin-desktop-extras
 penguin-desktop-themes
 penguin-desktop
 penguin-dev-tools
+penguin-laptop-tools

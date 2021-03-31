@@ -4,7 +4,7 @@ pkgname=(
     'penguin-desktop'
     'penguin-desktop-base'
 )
-pkgver=4
+pkgver=5
 pkgrel=1
 pkgdesc="The Penguin Project"
 arch=('any')
@@ -18,7 +18,7 @@ source=(
     'autostart-polkit'
     'autostart-unclutter'
     'autostart-user-dirs'
-    'xsession-penguin'
+    'xsession-awesome-default'
     'patch-lightdm-gtk-greeter.conf'
     'LICENSE'
     'penguin-desktop.install'
@@ -26,7 +26,7 @@ source=(
 )
 
 package_penguin-desktop(){
-    pkgdesc="The complete Penguin Desktop"
+    pkgdesc="The Penguin Desktop"
     depends=(penguin-desktop-base
              penguin-desktop-awesome
              penguin-desktop-dotfiles
@@ -41,7 +41,7 @@ package_penguin-desktop(){
     install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
     install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
 
-    install -Dm0644 xsession-penguin "$pkgdir"/usr/share/xsessions/penguin.desktop
+    install -Dm0644 xsession-awesome-default "$pkgdir"/usr/share/xsessions/awesome-default.desktop
 
     install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
 
@@ -74,7 +74,7 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '6529d3ddd2c2a6dff2845c57807ff058'
          '274e6a795ae6d5c77f7d4f61707cb113'
          '1797448eebfde434e6a796f5146342fe'
-         '6538a2d41add454b236232dfc2334767'
+         'aaec6ee961bd08d3ec9b4f36630e0d3c'
          '2432e56f71823c95c6711c1634ab8005'
          'a55d1384569349075b5a6a5c61af5c17'
          '7c47a6806061ccae3f5484973a00a0c6'

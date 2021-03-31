@@ -1,0 +1,14 @@
+pkgbase = penguin-desktop-awesome
+	pkgdesc = Penguin Desktop config
+	pkgver = r71.da29eea
+	pkgrel = 2
+	url = https://penguin.fyi
+	arch = any
+	license = MIT
+	makedepends = git
+	depends = penguin-desktop-base
+	source = git+https://git.linuxit.us/spider/awesome.git
+	md5sums = SKIP
+
+pkgname = penguin-desktop-awesome
+

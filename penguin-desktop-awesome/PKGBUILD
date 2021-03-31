@@ -2,8 +2,8 @@
 pkgname=penguin-desktop-awesome
 _pkgname=awesome
 pkgver=r71.da29eea
-pkgrel=1
-pkgdesc="Penguin Desktop AwesomeWM config"
+pkgrel=2
+pkgdesc="Penguin Desktop config"
 arch=('any')
 url="https://penguin.fyi"
 license=('MIT')
@@ -19,9 +19,10 @@ pkgver() {
 
 package() {
 	cd "$srcdir/$_pkgname"
+	rm -rf .git
 
-	mkdir -p "$pkgdir"/usr/share/penguin/desktop/awesome
-	cp -ar . "$pkgdir"/usr/share/penguin/desktop/awesome
+	mkdir -p "$pkgdir"/etc/skel/.config/awesome
+	cp -ar . "$pkgdir"/etc/skel/.config/awesome
 
 	#install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/$_pkgname/README.md
 	#install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/$_pkgname/LICENSE

@@ -1,18 +1,25 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=antsy-gtk-theme
-pkgver=0.1
-pkgrel=3
+_pkgsrc=antsy-themix-preset
+pkgver=0.2
+pkgrel=1
 pkgdesc="Antsy GTK2/3 theme"
 arch=('any')
-url="https://github.com/jeffmhubbard/antsy-gtk-theme"
-license=('MIT')
+url="https://git.linuxit.us/penguin"
+license=('GPL')
 depends=('gtk-engine-murrine')
-source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
-sha256sums=('3035356af8a09b3eba4cc7ddd9c694e3a6bf90c18215cf8c005eab55f48899ec')
+makedepends=('themix-gui-git' 'themix-theme-oomox-git')
+source=("https://git.linuxit.us/penguin/$_pkgsrc/archive/$pkgver.tar.gz")
+md5sums=('aafeaac5e78c735656c09230ae0bad22')
 
 package() {
-	mkdir -p $pkgdir/usr/share/themes
-	cp -r "$srcdir/$pkgname-$pkgver/Antsy" "$pkgdir/usr/share/themes/Antsy"
-	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/Antsy"
-	cp "$srcdir/$pkgname-$pkgver/LICENSE.md" "$pkgdir/usr/share/themes/Antsy"
+	mkdir -p "$pkgdir/usr/share/themes"
+	/opt/oomox/plugins/theme_oomox/change_color.sh \
+		--output Antsy \
+		--target-dir "$pkgdir/usr/share/themes" \
+		--hidpi true \
+		--make-opts all \
+		"$srcdir/$_pkgsrc/antsy.preset"
+	cp "$srcdir/$_pkgsrc/README.md" "$pkgdir/usr/share/themes/Antsy/README.md"
+	cp "$srcdir/$_pkgsrc/LICENSE" "$pkgdir/usr/share/themes/Antsy/LICENSE"
 }

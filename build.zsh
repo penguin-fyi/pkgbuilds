@@ -7,6 +7,8 @@
 #out_db="custom"
 # repo path (required)
 #out_dir="$HOME/Packages"
+# repo architecture (required)
+#out_dir="x86_64"
 # pacman conf (required)
 #build_cfg="$(pwd)/pacman-chroot.conf"
 # build lists (required for --all, order matters)
@@ -69,7 +71,7 @@ function build_package() {
   GPGKEY=$gpg_key \
   aur build \
     -d $out_db \
-    --root=$out_dir \
+    --root=$out_dir/$out_arch \
     --pacman-conf $pacman_cfg \
     --chroot \
     --temp \
@@ -144,18 +146,11 @@ function build_all () {
   return
 }
 
-# push repo to git LFS storage
-function push() {
-  local message="Build $(date)"
-  git add .
-  git commit -m $message
-  git push
-}
-
-# sync remote repo with git storage
-function sync() {
-  ssh -t $ssh_user@$ssh_host \
-    "cd $remote_dir; sudo git pull" \
+# publish repo
+function upload() {
+  rsync -auv \
+    $out_dir/ \
+    $ssh_user@$ssh_host:$remote_dir \
     || { echo "Failed to sync remote repo!"; exit 1 }
 }
 
@@ -216,9 +211,10 @@ if [[ $complete == true ]] && [[ $publish == true ]]
 then
   echo "Publishing builds..."
   cd $out_dir || return 1
-  push || return 1
-  sync || return 1
+  upload || return 1
 fi
+
+echo "Done"
 
 exit 0
 

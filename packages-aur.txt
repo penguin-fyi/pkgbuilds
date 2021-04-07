@@ -6,9 +6,8 @@ gitea-tea
 luacheck
 nerd-fonts-hack
 nerd-fonts-source-code-pro
-oomox
 qt5-styleplugins
-resvg-cairo
 shellcheck-bin
 tuir
 unclutter-xfixes-git
+rxvt-unicode-cvs-patched-wideglyphs

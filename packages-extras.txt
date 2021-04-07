@@ -1,0 +1,6 @@
+blackout-gtk-theme
+lain-git
+awesome-freedesktop-git
+termina-gtk-theme
+mpnotd-zsh
+walsh

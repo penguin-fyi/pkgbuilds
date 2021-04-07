@@ -112,7 +112,7 @@ function build_list() {
   aur build \
     --arg-file=$pkglist \
     --database $out_db \
-    --root=$out_dir \
+    --root=$out_dir/$out_arch \
     --pacman-conf $pacman_cfg \
     --chroot \
     --temp \

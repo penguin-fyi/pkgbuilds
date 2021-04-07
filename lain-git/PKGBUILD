@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 _pkgname=lain
 pkgname=${_pkgname}-git
-pkgver=r1755.da418f2
+pkgver=r1759.5882000
 pkgrel=1
 pkgdesc="Layouts, asynchronous widgets and utilities for Awesome WM"
 arch=("any")

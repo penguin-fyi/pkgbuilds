@@ -2,13 +2,13 @@
 pkgname=antsy-gtk-theme
 _pkgsrc=antsy-themix-preset
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Antsy GTK2/3 theme"
 arch=('any')
 url="https://git.linuxit.us/penguin"
 license=('GPL')
 depends=('gtk-engine-murrine')
-makedepends=('themix-gui-git' 'themix-theme-oomox-git')
+makedepends=('themix-full-git' 'themix-theme-oomox-git')
 source=("https://git.linuxit.us/penguin/$_pkgsrc/archive/$pkgver.tar.gz")
 md5sums=('aafeaac5e78c735656c09230ae0bad22')
 

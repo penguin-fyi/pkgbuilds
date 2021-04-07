@@ -1,0 +1,18 @@
+pkgbase = penguin-laptop-tools
+	pkgdesc = Extra tools for laptops
+	pkgver = 1
+	pkgrel = 1
+	url = https://penguin.fyi/
+	arch = any
+	license = MIT
+	depends = tlp
+	depends = cbatticon
+	source = autostart-batteryicon
+	source = LICENSE
+	source = README.md
+	md5sums = f4db958c6aab0642dc6ffda1e0699897
+	md5sums = a55d1384569349075b5a6a5c61af5c17
+	md5sums = 8d64301d25b9c93e6934638b38149a80
+
+pkgname = penguin-laptop-tools
+

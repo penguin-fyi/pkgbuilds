@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=true
+Type=Application
+Name=Terminal UI for Reddit
+GenericName=tuir
+Comment=A text-based interface (TUI) to view and interact with Reddit from your terminal
+Exec=tuir
+Icon=internet-feed-reader

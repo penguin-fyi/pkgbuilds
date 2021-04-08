@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-extras'
 pkgver=3
-pkgrel=1
+pkgrel=2
 pkgdesc="Extra scripts and tools for Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
@@ -10,7 +10,6 @@ depends=(mpnotd-zsh walsh rofi-pass rofi-calc clipmenu maim)
 replaces=('penguin-desktop-scripts')
 source=(
     'application-cava'
-    'application-htop'
     'application-ncmpcpp'
     'application-neomutt'
     'application-newsboat'
@@ -26,7 +25,6 @@ source=(
 package(){
 
     install -Dm0755 application-cava "$pkgdir"/usr/share/applications/cava.desktop
-    install -Dm0755 application-htop "$pkgdir"/usr/share/applications/htop.desktop
     install -Dm0755 application-ncmpcpp "$pkgdir"/usr/share/applications/ncmpcpp.desktop
     install -Dm0755 application-neomutt "$pkgdir"/usr/share/applications/neomutt.desktop
     install -Dm0755 application-newsboat "$pkgdir"/usr/share/applications/newsboat.desktop
@@ -43,7 +41,6 @@ package(){
 }
 
 md5sums=('9694b2c25e6725add2b9d4dad5dd5176'
-         '72293fc8ff20a1aa65eca500f5c48479'
          '02e7e8f09c76abdd85a676e0fa83dca4'
          '813e02f7c32ac4565a8933fa8d57ced4'
          '8ec57465a92d93f1ea196a46019e25e8'

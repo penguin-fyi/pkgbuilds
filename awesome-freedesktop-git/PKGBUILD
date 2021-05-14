@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 _pkgname=awesome-freedesktop
 pkgname=${_pkgname}-git
-pkgver=r109.b77dee0
+pkgver=r110.e4ac597
 pkgrel=1
 pkgdesc="Freedesktop.org compliant desktop entries and menu for Awesome WM"
 arch=("any")

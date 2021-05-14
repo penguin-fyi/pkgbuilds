@@ -17,6 +17,8 @@ Provides the complete Penguin Desktop
 * picom
 * polkit-gnome
 * unclutter
+* urxvtd
+* volumeicon
 * xdg-user-dirs
 
 
@@ -26,9 +28,7 @@ Base desktop packages
 
 ### Depends
 * penguin-base ***!***
-* alacritty
 * awesome-git ***!!***
-* awesome-freedesktop-git ***!!***
 * blueman
 * fontconfig
 * dex
@@ -48,11 +48,9 @@ Base desktop packages
 * mpv
 * ncmpcpp
 * neomutt
-* netsurf
 * network-manager-applet
 * newsboat
 * numlockx
-* pasystray
 * pavucontrol
 * pcmanfm-gtk3
 * picom
@@ -63,10 +61,13 @@ Base desktop packages
 * qt5-styleplugins ***!!***
 * qutebrowser
 * ranger
+* rxvt-unicode-patched ***!!***
 * rofi
+* rofi-pass
 * tuir ***!!***
 * unclutter-xfixes-git ***!!***
 * urlscan
+* volumeicon
 * weechat
 * xarchiver
 * xclip
@@ -91,5 +92,6 @@ Base desktop packages
 * picom
 * polkit-gnome
 * unclutter
+* volumeicon
 * xdg-user-dirs
 

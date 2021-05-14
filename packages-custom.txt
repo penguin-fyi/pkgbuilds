@@ -5,5 +5,4 @@ blackout-gtk-theme
 mpnotd-zsh
 termina-gtk-theme
 walsh
-awesome-freedesktop-git
-lain-git
+rxvt-unicode-patched

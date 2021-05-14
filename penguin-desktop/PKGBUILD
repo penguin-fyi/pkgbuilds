@@ -4,7 +4,7 @@ pkgname=(
     'penguin-desktop'
     'penguin-desktop-base'
 )
-pkgver=5
+pkgver=6
 pkgrel=1
 pkgdesc="The Penguin Project"
 arch=('any')
@@ -17,7 +17,9 @@ source=(
     'autostart-picom'
     'autostart-polkit'
     'autostart-unclutter'
+    'autostart-urxvtd'
     'autostart-user-dirs'
+    'autostart-volumeicon'
     'xsession-awesome-default'
     'patch-lightdm-gtk-greeter.conf'
     'LICENSE'
@@ -39,30 +41,34 @@ package_penguin-desktop(){
     install -Dm0644 autostart-picom "$pkgdir"/etc/xdg/autostart/picom.desktop
     install -Dm0644 autostart-polkit "$pkgdir"/etc/xdg/autostart/polkit-gnome.desktop
     install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
+    install -Dm0644 autostart-urxvtd "$pkgdir"/etc/xdg/autostart/urxvtd.desktop
     install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
+    install -Dm0644 autostart-volumeicon "$pkgdir"/etc/xdg/autostart/volumeicon.desktop
 
     install -Dm0644 xsession-awesome-default "$pkgdir"/usr/share/xsessions/awesome-default.desktop
 
     install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
 
-    install -Dm0644 README.md "$pkgdir"/usr/share/penguin/desktop/README.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop/LICENSE
+    install -Dm0644 README.md "$pkgdir"/usr/share/$pkgname/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
 
 package_penguin-desktop-base(){
     pkgdesc="Penguin Desktop software"
-    depends=(alacritty awesome-git awesome-freedesktop-git
+    depends=(awesome-git
              blueman fontconfig dex feh ffmpeg gvfs htop
              imagemagick lightdm lightdm-gtk-greeter
              lightdm-gtk-greeter-settings light-locker
              lxappearance-gtk3 mailcap mpc mpd mpv ncmpcpp
-             neomutt netsurf network-manager-applet
-             newsboat numlockx pasystray pavucontrol
+             neomutt network-manager-applet
+             newsboat numlockx pavucontrol
              pcmanfm-gtk3 picom polkit-gnome pulseaudio
              pulseaudio-alsa qt5ct qt5-styleplugins
-             qutebrowser ranger rofi tuir unclutter-xfixes-git
-             urlscan weechat xarchiver xclip xdg-user-dirs
-             xdg-utils xorg-server
+             qutebrowser ranger rofi
+             rxvt-unicode-patched
+             tuir unclutter-xfixes-git
+             urlscan volumeicon weechat xarchiver xclip
+             xdg-user-dirs xdg-utils xorg-server
              xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
              xorg-xdpyinfo xterm zathura zathura-pdf-mupdf
              bash-completion zsh-autosuggestions
@@ -73,7 +79,9 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '3f9e6a050a80a07a29494117dce2d3de'
          '6529d3ddd2c2a6dff2845c57807ff058'
          '274e6a795ae6d5c77f7d4f61707cb113'
+         '39d7493c98c638d880df1e409c7c9f74'
          '1797448eebfde434e6a796f5146342fe'
+         '55da7dd9ba4ce563cb113bc39c819250'
          'aaec6ee961bd08d3ec9b4f36630e0d3c'
          '2432e56f71823c95c6711c1634ab8005'
          'a55d1384569349075b5a6a5c61af5c17'

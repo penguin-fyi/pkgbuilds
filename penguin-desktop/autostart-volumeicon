@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=volumeicon
+Comment=Lightweight volume control for the systray
+Exec=volumeicon
+Icon=multimedia-volume-control
+Terminal=false
+Type=Application
+StartupNotify=false

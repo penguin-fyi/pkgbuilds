@@ -5,7 +5,7 @@ pkgname=(
     'penguin-desktop-base'
 )
 pkgver=6
-pkgrel=1
+pkgrel=2
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -65,7 +65,7 @@ package_penguin-desktop-base(){
              pcmanfm-gtk3 picom polkit-gnome pulseaudio
              pulseaudio-alsa qt5ct qt5-styleplugins
              qutebrowser ranger rofi
-             rxvt-unicode-patched
+             rxvt-unicode-vcs-patched
              tuir unclutter-xfixes-git
              urlscan volumeicon weechat xarchiver xclip
              xdg-user-dirs xdg-utils xorg-server
@@ -86,4 +86,4 @@ md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '2432e56f71823c95c6711c1634ab8005'
          'a55d1384569349075b5a6a5c61af5c17'
          '7c47a6806061ccae3f5484973a00a0c6'
-         '9ae0103206a5a25a28549b95b8c2f897')
+         '296e993d5e710bd585f450a03a65b306')

@@ -1,0 +1,33 @@
+pkgbase = rxvt-unicode-vcs-patched
+	pkgdesc = Unicode enabled rxvt-clone terminal emulator (urxvt) with fixed font spacing and wide glyphs patch (cvs version)
+	pkgver = 20210514
+	pkgrel = 3
+	url = http://software.schmorp.de/pkg/rxvt-unicode.html
+	arch = x86_64
+	arch = aarch64
+	license = GPL
+	makedepends = cvs
+	depends = libxft
+	depends = libxt
+	depends = gdk-pixbuf2
+	depends = perl
+	depends = startup-notification
+	depends = rxvt-unicode-terminfo
+	optdepends = gtk2-perl: to use the urxvt-tabbed
+	provides = rxvt-unicode
+	conflicts = rxvt-unicode
+	source = urxvt.desktop
+	source = urxvtc.desktop
+	source = urxvt-tabbed.desktop
+	source = font-width-fix.patch
+	source = line-spacing-fix.patch
+	source = enable-wide-glyphs.patch
+	sha1sums = b5a4507f85ebb7bac589db2e07d9bc40106720d9
+	sha1sums = 62c4ffecfce6967def394dd4d418b68652372ea2
+	sha1sums = cd204d608d114d39c80331efe0af0231ad6b7e18
+	sha1sums = 01ee8f212add79a158dcd4ed78d0ea1324bdc59b
+	sha1sums = b7fde1c46af45e831828738874f14b092b1e795f
+	sha1sums = 5b37be933d9b6cc1f7e3129a69c338d232bf7808
+
+pkgname = rxvt-unicode-vcs-patched
+

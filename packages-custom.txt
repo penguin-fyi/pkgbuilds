@@ -5,4 +5,4 @@ blackout-gtk-theme
 mpnotd-zsh
 termina-gtk-theme
 walsh
-rxvt-unicode-patched
+rxvt-unicode-vcs-patched

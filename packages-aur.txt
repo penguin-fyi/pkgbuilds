@@ -5,9 +5,9 @@ gcalcli
 gitea-tea
 luacheck
 nerd-fonts-hack
-nerd-fonts-source-code-pro
+picom-git
+python-kitchen
 qt5-styleplugins
 shellcheck-bin
 tuir
 unclutter-xfixes-git
-rxvt-unicode-cvs-patched-wideglyphs

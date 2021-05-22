@@ -6,5 +6,4 @@ aweseme-lain-vcs
 blackout-gtk-theme
 mpnotd-zsh
 termina-gtk-theme
-walsh
 rxvt-unicode-vcs-patched

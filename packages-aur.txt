@@ -5,7 +5,7 @@ gcalcli
 gitea-tea
 luacheck
 nerd-fonts-hack
-picom-git
+picom-ibhagwan-git
 python-kitchen
 qt5-styleplugins
 shellcheck-bin

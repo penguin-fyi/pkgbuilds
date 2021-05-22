@@ -8,17 +8,11 @@ Provides extra tools and custom scripts for Penguin Desktop
 * clipmenu
 * rofi-calc
 * rofi-pass
-* walsh ***!***
 
 ### Opt Depends
 * cava ***!!***
-* aurutils ***!!***
-
-### Autostart
-* update-notify
 
 ### Scripts
-* usr/bin/update-notify
 * usr/bin/screen-capture
 * usr/bin/touchpad-toggle
 

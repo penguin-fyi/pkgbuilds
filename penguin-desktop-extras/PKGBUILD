@@ -6,7 +6,7 @@ pkgdesc="Extra scripts and tools for Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(mpnotd-zsh walsh rofi-pass rofi-calc clipmenu maim)
+depends=(mpnotd-zsh rofi-pass rofi-calc clipmenu maim)
 replaces=('penguin-desktop-scripts')
 source=(
     'application-cava'
@@ -14,12 +14,10 @@ source=(
     'application-neomutt'
     'application-newsboat'
     'application-tuir'
-    'autostart-update-notify'
     'LICENSE'
     'README.md'
     'script-screen-capture'
     'script-touchpad-toggle'
-    'script-update-notify'
 )
 
 package(){
@@ -30,11 +28,8 @@ package(){
     install -Dm0755 application-newsboat "$pkgdir"/usr/share/applications/newsboat.desktop
     install -Dm0755 application-tuir "$pkgdir"/usr/share/applications/tuir.desktop
 
-    install -Dm0644 autostart-update-notify "$pkgdir"/etc/xdg/autostart/update-notify.desktop
-
     install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture
     install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
-    install -Dm0755 script-update-notify "$pkgdir"/usr/bin/update-notify
 
     install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-extras/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-extras/LICENSE

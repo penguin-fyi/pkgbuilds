@@ -1,8 +1,8 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop-dotfiles
 _pkgname=desktop-dotfiles
-pkgver=r8.814cc75
-pkgrel=2
+pkgver=r11.35b642e
+pkgrel=1
 pkgdesc="Penguin Desktop custom config files"
 arch=('any')
 url="https://penguin.fyi"

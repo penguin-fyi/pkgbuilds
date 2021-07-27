@@ -1,16 +1,14 @@
 pkgbase = awesome-lain-vcs
 	pkgdesc = Layouts, asynchronous widgets and utilities for Awesome WM
-	pkgver = r1759.5882000
-	pkgrel = 1
+	pkgver = r1760.16e2e73
+	pkgrel = 2
 	url = https://github.com/lcpz/lain
 	arch = any
 	license = GPL2
 	makedepends = git
-	depends = awesome
 	provides = lain
 	conflicts = lain
 	source = lain::git+https://github.com/lcpz/lain.git
 	sha256sums = SKIP
 
 pkgname = awesome-lain-vcs
-

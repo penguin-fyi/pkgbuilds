@@ -7,5 +7,5 @@ Comment=A X compositor
 Categories=Utility;
 Keywords=compositor;composite manager;window effects;transparency;opacity;
 TryExec=picom
-Exec=picom
+Exec=picom --experimental-backends -b
 # Thanks to quequotion for providing this file!

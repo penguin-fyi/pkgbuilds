@@ -1,13 +1,12 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 _pkgname=lain
 pkgname=awesome-${_pkgname}-vcs
-pkgver=r1759.5882000
+pkgver=r1760.16e2e73
 pkgrel=2
 pkgdesc="Layouts, asynchronous widgets and utilities for Awesome WM"
 arch=("any")
 url="https://github.com/lcpz/$_pkgname"
 license=("GPL2")
-depends=("awesome")
 makedepends=('git')
 provides=("$_pkgname")
 conflicts=("$_pkgname")

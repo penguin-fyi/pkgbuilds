@@ -1,6 +1,6 @@
 pkgbase = rxvt-unicode-vcs-patched
 	pkgdesc = Unicode enabled rxvt-clone terminal emulator (urxvt) (cvs+patches)
-	pkgver = 20170412
+	pkgver = 20210528
 	pkgrel = 1
 	url = http://software.schmorp.de/pkg/rxvt-unicode.html
 	arch = x86_64

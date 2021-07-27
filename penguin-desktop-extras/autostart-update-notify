@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Penguin Update Notifier
-Type=Application
-Exec=update-notify
-StartupNotify=false

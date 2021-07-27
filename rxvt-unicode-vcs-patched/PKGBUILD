@@ -9,7 +9,7 @@
 
 _pkgname=rxvt-unicode
 pkgname=rxvt-unicode-vcs-patched
-pkgver=20210521
+pkgver=20210528
 pkgrel=1
 pkgdesc='Unicode enabled rxvt-clone terminal emulator (urxvt) (cvs+patches)'
 arch=('x86_64' 'aarch64')

@@ -1,13 +1,15 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-themes'
-pkgver=2
-pkgrel=2
+pkgver=3
+pkgrel=1
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
 depends=(antsy-gtk-theme antsy-icon-theme antsy-wallpaper
-         nerd-fonts-hack noto-fonts-emoji xcursor-neutral)
+         noto-fonts noto-fonts-emoji noto-fonts-extra
+         ttf-dejavu ttf-hack ttf-nerd-fonts-symbols
+         xcursor-neutral)
 source=(
     'LICENSE'
     'README.md'

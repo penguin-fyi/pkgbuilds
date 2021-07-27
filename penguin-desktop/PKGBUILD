@@ -5,7 +5,7 @@ pkgname=(
     'penguin-desktop-base'
 )
 pkgver=6
-pkgrel=2
+pkgrel=5
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -62,21 +62,21 @@ package_penguin-desktop-base(){
              lxappearance-gtk3 mailcap mpc mpd mpv ncmpcpp
              neomutt network-manager-applet
              newsboat numlockx pavucontrol
-             pcmanfm-gtk3 picom-ibhagwan-git polkit-gnome pulseaudio
+             pcmanfm-gtk3 picom-tryone-git polkit-gnome pulseaudio
              pulseaudio-alsa qt5ct qt5-styleplugins
-             qutebrowser ranger rofi
-             rxvt-unicode-vcs-patched
-             tuir unclutter-xfixes-git
-             urlscan volumeicon weechat xarchiver xclip
+             qutebrowser rofi rxvt-unicode-vcs-patched
+             tuir unclutter urlscan vifm
+             volumeicon weechat xarchiver xclip
              xdg-user-dirs xdg-utils xorg-server
              xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
              xorg-xdpyinfo xterm zathura zathura-pdf-mupdf
+             cups system-config-printer
              bash-completion zsh-autosuggestions
              zsh-completions zsh-syntax-highlighting)
 }
 md5sums=('46868ac0617a4fbdfc308cc884d1f037'
          '752af9301a1fea60bb20f6979d272861'
-         '3f9e6a050a80a07a29494117dce2d3de'
+         'e627b0ef256bee1fa79ebb5599288593'
          '6529d3ddd2c2a6dff2845c57807ff058'
          '274e6a795ae6d5c77f7d4f61707cb113'
          '39d7493c98c638d880df1e409c7c9f74'

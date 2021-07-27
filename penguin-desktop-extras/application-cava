@@ -2,7 +2,7 @@
 Type=Application
 Name=cava
 Comment=Console-based Audio Visualizer for ALSA
-Icon=sonic-visualizer
+Icon=sonic-visualiser
 Terminal=true
 Exec=cava
 Categories=ConsoleOnly;Multimedia

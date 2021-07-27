@@ -2,7 +2,6 @@ antsy-gtk-theme
 antsy-icon-theme
 antsy-wallpaper
 awesome-freedesktop-vcs
-aweseme-lain-vcs
 blackout-gtk-theme
 mpnotd-zsh
 termina-gtk-theme

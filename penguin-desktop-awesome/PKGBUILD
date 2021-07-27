@@ -1,9 +1,9 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop-awesome
 _pkgname=awesome
-pkgver=r2.f4eb2ee
+pkgver=r17.37dba93
 pkgrel=1
-pkgdesc="Penguin Desktop config"
+pkgdesc="Penguin Awesome Desktop"
 arch=('any')
 url="https://penguin.fyi"
 license=('MIT')
@@ -24,6 +24,6 @@ package() {
 	mkdir -p "$pkgdir"/etc/skel/.config/awesome
 	cp -ar . "$pkgdir"/etc/skel/.config/awesome
 
-	#install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/$_pkgname/README.md
-	#install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/$_pkgname/LICENSE
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/$_pkgname/README.md
+	#install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$_pkgname/LICENSE
 }

@@ -14,9 +14,7 @@ source=(
 )
 
 package(){
-
-    install -Dm0644 autostart-batteryicon "$pkgdir"/etc/xdg/autostart/battery-icon.desktop
-
+    install -Dm0644 autostart-batteryicon "$pkgdir"/etc/xdg/autostart/cbatticon.desktop
     install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/laptop-tools/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/laptop-tools/LICENSE
 }

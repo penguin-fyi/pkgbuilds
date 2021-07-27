@@ -4,10 +4,8 @@ cava
 gcalcli
 gitea-tea
 luacheck
-nerd-fonts-hack
-picom-ibhagwan-git
+picom-tryone-git
 python-kitchen
 qt5-styleplugins
 shellcheck-bin
 tuir
-unclutter-xfixes-git

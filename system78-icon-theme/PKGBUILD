@@ -1,0 +1,17 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=system78-icon-theme
+pkgver=0.1
+pkgrel=1
+pkgdesc="Penguin System78 icon theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/system78-icon-theme"
+license=('GPL')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
+sha256sums=('048cbd26edf197c98dca525629f5ccb72feb4631e9cba11ce58bf369f31c0bd2')
+
+package() {
+	mkdir -p $pkgdir/usr/share/icons
+	cp -r "$srcdir/$pkgname-$pkgver/System78" "$pkgdir/usr/share/icons/System78"
+	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/icons/System78"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/icons/System78"
+}

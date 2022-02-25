@@ -1,0 +1,11 @@
+pkgbase = mint-icon-theme
+	pkgdesc = Penguin Mint icon theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/mint-icon-theme
+	arch = any
+	license = GPL
+	source = https://github.com/jeffmhubbard/mint-icon-theme/archive/v0.1.tar.gz
+	sha256sums = 0c00cb49423deb920ba469957ffa5dcf8dc87e64701716b57dea56c6c1873ffb
+
+pkgname = mint-icon-theme

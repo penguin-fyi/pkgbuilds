@@ -6,7 +6,7 @@ pkgdesc="Extra tools for laptops"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(tlp cbatticon)
+depends=(tlp tlpui cbatticon)
 source=(
     'autostart-batteryicon'
     'LICENSE'
@@ -19,6 +19,6 @@ package(){
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/laptop-tools/LICENSE
 }
 
-md5sums=('f4db958c6aab0642dc6ffda1e0699897'
+md5sums=('96254d6d589149d870a59e4b6906c8d8'
          'a55d1384569349075b5a6a5c61af5c17'
          '8d64301d25b9c93e6934638b38149a80')

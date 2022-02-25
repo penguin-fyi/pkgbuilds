@@ -1,8 +1,10 @@
 [Desktop Entry]
+Version=1.0
+Encoding=UTF-8
 Name=volumeicon
 Comment=Lightweight volume control for the systray
-Exec=volumeicon
 Icon=multimedia-volume-control
-Terminal=false
 Type=Application
 StartupNotify=false
+Terminal=false
+Exec=volumeicon

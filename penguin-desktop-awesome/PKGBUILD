@@ -1,15 +1,15 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop-awesome
-_pkgname=awesome
-pkgver=r17.37dba93
+_pkgname=awesome-config
+pkgver=r1.d6a66eb
 pkgrel=1
-pkgdesc="Penguin Awesome Desktop"
+pkgdesc="Penguin Desktop (nGUI) AwesomeWM theme"
 arch=('any')
 url="https://penguin.fyi"
 license=('MIT')
-depends=('penguin-desktop-base')
+depends=('awesome-git')
 makedepends=('git')
-source=('git+https://git.linuxit.us/spider/awesome.git')
+source=('git+https://github.com/penguin-fyi/awesome-config.git')
 md5sums=('SKIP')
 
 pkgver() {
@@ -21,9 +21,12 @@ package() {
 	cd "$srcdir/$_pkgname"
 	rm -rf .git
 
-	mkdir -p "$pkgdir"/etc/skel/.config/awesome
-	cp -ar . "$pkgdir"/etc/skel/.config/awesome
+	mkdir -p "$pkgdir"/usr/share/penguin/awesome
+	cp -ar . "$pkgdir"/usr/share/penguin/awesome
 
-	install -Dm0644 README.md "$pkgdir"/usr/share/doc/$_pkgname/README.md
-	#install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$_pkgname/LICENSE
+	mkdir -p "$pkgdir"/etc/skel/.config
+	ln -s /usr/share/penguin/awesome "$pkgdir"/etc/skel/.config/awesome
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/$pkgname/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }

@@ -1,0 +1,11 @@
+pkgbase = plum-icon-theme
+	pkgdesc = Penguin Plum icon theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/plum-icon-theme
+	arch = any
+	license = GPL
+	source = https://github.com/jeffmhubbard/plum-icon-theme/archive/v0.1.tar.gz
+	sha256sums = 5f1807a83d88094b10f7faec47c6a11cb0f1f1a3dce2ec6bbef57729c95eb62a
+
+pkgname = plum-icon-theme

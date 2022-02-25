@@ -1,46 +1,26 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-extras'
-pkgver=4
+pkgver=5
 pkgrel=1
 pkgdesc="Extra scripts and tools for Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(mpnotd-zsh rofi-pass rofi-calc clipmenu maim)
+depends=(rofi-pass rofi-calc)
 replaces=('penguin-desktop-scripts')
 source=(
-    'application-cava'
-    'application-ncmpcpp'
-    'application-neomutt'
-    'application-newsboat'
-    'application-tuir'
     'LICENSE'
     'README.md'
-    'script-screen-capture'
     'script-touchpad-toggle'
 )
 
 package(){
-
-    install -Dm0755 application-cava "$pkgdir"/usr/share/applications/cava.desktop
-    install -Dm0755 application-ncmpcpp "$pkgdir"/usr/share/applications/ncmpcpp.desktop
-    install -Dm0755 application-neomutt "$pkgdir"/usr/share/applications/neomutt.desktop
-    install -Dm0755 application-newsboat "$pkgdir"/usr/share/applications/newsboat.desktop
-    install -Dm0755 application-tuir "$pkgdir"/usr/share/applications/tuir.desktop
-
-    install -Dm0755 script-screen-capture "$pkgdir"/usr/bin/screen-capture
     install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
 
     install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-extras/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-extras/LICENSE
 }
 
-md5sums=('1ea816efcf8d6d950632a9991c410479'
-         '02e7e8f09c76abdd85a676e0fa83dca4'
-         '813e02f7c32ac4565a8933fa8d57ced4'
-         '8ec57465a92d93f1ea196a46019e25e8'
-         '95b010786d07fd405d1add5b6ca8d746'
-         'a55d1384569349075b5a6a5c61af5c17'
+md5sums=('a55d1384569349075b5a6a5c61af5c17'
          '25cd2bef8b4faa471507a59affd0fd0f'
-         'c73c5fa56f6bd1ad6b4e0b5ee90ccd6e'
          '41ddb2af63897120737119aaf45c9485')

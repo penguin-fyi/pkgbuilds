@@ -1,0 +1,12 @@
+pkgbase = penguin-desktop-config
+	pkgdesc = Penguin Desktop custom config files
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://penguin.fyi
+	arch = any
+	license = MIT
+	replaces = penguin-desktop-dotfiles
+	source = https://github.com/penguin-fyi/desktop-config/archive/refs/tags/v0.1.tar.gz
+	md5sums = 7ad1d779f5d961b61845ec45a72a31d0
+
+pkgname = penguin-desktop-config

@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-dev-tools'
 pkgver=5
-pkgrel=2
+pkgrel=3
 pkgdesc="Penguin Developer Tools"
 arch=('any')
 url="https://penguin.fyi/"
@@ -15,7 +15,7 @@ depends=(archiso aurutils autopep8 bat cmake
          rsync shellcheck-bin tree yapf)
 
 optdepends=('gimp: artwork and icons'
-            'gitea-tea: interact with gitea repo'
+            'tea: interact with gitea repo'
             'github-cli: interact with github repo'
             'inkscape: artwork and icons'
             'oomox: theme and icon generator'

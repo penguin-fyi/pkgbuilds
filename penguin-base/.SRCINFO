@@ -58,4 +58,3 @@ pkgbase = penguin-base
 
 pkgname = penguin-base
 	install = penguin-base.install
-

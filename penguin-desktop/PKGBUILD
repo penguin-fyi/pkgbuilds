@@ -4,8 +4,8 @@ pkgname=(
     'penguin-desktop'
     'penguin-desktop-base'
 )
-pkgver=6
-pkgrel=5
+pkgver=11
+pkgrel=3
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -15,75 +15,65 @@ source=(
     'autostart-numlockx'
     'autostart-pcmanfm'
     'autostart-picom'
-    'autostart-polkit'
+    'autostart-udiskie'
     'autostart-unclutter'
-    'autostart-urxvtd'
-    'autostart-user-dirs'
     'autostart-volumeicon'
-    'xsession-awesome-default'
     'patch-lightdm-gtk-greeter.conf'
-    'LICENSE'
     'penguin-desktop.install'
+    'penguin-logo.svg'
+    'xsession-awesome-default'
+    'LICENSE'
     'README.md'
 )
 
 package_penguin-desktop(){
     pkgdesc="The Penguin Desktop"
-    depends=(penguin-desktop-base
-             penguin-desktop-awesome
-             penguin-desktop-dotfiles
-             penguin-desktop-extras
-             penguin-desktop-themes)
+    depends=(penguin-desktop-base)
     install=penguin-desktop.install
 
     install -Dm0644 autostart-numlockx "$pkgdir"/etc/xdg/autostart/numlockx.desktop
     install -Dm0644 autostart-pcmanfm "$pkgdir"/etc/xdg/autostart/pcmanfm.desktop
     install -Dm0644 autostart-picom "$pkgdir"/etc/xdg/autostart/picom.desktop
-    install -Dm0644 autostart-polkit "$pkgdir"/etc/xdg/autostart/polkit-gnome.desktop
+    install -Dm0644 autostart-udiskie "$pkgdir"/etc/xdg/autostart/udiskie.desktop
     install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
-    install -Dm0644 autostart-urxvtd "$pkgdir"/etc/xdg/autostart/urxvtd.desktop
-    install -Dm0644 autostart-user-dirs "$pkgdir"/etc/xdg/autostart/xdg-user-dirs.desktop
     install -Dm0644 autostart-volumeicon "$pkgdir"/etc/xdg/autostart/volumeicon.desktop
-
-    install -Dm0644 xsession-awesome-default "$pkgdir"/usr/share/xsessions/awesome-default.desktop
-
     install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
-
+    install -Dm0644 penguin-logo.svg "$pkgdir"/usr/share/pixmaps/penguin-logo.svg
+    install -Dm0644 xsession-awesome-default "$pkgdir"/usr/share/xsessions/awesome-default.desktop
     install -Dm0644 README.md "$pkgdir"/usr/share/$pkgname/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
 
 package_penguin-desktop-base(){
-    pkgdesc="Penguin Desktop software"
-    depends=(awesome-git
-             blueman fontconfig dex feh ffmpeg gvfs htop
-             imagemagick lightdm lightdm-gtk-greeter
+    pkgdesc="The Penguin Desktop"
+    depends=(awesome-git awesome-freedesktop-git
+             bash-completion blueman cups dex ffmpeg
+             firefox fontconfig gpicview gvfs imagemagick
+             kitty leafpad lightdm lightdm-gtk-greeter
              lightdm-gtk-greeter-settings light-locker
-             lxappearance-gtk3 mailcap mpc mpd mpv ncmpcpp
-             neomutt network-manager-applet
-             newsboat numlockx pavucontrol
-             pcmanfm-gtk3 picom-tryone-git polkit-gnome pulseaudio
-             pulseaudio-alsa qt5ct qt5-styleplugins
-             qutebrowser rofi rxvt-unicode-vcs-patched
-             tuir unclutter urlscan vifm
-             volumeicon weechat xarchiver xclip
-             xdg-user-dirs xdg-utils xorg-server
-             xorg-xset xorg-xsetroot xorg-xrdb xorg-xrandr
-             xorg-xdpyinfo xterm zathura zathura-pdf-mupdf
-             cups system-config-printer
-             bash-completion zsh-autosuggestions
-             zsh-completions zsh-syntax-highlighting)
+             lxtask-gtk3 network-manager-applet numlockx
+             parcellite pavucontrol pcmanfm-gtk3 picom
+             penguin-desktop-awesome penguin-desktop-config penguin-desktop-themes
+             pipewire pipewire-alsa pipewire-pulse
+             #pulseaudio pulseaudio-alsa
+             polkit-gnome rofi system-config-printer
+             thunderbird udiskie unclutter volumeicon
+             weechat xclip xdg-user-dirs-gtk
+             xdg-utils xorg-xdpyinfo xorg-server xorg-xset
+             xorg-xsetroot xorg-xrdb xorg-xrandr xsettingsd
+             xterm zsh-autosuggestions zsh-completions
+             zsh-syntax-highlighting)
 }
-md5sums=('46868ac0617a4fbdfc308cc884d1f037'
-         '752af9301a1fea60bb20f6979d272861'
-         'e627b0ef256bee1fa79ebb5599288593'
-         '6529d3ddd2c2a6dff2845c57807ff058'
-         '274e6a795ae6d5c77f7d4f61707cb113'
-         '39d7493c98c638d880df1e409c7c9f74'
-         '1797448eebfde434e6a796f5146342fe'
-         '55da7dd9ba4ce563cb113bc39c819250'
-         'aaec6ee961bd08d3ec9b4f36630e0d3c'
-         '2432e56f71823c95c6711c1634ab8005'
-         'a55d1384569349075b5a6a5c61af5c17'
+
+md5sums=('c199c9b4e5f5d1732136b661fb41d065'
+         'b38d83c4be456823ea6e438d668792ab'
+         'ff2e59135f736a3ddb059877bf0056a2'
+         'ea96caee4c180370818cbc8361d17f0e'
+         '5343c3272d3c2b8b10b557eb12df84da'
+         '6a7cd28a4ce7c7a40632840744f135e9'
+         'f9012627e69571f363b49c47c63a0def'
          '7c47a6806061ccae3f5484973a00a0c6'
-         '296e993d5e710bd585f450a03a65b306')
+         'ed9e2d59fa012b888e9e32d7ff538d1c'
+         'ed90137b894837697c3f635a0dbdc1fe'
+         'a55d1384569349075b5a6a5c61af5c17'
+         '9040d088357c43a9e41e7d4003adbc7e')

@@ -15,9 +15,7 @@ Provides the complete Penguin Desktop
 * numlockx
 * pcmanfm
 * picom
-* polkit-gnome
 * unclutter
-* urxvtd
 * volumeicon
 * xdg-user-dirs
 
@@ -34,38 +32,32 @@ Base desktop packages
 * dex
 * feh
 * ffmpeg
+* flameshot
 * gvfs
-* htop
 * imagemagick
 * lightdm
 * lightdm-gtk-greeter
 * lightdm-gtk-greeter-settings
 * light-locker
+* lxsession-gtk3
 * lxappearance-gtk3
+* lxinput-gtk3
+* lxrandr-gtk3
+* lxtask-gtk3
 * mailcap
-* mpc
-* mpd
-* mpv
-* ncmpcpp
-* neomutt
 * network-manager-applet
-* newsboat
 * numlockx
 * pavucontrol
 * pcmanfm-gtk3
 * picom
-* polkit-gnome
 * pulseaudio
 * pulseaudio-alsa
 * qt5ct
 * qt5-styleplugins ***!!***
 * qutebrowser
-* ranger
-* rxvt-unicode-patched ***!!***
 * rofi
 * rofi-pass
-* tuir ***!!***
-* unclutter-xfixes-git ***!!***
+* unclutter
 * urlscan
 * volumeicon
 * weechat
@@ -90,7 +82,6 @@ Base desktop packages
 * numlockx
 * pcmanfm
 * picom
-* polkit-gnome
 * unclutter
 * volumeicon
 * xdg-user-dirs

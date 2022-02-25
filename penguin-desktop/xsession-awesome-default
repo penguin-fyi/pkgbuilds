@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=awesome (default)
-Comment=Default awesome rc.lua
-TryExec=awesome
+Name=awesome (fallback)
+Comment=Default Awesome rc.lua
 Exec=awesome -c /etc/xdg/awesome/rc.lua
+TryExec=awesome
 Type=Application

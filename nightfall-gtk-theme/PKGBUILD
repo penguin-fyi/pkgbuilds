@@ -1,0 +1,19 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=nightfall-gtk-theme
+pkgver=0.1
+pkgrel=1
+pkgdesc="Penguin Nightfall theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/nightfall-gtk-theme"
+license=('MIT')
+depends=('gtk-engine-murrine')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
+
+sha256sums=('f680d1b8acdd01b6ab48dddf8d0c040a622710510f709165c7b1a6f69e0f7f05')
+
+package() {
+	mkdir -p $pkgdir/usr/share/themes
+	cp -r "$srcdir/$pkgname-$pkgver/Nightfall" "$pkgdir/usr/share/themes/Nightfall"
+	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/Nightfall"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/themes/Nightfall"
+}

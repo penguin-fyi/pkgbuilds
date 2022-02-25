@@ -1,14 +1,11 @@
 pkgbase = antsy-icon-theme
-	pkgdesc = Antsy Icon theme
-	pkgver = 0.5
+	pkgdesc = Penguin classic icon theme
+	pkgver = 0.6
 	pkgrel = 1
 	url = https://github.com/jeffmhubbard/antsy-icon-theme
 	arch = any
 	license = GPL
-	depends = hicolor-icon-theme
-	depends = breeze-icons
-	source = https://github.com/jeffmhubbard/antsy-icon-theme/archive/v0.5.tar.gz
-	sha256sums = 3938bab1ce3310cd5b531b9f62817d128ffd73bef3297cea5131da291ac3b028
+	source = https://github.com/jeffmhubbard/antsy-icon-theme/archive/v0.6.tar.gz
+	sha256sums = 214a810dbd7fe588a54f60ea514927c6f3eb0d2f077351a2d5c062d93fff7ea4
 
 pkgname = antsy-icon-theme
-

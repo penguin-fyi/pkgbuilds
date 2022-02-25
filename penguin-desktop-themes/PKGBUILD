@@ -6,8 +6,12 @@ pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(antsy-gtk-theme antsy-icon-theme antsy-wallpaper
-         noto-fonts noto-fonts-emoji noto-fonts-extra
+depends=(antsy-gtk-theme antsy-icon-theme
+         mint-gtk-theme mint-icon-theme
+         nightfall-gtk-theme nightfall-icon-theme
+         plum-gtk-theme plum-icon-theme
+         system78-gtk-theme system78-icon-theme
+         ttf-bitstream-vera noto-fonts-emoji
          ttf-dejavu ttf-hack ttf-nerd-fonts-symbols
          xcursor-neutral)
 source=(

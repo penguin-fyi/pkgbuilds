@@ -1,13 +1,13 @@
 pkgbase = penguin-desktop-awesome
-	pkgdesc = Penguin Awesome Desktop
-	pkgver = r3.ef902fa
+	pkgdesc = Penguin Desktop (nGUI) AwesomeWM theme
+	pkgver = r2.3e3e6f2
 	pkgrel = 1
 	url = https://penguin.fyi
 	arch = any
 	license = MIT
 	makedepends = git
-	depends = penguin-desktop-base
-	source = git+https://git.linuxit.us/spider/awesome.git
+	depends = awesome-git
+	source = git+https://github.com/penguin-fyi/awesome-config.git
 	md5sums = SKIP
 
 pkgname = penguin-desktop-awesome

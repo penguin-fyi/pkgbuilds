@@ -1,3 +1,0 @@
-blackout-gtk-theme
-termina-gtk-theme
-mpnotd-zsh

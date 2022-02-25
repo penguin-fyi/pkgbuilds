@@ -1,0 +1,19 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=plum-gtk-theme
+pkgver=0.1
+pkgrel=1
+pkgdesc="Penguin Plum theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/plum-gtk-theme"
+license=('MIT')
+depends=('gtk-engine-murrine')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
+
+sha256sums=('a884bb6309a1e0a1ed964f1dcbcdd40b86f3e736922d4811005633846d53b054')
+
+package() {
+	mkdir -p $pkgdir/usr/share/themes
+	cp -r "$srcdir/$pkgname-$pkgver/Plum" "$pkgdir/usr/share/themes/Plum"
+	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/Plum"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/themes/Plum"
+}

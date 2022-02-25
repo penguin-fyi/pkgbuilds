@@ -1,0 +1,19 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=system78-gtk-theme
+pkgver=0.1
+pkgrel=1
+pkgdesc="Penguin System78 theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/system78-gtk-theme"
+license=('MIT')
+depends=('gtk-engine-murrine')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
+
+sha256sums=('acf839fde54c0f66239afc9d01a6477f3c58e6dd9bcf0f453cef45b8db266533')
+
+package() {
+	mkdir -p $pkgdir/usr/share/themes
+	cp -r "$srcdir/$pkgname-$pkgver/System78" "$pkgdir/usr/share/themes/System78"
+	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/System78"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/themes/System78"
+}

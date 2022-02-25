@@ -1,7 +1,7 @@
 pkgbase = penguin-dev-tools
 	pkgdesc = Penguin Developer Tools
 	pkgver = 5
-	pkgrel = 2
+	pkgrel = 3
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
@@ -33,7 +33,7 @@ pkgbase = penguin-dev-tools
 	depends = tree
 	depends = yapf
 	optdepends = gimp: artwork and icons
-	optdepends = gitea-tea: interact with gitea repo
+	optdepends = tea: interact with gitea repo
 	optdepends = github-cli: interact with github repo
 	optdepends = inkscape: artwork and icons
 	optdepends = oomox: theme and icon generator
@@ -53,4 +53,3 @@ pkgbase = penguin-dev-tools
 	md5sums = 5a85fa76723db6bf9fb14661169a17e8
 
 pkgname = penguin-dev-tools
-

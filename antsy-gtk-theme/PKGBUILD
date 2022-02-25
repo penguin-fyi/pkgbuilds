@@ -1,25 +1,19 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=antsy-gtk-theme
-_pkgsrc=antsy-themix-preset
-pkgver=0.2
-pkgrel=2
-pkgdesc="Antsy GTK2/3 theme"
+pkgver=0.5
+pkgrel=1
+pkgdesc="Penguin Antsy theme"
 arch=('any')
-url="https://git.linuxit.us/penguin"
+url="https://github.com/jeffmhubbard/antsy-gtk-theme"
 license=('GPL')
 depends=('gtk-engine-murrine')
-makedepends=('themix-full-git' 'themix-theme-oomox-git')
-source=("https://git.linuxit.us/penguin/$_pkgsrc/archive/$pkgver.tar.gz")
-md5sums=('aafeaac5e78c735656c09230ae0bad22')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
+
+sha256sums=('b203e01fef3cdd02dd5b61ffe95f1d873d51cbec36bac9ad73817677720840c1')
 
 package() {
-	mkdir -p "$pkgdir/usr/share/themes"
-	/opt/oomox/plugins/theme_oomox/change_color.sh \
-		--output Antsy \
-		--target-dir "$pkgdir/usr/share/themes" \
-		--hidpi true \
-		--make-opts all \
-		"$srcdir/$_pkgsrc/antsy.preset"
-	cp "$srcdir/$_pkgsrc/README.md" "$pkgdir/usr/share/themes/Antsy/README.md"
-	cp "$srcdir/$_pkgsrc/LICENSE" "$pkgdir/usr/share/themes/Antsy/LICENSE"
+	mkdir -p $pkgdir/usr/share/themes
+	cp -r "$srcdir/$pkgname-$pkgver/Antsy" "$pkgdir/usr/share/themes/Antsy"
+	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/Antsy"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/themes/Antsy"
 }

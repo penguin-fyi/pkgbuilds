@@ -1,0 +1,12 @@
+pkgbase = mint-gtk-theme
+	pkgdesc = Penguin Mint theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/mint-gtk-theme
+	arch = any
+	license = MIT
+	depends = gtk-engine-murrine
+	source = https://github.com/jeffmhubbard/mint-gtk-theme/archive/refs/tags/v0.1.tar.gz
+	sha256sums = dbab93ace44df8a832dcfb54a179dba130faa9dd73d7a5b9cefbd1f87809c4aa
+
+pkgname = mint-gtk-theme

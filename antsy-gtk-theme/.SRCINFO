@@ -1,15 +1,12 @@
 pkgbase = antsy-gtk-theme
-	pkgdesc = Antsy GTK2/3 theme
-	pkgver = 0.2
-	pkgrel = 2
-	url = https://git.linuxit.us/penguin
+	pkgdesc = Penguin Antsy theme
+	pkgver = 0.5
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/antsy-gtk-theme
 	arch = any
 	license = GPL
-	makedepends = themix-full-git
-	makedepends = themix-theme-oomox-git
 	depends = gtk-engine-murrine
-	source = https://git.linuxit.us/penguin/antsy-themix-preset/archive/0.2.tar.gz
-	md5sums = aafeaac5e78c735656c09230ae0bad22
+	source = https://github.com/jeffmhubbard/antsy-gtk-theme/archive/refs/tags/v0.5.tar.gz
+	sha256sums = b203e01fef3cdd02dd5b61ffe95f1d873d51cbec36bac9ad73817677720840c1
 
 pkgname = antsy-gtk-theme
-

@@ -1,0 +1,12 @@
+pkgbase = nightfall-gtk-theme
+	pkgdesc = Penguin Nightfall theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/nightfall-gtk-theme
+	arch = any
+	license = MIT
+	depends = gtk-engine-murrine
+	source = https://github.com/jeffmhubbard/nightfall-gtk-theme/archive/refs/tags/v0.1.tar.gz
+	sha256sums = f680d1b8acdd01b6ab48dddf8d0c040a622710510f709165c7b1a6f69e0f7f05
+
+pkgname = nightfall-gtk-theme

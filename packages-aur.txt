@@ -1,11 +1,5 @@
-aurutils
 awesome-git
-cava
-gcalcli
-gitea-tea
+awesome-freedesktop-git
 luacheck
-picom-tryone-git
-python-kitchen
-qt5-styleplugins
 shellcheck-bin
-tuir
+aurutils

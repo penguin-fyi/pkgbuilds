@@ -1,0 +1,17 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=plum-icon-theme
+pkgver=0.1
+pkgrel=1
+pkgdesc="Penguin Plum icon theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/plum-icon-theme"
+license=('GPL')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
+sha256sums=('5f1807a83d88094b10f7faec47c6a11cb0f1f1a3dce2ec6bbef57729c95eb62a')
+
+package() {
+	mkdir -p $pkgdir/usr/share/icons
+	cp -r "$srcdir/$pkgname-$pkgver/Plum" "$pkgdir/usr/share/icons/Plum"
+	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/icons/Plum"
+	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/icons/Plum"
+}

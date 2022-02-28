@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-base'
-pkgver=2
-pkgrel=2
+pkgver=3
+pkgrel=1
 pkgdesc="The Penguin base system"
 arch=('any')
 url="https://penguin.fyi/"
@@ -9,12 +9,12 @@ license=('MIT')
 depends=(base curl efibootmgr fail2ban git gnupg
          grub linux-firmware man-db man-pages
          networkmanager openssh pass patch pwgen
-         reflector sudo tlp tmux ufw unzip vi vim
+         reflector sudo tmux ufw unzip vi vim
          w3m zip zsh)
 
 source=(
+    'config-mirrorlist-penguin'
     'config-sudoers'
-    'LICENSE'
     'patch-grub-distro'
     'patch-issue-ascii'
     'patch-makepkg.conf'
@@ -24,6 +24,7 @@ source=(
     'penguin-base.install'
     'penguin-config-patch.hook'
     'penguin-config-patch.sh'
+    'LICENSE'
     'README.md'
 )
 
@@ -32,6 +33,8 @@ package(){
 
     install -dm0750 "$pkgdir"/etc/sudoers.d
     install -Dm0644 config-sudoers "$pkgdir"/etc/sudoers.d/10-wheel
+
+    install -Dm0644 config-mirrorlist-penguin "$pkgdir"/etc/pacman.d/mirrorlist-penguin
 
     install -Dm0644 patch-grub-distro "$pkgdir"/usr/share/penguin/patches/grub.patch
     install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
@@ -43,19 +46,20 @@ package(){
     install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
     install -Dm0755 penguin-config-patch.sh "$pkgdir"/usr/share/libalpm/scripts/penguin-config-patch
 
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/base/README.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/base/LICENSE
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }
 
-md5sums=('25b151ccac832c4b8333222106d16b8c'
-         'a55d1384569349075b5a6a5c61af5c17'
+md5sums=('3bad0a7acb1d8cfd368a779928c11cfa'
+         '25b151ccac832c4b8333222106d16b8c'
          '41440c82d4b6c2d64e496ad4a1782778'
          '044f00bcb352b273e841ecbf3836b705'
-         'c982fab7e21e835cfd6848f86657a22f'
-         '257f3fd773cfac35ed40e2d5f885a72f'
+         'df65dae48860c143862f9185b15b46a3'
+         '3309ce4549c5773004cf7dd4350288e4'
          '08776fecbc01ca790ca20838943b0897'
          '79c690fc4d1faf1aa317cbe68246097f'
          '65800f60c55f2bdd4152b9c7003c045e'
          '08e127a575cc08cab68ed069a86cf5d6'
          'cdb56c7933f12c4b69180abba141ab5d'
+         'a55d1384569349075b5a6a5c61af5c17'
          '37607d5c9d06b11da0f6a4a5d4b38990')

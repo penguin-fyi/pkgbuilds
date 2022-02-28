@@ -1,18 +1,21 @@
 pkgbase = penguin-laptop-tools
 	pkgdesc = Extra tools for laptops
-	pkgver = 1
+	pkgver = 3
 	pkgrel = 1
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
 	depends = tlp
-	depends = tlpui
 	depends = cbatticon
+	depends = xorg-xbacklight
+	optdepends = tlpui: configure tlp
 	source = autostart-batteryicon
+	source = touchpad-toggle
 	source = LICENSE
 	source = README.md
 	md5sums = 96254d6d589149d870a59e4b6906c8d8
-	md5sums = a55d1384569349075b5a6a5c61af5c17
-	md5sums = 8d64301d25b9c93e6934638b38149a80
+	md5sums = 65bc376f54379440cb5012b115ef7455
+	md5sums = 32faed122940835fb3401d601b2d1e85
+	md5sums = 43d78246438d066d4454280f87e068d8
 
 pkgname = penguin-laptop-tools

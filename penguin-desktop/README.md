@@ -4,8 +4,7 @@ Provides the complete Penguin Desktop
 
 ### Depends
 * penguin-desktop-base ***!***
-* penguin-desktop-defaults ***!***
-* penguin-desktop-extras ***!***
+* penguin-desktop-config ***!***
 * penguin-desktop-themes ***!***
 
 ### Services
@@ -20,60 +19,66 @@ Provides the complete Penguin Desktop
 * xdg-user-dirs
 
 
-## penguin-desktop
+## penguin-desktop-base
 
 Base desktop packages
 
 ### Depends
 * penguin-base ***!***
 * awesome-git ***!!***
+* awesome-freedesktop-git
+* bash-completion
 * blueman
-* fontconfig
+* cups
 * dex
-* feh
 * ffmpeg
-* flameshot
+* firefox
+* fontconfig
+* gpicview
 * gvfs
 * imagemagick
+* kitty
+* leafpad*
 * lightdm
 * lightdm-gtk-greeter
 * lightdm-gtk-greeter-settings
 * light-locker
-* lxsession-gtk3
-* lxappearance-gtk3
-* lxinput-gtk3
-* lxrandr-gtk3
 * lxtask-gtk3
-* mailcap
 * network-manager-applet
 * numlockx
+* parcellite
 * pavucontrol
 * pcmanfm-gtk3
 * picom
-* pulseaudio
-* pulseaudio-alsa
-* qt5ct
-* qt5-styleplugins ***!!***
-* qutebrowser
+* penguin-desktop-awesome
+* penguin-desktop-config
+* penguin-desktop-themes
+* pipewire
+* pipewire-alsa
+* pipewire-pulse
+* polkit-gnome
 * rofi
 * rofi-pass
+* system-config-printer
+* thunderbird
+* udiskie
 * unclutter
-* urlscan
 * volumeicon
 * weechat
-* xarchiver
 * xclip
-* xdg-user-dirs
+* xdg-user-dirs-gtk
 * xdg-utils
+* xorg-xdpyinfo
 * xorg-server
 * xorg-xset
 * xorg-xsetroot
 * xorg-xrdb
 * xorg-xrandr
-* xorg-xdpyinfo
+* xsettingsd
 * xterm
-* zathura
-* zathura-pdf-mupdf
+* zsh-autosuggestions
+* zsh-completions
+* zsh-syntax-highlighting
 
 ### Services
 * lightdm

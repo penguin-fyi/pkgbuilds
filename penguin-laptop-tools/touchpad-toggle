@@ -1,0 +1,53 @@
+#!/usr/bin/env zsh
+
+# Touchpad Toggle
+# toggles touchpad state on and off
+# 2018-2022 Jeff M. Hubbard
+
+ICON="touchpad"
+URGENCY="low"
+
+function get_device_id() {
+  if [[ -n $TOUCHPAD ]]
+  then
+    # touchpad id set as env var
+    DEVICE_ID=$TOUCHPAD
+  else
+    # detect touchpad id
+    DEVICE_ID=$(xinput list \
+      | grep -iPo '(touchpad|glidepoint|synaptics).*id=\K\d+')
+  fi
+}
+
+function get_device_state() {
+  return $(xinput list-props $DEVICE_ID \
+    | grep 'Device Enabled' \
+    | awk '{print $4}')
+}
+
+function main() {
+  get_device_id
+  if get_device_state
+  then
+    if xinput enable $DEVICE_ID
+    then
+      MSG="Input device $DEVICE_ID enabled!"
+    fi
+  else
+    if xinput disable $DEVICE_ID
+    then
+      MSG="Input device $DEVICE_ID disabled!"
+    fi
+  fi
+  # show notification
+  if [ -n $MSG ]
+  then
+    notify-send -i $ICON -u $URGENCY $MSG
+  fi
+}
+
+main
+
+exit 0
+
+# vim: ft=zsh ts=2 sw=2 et:

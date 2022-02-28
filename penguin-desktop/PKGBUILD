@@ -4,8 +4,8 @@ pkgname=(
     'penguin-desktop'
     'penguin-desktop-base'
 )
-pkgver=11
-pkgrel=3
+pkgver=12
+pkgrel=1
 pkgdesc="The Penguin Project"
 arch=('any')
 url="https://penguin.fyi/"
@@ -55,8 +55,7 @@ package_penguin-desktop-base(){
              parcellite pavucontrol pcmanfm-gtk3 picom
              penguin-desktop-awesome penguin-desktop-config penguin-desktop-themes
              pipewire pipewire-alsa pipewire-pulse
-             #pulseaudio pulseaudio-alsa
-             polkit-gnome rofi system-config-printer
+             polkit-gnome rofi rofi-pass system-config-printer
              thunderbird udiskie unclutter volumeicon
              weechat xclip xdg-user-dirs-gtk
              xdg-utils xorg-xdpyinfo xorg-server xorg-xset
@@ -76,4 +75,4 @@ md5sums=('c199c9b4e5f5d1732136b661fb41d065'
          'ed9e2d59fa012b888e9e32d7ff538d1c'
          'ed90137b894837697c3f635a0dbdc1fe'
          'a55d1384569349075b5a6a5c61af5c17'
-         '9040d088357c43a9e41e7d4003adbc7e')
+         'c5a690099f1390f96ee23e3f8e42b625')

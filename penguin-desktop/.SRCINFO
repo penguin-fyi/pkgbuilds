@@ -1,7 +1,7 @@
 pkgbase = penguin-desktop
 	pkgdesc = The Penguin Project
-	pkgver = 11
-	pkgrel = 3
+	pkgver = 12
+	pkgrel = 1
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
@@ -28,7 +28,7 @@ pkgbase = penguin-desktop
 	md5sums = ed9e2d59fa012b888e9e32d7ff538d1c
 	md5sums = ed90137b894837697c3f635a0dbdc1fe
 	md5sums = a55d1384569349075b5a6a5c61af5c17
-	md5sums = 9040d088357c43a9e41e7d4003adbc7e
+	md5sums = c5a690099f1390f96ee23e3f8e42b625
 
 pkgname = penguin-desktop
 	pkgdesc = The Penguin Desktop
@@ -70,6 +70,7 @@ pkgname = penguin-desktop-base
 	depends = pipewire-pulse
 	depends = polkit-gnome
 	depends = rofi
+	depends = rofi-pass
 	depends = system-config-printer
 	depends = thunderbird
 	depends = udiskie

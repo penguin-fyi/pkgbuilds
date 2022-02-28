@@ -1,24 +1,28 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-laptop-tools'
-pkgver=1
+pkgver=3
 pkgrel=1
 pkgdesc="Extra tools for laptops"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(tlp tlpui cbatticon)
+depends=(tlp cbatticon xorg-xbacklight)
+optdepends=('tlpui: configure tlp')
 source=(
     'autostart-batteryicon'
+    'touchpad-toggle'
     'LICENSE'
     'README.md'
 )
 
 package(){
     install -Dm0644 autostart-batteryicon "$pkgdir"/etc/xdg/autostart/cbatticon.desktop
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/laptop-tools/README.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/laptop-tools/LICENSE
+    install -Dm0755 touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }
 
 md5sums=('96254d6d589149d870a59e4b6906c8d8'
-         'a55d1384569349075b5a6a5c61af5c17'
-         '8d64301d25b9c93e6934638b38149a80')
+         '65bc376f54379440cb5012b115ef7455'
+         '32faed122940835fb3401d601b2d1e85'
+         '43d78246438d066d4454280f87e068d8')

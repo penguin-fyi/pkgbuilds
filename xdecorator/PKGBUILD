@@ -1,0 +1,27 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname='xdecorator'
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="xsettings theme switcher (demo)"
+arch=('any')
+url="https://penguin.fyi/"
+license=('MIT')
+depends=(xsettingsd python-gobject)
+source=(
+    'xdecorator'
+    'xdecorator.desktop'
+    'LICENSE'
+    'README.md'
+)
+
+package(){
+    install -Dm0755 xdecorator "$pkgdir"/usr/bin/xdecorator
+    install -Dm0644 xdecorator.desktop "$pkgdir"/usr/share/applications/xdecorator.desktop
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
+}
+
+md5sums=('06e7f6bf3f46922aa9b47726c762ace9'
+         'e93256de7d5a7561e1e955b38b4eee56'
+         '38aa75cf4c4c87f018227d5ec9638d75'
+         'a08049d27bf19bc79da45f516994ffec')

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Xdecorator
+GenericName=Appearance Settings
+Comment=A GUI to configure XSETTINGS
+Icon=preferences-desktop-theme
+Exec=xdecorator
+TryExec=xdecorator
+Terminal=false
+Categories=Settings;
+Type=Application

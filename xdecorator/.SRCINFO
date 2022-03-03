@@ -1,0 +1,19 @@
+pkgbase = xdecorator
+	pkgdesc = xsettings theme switcher (demo)
+	pkgver = 0.0.1
+	pkgrel = 1
+	url = https://penguin.fyi/
+	arch = any
+	license = MIT
+	depends = xsettingsd
+	depends = python-gobject
+	source = xdecorator
+	source = xdecorator.desktop
+	source = LICENSE
+	source = README.md
+	md5sums = 06e7f6bf3f46922aa9b47726c762ace9
+	md5sums = e93256de7d5a7561e1e955b38b4eee56
+	md5sums = 38aa75cf4c4c87f018227d5ec9638d75
+	md5sums = a08049d27bf19bc79da45f516994ffec
+
+pkgname = xdecorator

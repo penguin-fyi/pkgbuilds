@@ -1,17 +1,15 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop-config
 _pkgname=desktop-config
-pkgver=0.1.2
+pkgver=0.1.3
 pkgrel=1
 pkgdesc="Penguin Desktop custom config files"
 arch=('any')
 url="https://penguin.fyi"
 license=('MIT')
-#depends=('penguin-desktop')
-replaces=('penguin-desktop-dotfiles')
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('32a262342be8806c398fda9522da674a')
+md5sums=('00c13e6a46b3c9144e0b95700dc684c7')
 
 package() {
 	cd "$srcdir/$_pkgname-$pkgver"

@@ -1,26 +1,25 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
-pkgname='penguin-desktop-extras'
-pkgver=5
+pkgname=penguin-desktop-extras
+_pkgname=desktop-extras
+pkgver=0.1.1
 pkgrel=1
-pkgdesc="Extra scripts and tools for Penguin Desktop"
+pkgdesc="Extra tools and scripts for Penguin"
 arch=('any')
-url="https://penguin.fyi/"
+url="https://penguin.fyi"
 license=('MIT')
-depends=(rofi-pass rofi-calc)
-replaces=('penguin-desktop-scripts')
-source=(
-    'LICENSE'
-    'README.md'
-    'script-touchpad-toggle'
-)
+#depends=('penguin-desktop')
+source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-package(){
-    install -Dm0755 script-touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
+md5sums=('a67b810ce5edcd19103543e63277e4ee')
 
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-extras/README.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-extras/LICENSE
+package() {
+	cd "$srcdir/$_pkgname-$pkgver"
+
+	# theme-kitty
+	install -Dm0755 bin/theme-kitty "$pkgdir"/usr/bin/theme-kitty
+	mkdir -p "$pkgdir"/usr/share/penguin
+	cp -ar kitty-themes "$pkgdir"/usr/share/penguin/kitty-themes/
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/$pkgname/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
-
-md5sums=('a55d1384569349075b5a6a5c61af5c17'
-         '25cd2bef8b4faa471507a59affd0fd0f'
-         '41ddb2af63897120737119aaf45c9485')

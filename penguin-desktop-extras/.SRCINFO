@@ -1,18 +1,11 @@
 pkgbase = penguin-desktop-extras
-	pkgdesc = Extra scripts and tools for Penguin Desktop
-	pkgver = 5
+	pkgdesc = Extra tools and scripts for Penguin
+	pkgver = 0.1.1
 	pkgrel = 1
-	url = https://penguin.fyi/
+	url = https://penguin.fyi
 	arch = any
 	license = MIT
-	depends = rofi-pass
-	depends = rofi-calc
-	replaces = penguin-desktop-scripts
-	source = LICENSE
-	source = README.md
-	source = script-touchpad-toggle
-	md5sums = a55d1384569349075b5a6a5c61af5c17
-	md5sums = 25cd2bef8b4faa471507a59affd0fd0f
-	md5sums = 41ddb2af63897120737119aaf45c9485
+	source = https://github.com/penguin-fyi/desktop-extras/archive/refs/tags/v0.1.1.tar.gz
+	md5sums = a67b810ce5edcd19103543e63277e4ee
 
 pkgname = penguin-desktop-extras

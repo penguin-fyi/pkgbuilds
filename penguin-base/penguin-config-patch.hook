@@ -7,7 +7,6 @@ Target = etc/default/useradd
 Target = etc/default/grub
 Target = etc/issue
 Target = etc/lightdm/lightdm-gtk-greeter.conf
-Target = etc/xdg/reflector/reflector.conf
 
 [Action]
 Description = Patching system configurations...

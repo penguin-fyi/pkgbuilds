@@ -18,9 +18,7 @@ Extends Arch `base` with bootloader, networking, and shell tools.
 * pass
 * patch
 * pwgen
-* reflector
 * sudo
-* tlp
 * tmux
 * ufw
 * unzip
@@ -36,9 +34,7 @@ Extends Arch `base` with bootloader, networking, and shell tools.
 ### Patches
 * etc/default/grub
 * etc/issue
-* etc/makepkg.conf
 * etc/pacman.conf
-* etc/xdg/reflector/reflector.conf
 * etc/default/useradd
 
 ### Hooks
@@ -52,5 +48,4 @@ Extends Arch `base` with bootloader, networking, and shell tools.
 * sshd
 * ufw
 * fstrim
-* reflector
 

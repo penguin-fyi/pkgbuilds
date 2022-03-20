@@ -1,6 +1,6 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-base'
-pkgver=3
+pkgver=4
 pkgrel=1
 pkgdesc="The Penguin base system"
 arch=('any')
@@ -9,7 +9,7 @@ license=('MIT')
 depends=(base curl efibootmgr fail2ban git gnupg
          grub linux-firmware man-db man-pages
          networkmanager openssh pass patch pwgen
-         reflector sudo tmux ufw unzip vi vim
+         sudo tmux ufw unzip vi vim
          w3m zip zsh)
 
 source=(
@@ -19,7 +19,6 @@ source=(
     'patch-issue-ascii'
     'patch-makepkg.conf'
     'patch-pacman.conf'
-    'patch-reflector.conf'
     'patch-useradd-shell'
     'penguin-base.install'
     'penguin-config-patch.hook'
@@ -40,7 +39,6 @@ package(){
     install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
     install -Dm0644 patch-makepkg.conf "$pkgdir"/usr/share/penguin/patches/makepkg.conf.patch
     install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
-    install -Dm0644 patch-reflector.conf "$pkgdir"/usr/share/penguin/patches/reflector.conf.patch
     install -Dm0644 patch-useradd-shell "$pkgdir"/usr/share/penguin/patches/useradd.patch
 
     install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
@@ -56,10 +54,9 @@ md5sums=('3bad0a7acb1d8cfd368a779928c11cfa'
          '044f00bcb352b273e841ecbf3836b705'
          'df65dae48860c143862f9185b15b46a3'
          '3309ce4549c5773004cf7dd4350288e4'
-         '08776fecbc01ca790ca20838943b0897'
          '79c690fc4d1faf1aa317cbe68246097f'
-         '65800f60c55f2bdd4152b9c7003c045e'
-         '08e127a575cc08cab68ed069a86cf5d6'
+         'fe051a20205b52ec74e79b254ca00a5f'
+         '826f2182376de81dc69c95cdaea1c71d'
          'cdb56c7933f12c4b69180abba141ab5d'
          'a55d1384569349075b5a6a5c61af5c17'
-         '37607d5c9d06b11da0f6a4a5d4b38990')
+         '1508c01df30a46946c1ca2e10bc1210e')

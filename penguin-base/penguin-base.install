@@ -13,7 +13,5 @@ post_install () {
 
     systemctl enable fstrim.timer
 
-    systemctl enable reflector
-
     return
 }

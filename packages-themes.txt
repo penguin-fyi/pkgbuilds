@@ -2,11 +2,10 @@ antsy-gtk-theme
 antsy-icon-theme
 mint-gtk-theme
 mint-icon-theme
-ngui-gtk-theme
-ngui-icon-theme
 nightfall-gtk-theme
 nightfall-icon-theme
 plum-gtk-theme
 plum-icon-theme
 system78-gtk-theme
 system78-icon-theme
+xdecorator

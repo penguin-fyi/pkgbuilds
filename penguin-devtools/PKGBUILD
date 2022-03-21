@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
-pkgname='penguin-dev-tools'
-pkgver=5
-pkgrel=3
+pkgname='penguin-devtools'
+pkgver=6
+pkgrel=1
 pkgdesc="Penguin Developer Tools"
 arch=('any')
 url="https://penguin.fyi/"
@@ -14,13 +14,14 @@ depends=(archiso aurutils autopep8 bat cmake
          python-virtualenv python-virtualenvwrapper
          rsync shellcheck-bin tree yapf)
 
+replaces=('penguin-dev-tools')
+
 optdepends=('gimp: artwork and icons'
             'tea: interact with gitea repo'
             'github-cli: interact with github repo'
             'inkscape: artwork and icons'
             'oomox: theme and icon generator'
-            'virtualbox: test Penguin iso'
-            'vivid: generate LS_COLORS')
+            'virtualbox: test Penguin iso')
 
 source=('LICENSE'
         'README.md'

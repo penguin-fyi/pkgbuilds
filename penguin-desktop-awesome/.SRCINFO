@@ -1,6 +1,6 @@
 pkgbase = penguin-desktop-awesome
 	pkgdesc = Penguin Desktop (nGUI) AwesomeWM theme
-	pkgver = r2.3e3e6f2
+	pkgver = r1.d6a66eb
 	pkgrel = 1
 	url = https://penguin.fyi
 	arch = any

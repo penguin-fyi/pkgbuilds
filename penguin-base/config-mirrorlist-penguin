@@ -2,4 +2,5 @@
 ########################## Penguin mirrorlist ##################################
 ################################################################################
 
-Server = https://repo.penguin.fyi/arch/$arch
+SigLevel = Optional TrustAll
+Server = https://repo.penguin.fyi/packages/$repo/$arch

@@ -1,6 +1,6 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-base'
-pkgver=4
+pkgver=5
 pkgrel=1
 pkgdesc="The Penguin base system"
 arch=('any')
@@ -15,8 +15,6 @@ depends=(base curl efibootmgr fail2ban git gnupg
 source=(
     'config-mirrorlist-penguin'
     'config-sudoers'
-    'patch-grub-distro'
-    'patch-issue-ascii'
     'patch-makepkg.conf'
     'patch-pacman.conf'
     'patch-useradd-shell'
@@ -32,14 +30,11 @@ package(){
 
     install -dm0750 "$pkgdir"/etc/sudoers.d
     install -Dm0644 config-sudoers "$pkgdir"/etc/sudoers.d/10-wheel
-
     install -Dm0644 config-mirrorlist-penguin "$pkgdir"/etc/pacman.d/mirrorlist-penguin
 
-    install -Dm0644 patch-grub-distro "$pkgdir"/usr/share/penguin/patches/grub.patch
-    install -Dm0644 patch-issue-ascii "$pkgdir"/usr/share/penguin/patches/issue.patch
-    install -Dm0644 patch-makepkg.conf "$pkgdir"/usr/share/penguin/patches/makepkg.conf.patch
-    install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
     install -Dm0644 patch-useradd-shell "$pkgdir"/usr/share/penguin/patches/useradd.patch
+    install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
+    install -Dm0644 patch-makepkg.conf "$pkgdir"/usr/share/penguin/patches/makepkg.conf.patch
 
     install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
     install -Dm0755 penguin-config-patch.sh "$pkgdir"/usr/share/libalpm/scripts/penguin-config-patch
@@ -48,15 +43,13 @@ package(){
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }
 
-md5sums=('3bad0a7acb1d8cfd368a779928c11cfa'
+md5sums=('03f473be27e35e6d3e79995ffbe62ab1'
          '25b151ccac832c4b8333222106d16b8c'
-         '41440c82d4b6c2d64e496ad4a1782778'
-         '044f00bcb352b273e841ecbf3836b705'
          'df65dae48860c143862f9185b15b46a3'
-         '3309ce4549c5773004cf7dd4350288e4'
+         'd7ae568291619ce1d95aaf78e6460a14'
          '79c690fc4d1faf1aa317cbe68246097f'
          'fe051a20205b52ec74e79b254ca00a5f'
-         '826f2182376de81dc69c95cdaea1c71d'
+         '64490689e7f16e6b78981bcea3b2e7fc'
          'cdb56c7933f12c4b69180abba141ab5d'
          'a55d1384569349075b5a6a5c61af5c17'
-         '1508c01df30a46946c1ca2e10bc1210e')
+         '6d717fbd72892ced8ce4015b2b0f8366')

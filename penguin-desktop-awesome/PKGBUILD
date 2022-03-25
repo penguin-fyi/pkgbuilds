@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop-awesome
 _pkgname=awesome-config
-pkgver=r5.663dff6
+pkgver=r2.1cde892
 pkgrel=1
 pkgdesc="Penguin Desktop (nGUI) AwesomeWM theme"
 arch=('any')

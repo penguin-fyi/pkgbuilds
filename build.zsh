@@ -1,30 +1,12 @@
 #!/usr/bin/env zsh
 
-# penguin build script
-
-# put these options in ./BUILD_VARS and uncomment as needed
-# repo name (required)
-#out_db="custom"
-# repo path (required)
-#out_dir="$HOME/Packages"
-# repo architecture (required)
-#out_dir="x86_64"
-# pacman conf (required)
-#build_cfg="$(pwd)/pacman-chroot.conf"
-# build lists (required for --all, order matters)
-#build_lists=('packages-aur' 'packages-core' 'packages-custom')
-# GPG key to sign packages (required)
-#gpg_key="<key>
-# push and sync packages (required)
-#publish=false
-# webhost user (optional)
-#ssh_user="username"
-# webhost server (optional)
-#ssh_host="example.com"
-# webhost path (optional)
-#remote_dir="/path/to/www/"
+# penguin-desktop build script
 
 set -e
+
+# internal vars
+declare complete=false
+declare publish=false
 
 # load BUILD_VARS or else
 . $(pwd)/BUILD_VARS \
@@ -36,12 +18,13 @@ function prepare() {
 
   echo "Preparing '$pkg'..."
 
-  cd $pkg || return 1
+  cd $pkg \
+    || { echo "Invalid path '$pkg'! Aborting!"; return 1 }
 
   test -f PKGBUILD \
     || { echo "PKGBUILD not found! Aborting!"; return 1 }
 
-  test -f .git \
+  test -d .git \
     && { echo "Updating PKGBUILD..."; git pull }
 
   updpkgsums \
@@ -62,17 +45,15 @@ function build_package() {
   echo "Building package: ${pkg:t}"
   confirm || exit 1
 
-  # prep pkg
-  prepare $pkg
+  prepare $pkg || return 1
 
   cd $pkg || return 1
 
-  # build
   GPGKEY=$gpg_key \
   aur build \
     -d $out_db \
-    --root=$out_dir/$out_arch \
-    --pacman-conf $pacman_cfg \
+    --root=$out_dir \
+    --pacman-conf $build_cfg \
     --chroot \
     --temp \
     --gpg-sign \
@@ -89,6 +70,7 @@ function build_package() {
     || { echo "Failed to build '${pkg:t}'! Aborting!"; exit 1 }
 
   cd .. || return 1
+
   complete=true
 }
 
@@ -98,22 +80,20 @@ function build_list() {
   local pkg
 
   echo "Building package list: ${pkglist:t}"
-  cat $pkglist
+  cat $pkglist || return 1
   confirm || exit 1
 
-  # prep pkgs in list
   while read pkg
   do
     prepare $pkg
   done < $pkglist
 
-  # build list
   GPGKEY=$gpg_key \
   aur build \
     --arg-file=$pkglist \
     --database $out_db \
-    --root=$out_dir/$out_arch \
-    --pacman-conf $pacman_cfg \
+    --root=$out_dir \
+    --pacman-conf $build_cfg \
     --chroot \
     --temp \
     --gpg-sign \
@@ -127,30 +107,44 @@ function build_list() {
       --verify \
       --clean \
       --log \
-    || { echo "Failed to build! Aborting!"; exit 1 }
+    || { echo "Failed to build list '${pkglist:t}'! Aborting!"; exit 1 }
 
   complete=true
 }
 
-# build from array of package lists
-function build_all () {
+# build package lists ($build_lists array must be defined)
+function build_all() {
   local list
 
   echo "Building package lists: $build_lists"
   for list in $build_lists
   do
-    test -f $list.txt || { echo "could not locate $list.txt!"; return 1 }
+    test -f $list.txt || { echo "Could not locate $list.txt!"; break }
     build_list $list.txt
   done
 
   return
 }
 
+# fetch list of PKGBUILDs from AUR
+function fetch_aur() {
+  while IFS= read -r line; do
+    if [ -d $line ]
+    then
+      echo "Path '$line' exists! Skipping!"
+    else
+      echo "Fetching '$line'..."
+      git clone $aur_url/$line \
+        || { echo "Failed to fetch '$line'! Aborting!"; return 1 }
+    fi
+  done < $1
+}
+
 # publish repo
 function upload() {
   rsync -auv \
     $out_dir/ \
-    $ssh_user@$ssh_host:$remote_dir \
+    $publish_login:$publish_dir \
     || { echo "Failed to sync remote repo!"; exit 1 }
 }
 
@@ -162,16 +156,16 @@ function confirm() {
 
 # help
 function usage() {
-  echo "Usage: ${ZSH_ARGZERO:t} [-o <PATH>|-l <PATH>|-h]"
+  echo "Usage: ${ZSH_ARGZERO:t} [-o <DIR>|-l <FILE>|-a|-f [<FILE>]|-h]"
   echo
   echo "arguments: (one required)"
-  echo "  -p, --pkg  <DIR>      build single package"
+  echo "  -p, --pkg <DIR>       build single package"
   echo "  -l, --list <FILE>     list of packages to build"
+  echo "  -a, --all             build all package lists"
+  echo "  -f, --fetch [<FILE>]  fetch PKGBUILDs in list from AUR"
   echo "  -h, --help            show this help message and quit"
   echo
 }
-
-local complete=false
 
 # need args
 (( $# )) \
@@ -187,17 +181,27 @@ do
     -p | --pkg)
       test -d $2 \
         || { echo "invalid path: $2"; exit 1 }
-      build_package $2
+      build_package $2 \
+        || { echo "Error: $?"; exit 1 }
       break;;
     -l | --list)
       test -f $2 \
         || { echo "invalid file: $2"; exit 1 }
-      build_list $2
+      build_list $2 \
+        || { echo "Error: $?"; exit 1 }
       break;;
     -a | --all)
       (( ${+build_lists} )) \
         || { echo "'build_lists' not defined!"; exit 1 }
-      build_all
+      build_all \
+        || { echo "Error: $?"; exit 1 }
+      break;;
+    -f | --fetch)
+      list=$aur_list
+      [[ -n $2 && -f $2 ]] \
+        && list=$2
+      fetch_aur $list \
+        || { echo "Error: $?"; exit 1 }
       break;;
     * | ?)
       echo "unknown argument: $1"
@@ -210,7 +214,7 @@ done
 if [[ $complete == true ]] && [[ $publish == true ]]
 then
   echo "Publishing builds..."
-  cd $out_dir || return 1
+  #cd $out_dir || return 1
   upload || return 1
 fi
 

@@ -1,22 +1,21 @@
 # pkgbuilds
 
-PKGBUILDs for [***Penguin***](https://penguin.fyi) and dependencies from [AUR](https://aur.archlinux.org)
+PKGBUILDs for [***Penguin Desktop***](https://penguin.fyi)
 
-## Building Penguin
+## Building Penguin Desktop
 ```sh
 # clone repo
-git clone https://git.linuxit.us/penguin/pkgbuilds
+git clone https://github.com/penguin-fyi/pkgbuilds
 cd pkgbuilds
 
-# edit options (required)
-head -24 build.zsh | tail -n 20 >! BUILD_VARS
-vim BUILD_VARS
+# fetch PKGBUILDs in packages-aur.txt (or provided file)
+./build.zsh --fetch [<file>]
 
 # build single package
-./build.zsh -p <dir>
+./build.zsh --pkg <dir>
 
 # build from list
-./build.zsh -l <file>
+./build.zsh --list <file>
 
 # build a set of lists
 # set $build_lists in BUILD_VARS

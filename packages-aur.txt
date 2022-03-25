@@ -3,3 +3,6 @@ awesome-freedesktop-git
 luacheck
 shellcheck-bin
 aurutils
+libpamac-git
+archlinux-appstream-data-pamac
+pamac-aur-git

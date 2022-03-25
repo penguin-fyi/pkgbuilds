@@ -13,7 +13,7 @@ pkgbase = xdecorator
 	source = README.md
 	md5sums = 06e7f6bf3f46922aa9b47726c762ace9
 	md5sums = e93256de7d5a7561e1e955b38b4eee56
-	md5sums = 38aa75cf4c4c87f018227d5ec9638d75
-	md5sums = a08049d27bf19bc79da45f516994ffec
+	md5sums = a8bd8e8b66169542c21de3c7633be00e
+	md5sums = e7dd940a79567e3d1e046a34c2afb7d9
 
 pkgname = xdecorator

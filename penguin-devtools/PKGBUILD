@@ -1,18 +1,19 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
-pkgname='penguin-devtools'
+pkgname=penguin-devtools
+_pkgname=devtools
 pkgver=6
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin Developer Tools"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(archiso aurutils autopep8 bat cmake
+depends=(archiso arch-install-scripts aurutils autopep8 bat cmake
          ctags devtools eslint fd flake8 fzf
          ipython jq lsof luacheck namcap
          pacman-contrib pacutils python-black
          python-isort python-pyflakes
          python-virtualenv python-virtualenvwrapper
-         rsync shellcheck-bin tree yapf)
+         rsync shellcheck-bin tree xorg-server-xephyr yapf)
 
 replaces=('penguin-dev-tools')
 
@@ -31,12 +32,13 @@ source=('LICENSE'
         'setup_aurutils')
 
 package(){
-    install -Dm0755 setup_zsh "$pkgdir"/usr/bin/setup_zsh
-    install -Dm0755 setup_vim "$pkgdir"/usr/bin/setup_vim
-    install -Dm0755 setup_tmux "$pkgdir"/usr/bin/setup_tmux
-    install -Dm0755 setup_aurutils "$pkgdir"/usr/bin/setup_aurutils
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/dev-tools/README.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/dev-tools/LICENSE
+    install -Dm0755 setup_zsh "$pkgdir"/usr/share/penguin/$_pkgname/setup_zsh
+    install -Dm0755 setup_vim "$pkgdir"/usr/share/penguin/$_pkgname/setup_vim
+    install -Dm0755 setup_tmux "$pkgdir"/usr/share/penguin/$_pkgname/setup_tmux
+    install -Dm0755 setup_aurutils "$pkgdir"/usr/share/penguin/$_pkgname/setup_aurutils
+
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/$pkgname/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
 
 md5sums=('76f1b81b2757cd0126aa0142a588927b'

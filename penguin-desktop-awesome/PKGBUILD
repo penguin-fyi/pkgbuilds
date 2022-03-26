@@ -2,7 +2,7 @@
 pkgname=penguin-desktop-awesome
 _pkgname=awesome-config
 pkgver=r2.1cde892
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin Desktop (nGUI) AwesomeWM theme"
 arch=('any')
 url="https://penguin.fyi"

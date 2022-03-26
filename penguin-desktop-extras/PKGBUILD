@@ -2,18 +2,18 @@
 pkgname=penguin-desktop-extras
 _pkgname=desktop-extras
 pkgver=0.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Extra tools and scripts for Penguin"
 arch=('any')
 url="https://penguin.fyi"
 license=('MIT')
-#depends=('penguin-desktop')
+
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
 md5sums=('a67b810ce5edcd19103543e63277e4ee')
 
 package() {
-	cd "$srcdir/$_pkgname-$pkgver"
+	cd "$_pkgname-$pkgver"
 
 	# theme-kitty
 	install -Dm0755 bin/theme-kitty "$pkgdir"/usr/bin/theme-kitty

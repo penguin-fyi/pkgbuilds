@@ -44,11 +44,11 @@ pkgbase = penguin-base
 	md5sums = df65dae48860c143862f9185b15b46a3
 	md5sums = d7ae568291619ce1d95aaf78e6460a14
 	md5sums = 79c690fc4d1faf1aa317cbe68246097f
-	md5sums = fe051a20205b52ec74e79b254ca00a5f
-	md5sums = 64490689e7f16e6b78981bcea3b2e7fc
-	md5sums = cdb56c7933f12c4b69180abba141ab5d
-	md5sums = a55d1384569349075b5a6a5c61af5c17
-	md5sums = 6d717fbd72892ced8ce4015b2b0f8366
+	md5sums = fc1c0ee49963670eab7848263695b928
+	md5sums = 8dd22dd9349183554aa78047af3079c9
+	md5sums = ab3dd94b99336d7b4f9dafeed7413d95
+	md5sums = 32faed122940835fb3401d601b2d1e85
+	md5sums = 25bee56042f5556a1b307096dfcaade3
 
 pkgname = penguin-base
 	install = penguin-base.install

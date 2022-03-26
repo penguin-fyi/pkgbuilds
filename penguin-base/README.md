@@ -2,7 +2,6 @@
 
 Extends Arch `base` with bootloader, networking, and shell tools.
 
-### Depends
 * base
 * curl
 * efibootmgr
@@ -32,10 +31,9 @@ Extends Arch `base` with bootloader, networking, and shell tools.
 * etc/sudoers.d/10-wheel
 
 ### Patches
-* etc/default/grub
-* etc/issue
-* etc/pacman.conf
 * etc/default/useradd
+* etc/makepkg.conf
+* etc/pacman.conf
 
 ### Hooks
 * usr/share/libaplm/hooks/90-penguin-config-patch.hook

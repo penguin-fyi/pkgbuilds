@@ -1,5 +1,4 @@
-#!/bin/sh --
-# patch-system-configs - apply any matching patches to system configs
+#!/bin/sh
 
 while read -r conf; do
     patch=/usr/share/penguin/patches/${conf##*/}.patch

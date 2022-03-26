@@ -2,14 +2,14 @@ post_install () {
 
     systemctl enable NetworkManager
 
-    systemctl enable sshd
-
     if [ "$(ufw status | cut -d' ' -f2)" = "inactive" ]; then
         ufw default deny
         ufw allow ssh
         ufw enable
         systemctl enable ufw
     fi
+
+    systemctl enable sshd
 
     systemctl enable fstrim.timer
 

@@ -1,7 +1,7 @@
 pkgbase = penguin-laptop-tools
 	pkgdesc = Extra tools for laptops
 	pkgver = 3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT

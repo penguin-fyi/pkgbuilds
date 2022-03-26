@@ -13,12 +13,12 @@ source=('git+https://github.com/penguin-fyi/awesome-config.git')
 md5sums=('SKIP')
 
 pkgver() {
-	cd "$srcdir/$_pkgname"
+	cd "$_pkgname"
 	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
-	cd "$srcdir/$_pkgname"
+	cd "$_pkgname"
 	rm -rf .git
 
 	mkdir -p "$pkgdir"/usr/share/penguin/awesome

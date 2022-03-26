@@ -2,4 +2,7 @@ post_install () {
 
     systemctl enable lightdm
 
+    systemctl enable bluetooth
+
+    systemctl enable avahi
 }

@@ -6,22 +6,18 @@ pkgdesc="The Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(arandr awesome-git awesome-freedesktop-git
-         bash-completion blueman cups dex
-         firefox fontconfig gpicview gvfs
-         kitty leafpad lightdm lightdm-gtk-greeter
-         lightdm-gtk-greeter-settings light-locker
-         lxtask-gtk3 mpv network-manager-applet numlockx
-         pamac-aur-git parcellite pavucontrol pcmanfm-gtk3 picom
-         penguin-desktop-awesome penguin-desktop-config penguin-desktop-themes
-         pipewire pipewire-alsa pipewire-pulse
-         polkit-gnome rofi rofi-pass system-config-printer
-         thunderbird udiskie unclutter volumeicon
-         weechat xdg-user-dirs-gtk
-         xdg-utils xorg-xdpyinfo xorg-server xorg-xset
-         xorg-xrdb xorg-xrandr xsettingsd
-         xterm zsh-autosuggestions zsh-completions
-         zsh-syntax-highlighting)
+depends=(arandr avahi awesome-git awesome-freedesktop-git
+         bash-completion blueman bluez-utils cups dex firefox
+         fontconfig gpicview gvfs kitty leafpad lightdm
+         lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker
+         lxtask-gtk3 mpv network-manager-applet numlockx pamac-aur-git
+         parcellite pavucontrol pcmanfm-gtk3 penguin-desktop-awesome
+         penguin-desktop-config penguin-desktop-themes picom pipewire
+         pipewire-alsa pipewire-pulse playerctl polkit-gnome rofi
+         rofi-pass system-config-printer thunderbird udiskie unclutter
+         volumeicon weechat xdg-user-dirs-gtk xdg-utils xorg-xdpyinfo
+         xorg-server xorg-xset xorg-xrdb xorg-xrandr xsettingsd xterm
+         zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
 source=(
     'autostart-numlockx'

@@ -3,59 +3,41 @@
 Provides the complete Penguin Desktop
 
 ### Depends
-* penguin-desktop-base ***!***
-* penguin-desktop-config ***!***
-* penguin-desktop-themes ***!***
-
-### Services
-* lightdm
-
-### Autostart
-* numlockx
-* pcmanfm
-* picom
-* unclutter
-* volumeicon
-* xdg-user-dirs
-
-
-## penguin-desktop-base
-
-Base desktop packages
-
-### Depends
-* penguin-base ***!***
-* awesome-git ***!!***
-* awesome-freedesktop-git
+* arandr
+* avahi
+* awesome-git ***!***
+* awesome-freedesktop-git ***!***
 * bash-completion
 * blueman
+* bluez-utils
 * cups
 * dex
-* ffmpeg
 * firefox
 * fontconfig
 * gpicview
 * gvfs
-* imagemagick
 * kitty
-* leafpad*
+* leafpad
 * lightdm
 * lightdm-gtk-greeter
 * lightdm-gtk-greeter-settings
 * light-locker
 * lxtask-gtk3
+* mpv
 * network-manager-applet
 * numlockx
+* pamac-aur-git ***!***
 * parcellite
 * pavucontrol
 * pcmanfm-gtk3
+* penguin-desktop-awesome ***!!***
+* penguin-desktop-config ***!!***
+* penguin-desktop-themes ***!!***
 * picom
-* penguin-desktop-awesome
-* penguin-desktop-config
-* penguin-desktop-themes
 * pipewire
 * pipewire-alsa
 * pipewire-pulse
+* playerctl
 * polkit-gnome
 * rofi
 * rofi-pass
@@ -65,13 +47,11 @@ Base desktop packages
 * unclutter
 * volumeicon
 * weechat
-* xclip
 * xdg-user-dirs-gtk
 * xdg-utils
 * xorg-xdpyinfo
 * xorg-server
 * xorg-xset
-* xorg-xsetroot
 * xorg-xrdb
 * xorg-xrandr
 * xsettingsd
@@ -82,12 +62,15 @@ Base desktop packages
 
 ### Services
 * lightdm
+* bluetooth
+* avahi
 
 ### Autostart
 * numlockx
 * pcmanfm
 * picom
+* polkit-gnome
+* udiskie
 * unclutter
 * volumeicon
-* xdg-user-dirs
 

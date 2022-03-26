@@ -43,11 +43,11 @@ md5sums=('c199c9b4e5f5d1732136b661fb41d065'
          '5343c3272d3c2b8b10b557eb12df84da'
          '6a7cd28a4ce7c7a40632840744f135e9'
          'f9012627e69571f363b49c47c63a0def'
-         '7c47a6806061ccae3f5484973a00a0c6'
+         '65b9e12e3c7b36f487473253e5e5a5f2'
          'ed9e2d59fa012b888e9e32d7ff538d1c'
          'ed90137b894837697c3f635a0dbdc1fe'
-         'a55d1384569349075b5a6a5c61af5c17'
-         'c5a690099f1390f96ee23e3f8e42b625')
+         '32faed122940835fb3401d601b2d1e85'
+         '8252c6f8d00135a18cf7b3ad817a92e5')
 
 package(){
     install=penguin-desktop.install

@@ -1,7 +1,7 @@
 pkgbase = mint-icon-theme
-	pkgdesc = Penguin Mint icon theme
+	pkgdesc = Penguin Mint theme
 	pkgver = 0.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/jeffmhubbard/mint-icon-theme
 	arch = any
 	license = GPL

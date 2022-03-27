@@ -1,19 +1,22 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=antsy-gtk-theme
+_pkgname=Antsy
 pkgver=0.5
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin Antsy theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/antsy-gtk-theme"
-license=('GPL')
+license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
 sha256sums=('b203e01fef3cdd02dd5b61ffe95f1d873d51cbec36bac9ad73817677720840c1')
 
 package() {
-	mkdir -p $pkgdir/usr/share/themes
-	cp -r "$srcdir/$pkgname-$pkgver/Antsy" "$pkgdir/usr/share/themes/Antsy"
-	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/Antsy"
-	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/themes/Antsy"
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/themes"
+	cp -r $_pkgname "$pkgdir/usr/share/themes/$_pkgname"
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }

@@ -1,7 +1,7 @@
 pkgbase = nightfall-icon-theme
-	pkgdesc = Penguin Nightfall icon theme
+	pkgdesc = Penguin Nightfall theme
 	pkgver = 0.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/jeffmhubbard/nightfall-icon-theme
 	arch = any
 	license = GPL

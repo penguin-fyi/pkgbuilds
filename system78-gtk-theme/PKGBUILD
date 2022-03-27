@@ -1,7 +1,8 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=system78-gtk-theme
+_pkgname=System78
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin System78 theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/system78-gtk-theme"
@@ -12,8 +13,10 @@ source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar
 sha256sums=('acf839fde54c0f66239afc9d01a6477f3c58e6dd9bcf0f453cef45b8db266533')
 
 package() {
-	mkdir -p $pkgdir/usr/share/themes
-	cp -r "$srcdir/$pkgname-$pkgver/System78" "$pkgdir/usr/share/themes/System78"
-	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/System78"
-	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/themes/System78"
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/themes"
+	cp -r $_pkgname "$pkgdir/usr/share/themes/$_pkgname"
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }

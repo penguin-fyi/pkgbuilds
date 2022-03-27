@@ -1,7 +1,7 @@
 pkgbase = mint-gtk-theme
 	pkgdesc = Penguin Mint theme
 	pkgver = 0.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/jeffmhubbard/mint-gtk-theme
 	arch = any
 	license = MIT

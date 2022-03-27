@@ -1,7 +1,7 @@
 pkgbase = system78-icon-theme
-	pkgdesc = Penguin System78 icon theme
+	pkgdesc = Penguin System78 theme
 	pkgver = 0.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/jeffmhubbard/system78-icon-theme
 	arch = any
 	license = GPL

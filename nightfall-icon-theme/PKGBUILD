@@ -1,8 +1,9 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=nightfall-icon-theme
+_pkgname=Nightfall
 pkgver=0.1
-pkgrel=1
-pkgdesc="Penguin Nightfall icon theme"
+pkgrel=2
+pkgdesc="Penguin Nightfall theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/nightfall-icon-theme"
 license=('GPL')
@@ -10,8 +11,10 @@ source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
 sha256sums=('9bb37bf919c7e331929c0fb4e4bdfec1942438c81753a7e7e92793ac80064af1')
 
 package() {
-	mkdir -p $pkgdir/usr/share/icons
-	cp -r "$srcdir/$pkgname-$pkgver/Nightfall" "$pkgdir/usr/share/icons/Nightfall"
-	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/icons/Nightfall"
-	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/icons/Nightfall"
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/icons"
+	cp -r $_pkgname "$pkgdir/usr/share/icons/$_pkgname"
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }

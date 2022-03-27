@@ -1,7 +1,7 @@
 pkgbase = antsy-icon-theme
-	pkgdesc = Penguin classic icon theme
+	pkgdesc = Penguin Antsy theme
 	pkgver = 0.6
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/jeffmhubbard/antsy-icon-theme
 	arch = any
 	license = GPL

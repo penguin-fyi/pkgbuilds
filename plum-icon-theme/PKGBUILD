@@ -1,8 +1,9 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=plum-icon-theme
+_pkgname=Plum
 pkgver=0.1
-pkgrel=1
-pkgdesc="Penguin Plum icon theme"
+pkgrel=2
+pkgdesc="Penguin Plum theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/plum-icon-theme"
 license=('GPL')
@@ -10,8 +11,10 @@ source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
 sha256sums=('5f1807a83d88094b10f7faec47c6a11cb0f1f1a3dce2ec6bbef57729c95eb62a')
 
 package() {
-	mkdir -p $pkgdir/usr/share/icons
-	cp -r "$srcdir/$pkgname-$pkgver/Plum" "$pkgdir/usr/share/icons/Plum"
-	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/icons/Plum"
-	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/icons/Plum"
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/icons"
+	cp -r $_pkgname "$pkgdir/usr/share/icons/$_pkgname"
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }

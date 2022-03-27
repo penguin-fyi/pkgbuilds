@@ -1,7 +1,8 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=mint-gtk-theme
+_pkgname=Mint
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin Mint theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/mint-gtk-theme"
@@ -12,8 +13,10 @@ source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar
 sha256sums=('dbab93ace44df8a832dcfb54a179dba130faa9dd73d7a5b9cefbd1f87809c4aa')
 
 package() {
-	mkdir -p $pkgdir/usr/share/themes
-	cp -r "$srcdir/$pkgname-$pkgver/Mint" "$pkgdir/usr/share/themes/Mint"
-	cp "$srcdir/$pkgname-$pkgver/README.md" "$pkgdir/usr/share/themes/Mint"
-	cp "$srcdir/$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/themes/Mint"
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/themes"
+	cp -r $_pkgname "$pkgdir/usr/share/themes/$_pkgname"
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }

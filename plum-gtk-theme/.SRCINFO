@@ -1,7 +1,7 @@
 pkgbase = plum-gtk-theme
 	pkgdesc = Penguin Plum theme
 	pkgver = 0.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/jeffmhubbard/plum-gtk-theme
 	arch = any
 	license = MIT

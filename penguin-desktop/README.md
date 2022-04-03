@@ -14,10 +14,11 @@ Provides the complete Penguin Desktop
 * dex
 * firefox
 * fontconfig
+* gparted
 * gpicview
 * gvfs
 * kitty
-* leafpad
+* l3afpad
 * lightdm
 * lightdm-gtk-greeter
 * lightdm-gtk-greeter-settings
@@ -27,7 +28,6 @@ Provides the complete Penguin Desktop
 * network-manager-applet
 * numlockx
 * pamac-aur-git ***!***
-* parcellite
 * pavucontrol
 * pcmanfm-gtk3
 * penguin-desktop-awesome ***!!***
@@ -49,6 +49,7 @@ Provides the complete Penguin Desktop
 * weechat
 * xdg-user-dirs-gtk
 * xdg-utils
+* xed
 * xorg-xdpyinfo
 * xorg-server
 * xorg-xset

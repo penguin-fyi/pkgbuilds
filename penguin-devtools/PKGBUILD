@@ -15,8 +15,6 @@ depends=(archiso arch-install-scripts aurutils autopep8 bat cmake
          python-virtualenv python-virtualenvwrapper
          rsync shellcheck-bin tree xorg-server-xephyr yapf)
 
-replaces=('penguin-dev-tools')
-
 optdepends=('gimp: artwork and icons'
             'tea: interact with gitea repo'
             'github-cli: interact with github repo'

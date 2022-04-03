@@ -1,0 +1,34 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+# Contributor: Nate Simon <njsimon10@gmail.com>
+
+pkgname=xviewer
+pkgver=3.2.4
+pkgrel=2
+pkgdesc="A simple and easy to use image viewer. X-Apps Project."
+arch=('x86_64' 'aarch64')
+license=('GPL')
+groups=('x-apps')
+depends=('xapp' 'gtk3' 'cinnamon-desktop' 'libpeas' 'libexif' 'libjpeg-turbo'
+         'exempi')
+makedepends=('gnome-common' 'gobject-introspection' 'librsvg')
+optdepends=('xviewer-plugins: Extra plugins'
+            'librsvg: for scaling svg images')
+url='https://github.com/linuxmint/xviewer'
+
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
+md5sums=('1223f1f66063ee2fcdfcdf8bf549189b')
+
+build() {
+    cd ${srcdir}/${pkgname}-${pkgver}
+
+    NOCONFIGURE=1 gnome-autogen.sh
+    gnome-autogen.sh --prefix="/usr" \
+        --localstatedir="/var" \
+         --libexecdir="/usr/lib"
+    make
+}
+
+package(){
+    cd ${srcdir}/${pkgname}-${pkgver}
+    make DESTDIR="$pkgdir/" install
+}

@@ -1,12 +1,13 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-themes'
-pkgver=3
-pkgrel=2
+pkgver=4
+pkgrel=1
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
 depends=(antsy-gtk-theme antsy-icon-theme
+         idaeus-gtk-theme idaeus-icon-theme
          mint-gtk-theme mint-icon-theme
          nightfall-gtk-theme nightfall-icon-theme
          plum-gtk-theme plum-icon-theme
@@ -24,5 +25,5 @@ package(){
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-themes/LICENSE
 }
 
-md5sums=('a55d1384569349075b5a6a5c61af5c17'
-         '1553fe284567d1b4db5c9bf60e9b02a9')
+md5sums=('32faed122940835fb3401d601b2d1e85'
+         '6cf2030df59227fd5b9f3db73a571e25')

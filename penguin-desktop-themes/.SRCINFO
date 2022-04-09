@@ -1,12 +1,14 @@
 pkgbase = penguin-desktop-themes
 	pkgdesc = Themes, icons, and fonts for the Penguin Desktop
-	pkgver = 3
+	pkgver = 4
 	pkgrel = 1
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
 	depends = antsy-gtk-theme
 	depends = antsy-icon-theme
+	depends = idaeus-gtk-theme
+	depends = idaeus-icon-theme
 	depends = mint-gtk-theme
 	depends = mint-icon-theme
 	depends = nightfall-gtk-theme
@@ -23,7 +25,7 @@ pkgbase = penguin-desktop-themes
 	depends = xcursor-neutral
 	source = LICENSE
 	source = README.md
-	md5sums = a55d1384569349075b5a6a5c61af5c17
-	md5sums = 1553fe284567d1b4db5c9bf60e9b02a9
+	md5sums = 32faed122940835fb3401d601b2d1e85
+	md5sums = 6cf2030df59227fd5b9f3db73a571e25
 
 pkgname = penguin-desktop-themes

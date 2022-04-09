@@ -1,16 +1,16 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=mint-gtk-theme
 _pkgname=Mint
-pkgver=0.1
-pkgrel=2
-pkgdesc="Penguin Mint theme"
+pkgver=0.2
+pkgrel=1
+pkgdesc="Mint GTK Theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/mint-gtk-theme"
 license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('dbab93ace44df8a832dcfb54a179dba130faa9dd73d7a5b9cefbd1f87809c4aa')
+sha256sums=('28e8dd92a8f5ddfdb91227d98985b3f4061c6624d76af42db388d5044b503316')
 
 package() {
 	cd "$pkgname-$pkgver"

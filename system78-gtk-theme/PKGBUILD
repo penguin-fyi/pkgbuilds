@@ -1,16 +1,16 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=system78-gtk-theme
 _pkgname=System78
-pkgver=0.1
-pkgrel=2
-pkgdesc="Penguin System78 theme"
+pkgver=0.2
+pkgrel=1
+pkgdesc="System78 GTK Theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/system78-gtk-theme"
 license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('acf839fde54c0f66239afc9d01a6477f3c58e6dd9bcf0f453cef45b8db266533')
+sha256sums=('f862c5277e514ca39f01547ff181aa95067eb391f98b29b13febca3369e8db3b')
 
 package() {
 	cd "$pkgname-$pkgver"

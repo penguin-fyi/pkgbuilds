@@ -1,12 +1,12 @@
 pkgbase = antsy-gtk-theme
-	pkgdesc = Penguin Antsy theme
-	pkgver = 0.5
-	pkgrel = 2
+	pkgdesc = Antsy GTK Theme
+	pkgver = 0.5.1
+	pkgrel = 1
 	url = https://github.com/jeffmhubbard/antsy-gtk-theme
 	arch = any
 	license = MIT
 	depends = gtk-engine-murrine
-	source = https://github.com/jeffmhubbard/antsy-gtk-theme/archive/refs/tags/v0.5.tar.gz
-	sha256sums = b203e01fef3cdd02dd5b61ffe95f1d873d51cbec36bac9ad73817677720840c1
+	source = https://github.com/jeffmhubbard/antsy-gtk-theme/archive/refs/tags/v0.5.1.tar.gz
+	sha256sums = 5c905e11acfa13d0cc7eff9375a3a558a70ba8fb662737d5d9fd1a6d66daee6f
 
 pkgname = antsy-gtk-theme

@@ -1,5 +1,7 @@
 antsy-gtk-theme
 antsy-icon-theme
+idaeus-gtk-theme
+idaeus-icon-theme
 mint-gtk-theme
 mint-icon-theme
 nightfall-gtk-theme

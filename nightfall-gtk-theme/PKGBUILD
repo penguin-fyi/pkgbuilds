@@ -1,16 +1,16 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=nightfall-gtk-theme
 _pkgname=Nightfall
-pkgver=0.1
-pkgrel=2
-pkgdesc="Penguin Nightfall theme"
+pkgver=0.2
+pkgrel=1
+pkgdesc="Nightfall GTK Theme"
 arch=('any')
 url="https://github.com/jeffmhubbard/nightfall-gtk-theme"
 license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('f680d1b8acdd01b6ab48dddf8d0c040a622710510f709165c7b1a6f69e0f7f05')
+sha256sums=('eb06f8e95e1ddb3315cfc3f54e278fa42d083a8a00e38110dbf2506c6ebcc4f4')
 
 package() {
 	cd "$pkgname-$pkgver"

@@ -1,0 +1,20 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=idaeus-icon-theme
+_pkgname=Idaeus
+pkgver=0.1
+pkgrel=1
+pkgdesc="Idaeus Icon Theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/idaeus-icon-theme"
+license=('GPL')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
+sha256sums=('fc1e7ccc3f8e18c7f8df81c2482c4509c945609ba7200b92fd56e9c42444005a')
+
+package() {
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/icons"
+	cp -r $_pkgname "$pkgdir/usr/share/icons/$_pkgname"
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
+}

@@ -1,0 +1,22 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=idaeus-gtk-theme
+_pkgname=Idaeus
+pkgver=0.1
+pkgrel=1
+pkgdesc="Idaeus GTK Theme"
+arch=('any')
+url="https://github.com/jeffmhubbard/idaeus-gtk-theme"
+license=('MIT')
+depends=('gtk-engine-murrine')
+source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
+
+sha256sums=('242b6c06b4399f4d959537203598f7425e459b096b8c13bb93e1a9ac28d3fa26')
+
+package() {
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/themes"
+	cp -r $_pkgname "$pkgdir/usr/share/themes/$_pkgname"
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
+}

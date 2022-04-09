@@ -1,0 +1,12 @@
+pkgbase = idaeus-gtk-theme
+	pkgdesc = Idaeus GTK Theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/jeffmhubbard/idaeus-gtk-theme
+	arch = any
+	license = MIT
+	depends = gtk-engine-murrine
+	source = https://github.com/jeffmhubbard/idaeus-gtk-theme/archive/refs/tags/v0.1.tar.gz
+	sha256sums = 242b6c06b4399f4d959537203598f7425e459b096b8c13bb93e1a9ac28d3fa26
+
+pkgname = idaeus-gtk-theme

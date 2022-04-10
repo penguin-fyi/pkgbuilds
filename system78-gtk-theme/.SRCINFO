@@ -1,12 +1,12 @@
 pkgbase = system78-gtk-theme
 	pkgdesc = System78 GTK Theme
-	pkgver = 0.2
+	pkgver = 0.2.1
 	pkgrel = 1
 	url = https://github.com/jeffmhubbard/system78-gtk-theme
 	arch = any
 	license = MIT
 	depends = gtk-engine-murrine
-	source = https://github.com/jeffmhubbard/system78-gtk-theme/archive/refs/tags/v0.2.tar.gz
-	sha256sums = f862c5277e514ca39f01547ff181aa95067eb391f98b29b13febca3369e8db3b
+	source = https://github.com/jeffmhubbard/system78-gtk-theme/archive/refs/tags/v0.2.1.tar.gz
+	sha256sums = 868cdfb9506c52ec4906dd750fea1f0b033ca665dcf8fc0195be7993fb9d3c4a
 
 pkgname = system78-gtk-theme

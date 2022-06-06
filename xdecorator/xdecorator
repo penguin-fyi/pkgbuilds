@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-Xdecorator - Configure desktop settings with xsettingsd
-MIT, Copyright 2022 Jeff M Hubbard
-"""
+''' Xdecorator - Configure desktop settings with xsettingsd
+    MIT, Copyright 2022 Jeff M Hubbard
+'''
 
 import os
 import sys
 import fileinput
+from shutil import which
 
 import gi
-gi.require_version("Gtk", "3.0")
+gi.require_version('Gtk', '3.0')
 try:
     from gi.repository import Gtk
 except Exception as e:
@@ -19,8 +19,8 @@ except Exception as e:
 
 __title__ = 'Xdecorator'
 __icon__ = 'preferences-desktop-theme'
-__version__ = '0.0.1-alpha'
-__status__ = 'prototype'
+__version__ = '0.0.2'
+__status__ = 'demo'
 __author__ = 'Jeff M. Hubbard'
 __email__ = 'jeffmhubbard@gmail.com'
 __maintainer__ = __author__
@@ -29,39 +29,39 @@ __license__ = 'MIT'
 __credits__ = [__author__]
 
 rc_paths = (
-    os.path.join(os.environ["HOME"], ".xsettingsd"),
-    os.path.join(os.environ["XDG_CONFIG_HOME"], "xsettingsd.conf"),
-    os.path.join(os.environ["XDG_CONFIG_HOME"], "xsettingsd/xsettingsd.conf"),
+    os.path.join(os.environ['HOME'], '.xsettingsd'),
+    os.path.join(os.environ['XDG_CONFIG_HOME'], 'xsettingsd.conf'),
+    os.path.join(os.environ['XDG_CONFIG_HOME'], 'xsettingsd/xsettingsd.conf'),
 )
-
 theme_dirs = (
-    "/usr/share/themes",
-    os.path.join(os.environ["XDG_DATA_HOME"], "themes"),
-    os.path.join(os.environ["HOME"], ".themes"),
-    "/usr/share/icons",
-    os.path.join(os.environ["XDG_DATA_HOME"], "icons"),
-    os.path.join(os.environ["HOME"], ".icons"),
+    '/usr/share/themes',
+    os.path.join(os.environ['XDG_DATA_HOME'], 'themes'),
+    os.path.join(os.environ['HOME'], '.themes'),
 )
-
+icon_dirs = (
+    '/usr/share/icons',
+    os.path.join(os.environ['XDG_DATA_HOME'], 'icons'),
+    os.path.join(os.environ['HOME'], '.icons'),
+)
 default_config = {
-    'Net/ThemeName': str('Antsy'),
-    'Net/IconThemeName': str('Antsy'),
+    'Net/ThemeName': str('Adwaita'),
+    'Net/IconThemeName': str('Adwaita'),
+    'Gtk/FontName': str('Sans 10'),
     'Xft/Antialias': int(-1),
     'Xft/Hinting': int(-1),
     'Xft/HintStyle': str('hintnone'),
     'Xft/RGBA': str('none'),
-    'Gtk/FontName': str('Sans 10'),
 }
-
 hint_styles = ['None', 'Slight', 'Medium', 'Full']
 subpixel_type = ['None', 'RGB', 'BGR', 'VRGB', 'VBGR']
+postrun_script = 'xdecorator_postrun.sh'
 
 DEBUG = False
 
 
 def printd(*args):
-    """ Print debug messages
-    """
+    ''' Print debug messages
+    '''
     if DEBUG:
         output = [__title__]
         for arg in args:
@@ -69,23 +69,23 @@ def printd(*args):
         print(' '.join(output))
 
 
-def get_rc(search_paths):
-    """ Return first matching config from search_paths
-    """
-    for rc in search_paths:
+def get_rc(paths):
+    ''' Return first matching config from search_paths
+    '''
+    for rc in paths:
         if os.path.isfile(rc):
             printd('Using config:', rc)
             return rc
 
 
 def read_rc(rc, cfg_dict):
-    """ Read rc file and update cfg_dict
-    """
+    ''' Read rc file and update cfg_dict
+    '''
     fh = open(rc, 'r')
     for line in fh:
         line = line.strip()
         if line.startswith(tuple(cfg_dict.keys())):
-            key, value = line.split(" ", 1)
+            key, value = line.split(' ', 1)
             if key in cfg_dict:
                 if type(default_config[key]) is str:
                     cfg_dict[key] = str(value.strip('"'))
@@ -93,64 +93,60 @@ def read_rc(rc, cfg_dict):
                     cfg_dict[key] = int(value)
 
 
-def get_resources(search_paths, themes=[], icons=[]):
-    """ Return lists of discovered resources
-    """
-
-    themes = []
-    icons = []
-    for path in search_paths:
+def get_themes(paths, themes=[]):
+    ''' Return list of themes
+    '''
+    for path in paths:
         if os.path.isdir(path):
             for name in os.listdir(path):
                 filepath = os.path.join(path, name)
-                if is_gtk_theme(filepath):
+                index = os.path.join(filepath, 'index.theme')
+                css = os.path.join(filepath, 'gtk-3.0/gtk.css')
+                if os.path.isfile(index) and os.path.isfile(css):
                     themes.append(name)
-                if is_icon_theme(filepath):
+
+    return sorted(list(set(themes)))
+
+
+def get_icons(paths, icons=[]):
+    ''' Return list of icons
+    '''
+    for path in paths:
+        if os.path.isdir(path):
+            for name in os.listdir(path):
+                filepath = os.path.join(path, name)
+                index = os.path.join(filepath, 'index.theme')
+                layouts = ['48x48/apps', 'apps/48']
+                for layout in layouts:
+                    subpath = os.path.join(filepath, layout)
+                    if os.path.isdir(subpath):
+                        break
+                if os.path.isfile(index) and os.path.isdir(subpath):
+                    printd('found icon in:', filepath)
                     icons.append(name)
-    themes = sorted(list(set(themes)))
-    icons = sorted(list(set(icons)))
-    return themes, icons
 
-
-def is_gtk_theme(path):
-    """ Check that path contains gtk theme
-    """
-    index = os.path.join(path, 'index.theme')
-    css = os.path.join(path, 'gtk-3.0/gtk.css')
-    if os.path.isfile(index) and os.path.isfile(css):
-        printd('found theme in:', path)
-        return True
-
-
-def is_icon_theme(path):
-    """ Check that path contains icon theme
-    """
-    index = os.path.join(path, 'index.theme')
-    layouts = ["48x48/apps", "apps/48"]
-    for layout in layouts:
-        subpath = os.path.join(path, layout)
-        if os.path.isdir(subpath):
-            break
-    if os.path.isfile(index) and os.path.isdir(subpath):
-        printd('found icon in:', path)
-        return True
+    return sorted(list(set(icons)))
 
 
 def write_config(config, key, value, quote=False):
-    """
-    """
+    ''' Write a single key/value to config file
+    '''
     printd('Writing', key, value)
     for line in fileinput.input([config], inplace=True):
         if line.startswith(key):
             if quote:
                 value = f'"{value}"'
-            line = ' '.join([key, value, '\n'])
+            line = ' '.join([key, str(value), '\n'])
         sys.stdout.write(line)
 
 
 def restart_xsd():
+    ''' Restart xsettingsd and call postrun script
+    '''
     printd('Restarting xsettingsd...')
     os.system('killall -HUP xsettingsd')
+    if which(postrun_script):
+        os.system(postrun_script)
 
 
 class Window(Gtk.ApplicationWindow):
@@ -160,7 +156,7 @@ class Window(Gtk.ApplicationWindow):
                 title=__title__,
                 application=app)
         self.set_default_icon_name(__icon__)
-        self.set_default_size(200, 300)
+        self.set_default_size(240, 320)
         self.set_border_width(4)
 
         base = Gtk.VBox(spacing=6)
@@ -175,27 +171,25 @@ class Window(Gtk.ApplicationWindow):
         buttonbox.set_spacing(2)
         base.pack_start(buttonbox, False, True, 0)
 
-        button = Gtk.Button.new_with_mnemonic("_About")
-        # button.set_image = Gtk.Image.new_from_icon_name('gtk-about', 16)
-        button.connect("clicked", self.on_about_clicked)
+        button = Gtk.Button.new_with_mnemonic('_Apply')
+        button.connect('released', self.on_apply_clicked)
         buttonbox.add(button)
 
-        button = Gtk.Button.new_with_mnemonic("_Close")
-        # button.set_image = Gtk.Image.new_from_icon_name('gtk-close', 16)
-        button.connect("clicked", self.on_close_clicked)
+        button = Gtk.Button.new_with_mnemonic('_Close')
+        button.connect('released', self.on_close_clicked)
         buttonbox.add(button)
 
         # Themes page
         # Net/ThemeName
         box = Gtk.VBox(spacing=6)
-        label = Gtk.Label(label="Themes")
+        label = Gtk.Label(label='Themes')
         notebook.append_page(box, label)
 
         store = Gtk.ListStore(str)
-        conf = app.user_config["Net/ThemeName"]
+        conf = app.user_config['Net/ThemeName']
         start = None
         selection = None
-        for theme in app._themes:
+        for theme in app.themes_list:
             treeiter = store.append([theme])
             if theme == conf:
                 start = store.get_path(treeiter)
@@ -217,19 +211,19 @@ class Window(Gtk.ApplicationWindow):
         box.pack_start(scrolled, True, True, 0)
 
         selection = view.get_selection()
-        selection.connect("changed", self.on_theme_selected)
+        selection.connect('changed', self.on_theme_selected)
 
         # Icons page
         # Net/IconThemeName
         box = Gtk.VBox(spacing=6)
-        label = Gtk.Label(label="Icons")
+        label = Gtk.Label(label='Icons')
         notebook.append_page(box, label)
 
         store = Gtk.ListStore(str)
-        conf = app.user_config["Net/IconThemeName"]
+        conf = app.user_config['Net/IconThemeName']
         start = None
         selection = None
-        for icon in app._icons:
+        for icon in app.icons_list:
             treeiter = store.append([icon])
             if icon == conf:
                 start = store.get_path(treeiter)
@@ -250,11 +244,11 @@ class Window(Gtk.ApplicationWindow):
         box.pack_start(scrolled, True, True, 0)
 
         selection = view.get_selection()
-        selection.connect("changed", self.on_icon_selected)
+        selection.connect('changed', self.on_icon_selected)
 
         # Fonts page
         box = Gtk.VBox(spacing=6)
-        label = Gtk.Label(label="Fonts")
+        label = Gtk.Label(label='Fonts')
         notebook.append_page(box, label)
 
         # Gtk/FontName
@@ -269,11 +263,11 @@ class Window(Gtk.ApplicationWindow):
         grid.set_border_width(8)
         frame.add(grid)
 
-        conf = app.user_config["Gtk/FontName"]
-        fontbutton = Gtk.FontButton(title="Select default font")
+        conf = app.user_config['Gtk/FontName']
+        fontbutton = Gtk.FontButton(title='Select default font')
         fontbutton.set_font(conf)
         fontbutton.set_hexpand(True)
-        fontbutton.connect("font-set", self.on_font_changed)
+        fontbutton.connect('font-set', self.on_font_changed)
         grid.attach(fontbutton, 0, 0, 1, 1)
 
         box.pack_start(frame, False, False, 2)
@@ -290,12 +284,12 @@ class Window(Gtk.ApplicationWindow):
         frame.add(grid)
 
         # Xft/Antialias
-        label = Gtk.Label(label="Enable anti-aliasing")
+        label = Gtk.Label(label='Enable anti-aliasing')
         label.set_halign(True)
         label.set_hexpand(True)
         grid.attach(label, 0, 0, 2, 1)
 
-        conf = app.user_config["Xft/Antialias"]
+        conf = app.user_config['Xft/Antialias']
         switch = Gtk.Switch()
         switch.set_hexpand(False)
         if conf:
@@ -304,123 +298,127 @@ class Window(Gtk.ApplicationWindow):
         grid.attach(switch, 2, 0, 2, 1)
 
         # Xft/RGBA
-        label = Gtk.Label(label="Sub-pixel order")
+        label = Gtk.Label(label='Sub-pixel order')
         label.set_halign(True)
         label.set_hexpand(True)
         grid.attach(label, 0, 1, 2, 1)
 
-        conf = app.user_config["Xft/RGBA"]
+        conf = app.user_config['Xft/RGBA']
         combobox = Gtk.ComboBoxText()
         for subpixel in subpixel_type:
             subpixel_id = str(subpixel.lower())
             combobox.append(subpixel_id, subpixel)
             if subpixel_id == conf:
                 combobox.set_active_id(subpixel_id)
-        combobox.connect("changed", self.on_subpixel_changed)
+        combobox.connect('changed', self.on_subpixel_changed)
         grid.attach(combobox, 2, 1, 1, 1)
 
         # Xft/HintStyle
-        label = Gtk.Label(label="Hinting:")
+        label = Gtk.Label(label='Hinting:')
         label.set_halign(True)
         label.set_hexpand(True)
         grid.attach(label, 0, 2, 2, 1)
 
-        conf = app.user_config["Xft/HintStyle"]
+        conf = app.user_config['Xft/HintStyle']
         combobox = Gtk.ComboBoxText()
         for style in hint_styles:
             style_id = 'hint' + str(style.lower())
             combobox.append(style_id, style)
             if style_id == conf:
                 combobox.set_active_id(style_id)
-        combobox.connect("changed", self.on_hinting_changed)
+        combobox.connect('changed', self.on_hinting_changed)
         grid.attach(combobox, 2, 2, 1, 1)
 
         box.pack_start(frame, False, False, 2)
 
     def on_theme_selected(self, selection):
+        ''' Update user_config
+        '''
         model, treeiter = selection.get_selected()
         key = 'Net/ThemeName'
         if treeiter is not None:
-            printd("Theme selected", model[treeiter][0])
+            printd('Theme selected', model[treeiter][0])
             app.user_config[key] = model[treeiter][0]
-            write_config(app.rc_file, key, app.user_config[key], quote=True)
-            restart_xsd()
-            os.system('theme_kitty.sh')
-            os.system('restart_awesome.sh')
 
     def on_icon_selected(self, selection):
+        ''' Update user_config
+        '''
         model, treeiter = selection.get_selected()
         key = 'Net/IconThemeName'
         if treeiter is not None:
-            printd("Icon selected", model[treeiter][0])
+            printd('Icon selected', model[treeiter][0])
             app.user_config[key] = model[treeiter][0]
-            write_config(app.rc_file, key, app.user_config[key], quote=True)
-            restart_xsd()
 
     def on_font_changed(self, widget):
+        ''' Update user_config
+        '''
         key = 'Gtk/FontName'
         selected = widget.get_font()
         if selected is not None and selected != app.user_config[key]:
-            printd("Font selected: %s" % selected)
+            printd('Font selected: %s' % selected)
             app.user_config[key] = selected
-            write_config(app.rc_file, key, app.user_config[key], quote=True)
-            restart_xsd()
-            os.system('restart_awesome.sh')
 
     def on_antialias_changed(self, widget, data):
+        ''' Update user_config
+        '''
         key = 'Xft/Antialias'
         active = widget.get_active()
-        printd("Antialias enabled: %s" % active)
+        printd('Antialias enabled: %s' % active)
         if active:
             app.user_config[key] = str(1)
         else:
             app.user_config[key] = str(0)
-        write_config(app.rc_file, key, app.user_config[key])
-        restart_xsd()
 
     def on_hinting_changed(self, widget):
+        ''' Update user_config
+        '''
         hint_key = 'Xft/Hinting'
         style_key = 'Xft/HintStyle'
         active = widget.get_active()
         active_id = widget.get_active_id()
-        printd("Hinting selected: %s" % active_id)
+        printd('Hinting selected: %s' % active_id)
         if active == 0:
             app.user_config[hint_key] = str(0)
         else:
             app.user_config[hint_key] = str(1)
         app.user_config[style_key] = active_id
-        write_config(app.rc_file, hint_key, app.user_config[hint_key])
-        write_config(app.rc_file, style_key, app.user_config[style_key], True)
-        restart_xsd()
 
     def on_subpixel_changed(self, widget):
+        ''' Update user_config
+        '''
         key = 'Xft/RGBA'
         active_id = widget.get_active_id()
-        printd("Subpixel selected: %s" % active_id)
+        printd('Subpixel selected: %s' % active_id)
         if active_id.upper() in subpixel_type or 'NONE':
             app.user_config[key] = active_id
-            write_config(app.rc_file, key, app.user_config[key], True)
-            restart_xsd()
 
-    def on_about_clicked(self, button):
-        printd("About application")
-        dialog = Gtk.AboutDialog(transient_for=self, modal=True)
-        dialog.set_title("About".join(__title__))
-        dialog.set_name(__title__)
-        dialog.set_version(__version__)
-        dialog.set_authors([__author__])
-        dialog.set_copyright(__copyright__)
-        dialog.set_license(__license__)
-        dialog.set_logo_icon_name(__icon__)
-        dialog.connect('response', self.on_about_close)
-        dialog.present()
+    def on_apply_clicked(self, button):
+        ''' Write config and restart xsettingsd
+        '''
+        printd('Applying settings...')
+        for key in app.user_config:
+            match key:
+                case 'Net/ThemeName':
+                    write_config(app.rc_file, key, app.user_config[key], True)
+                case 'Net/IconThemeName':
+                    write_config(app.rc_file, key, app.user_config[key], True)
+                case 'Gtk/FontName':
+                    write_config(app.rc_file, key, app.user_config[key], True)
+                case 'Xft/Antialias':
+                    write_config(app.rc_file, key, app.user_config[key])
+                case 'Xft/Hinting':
+                    write_config(app.rc_file, key, app.user_config[key])
+                case 'Xft/HintStyle':
+                    write_config(app.rc_file, key, app.user_config[key], True)
+                case 'Xft/RGBA':
+                    write_config(app.rc_file, key, app.user_config[key], True)
+        restart_xsd()
 
     def on_close_clicked(self, button):
-        printd("Closing application")
+        ''' Exit application
+        '''
+        printd('Closing application')
         app.quit()
-
-    def on_about_close(self, dialog, response):
-        dialog.destroy()
 
 
 class Application(Gtk.Application):
@@ -443,7 +441,9 @@ class Application(Gtk.Application):
         except Exception as e:
             sys.quit(e)
 
-        self._themes, self._icons = get_resources(theme_dirs)
+        # self.themes_list, self.icons_list = get_resources(theme_dirs)
+        self.themes_list = get_themes(theme_dirs)
+        self.icons_list = get_icons(icon_dirs)
 
 
 app = Application()

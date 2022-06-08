@@ -1,16 +1,16 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
-pkgname=idaeus-gtk-theme
-_pkgname=Idaeus
+pkgname=ngui-cyan-gtk-theme
+_pkgname=nGUI-Cyan
 pkgver=0.1
 pkgrel=1
-pkgdesc="Idaeus GTK Theme"
+pkgdesc="nGUI-Cyan GTK theme"
 arch=('any')
-url="https://github.com/jeffmhubbard/idaeus-gtk-theme"
+url="https://github.com/penguin-fyi/ngui-cyan-gtk-theme"
 license=('MIT')
 depends=('gtk-engine-murrine')
-source=("https://github.com/jeffmhubbard/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
+source=("https://github.com/penguin-fyi/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('242b6c06b4399f4d959537203598f7425e459b096b8c13bb93e1a9ac28d3fa26')
+sha256sums=('0040508af5b8dc729fb24bcf1c9b82c106d257443921226b9d5cc33d84011c64')
 
 package() {
 	cd "$pkgname-$pkgver"

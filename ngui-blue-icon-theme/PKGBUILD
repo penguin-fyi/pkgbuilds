@@ -1,0 +1,20 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=ngui-blue-icon-theme
+_pkgname=nGUI-Blue
+pkgver=0.1
+pkgrel=1
+pkgdesc="nGUI-Blue icon theme"
+arch=('any')
+url="https://github.com/penguin-fyi/$pkgname"
+license=('GPL')
+source=("$url/archive/v$pkgver.tar.gz")
+sha256sums=('b8133355f686d6fb04e83fdfff1cea1a68ab1b4f96f6fec7651b487e45eaff18')
+
+package() {
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/icons"
+	cp -r $_pkgname "$pkgdir/usr/share/icons/$_pkgname"
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
+}

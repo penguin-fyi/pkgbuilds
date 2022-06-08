@@ -1,0 +1,12 @@
+pkgbase = ngui-darkcyan-gtk-theme
+	pkgdesc = nGUI-DarkCyan GTK theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/penguin-fyi/ngui-darkcyan-gtk-theme
+	arch = any
+	license = MIT
+	depends = gtk-engine-murrine
+	source = https://github.com/penguin-fyi/ngui-darkcyan-gtk-theme/archive/refs/tags/v0.1.tar.gz
+	sha256sums = af6d1c81a03de016e407962296b681fd061e1ec0b251c4cd6e74ba90d060e27f
+
+pkgname = ngui-darkcyan-gtk-theme

@@ -1,0 +1,11 @@
+pkgbase = ngui-cyan-icon-theme
+	pkgdesc = nGUI-Cyan icon theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/penguin-fyi/ngui-cyan-icon-theme
+	arch = any
+	license = GPL
+	source = https://github.com/penguin-fyi/ngui-cyan-icon-theme/archive/v0.1.tar.gz
+	sha256sums = 744957e960816c7ab74f88700c1cafbfd68be1091fe97b28e326c32eab24d950
+
+pkgname = ngui-cyan-icon-theme

@@ -1,0 +1,12 @@
+pkgbase = ngui-darkblue-gtk-theme
+	pkgdesc = nGUI-DarkBlue GTK theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/penguin-fyi/ngui-darkblue-gtk-theme
+	arch = any
+	license = MIT
+	depends = gtk-engine-murrine
+	source = https://github.com/penguin-fyi/ngui-darkblue-gtk-theme/archive/refs/tags/v0.1.tar.gz
+	sha256sums = 186eeb683dbe5a982a7b8bab510d50e206af874b5a309d8199dd036ca3f94ed3
+
+pkgname = ngui-darkblue-gtk-theme

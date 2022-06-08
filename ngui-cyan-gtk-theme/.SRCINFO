@@ -1,0 +1,12 @@
+pkgbase = ngui-cyan-gtk-theme
+	pkgdesc = nGUI-Cyan GTK theme
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/penguin-fyi/ngui-cyan-gtk-theme
+	arch = any
+	license = MIT
+	depends = gtk-engine-murrine
+	source = https://github.com/penguin-fyi/ngui-cyan-gtk-theme/archive/refs/tags/v0.1.tar.gz
+	sha256sums = 0040508af5b8dc729fb24bcf1c9b82c106d257443921226b9d5cc33d84011c64
+
+pkgname = ngui-cyan-gtk-theme

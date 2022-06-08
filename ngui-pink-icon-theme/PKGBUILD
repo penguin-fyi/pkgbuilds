@@ -1,14 +1,14 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
-pkgname=idaeus-icon-theme
-_pkgname=Idaeus
+pkgname=ngui-pink-icon-theme
+_pkgname=nGUI-Pink
 pkgver=0.1
 pkgrel=1
-pkgdesc="Idaeus Icon Theme"
+pkgdesc="nGUI-Pink icon theme"
 arch=('any')
-url="https://github.com/jeffmhubbard/idaeus-icon-theme"
+url="https://github.com/penguin-fyi/$pkgname"
 license=('GPL')
-source=("https://github.com/jeffmhubbard/$pkgname/archive/v$pkgver.tar.gz")
-sha256sums=('fc1e7ccc3f8e18c7f8df81c2482c4509c945609ba7200b92fd56e9c42444005a')
+source=("$url/archive/v$pkgver.tar.gz")
+sha256sums=('4e0e64c423dfd83384d032fdc5bddb17a8c25195193e63546250231d7e65c54b')
 
 package() {
 	cd "$pkgname-$pkgver"

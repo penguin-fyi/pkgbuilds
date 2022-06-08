@@ -1,8 +1,6 @@
-awesome-git
-awesome-freedesktop-git
-luacheck
-shellcheck-bin
-aurutils
-libpamac-git
 archlinux-appstream-data-pamac
+aurutils
+awesome-git
+libpamac-git
 pamac-aur-git
+shellcheck-bin

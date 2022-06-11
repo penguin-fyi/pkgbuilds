@@ -1,15 +1,14 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop
-pkgver=14
+pkgver=15
 pkgrel=1
 pkgdesc="The Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(arandr avahi awesome-git awesome-freedesktop-git
-         bash-completion blueman bluez-utils cups dex firefox
-         fontconfig gparted gst-libav gvfs kitty lightdm
-         lightdm-gtk-greeter lightdm-gtk-greeter-settings
+depends=(arandr avahi awesome-git bash-completion blueman bluez-utils
+         cups dex firefox fontconfig gparted gst-libav gvfs kitty
+         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
          light-locker lxtask-gtk3 network-manager-applet numlockx
          pamac-aur-git pavucontrol pcmanfm-gtk3
          penguin-desktop-awesome penguin-desktop-config
@@ -28,9 +27,7 @@ source=('autostart-numlockx'
         'autostart-udiskie'
         'autostart-unclutter'
         'autostart-volumeicon'
-        'patch-lightdm-gtk-greeter.conf'
         'penguin-desktop.install'
-        'penguin-logo.svg'
         'xsession-awesome-default'
         'LICENSE'
         'README.md')
@@ -42,9 +39,7 @@ md5sums=('c199c9b4e5f5d1732136b661fb41d065'
          'ea96caee4c180370818cbc8361d17f0e'
          '5343c3272d3c2b8b10b557eb12df84da'
          '6a7cd28a4ce7c7a40632840744f135e9'
-         'f9012627e69571f363b49c47c63a0def'
          '65b9e12e3c7b36f487473253e5e5a5f2'
-         'ed9e2d59fa012b888e9e32d7ff538d1c'
          'ed90137b894837697c3f635a0dbdc1fe'
          '32faed122940835fb3401d601b2d1e85'
          'c7777feb942a67736dea807d826a8c73')
@@ -59,8 +54,6 @@ package(){
     install -Dm0644 autostart-udiskie "$pkgdir"/etc/xdg/autostart/udiskie.desktop
     install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
     install -Dm0644 autostart-volumeicon "$pkgdir"/etc/xdg/autostart/volumeicon.desktop
-    install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
-    install -Dm0644 penguin-logo.svg "$pkgdir"/usr/share/pixmaps/penguin-logo.svg
     install -Dm0644 xsession-awesome-default "$pkgdir"/usr/share/xsessions/awesome-default.desktop
     install -Dm0644 README.md "$pkgdir"/usr/share/$pkgname/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE

@@ -1,29 +1,32 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-themes'
-pkgver=4
+pkgver=6
 pkgrel=1
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(antsy-gtk-theme antsy-icon-theme
-         idaeus-gtk-theme idaeus-icon-theme
-         mint-gtk-theme mint-icon-theme
-         nightfall-gtk-theme nightfall-icon-theme
-         plum-gtk-theme plum-icon-theme
-         system78-gtk-theme system78-icon-theme
-         ttf-bitstream-vera noto-fonts-emoji
-         ttf-dejavu ttf-hack ttf-nerd-fonts-symbols
-         xcursor-neutral)
+depends=(ngui-blue-gtk-theme ngui-darkblue-gtk-theme ngui-blue-icon-theme
+         ngui-cyan-gtk-theme ngui-darkcyan-gtk-theme ngui-cyan-icon-theme
+         ngui-green-gtk-theme ngui-darkgreen-gtk-theme ngui-green-icon-theme
+         ngui-pink-gtk-theme ngui-darkpink-gtk-theme ngui-pink-icon-theme
+         noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-hack
+         ttf-nerd-fonts-symbols xcursor-neutral)
 source=(
+    'patch-lightdm-gtk-greeter.conf'
+    'penguin-logo.svg'
     'LICENSE'
     'README.md'
 )
 
 package(){
+    install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
+    install -Dm0644 penguin-logo.svg "$pkgdir"/usr/share/pixmaps/penguin-logo.svg
     install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-themes/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-themes/LICENSE
 }
 
-md5sums=('32faed122940835fb3401d601b2d1e85'
+md5sums=('b1a209dcfb5831aa8000fe23644713f0'
+         'ed9e2d59fa012b888e9e32d7ff538d1c'
+         '32faed122940835fb3401d601b2d1e85'
          '6cf2030df59227fd5b9f3db73a571e25')

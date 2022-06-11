@@ -1,11 +1,11 @@
 pkgbase = penguin-desktop-extras
 	pkgdesc = Extra tools and scripts for Penguin
-	pkgver = 0.2.1
+	pkgver = 0.2.2
 	pkgrel = 1
 	url = https://penguin.fyi
 	arch = any
 	license = MIT
-	source = https://github.com/penguin-fyi/desktop-extras/archive/refs/tags/v0.2.1.tar.gz
-	md5sums = 99b6cf6c6e28d30745caca5c8102aabe
+	source = https://github.com/penguin-fyi/desktop-extras/archive/refs/tags/v0.2.2.tar.gz
+	md5sums = 3a50a32eab8f8b67747d059aafcdc411
 
 pkgname = penguin-desktop-extras

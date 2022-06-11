@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop-extras
 _pkgname=desktop-extras
-pkgver=0.2.1
+pkgver=0.2.2
 pkgrel=1
 pkgdesc="Extra tools and scripts for Penguin"
 arch=('any')
@@ -10,7 +10,7 @@ license=('MIT')
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('99b6cf6c6e28d30745caca5c8102aabe')
+md5sums=('3a50a32eab8f8b67747d059aafcdc411')
 
 package() {
 	cd "$_pkgname-$pkgver"

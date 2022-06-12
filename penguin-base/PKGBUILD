@@ -1,7 +1,8 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+
 pkgname='penguin-base'
 pkgver=5
-pkgrel=2
+pkgrel=3
 pkgdesc="The Penguin base system"
 arch=('any')
 url="https://penguin.fyi/"
@@ -18,7 +19,7 @@ source=(
     'patch-pacman.conf'
     'patch-useradd-shell'
     'penguin-base.install'
-    'penguin-config-patch.hook'
+    'penguin-base-patch.hook'
     'penguin-config-patch.sh'
     'LICENSE'
     'README.md'
@@ -34,8 +35,8 @@ package(){
     install -Dm0644 patch-useradd-shell "$pkgdir"/usr/share/penguin/patches/useradd.patch
     install -Dm0644 patch-pacman.conf "$pkgdir"/usr/share/penguin/patches/pacman.conf.patch
 
-    install -Dm0644 penguin-config-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-config-patch.hook
     install -Dm0755 penguin-config-patch.sh "$pkgdir"/usr/share/libalpm/scripts/penguin-config-patch
+    install -Dm0644 penguin-base-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-base-patch.hook
 
     install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
@@ -46,7 +47,7 @@ md5sums=('03f473be27e35e6d3e79995ffbe62ab1'
          'd7ae568291619ce1d95aaf78e6460a14'
          '79c690fc4d1faf1aa317cbe68246097f'
          'fc1c0ee49963670eab7848263695b928'
-         '8dd22dd9349183554aa78047af3079c9'
+         'c751648051b3f4d1f7a7b9f49ec9b9cb'
          'ab3dd94b99336d7b4f9dafeed7413d95'
          '32faed122940835fb3401d601b2d1e85'
          '25bee56042f5556a1b307096dfcaade3')

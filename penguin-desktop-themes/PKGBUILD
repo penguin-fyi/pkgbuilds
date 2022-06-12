@@ -1,6 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+
 pkgname='penguin-desktop-themes'
-pkgver=6
+pkgver=7
 pkgrel=1
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
@@ -11,22 +12,27 @@ depends=(ngui-blue-gtk-theme ngui-darkblue-gtk-theme ngui-blue-icon-theme
          ngui-green-gtk-theme ngui-darkgreen-gtk-theme ngui-green-icon-theme
          ngui-pink-gtk-theme ngui-darkpink-gtk-theme ngui-pink-icon-theme
          noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-hack
-         ttf-nerd-fonts-symbols xcursor-neutral)
+         ttf-nerd-fonts-symbols xcursor-neutral xdecorator)
 source=(
     'patch-lightdm-gtk-greeter.conf'
+    'penguin-themes-patch.hook'
     'penguin-logo.svg'
     'LICENSE'
     'README.md'
 )
 
 package(){
-    install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
     install -Dm0644 penguin-logo.svg "$pkgdir"/usr/share/pixmaps/penguin-logo.svg
+
+    install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
+    install -Dm0644 penguin-themes-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-themes-patch.hook
+
     install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-themes/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-themes/LICENSE
 }
 
 md5sums=('b1a209dcfb5831aa8000fe23644713f0'
+         '16fc30a4ba3261b2b326763b0289e69d'
          'ed9e2d59fa012b888e9e32d7ff538d1c'
          '32faed122940835fb3401d601b2d1e85'
          '6cf2030df59227fd5b9f3db73a571e25')

@@ -1,0 +1,13 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Path
+Target = etc/pacman.conf
+Target = etc/default/useradd
+
+[Action]
+Description = Patching system configurations...
+When = PostTransaction
+Depends = patch
+NeedsTargets
+Exec = /usr/share/libalpm/scripts/penguin-config-patch

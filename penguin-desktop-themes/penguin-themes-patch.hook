@@ -2,9 +2,6 @@
 Operation = Install
 Operation = Upgrade
 Type = Path
-Target = etc/makepkg.conf
-Target = etc/pacman.conf
-Target = etc/default/useradd
 Target = etc/lightdm/lightdm-gtk-greeter.conf
 
 [Action]

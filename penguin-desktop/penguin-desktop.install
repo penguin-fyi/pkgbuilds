@@ -4,5 +4,7 @@ post_install () {
 
     systemctl enable bluetooth
 
-    systemctl enable avahi
+    systemctl enable avahi-daemon
+
+    return
 }

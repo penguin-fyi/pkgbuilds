@@ -1,17 +1,17 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop
 pkgver=15
-pkgrel=1
+pkgrel=2
 pkgdesc="The Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
 depends=(arandr avahi awesome-git bash-completion blueman bluez-utils
-         cups dex firefox fontconfig gparted gst-libav gvfs kitty
-         lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-         light-locker lxtask-gtk3 network-manager-applet numlockx
-         pamac-aur-git pavucontrol pcmanfm-gtk3
-         penguin-desktop-awesome penguin-desktop-config
+         cups dex firefox fontconfig galculator gparted gst-libav gufw
+         gvfs gvfs-smb kitty lightdm lightdm-gtk-greeter
+         lightdm-gtk-greeter-settings light-locker lxtask-gtk3
+         network-manager-applet numlockx pamac-aur-git pavucontrol
+         pcmanfm-gtk3 penguin-desktop-awesome penguin-desktop-config
          penguin-desktop-themes picom pipewire pipewire-alsa
          pipewire-pulse playerctl polkit-gnome rofi rofi-pass
          system-config-printer thunderbird udiskie unclutter
@@ -39,10 +39,10 @@ md5sums=('c199c9b4e5f5d1732136b661fb41d065'
          'ea96caee4c180370818cbc8361d17f0e'
          '5343c3272d3c2b8b10b557eb12df84da'
          '6a7cd28a4ce7c7a40632840744f135e9'
-         '65b9e12e3c7b36f487473253e5e5a5f2'
+         '14b842989b890c444c2872b3a1e9821e'
          'ed90137b894837697c3f635a0dbdc1fe'
          '32faed122940835fb3401d601b2d1e85'
-         'c7777feb942a67736dea807d826a8c73')
+         '872b54b4c48a4cfbfec06be7d53036f4')
 
 package(){
     install=penguin-desktop.install
@@ -54,7 +54,9 @@ package(){
     install -Dm0644 autostart-udiskie "$pkgdir"/etc/xdg/autostart/udiskie.desktop
     install -Dm0644 autostart-unclutter "$pkgdir"/etc/xdg/autostart/unclutter.desktop
     install -Dm0644 autostart-volumeicon "$pkgdir"/etc/xdg/autostart/volumeicon.desktop
+
     install -Dm0644 xsession-awesome-default "$pkgdir"/usr/share/xsessions/awesome-default.desktop
+
     install -Dm0644 README.md "$pkgdir"/usr/share/$pkgname/README.md
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }

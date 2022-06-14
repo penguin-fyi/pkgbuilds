@@ -1,12 +1,9 @@
 ## penguin-desktop
 
-Provides the complete Penguin Desktop
-
 ### Depends
 * arandr
 * avahi
 * awesome-git ***!***
-* awesome-freedesktop-git ***!***
 * bash-completion
 * blueman
 * bluez-utils
@@ -15,16 +12,16 @@ Provides the complete Penguin Desktop
 * firefox
 * fontconfig
 * gparted
-* gpicview
+* gst-libav
+* gufw
 * gvfs
+* gvfs-smb
 * kitty
-* l3afpad
 * lightdm
 * lightdm-gtk-greeter
 * lightdm-gtk-greeter-settings
 * light-locker
 * lxtask-gtk3
-* mpv
 * network-manager-applet
 * numlockx
 * pamac-aur-git ***!***
@@ -55,8 +52,12 @@ Provides the complete Penguin Desktop
 * xorg-xset
 * xorg-xrdb
 * xorg-xrandr
+* xplayer
+* xplayer-plparser
+* xreader
 * xsettingsd
 * xterm
+* xviewer
 * zsh-autosuggestions
 * zsh-completions
 * zsh-syntax-highlighting
@@ -64,7 +65,7 @@ Provides the complete Penguin Desktop
 ### Services
 * lightdm
 * bluetooth
-* avahi
+* avahi-daemon
 
 ### Autostart
 * numlockx

@@ -1,6 +1,4 @@
-xed
 xplayer
 xplayer-plparser
-xreader
 xviewer
 xviewer-plugins

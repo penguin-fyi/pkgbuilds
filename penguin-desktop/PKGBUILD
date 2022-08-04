@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop
-pkgver=15
-pkgrel=2
+pkgver=16
+pkgrel=1
 pkgdesc="The Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
@@ -10,7 +10,7 @@ depends=(arandr avahi awesome-git bash-completion blueman bluez-utils
          cups dex firefox fontconfig galculator gparted gst-libav gufw
          gvfs gvfs-smb kitty lightdm lightdm-gtk-greeter
          lightdm-gtk-greeter-settings light-locker lxtask-gtk3
-         network-manager-applet numlockx pamac-aur-git pavucontrol
+         network-manager-applet nitrogen numlockx pamac-aur-git pavucontrol
          pcmanfm-gtk3 penguin-desktop-awesome penguin-desktop-config
          penguin-desktop-themes picom pipewire pipewire-alsa
          pipewire-pulse playerctl polkit-gnome rofi rofi-pass
@@ -20,7 +20,8 @@ depends=(arandr avahi awesome-git bash-completion blueman bluez-utils
          xplayer xplayer-plparser xreader xsettingsd xterm xviewer
          zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
-source=('autostart-numlockx'
+source=('autostart-nitrogen'
+        'autostart-numlockx'
         'autostart-pcmanfm'
         'autostart-picom'
         'autostart-polkit-gnome'
@@ -47,6 +48,7 @@ md5sums=('c199c9b4e5f5d1732136b661fb41d065'
 package(){
     install=penguin-desktop.install
 
+    install -Dm0644 autostart-nitrogen "$pkgdir"/etc/xdg/autostart/nitrogen.desktop
     install -Dm0644 autostart-numlockx "$pkgdir"/etc/xdg/autostart/numlockx.desktop
     install -Dm0644 autostart-pcmanfm "$pkgdir"/etc/xdg/autostart/pcmanfm.desktop
     install -Dm0644 autostart-picom "$pkgdir"/etc/xdg/autostart/picom.desktop

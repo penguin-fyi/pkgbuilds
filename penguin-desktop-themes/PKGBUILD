@@ -2,12 +2,13 @@
 
 pkgname='penguin-desktop-themes'
 pkgver=7
-pkgrel=1
+pkgrel=2
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(ngui-blue-gtk-theme ngui-darkblue-gtk-theme ngui-blue-icon-theme
+depends=(archlinux-wallpaper 
+         ngui-blue-gtk-theme ngui-darkblue-gtk-theme ngui-blue-icon-theme
          ngui-cyan-gtk-theme ngui-darkcyan-gtk-theme ngui-cyan-icon-theme
          ngui-green-gtk-theme ngui-darkgreen-gtk-theme ngui-green-icon-theme
          ngui-pink-gtk-theme ngui-darkpink-gtk-theme ngui-pink-icon-theme

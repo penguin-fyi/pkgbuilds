@@ -1,11 +1,11 @@
 pkgbase = penguin-desktop-config
 	pkgdesc = Penguin Desktop /etc/skel files
-	pkgver = 0.1.7
+	pkgver = 0.1.8
 	pkgrel = 1
 	url = https://penguin.fyi
 	arch = any
 	license = MIT
-	source = https://github.com/penguin-fyi/desktop-config/archive/refs/tags/v0.1.7.tar.gz
-	md5sums = aa0a2e2f7fe8cfec3ce2a6aaa4b34c67
+	source = https://github.com/penguin-fyi/desktop-config/archive/refs/tags/v0.1.8.tar.gz
+	md5sums = 6d39a0b9361ee6bfba1bcc0a4c701bbe
 
 pkgname = penguin-desktop-config

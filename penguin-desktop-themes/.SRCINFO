@@ -1,10 +1,11 @@
 pkgbase = penguin-desktop-themes
 	pkgdesc = Themes, icons, and fonts for the Penguin Desktop
 	pkgver = 7
-	pkgrel = 1
+	pkgrel = 2
 	url = https://penguin.fyi/
 	arch = any
 	license = MIT
+	depends = archlinux-wallpaper
 	depends = ngui-blue-gtk-theme
 	depends = ngui-darkblue-gtk-theme
 	depends = ngui-blue-icon-theme

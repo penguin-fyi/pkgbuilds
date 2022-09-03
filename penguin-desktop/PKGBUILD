@@ -33,7 +33,8 @@ source=('autostart-nitrogen'
         'LICENSE'
         'README.md')
 
-md5sums=('c199c9b4e5f5d1732136b661fb41d065'
+md5sums=('4ec107b696df741315b00ede30bef9dd'
+         'c199c9b4e5f5d1732136b661fb41d065'
          'b38d83c4be456823ea6e438d668792ab'
          'ff2e59135f736a3ddb059877bf0056a2'
          '527dc640676cffe1c12e560cdceefa38'

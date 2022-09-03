@@ -2,7 +2,7 @@
 
 pkgname='penguin-desktop-themes'
 pkgver=7
-pkgrel=2
+pkgrel=4
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
@@ -13,7 +13,7 @@ depends=(archlinux-wallpaper
          ngui-green-gtk-theme ngui-darkgreen-gtk-theme ngui-green-icon-theme
          ngui-pink-gtk-theme ngui-darkpink-gtk-theme ngui-pink-icon-theme
          noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-hack
-         ttf-nerd-fonts-symbols xcursor-neutral xdecorator)
+         ttf-nerd-fonts-symbols-2048-em xcursor-neutral xdecorator)
 source=(
     'patch-lightdm-gtk-greeter.conf'
     'penguin-themes-patch.hook'
@@ -32,7 +32,7 @@ package(){
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-themes/LICENSE
 }
 
-md5sums=('b1a209dcfb5831aa8000fe23644713f0'
+md5sums=('9e7bf9ec988197be4ad4274fa32a44d6'
          '16fc30a4ba3261b2b326763b0289e69d'
          'ed9e2d59fa012b888e9e32d7ff538d1c'
          '32faed122940835fb3401d601b2d1e85'

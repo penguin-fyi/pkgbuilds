@@ -1,0 +1,35 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=devtools-penguin
+_pkgname=devtools
+pkgver=7
+pkgrel=1
+pkgdesc="Tools for Penguin package maintainers"
+arch=('any')
+url="https://penguin.fyi/"
+license=('MIT')
+depends=(archiso arch-install-scripts aurutils bat devtools
+         fd fzf luacheck namcap neovim pacman-contrib pacutils
+         rsync shellcheck-bin tree)
+
+optdepends=('gimp: artwork and icons'
+            'github-cli: interact with github repo'
+            'inkscape: artwork and icons'
+            'oomox: theme and icon generator'
+            'virt-manager: testing install')
+
+replaces=('penguin-devtools')
+
+source=('LICENSE'
+        'README.md')
+
+package(){
+    install -Dm0644 README.md "$pkgdir"/usr/share/doc/$pkgname/README.md
+    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+}
+
+md5sums=('32faed122940835fb3401d601b2d1e85'
+         '7986fa8ce3886d6419fd647840477a5a'
+         'be33a683e4cf4573e10c7d3407b4d746'
+         '672e7b894c0cddf1ed8ed483661aea45'
+         'd44de54b3bc91fb89a69596a9e6c2171'
+         '5a85fa76723db6bf9fb14661169a17e8')

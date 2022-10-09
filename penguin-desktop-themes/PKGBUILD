@@ -1,8 +1,8 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
-
 pkgname='penguin-desktop-themes'
-pkgver=7
-pkgrel=4
+_pkgname='desktop-themes'
+pkgver=0.1.7
+pkgrel=1
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
 url="https://penguin.fyi/"
@@ -14,26 +14,20 @@ depends=(archlinux-wallpaper
          ngui-pink-gtk-theme ngui-darkpink-gtk-theme ngui-pink-icon-theme
          noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-hack
          ttf-nerd-fonts-symbols-2048-em xcursor-neutral xdecorator)
-source=(
-    'patch-lightdm-gtk-greeter.conf'
-    'penguin-themes-patch.hook'
-    'penguin-logo.svg'
-    'LICENSE'
-    'README.md'
-)
+
+source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
+
+md5sums=('592fde0427f67942b7f4ec0e953486ab')
+
 
 package(){
-    install -Dm0644 penguin-logo.svg "$pkgdir"/usr/share/pixmaps/penguin-logo.svg
+	cd "$_pkgname-$pkgver"
 
-    install -Dm0644 patch-lightdm-gtk-greeter.conf "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
-    install -Dm0644 penguin-themes-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-themes-patch.hook
+  install -Dm0644 images/penguin-logo.svg "$pkgdir"/usr/share/pixmaps/penguin-logo.svg
 
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-themes/README.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-themes/LICENSE
+  install -Dm0644 patches/lightdm-gtk-greeter.conf.patch "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
+  install -Dm0644 hooks/penguin-themes-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-themes-patch.hook
+
+  install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-themes/README.md
+  install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-themes/LICENSE
 }
-
-md5sums=('9e7bf9ec988197be4ad4274fa32a44d6'
-         '16fc30a4ba3261b2b326763b0289e69d'
-         'ed9e2d59fa012b888e9e32d7ff538d1c'
-         '32faed122940835fb3401d601b2d1e85'
-         '6cf2030df59227fd5b9f3db73a571e25')

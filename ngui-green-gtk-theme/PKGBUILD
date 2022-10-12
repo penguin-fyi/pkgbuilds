@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=ngui-green-gtk-theme
-_pkgname=nGUI-Green
-pkgver=0.1
+_pkgname=('nGUI-Green' 'nGUI-DarkGreen')
+pkgver=0.2
 pkgrel=1
 pkgdesc="nGUI-Green GTK theme"
 arch=('any')
@@ -10,12 +10,14 @@ license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/penguin-fyi/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('464d4506e60e4a3e0049861911b10253b792792e9f868879455ddd146d796099')
+sha256sums=('79790b8ca4d9f0010efdaa74c88c307500b42fee04366ed2485d6fa394b91915')
 
 package() {
 	cd "$pkgname-$pkgver"
 	mkdir -p  "$pkgdir/usr/share/themes"
-	cp -r $_pkgname "$pkgdir/usr/share/themes/$_pkgname"
+  for i in "${_pkgname[@]}"; do
+    cp -r $i "$pkgdir/usr/share/themes/$i"
+  done
 
 	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
 	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE

@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=ngui-blue-gtk-theme
-_pkgname=nGUI-Blue
-pkgver=0.1
+_pkgname=('nGUI-Blue' 'nGUI-DarkBlue')
+pkgver=0.2
 pkgrel=1
 pkgdesc="nGUI-Blue GTK theme"
 arch=('any')
@@ -10,12 +10,14 @@ license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/penguin-fyi/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('e8694950ade04af8d08a66ea0668d72ca20e5181cf535b0482427a16aff2a44a')
+sha256sums=('8e50692956614d0d29c8f824965c5123d66d8b5cf146a85d4f257a2354add31a')
 
 package() {
 	cd "$pkgname-$pkgver"
 	mkdir -p  "$pkgdir/usr/share/themes"
-	cp -r $_pkgname "$pkgdir/usr/share/themes/$_pkgname"
+  for i in "${_pkgname[@]}"; do
+    cp -r $i "$pkgdir/usr/share/themes/$i"
+  done
 
 	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
 	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE

@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=ngui-pink-gtk-theme
-_pkgname=nGUI-Pink
-pkgver=0.1
+_pkgname=('nGUI-Pink' 'nGUI-DarkPink')
+pkgver=0.2
 pkgrel=1
 pkgdesc="nGUI-Pink GTK theme"
 arch=('any')
@@ -10,12 +10,14 @@ license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/penguin-fyi/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('e83e71303624279f9c2e42e29a146c019c655d10c3362298cb85f3855c9e2fb9')
+sha256sums=('4ef4aac7fe1d5e5ccc6b8cea5436d008ce694ce8ea9bb10eb6b84a4ddb8a0031')
 
 package() {
 	cd "$pkgname-$pkgver"
 	mkdir -p  "$pkgdir/usr/share/themes"
-	cp -r $_pkgname "$pkgdir/usr/share/themes/$_pkgname"
+  for i in "${_pkgname[@]}"; do
+    cp -r $i "$pkgdir/usr/share/themes/$i"
+  done
 
 	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
 	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE

@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=ngui-cyan-gtk-theme
-_pkgname=nGUI-Cyan
-pkgver=0.1
+_pkgname=('nGUI-Cyan' 'nGUI-DarkCyan')
+pkgver=0.2
 pkgrel=1
 pkgdesc="nGUI-Cyan GTK theme"
 arch=('any')
@@ -10,12 +10,14 @@ license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/penguin-fyi/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('0040508af5b8dc729fb24bcf1c9b82c106d257443921226b9d5cc33d84011c64')
+sha256sums=('df7d027ebf0c3a93ebdf80762322b75877078026ea424b565f3b5e3b561740ec')
 
 package() {
 	cd "$pkgname-$pkgver"
 	mkdir -p  "$pkgdir/usr/share/themes"
-	cp -r $_pkgname "$pkgdir/usr/share/themes/$_pkgname"
+  for i in "${_pkgname[@]}"; do
+    cp -r $i "$pkgdir/usr/share/themes/$i"
+  done
 
 	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
 	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE

@@ -1,15 +1,9 @@
-antsy-gtk-theme
-antsy-icon-theme
 ngui-blue-gtk-theme
-ngui-darkblue-gtk-theme
 ngui-blue-icon-theme
 ngui-cyan-gtk-theme
-ngui-darkcyan-gtk-theme
 ngui-cyan-icon-theme
 ngui-green-gtk-theme
-ngui-darkgreen-gtk-theme
 ngui-green-icon-theme
 ngui-pink-gtk-theme
-ngui-darkpink-gtk-theme
 ngui-pink-icon-theme
 xdecorator

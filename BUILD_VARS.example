@@ -13,7 +13,7 @@ out_dir="$HOME/Packages/$out_db/$out_arch"
 build_cfg="$(pwd)/pacman-chroot.conf"
 
 # build lists (required for --all, order matters)
-build_lists=('packages-aur' 'packages-themes' 'packages-core')
+build_lists=('packages-aur' 'packages-xapps' 'packages-themes' 'packages-core')
 
 # GPG key to sign packages (required)
 gpg_key="<key>"

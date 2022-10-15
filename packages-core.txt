@@ -1,7 +1,7 @@
 penguin-base
-penguin-desktop
-penguin-desktop-awesome
 penguin-desktop-config
 penguin-desktop-themes
+penguin-desktop-awesome
+penguin-desktop
 penguin-dev-tools
 penguin-laptop-tools

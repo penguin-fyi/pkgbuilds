@@ -1,4 +1,4 @@
-xplayer
 xplayer-plparser
+xplayer
 xviewer
 xviewer-plugins

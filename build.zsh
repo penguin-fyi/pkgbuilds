@@ -38,6 +38,32 @@ function prepare() {
   return
 }
 
+function patch_arch() {
+  local pkg=$1
+  local infile=$pkg/PKGBUILD
+
+  test -f $infile \
+    || { echo "Abort! PKGBUILD not found!"; return 1 }
+
+  local find="arch="
+  local replace="arch=('x86_64' 'aarch64')"
+  local any="arch=('any')"
+
+  local result=$(grep -m1 $find $infile)
+
+  if [[ $result == $any ]]
+  then
+    echo "Abort! $any detected!"
+  elif [[ $result == $replace ]]
+  then
+    echo "Abort! $replace detected!"
+  else
+    echo "Patching $infile"
+    result=$(echo "$result" | sed -e 's/[]$.*[\^]/\\&/g' )
+    sed -i -n -e "s/$result/$replace/" $infile
+  fi
+}
+
 # build single package
 function build_package() {
   local pkg=$1
@@ -140,6 +166,24 @@ function fetch_aur() {
   done < $1
 }
 
+# clean up pkgbuilds
+function clean_list() {
+  local pkglist=$1
+  local pkg
+
+  echo "Clean up package list: ${pkglist:t}"
+  cat $pkglist || return 1
+  confirm || exit 1
+
+  while read pkg
+  do
+    echo "Cleaning '$pkg'..."
+    test -d $pkg \
+      && rm -rf $pkg
+  done < $pkglist
+
+}
+
 # publish repo
 function upload() {
   rsync -auv \
@@ -159,10 +203,12 @@ function usage() {
   echo "Usage: ${ZSH_ARGZERO:t} [-o <DIR>|-l <FILE>|-a|-f [<FILE>]|-h]"
   echo
   echo "arguments: (one required)"
-  echo "  -p, --pkg <DIR>       build single package"
-  echo "  -l, --list <FILE>     list of packages to build"
+  echo "  -p, --pkg   <DIR>     build single package"
+  echo "  -l, --list  <FILE>    list of packages to build"
   echo "  -a, --all             build all package lists"
+  echo "  -A, --arch  <DIR>     patch PKGBUILDs arch variable"
   echo "  -f, --fetch [<FILE>]  fetch PKGBUILDs in list from AUR"
+  echo "  -c, --clean <FILE>    remove PKGBUILDs in list"
   echo "  -h, --help            show this help message and quit"
   echo
 }
@@ -184,6 +230,12 @@ do
       build_package $2 \
         || { echo "Error: $?"; exit 1 }
       break;;
+    -A | --arch)
+      test -d $2 \
+        || { echo "invalid path: $2"; exit 1 }
+      patch_arch $2 \
+        || { echo "Error: $?"; exit 1 }
+      break;;
     -l | --list)
       test -f $2 \
         || { echo "invalid file: $2"; exit 1 }
@@ -201,6 +253,12 @@ do
       [[ -n $2 && -f $2 ]] \
         && list=$2
       fetch_aur $list \
+        || { echo "Error: $?"; exit 1 }
+      break;;
+    -c | --clean)
+      test -f $2 \
+        || { echo "invalid file: $2"; exit 1 }
+      clean_list $2 \
         || { echo "Error: $?"; exit 1 }
       break;;
     * | ?)

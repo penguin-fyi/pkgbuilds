@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-themes'
 _pkgname='desktop-themes'
-pkgver=0.1.8
+pkgver=0.1.9
 pkgrel=1
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
@@ -12,7 +12,7 @@ depends=(archlinux-wallpaper
          ngui-cyan-gtk-theme ngui-cyan-icon-theme
          ngui-green-gtk-theme ngui-green-icon-theme
          ngui-pink-gtk-theme ngui-pink-icon-theme
-         noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-hack
+         noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-hack-nerd
          ttf-nerd-fonts-symbols-2048-em xcursor-neutral xdecorator)
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")

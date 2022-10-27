@@ -1,29 +1,27 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-laptop-tools
-pkgver=3
-pkgrel=2
+_pkgname=laptop-tools
+pkgver=0.4
+pkgrel=1
 pkgdesc="Extra tools for laptops"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
 depends=(tlp cbatticon xorg-xbacklight)
 optdepends=('tlpui: configure tlp')
-source=(
-    'autostart-batteryicon'
-    'touchpad-toggle'
-    'LICENSE'
-    'README.md'
-)
+source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
+
+md5sums=('3c3bbd84428067373328f68e30e3f25c')
 
 package(){
-    install -Dm0644 autostart-batteryicon "$pkgdir"/etc/xdg/autostart/cbatticon.desktop
-    install -Dm0755 touchpad-toggle "$pkgdir"/usr/bin/touchpad-toggle
+	cd "$_pkgname-$pkgver"
 
-    install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
-    install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
+	mkdir -p "$pkgdir"/etc/xdg/autostart
+	cp -a autostart/. "$pkgdir"/etc/xdg/autostart
+
+	mkdir -p "$pkgdir"/usr/bin
+	cp -a bin/. "$pkgdir"/usr/bin
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/$pkgname/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
-
-md5sums=('96254d6d589149d870a59e4b6906c8d8'
-         '65bc376f54379440cb5012b115ef7455'
-         '32faed122940835fb3401d601b2d1e85'
-         '43d78246438d066d4454280f87e068d8')

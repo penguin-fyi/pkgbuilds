@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-themes'
 _pkgname='desktop-themes'
-pkgver=0.1.9
+pkgver=0.2
 pkgrel=1
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
@@ -17,17 +17,24 @@ depends=(archlinux-wallpaper
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('592fde0427f67942b7f4ec0e953486ab')
+md5sums=('1186866098d2771af8b129a7d714bc4b')
 
 
 package(){
 	cd "$_pkgname-$pkgver"
 
-  install -Dm0644 images/penguin-logo.svg "$pkgdir"/usr/share/pixmaps/penguin-logo.svg
+  install -dm0755 "$pkgdir"/usr/share/backgrounds/penguin
+	cp -a backgrounds/. "$pkgdir"/usr/share/backgrounds/penguin
 
-  install -Dm0644 patches/lightdm-gtk-greeter.conf.patch "$pkgdir"/usr/share/penguin/patches/lightdm-gtk-greeter.conf.patch
-  install -Dm0644 hooks/penguin-themes-patch.hook "$pkgdir"/usr/share/libalpm/hooks/90-penguin-themes-patch.hook
+  install -dm0755 "$pkgdir"/usr/share/pixmaps
+	cp -a images/. "$pkgdir"/usr/share/pixmaps
 
-  install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin/desktop-themes/README.md
-  install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin/desktop-themes/LICENSE
+  install -dm0755 "$pkgdir"/usr/share/penguin/patches
+	cp -a patches/. "$pkgdir"/usr/share/penguin/patches
+
+  install -dm0755 "$pkgdir"/usr/share/libalpm/hooks
+	cp -a hooks/. "$pkgdir"/usr/share/libalpm/hooks
+
+  install -Dm0644 README.md "$pkgdir"/usr/share/doc/penguin-desktop-themes/README.md
+  install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/penguin-desktop-themes/LICENSE
 }

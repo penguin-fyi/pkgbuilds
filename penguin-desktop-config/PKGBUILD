@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop-config
 _pkgname=desktop-config
-pkgver=0.1.9
+pkgver=0.2
 pkgrel=1
 pkgdesc="Penguin Desktop /etc/skel files"
 arch=('any')
@@ -9,7 +9,7 @@ url="https://penguin.fyi"
 license=('MIT')
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('db186193a2abb297d9196e647e84758b')
+md5sums=('fb6876782fe1eeb758339348b60fb89d')
 
 package() {
 	cd "$_pkgname-$pkgver"

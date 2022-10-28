@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-desktop-themes'
 _pkgname='desktop-themes'
-pkgver=0.2
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
 arch=('any')
@@ -17,7 +17,7 @@ depends=(archlinux-wallpaper
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('1186866098d2771af8b129a7d714bc4b')
+md5sums=('190744422d4fd8e26c05eacfc0375445')
 
 
 package(){

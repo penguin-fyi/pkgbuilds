@@ -1,9 +1,9 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=ngui-blue-gtk-theme
-_pkgname=('nGUI-Blue' 'nGUI-DarkBlue')
-pkgver=0.2
+_pkgname=('nGUI-Blue' 'nGUI-Blue-Dark' 'nGUI-Blue-Darkest' 'nGUI-Blue-Light' 'nGUI-Blue-Lightest')
+pkgver=0.3
 pkgrel=1
-pkgdesc="nGUI-Blue GTK theme"
+pkgdesc="nGUI-Blue GTK themes"
 arch=('any')
 url="https://github.com/penguin-fyi/ngui-blue-gtk-theme"
 license=('MIT')

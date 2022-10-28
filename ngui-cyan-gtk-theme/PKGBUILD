@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=ngui-cyan-gtk-theme
-_pkgname=('nGUI-Cyan' 'nGUI-DarkCyan')
-pkgver=0.2
+_pkgname=('nGUI-Cyan' 'nGUI-Cyan-Dark' 'nGUI-Cyan-Darkest' 'nGUI-Cyan-Light' 'nGUI-Cyan-Lightest')
+pkgver=0.3
 pkgrel=1
 pkgdesc="nGUI-Cyan GTK theme"
 arch=('any')

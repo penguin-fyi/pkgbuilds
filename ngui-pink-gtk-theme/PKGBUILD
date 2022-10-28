@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=ngui-pink-gtk-theme
-_pkgname=('nGUI-Pink' 'nGUI-DarkPink')
-pkgver=0.2
+_pkgname=('nGUI-Pink' 'nGUI-Pink-Dark' 'nGUI-Pink-Darkest' 'nGUI-Pink-Light' 'nGUI-Pink-Lightest')
+pkgver=0.3
 pkgrel=1
 pkgdesc="nGUI-Pink GTK theme"
 arch=('any')

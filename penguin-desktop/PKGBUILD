@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname=penguin-desktop
 _pkgname=desktop
-pkgver=0.16
+pkgver=0.17
 pkgrel=1
 pkgdesc="The Penguin Desktop"
 arch=('any')
@@ -23,7 +23,7 @@ depends=(arandr avahi awesome-git bash-completion blueman bluez-utils
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('498042906a932b7b362dd4e0db7252bb')
+md5sums=('840bf8ce9bdad2c42f27e12c21aaa934')
 
 package() {
   install=penguin-desktop.install

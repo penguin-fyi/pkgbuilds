@@ -1,7 +1,7 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-base'
 _pkgname='base'
-pkgver=0.6
+pkgver=0.7
 pkgrel=1
 pkgdesc="The Penguin base system"
 arch=('any')
@@ -15,7 +15,7 @@ depends=(base curl efibootmgr fail2ban git gnupg
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('9cb0e408580c0f33e64b77e11581c25a')
+md5sums=('461acfd7f09b535d817ca235a03fc7e0')
 
 package(){
   install=penguin-base.install

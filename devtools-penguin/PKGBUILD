@@ -2,12 +2,12 @@
 pkgname=devtools-penguin
 _pkgname=devtools
 pkgver=7
-pkgrel=1
+pkgrel=2
 pkgdesc="Tools for Penguin package maintainers"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(arch-install-scripts aurutils bat devtools
+depends=(arch-install-scripts bat devtools
          fd fzf luacheck namcap neovim pacman-contrib pacutils
          rsync shellcheck-bin tree)
 

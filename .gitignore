@@ -1,14 +1,6 @@
 .chinstraprc
 src/*
 pkg/*
-*.tar*
-.AURINFO
 */.git*
-*/*.tar
-*/*.gz
-*/*.part
-*/*.log
-*/pkg
-*/src
-*/*.pkg.*
+.AURINFO
 .SRCINFO

@@ -1,0 +1,29 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+pkgname=chinstrap
+pkgver=0.1
+pkgrel=1
+pkgdesc="PENGUIN build tool"
+arch=('any')
+url="https://penguin.fyi/"
+license=('GPL3')
+depends=(curl devtools gnupg jq rsync)
+
+source=("https://github.com/penguin-fyi/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
+
+sha256sums=('dd722c9bb4d9cf11164b1fa3feee175e52bb5aa43722baddcaebfc63b3e183c2')
+
+package(){
+  cd "$pkgname-$pkgver"
+
+  install -Dm0755 chinstrap "$pkgdir"/usr/bin/chinstrap
+
+  install -dm0755 "$pkgdir"/usr/share/zsh/site-functions
+  install -Dm0644 completions/_chinstrap "$pkgdir"/usr/share/zsh/site-functions/_chinstrap
+
+  install -dm0755 "$pkgdir"/usr/share/zsh/plugins/chinstrap
+  install -Dm0644 plugins/chinstrap.plugin.zsh "$pkgdir"/usr/share/zsh/plugins/chinstrap/chinstrap.plugin.zsh
+
+  install -Dm0644 README.md "$pkgdir"/usr/share/doc/$pkgname/README.md
+  install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+}
+

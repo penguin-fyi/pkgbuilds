@@ -2,12 +2,12 @@
 pkgname=devtools-penguin
 _pkgname=devtools
 pkgver=7
-pkgrel=2
+pkgrel=3
 pkgdesc="Tools for Penguin package maintainers"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(arch-install-scripts bat devtools
+depends=(arch-install-scripts bat devtools chinstrap
          fd fzf luacheck namcap neovim pacman-contrib pacutils
          rsync shellcheck-bin tree)
 
@@ -16,8 +16,6 @@ optdepends=('gimp: artwork and icons'
             'inkscape: artwork and icons'
             'oomox: theme and icon generator'
             'virt-manager: testing install')
-
-replaces=('penguin-devtools')
 
 source=('LICENSE'
         'README.md')

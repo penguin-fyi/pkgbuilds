@@ -23,7 +23,7 @@ depends=(arandr avahi awesome-git bash-completion blueman bluez-utils
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('840bf8ce9bdad2c42f27e12c21aaa934')
+sha256sums=('53004be751f1df6162d8699212a4d3160b1cbfd109897bd129270a8f5b84bfc7')
 
 package() {
   install=penguin-desktop.install

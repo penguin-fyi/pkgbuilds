@@ -17,7 +17,7 @@ depends=(archlinux-wallpaper
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('190744422d4fd8e26c05eacfc0375445')
+sha256sums=('c7a6a1942396297699764fb65d3b8b890f1c5134f9141e8ec18438698273b8a5')
 
 
 package(){

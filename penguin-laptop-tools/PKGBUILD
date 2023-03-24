@@ -11,7 +11,7 @@ depends=(tlp cbatticon xorg-xbacklight)
 optdepends=('tlpui: configure tlp')
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('3c3bbd84428067373328f68e30e3f25c')
+sha256sums=('5dea21a8a84b5ff1f8db4945dd9c7512474e936a7b16d2ffe0ba6aa345f8d0d8')
 
 package(){
 	cd "$_pkgname-$pkgver"

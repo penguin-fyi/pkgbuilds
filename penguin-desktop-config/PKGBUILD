@@ -9,7 +9,7 @@ url="https://penguin.fyi"
 license=('MIT')
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('fb6876782fe1eeb758339348b60fb89d')
+sha256sums=('b0e1c33e16cb18fe8ea1bac5b7a1526a6b85bf500a8c83559cfd040c1ba1d187')
 
 package() {
 	cd "$_pkgname-$pkgver"

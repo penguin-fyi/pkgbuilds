@@ -21,7 +21,7 @@ package(){
     install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
 }
 
-md5sums=('f2ea8c2f2ccc1eccc8bab6649444f470'
-         'e93256de7d5a7561e1e955b38b4eee56'
-         'a8bd8e8b66169542c21de3c7633be00e'
-         'e7dd940a79567e3d1e046a34c2afb7d9')
+sha256sums=('31b9fc034578d34d7b63a315c1b18cc34eabcb11a1cc26ee201280bcbbcc71ff'
+            'ee90932e05e98f11d2720ffad0d5060e9cebb5ba7a6bd5f179b89822081d445d'
+            '97e81d44530cfd8bedcc112594fd1d5d4f51bd44a760a92a937f110a280c560a'
+            '29b6282feab40be15b70b1388e5660e6b9af7ae05f39079456666d243d06ecc4')

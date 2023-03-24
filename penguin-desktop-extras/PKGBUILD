@@ -10,7 +10,7 @@ license=('MIT')
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-md5sums=('3a50a32eab8f8b67747d059aafcdc411')
+sha256sums=('85c93c4d0a65297445f9db61d8da74cc308781bdff8309a6d63f938515023a9e')
 
 package() {
 	cd "$_pkgname-$pkgver"

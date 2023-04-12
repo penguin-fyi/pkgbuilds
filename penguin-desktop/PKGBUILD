@@ -1,25 +1,24 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
-pkgname=penguin-desktop
+
 _pkgname=desktop
-pkgver=0.17
+pkgname=penguin-$_pkgname
+pkgver=0.18
 pkgrel=1
-pkgdesc="The Penguin Desktop"
+pkgdesc="The PENGUIN Desktop"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(arandr avahi awesome-git bash-completion blueman bluez-utils
-         cups dex firefox fontconfig galculator gparted gst-libav gufw
-         gvfs gvfs-smb kitty lightdm lightdm-gtk-greeter
-         lightdm-gtk-greeter-settings light-locker lxtask-gtk3
+depends=(awesome-dev blueman bluez-utils btop cups dex firefox fontconfig
+         galculator gparted gst-libav gufw gvfs gvfs-smb kitty lightdm
+         lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker neovim
          network-manager-applet nitrogen numlockx pamac-aur-git pavucontrol
          pcmanfm-gtk3 penguin-desktop-awesome penguin-desktop-config
-         penguin-desktop-themes picom pipewire pipewire-alsa
-         pipewire-pulse playerctl polkit-gnome rofi rofi-pass
-         system-config-printer thunderbird udiskie unclutter
-         volumeicon weechat xdg-user-dirs-gtk xdg-utils xed
-         xorg-xdpyinfo xorg-server xorg-xset xorg-xrdb xorg-xrandr
-         xplayer xplayer-plparser xreader xsettingsd xterm xviewer
-         zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+         penguin-desktop-themes pipewire pipewire-alsa pipewire-pulse
+         playerctl polkit-gnome rofi rofi-pass system-config-printer
+         thunderbird udiskie unclutter volumeicon weechat xdecorator
+         xdg-user-dirs-gtk xdg-utils xed xorg-xdpyinfo xorg-server xorg-xset
+         xorg-xrdb xorg-xrandr xplayer xplayer-plparser xreader xsettingsd
+         xterm xviewer)
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 

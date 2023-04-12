@@ -1,0 +1,24 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+
+pkgname=ngui-pro-icon-theme
+_themes=('nGUI-Pro')
+pkgver=0.1
+pkgrel=1
+pkgdesc="nGUI-Pro icon theme"
+arch=('any')
+url="https://github.com/penguin-fyi/$pkgname"
+license=('GPL3')
+source=("$url/archive/v$pkgver.tar.gz")
+
+sha256sums=('6c9b54d6f60532e92c5c56f6dff5a89f7471cb21a8bf64e006a8a165958b9824')
+
+package() {
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/icons"
+  for i in "${_themes[@]}"; do
+    cp -r $i "$pkgdir/usr/share/icons/$i"
+  done
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
+}

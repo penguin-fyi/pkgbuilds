@@ -1,0 +1,25 @@
+# Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
+
+pkgname=ngui-pro-gtk-theme
+_themes=('nGUI-Pro')
+pkgver=0.1
+pkgrel=1
+pkgdesc="nGUI-Pro GTK theme"
+arch=('any')
+url="https://github.com/penguin-fyi/$pkgname"
+license=('GPL3')
+depends=('gtk-engine-murrine')
+source=("$url/archive/refs/tags/v$pkgver.tar.gz")
+
+sha256sums=('409ff6e09fd8f65d293c143f444a4cfbb0cd0f852406cdf4c5b349100a6c36cd')
+
+package() {
+	cd "$pkgname-$pkgver"
+	mkdir -p  "$pkgdir/usr/share/themes"
+  for i in "${_themes[@]}"; do
+    cp -r $i "$pkgdir/usr/share/themes/$i"
+  done
+
+	install -Dm0644 README.md "$pkgdir"/usr/share/doc/"$pkgname"/README.md
+	install -Dm0644 LICENSE "$pkgdir"/usr/share/licenses/"$pkgname"/LICENSE
+}

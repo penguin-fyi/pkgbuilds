@@ -1,23 +1,29 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
-pkgname='penguin-desktop-themes'
-_pkgname='desktop-themes'
-pkgver=0.2.1
+
+_pkgname=desktop-themes
+pkgname=penguin-$_pkgname
+pkgver=0.3
 pkgrel=1
-pkgdesc="Themes, icons, and fonts for the Penguin Desktop"
+pkgdesc="Themes, icons, and fonts for the PENGUIN Desktop"
 arch=('any')
-url="https://penguin.fyi/"
+url="https://github.com/penguin-fyi/$_pkgname"
 license=('MIT')
-depends=(archlinux-wallpaper 
-         ngui-blue-gtk-theme ngui-blue-icon-theme
-         ngui-cyan-gtk-theme ngui-cyan-icon-theme
-         ngui-green-gtk-theme ngui-green-icon-theme
-         ngui-pink-gtk-theme ngui-pink-icon-theme
+depends=(archlinux-wallpaper ngui-pro-gtk-theme ngui-pro-icon-theme
          noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-hack-nerd
-         ttf-nerd-fonts-symbols-2048-em xcursor-neutral xdecorator)
+         ttf-nerd-fonts-symbols-2048-em xcursor-neutral)
 
-source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
+optdepends=('ngui-blue-gtk-theme: Blue GTK3 theme'
+            'ngui-blue-icon-theme: Blue icon theme'
+            'ngui-cyan-gtk-theme: Cyan GTK3 theme'
+            'ngui-cyan-icon-theme: Cyan icon theme'
+            'ngui-green-gtk-theme: Green GTK3 theme'
+            'ngui-green-icon-theme: Green icon theme'
+            'ngui-pink-gtk-theme: Pink GTK3 theme'
+            'ngui-pink-icon-theme: Pink icon theme')
 
-sha256sums=('c7a6a1942396297699764fb65d3b8b890f1c5134f9141e8ec18438698273b8a5')
+source=("$url/archive/refs/tags/v$pkgver.tar.gz")
+
+sha256sums=('9cb4852738336ad1ef1f3b0a43a591c9e4df6da57be3db8e4294acb9d674b52e')
 
 
 package(){

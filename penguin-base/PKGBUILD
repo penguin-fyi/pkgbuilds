@@ -1,19 +1,19 @@
 # Maintainer: Jeff M. Hubbard <jeffmhubbard@gmail.com>
 pkgname='penguin-base'
 _pkgname='base'
-pkgver=0.7.1
-pkgrel=2
+pkgver=0.7.5
+pkgrel=1
 pkgdesc="PENGUIN base system"
 arch=('any')
 url="https://penguin.fyi/"
 license=('MIT')
-depends=(base curl fail2ban git gnupg man-db man-pages
-         neovim openssh pass patch pwgen rsync sudo
-         tmux ufw unzip vi w3m zip zsh)
+depends=(base curl git gnupg man-db man-pages
+         openssh pass patch pwgen sudo
+         ufw unzip vi w3m zip zsh)
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('a19cef0ae7d527e13301ae0a1ff1026eb95527b2bf5f6c431a3527d253da82ee')
+sha256sums=('c7dd9f25339342bf407642d977229257543ab63af9e6102bd37ca1193390e1e0')
 
 package(){
   install=penguin-base.install

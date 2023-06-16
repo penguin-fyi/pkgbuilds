@@ -1,5 +1,0 @@
-archlinux-appstream-data-pamac
-awesome-git
-libpamac-git
-pamac-aur-git
-shellcheck-bin

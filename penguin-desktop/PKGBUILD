@@ -3,7 +3,7 @@
 _pkgname=desktop
 pkgname=penguin-$_pkgname
 pkgver=0.18
-pkgrel=1
+pkgrel=2
 pkgdesc="The PENGUIN Desktop"
 arch=('any')
 url="https://penguin.fyi/"
@@ -11,7 +11,7 @@ license=('MIT')
 depends=(awesome-dev blueman bluez-utils btop cups dex firefox fontconfig
          galculator gparted gst-libav gufw gvfs gvfs-smb kitty lightdm
          lightdm-gtk-greeter lightdm-gtk-greeter-settings light-locker neovim
-         network-manager-applet nitrogen numlockx pamac-aur-git pavucontrol
+         network-manager-applet nitrogen numlockx pamac-aur pavucontrol
          pcmanfm-gtk3 penguin-desktop-awesome penguin-desktop-config
          penguin-desktop-themes pipewire pipewire-alsa pipewire-pulse
          playerctl polkit-gnome rofi rofi-pass system-config-printer
@@ -22,7 +22,7 @@ depends=(awesome-dev blueman bluez-utils btop cups dex firefox fontconfig
 
 source=("https://github.com/penguin-fyi/$_pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('53004be751f1df6162d8699212a4d3160b1cbfd109897bd129270a8f5b84bfc7')
+sha256sums=('f8e14767d1866668903d159d675ff794fe43842c7de4b60a0124ede567f8a2a0')
 
 package() {
   install=penguin-desktop.install

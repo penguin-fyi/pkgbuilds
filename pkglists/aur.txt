@@ -1,0 +1,4 @@
+libpamac-aur
+pamac-aur
+shellcheck-bin
+xcursor-neutral

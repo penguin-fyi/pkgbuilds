@@ -2,7 +2,7 @@
 
 _pkgname=desktop-themes
 pkgname=penguin-$_pkgname
-pkgver=0.3
+pkgver=0.4
 pkgrel=1
 pkgdesc="Themes, icons, and fonts for the PENGUIN Desktop"
 arch=('any')
@@ -10,7 +10,7 @@ url="https://github.com/penguin-fyi/$_pkgname"
 license=('MIT')
 depends=(archlinux-wallpaper ngui-pro-gtk-theme ngui-pro-icon-theme
          noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-hack-nerd
-         ttf-nerd-fonts-symbols-2048-em xcursor-neutral)
+         ttf-nerd-fonts-symbols xcursor-neutral)
 
 optdepends=('ngui-blue-gtk-theme: Blue GTK3 theme'
             'ngui-blue-icon-theme: Blue icon theme'

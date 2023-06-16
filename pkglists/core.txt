@@ -1,7 +1,9 @@
+ngui-pro-gtk-theme
+ngui-pro-icon-theme
+xdecorator
 penguin-base
 penguin-desktop-config
 penguin-desktop-themes
 penguin-desktop-awesome
 penguin-desktop
-penguin-dev-tools
 penguin-laptop-tools

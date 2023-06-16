@@ -2,12 +2,12 @@
 pkgname=penguin-desktop-awesome
 _pkgname=awesome-config
 pkgver=r9.9c0442e
-pkgrel=1
+pkgrel=2
 pkgdesc="Penguin Desktop (nGUI) AwesomeWM theme"
 arch=('any')
 url="https://penguin.fyi"
 license=('MIT')
-depends=('awesome-git')
+depends=('awesome-dev')
 makedepends=('git')
 source=('git+https://github.com/penguin-fyi/awesome-config.git')
 sha256sums=('SKIP')

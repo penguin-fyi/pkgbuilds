@@ -6,4 +6,3 @@ ngui-green-gtk-theme
 ngui-green-icon-theme
 ngui-pink-gtk-theme
 ngui-pink-icon-theme
-xdecorator

@@ -2,8 +2,8 @@
 
 _pkgname=awesome
 pkgname=${_pkgname}-dev
-pkgver=4.3.1588.gb54e50ad6
-pkgrel=2
+pkgver=4.3.1606.g0e5fc4575
+pkgrel=1
 pkgdesc='Highly configurable framework window manager'
 arch=('aarch64' 'x86_64')
 url='https://awesomewm.org/'

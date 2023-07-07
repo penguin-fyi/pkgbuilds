@@ -10,7 +10,7 @@ license=('MIT')
 depends=('gtk-engine-murrine')
 source=("https://github.com/penguin-fyi/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 
-sha256sums=('df7d027ebf0c3a93ebdf80762322b75877078026ea424b565f3b5e3b561740ec')
+sha256sums=('c7e5b852f0ec72ec04f834fb452aae726f74dac01ab3789e92b1cab93477737b')
 
 package() {
 	cd "$pkgname-$pkgver"
